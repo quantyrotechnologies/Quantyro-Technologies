@@ -1,0 +1,91 @@
+"use client";
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+export default function StatsSection() {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.from('.stat', {
+      opacity: 0,
+      y: 24,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 80%',
+      },
+    });
+
+    const statsElements = gsap.utils.toArray<HTMLElement>('.stat h2', container.current);
+    statsElements.forEach((el) => {
+      const target = parseInt(el.dataset.count ?? '0', 10);
+      const suffix = el.dataset.suffix || '+';
+      const obj = { v: 0 };
+      gsap.to(obj, {
+        v: target,
+        duration: 1.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        },
+        onUpdate: () => {
+          el.textContent = Math.round(obj.v) + suffix;
+        }
+      });
+    });
+  }, { scope: container });
+
+  const stats = [
+    { count: 120, suffix: '+', label: 'Projects delivered', tag: 'Production scale', accent: 'accent' },
+    { count: 95, suffix: '+', label: 'Enterprise clients', tag: 'Global footprint', accent: 'accent-2' },
+    { count: 8, suffix: '+', label: 'Years engineering', tag: 'Proven tenure', accent: 'accent' },
+    { count: 97, suffix: '%', label: 'Client retention', tag: 'Long-term SLA', accent: 'accent-2' },
+  ];
+
+  return (
+    <section ref={container} id="stats" className="relative py-[80px] md:py-[100px] px-[6vw] z-10">
+      {/* Section Label */}
+      <div className="mono text-[12px] text-[var(--muted)] mb-[40px]">04 / Enterprise Impact</div>
+      
+      {/* Stats Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px] md:gap-[20px]">
+        {stats.map((s, i) => (
+          <div
+            key={i}
+            className="stat relative bg-white rounded-2xl p-[28px] md:p-[36px] border border-[rgba(10,23,47,0.07)] shadow-[0_4px_20px_rgba(10,23,47,0.04)] hover:border-[rgba(23,104,214,0.25)] hover:shadow-[0_8px_30px_rgba(23,104,214,0.1)] transition-all duration-300 group overflow-hidden"
+          >
+            {/* Subtle top border accent on hover */}
+            <div className="absolute top-0 left-0 right-0 h-[3px] bg-[var(--accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-t-2xl" />
+            
+            {/* Soft background radial */}
+            <div className="absolute top-0 right-0 w-[100px] h-[100px] bg-[radial-gradient(circle_at_top_right,rgba(23,104,214,0.05),transparent_70%)]" />
+
+            <h2
+              data-count={s.count}
+              data-suffix={s.suffix}
+              className="text-[clamp(40px,5.2vw,76px)] text-[var(--ink)] font-[var(--font-display)] font-bold leading-[0.98]"
+            >
+              0
+            </h2>
+            <div className="mt-[14px] text-[13.5px] text-[var(--muted)] font-medium">{s.label}</div>
+            <div className="mt-[6px] mono text-[11px] text-[var(--accent)] flex items-center gap-[4px]">
+              <span className="w-[4px] h-[4px] rounded-full bg-[var(--accent)]" />
+              {s.tag}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Divider stripe below stats */}
+      <div className="mt-[60px] h-[1px] bg-[var(--line)]" />
+    </section>
+  );
+}

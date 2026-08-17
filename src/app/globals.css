@@ -1,0 +1,312 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #F7FBFE;
+  --bg-alt: #EDF3FA;
+  --ink: #0A172F;
+  --muted: #5B6478;
+  --accent: #1768D6;
+  --accent-2: #0EBCD4;
+  --line: rgba(10,23,47,0.10);
+  --surface: #FFFFFF;
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-plex-mono);
+  --font-display: var(--font-bricolage);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  font-weight: 700;
+}
+
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.02em;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* Cancels the inner padding below so line spacing is unchanged. */
+  margin-bottom: -0.14em;
+}
+
+.word span {
+  display: inline-block;
+  will-change: transform;
+  /* Descender room lives INSIDE the moving span, so the mask box and the span
+     box stay the same height and yPercent:100 hides it completely. */
+  padding-bottom: 0.14em;
+}
+
+.grain {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  opacity: 0.035; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.process-bar {
+  margin-top: 34px; height: 2px; background: var(--line); width: 220px; position: relative;
+}
+.process-bar span {
+  position: absolute; left: 0; top: 0; height: 100%; background: var(--ink); width: 0%;
+}
+
+.scroll-cue .line {
+  width: 1px; height: 34px; background: var(--muted); position: relative; overflow: hidden;
+}
+.scroll-cue .line::after {
+  content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 100%; background: var(--ink); animation: cue 1.8s ease-in-out infinite;
+}
+
+@keyframes cue {
+  0% { top: -100%; }
+  50% { top: 0; }
+  100% { top: 100%; }
+}
+
+.panel-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(23, 104, 214, 0.14), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.panel-glow:hover::before {
+  opacity: 1;
+}
+
+/* ---------- Our approach: Scroll-Driven Cyber Roadmap Timeline ---------- */
+
+.roadmap-spine-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: rgba(10, 23, 47, 0.08);
+  border-radius: 999px;
+}
+.roadmap-spine-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top center;
+  background: linear-gradient(180deg, #1768D6 0%, #0EBCD4 60%, #1768D6 100%);
+  box-shadow: 0 0 18px rgba(23, 104, 214, 0.7), 0 0 36px rgba(23, 104, 214, 0.35);
+  border-radius: 999px;
+}
+.roadmap-spine-laser {
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  border-radius: 50%;
+  background: #1768D6;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 0 20px rgba(23, 104, 214, 1), 0 0 40px rgba(23, 104, 214, 0.6), 0 0 0 5px rgba(23, 104, 214, 0.25);
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 30;
+}
+
+.roadmap-card {
+  opacity: 0.35;
+  transform: translateY(24px) scale(0.97);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.roadmap-card.is-active {
+  opacity: 1;
+  transform: translateY(0) scale(1.02);
+  border-color: rgba(23, 104, 214, 0.5);
+  box-shadow: 0 20px 50px rgba(23, 104, 214, 0.14), 0 0 20px rgba(23, 104, 214, 0.08);
+}
+
+.roadmap-node-beacon {
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.roadmap-node-beacon.is-active {
+  background: #1768D6 !important;
+  color: #FFFFFF !important;
+  border-color: #1768D6 !important;
+  box-shadow: 0 0 22px rgba(23, 104, 214, 0.55), 0 0 0 5px rgba(23, 104, 214, 0.2) !important;
+  transform: scale(1.2);
+}
+
+/* Horizontal connecting line from spine to card */
+.roadmap-bridge-line {
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(23, 104, 214, 0.6), rgba(14, 188, 212, 0.15));
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.roadmap-card.is-active ~ .roadmap-bridge-line,
+.roadmap-bridge-active {
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(23, 104, 214, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .approach-step {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+  50% { transform: translateY(-18px) translateX(6px); opacity: 1; }
+}
+.floating-particle {
+  animation: float-particle 5s ease-in-out infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+}
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* High-tech Glassmorphism Surface for top IT company aesthetic */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(10, 23, 47, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(10, 23, 47, 0.05);
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(23, 104, 214, 0.35);
+  box-shadow: 0 20px 40px -12px rgba(23, 104, 214, 0.12);
+}
+
+.cyber-badge {
+  background: rgba(23, 104, 214, 0.06);
+  border: 1px solid rgba(23, 104, 214, 0.18);
+  color: var(--accent);
+}
+
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 22s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 25s linear infinite;
+}
+
+.pause-hover:hover {
+  animation-play-state: paused;
+}
+
+/* [PHASE-1] Headline Aurora Shimmer Effect */
+@keyframes aurora-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-aurora-shimmer {
+  background: linear-gradient(135deg, #1768D6 0%, #0EBCD4 35%, #1256B4 60%, #0EBCD4 80%, #1768D6 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: aurora-shimmer 6s ease infinite;
+  display: inline-block;
+}
+
+/* [PHASE-3] CTA Button Radiant Border Beam */
+@keyframes border-beam-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.border-beam-container {
+  position: relative;
+  border-radius: 9999px;
+  overflow: hidden;
+  padding: 1.5px;
+  display: inline-flex;
+  box-shadow: 0 0 20px -3px rgba(23, 104, 214, 0.25);
+  transition: all 0.3s ease;
+}
+
+.border-beam-container:hover {
+  box-shadow: 0 0 30px rgba(23, 104, 214, 0.4);
+}
+
+.border-beam-laser {
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(from 0deg, transparent 0deg, transparent 280deg, #1256B4 310deg, #1768D6 340deg, #0EBCD4 360deg);
+  animation: border-beam-spin 3.2s linear infinite;
+  pointer-events: none;
+}
+
+/* [PHASE-4] Core Click Shockwave - Blue */
+@keyframes cyber-shockwave {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.95;
+    box-shadow: 0 0 25px #1768D6, inset 0 0 15px #1768D6;
+  }
+  100% {
+    transform: scale(4.5);
+    opacity: 0;
+    box-shadow: 0 0 40px rgba(23, 104, 214, 0);
+  }
+}
+
+.animate-shockwave {
+  animation: cyber-shockwave 0.85s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
+  pointer-events: none;
+}
+
