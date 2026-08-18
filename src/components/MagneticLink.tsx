@@ -33,7 +33,7 @@ export default function MagneticLink({
     <Link
       ref={ref}
       href={href}
-      className={`cursor-hover inline-block ${className ?? ''}`}
+      className={`cursor-hover ${className ?? ''}`}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
     >

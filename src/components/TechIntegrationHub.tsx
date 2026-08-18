@@ -139,7 +139,7 @@ export default function TechIntegrationHub() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-[410px] lg:max-w-[430px] aspect-square mx-auto select-none flex items-center justify-center"
+      className="relative w-full max-w-[460px] lg:max-w-[540px] aspect-square mx-auto select-none flex items-center justify-center"
       style={{
         perspective: '1200px',
       }}
@@ -160,19 +160,19 @@ export default function TechIntegrationHub() {
           <div
             className="w-[88%] h-[88%] rounded-full relative"
             style={{
-              background: 'radial-gradient(circle, rgba(45, 68, 65, 0.95) 0%, rgba(35, 54, 52, 0.98) 70%, rgba(26, 42, 40, 1) 100%)',
-              boxShadow: '0 25px 60px -15px rgba(10, 25, 23, 0.45), inset 0 2px 5px rgba(255, 255, 255, 0.12), inset 0 -3px 8px rgba(0, 0, 0, 0.5)',
+              background: 'radial-gradient(circle, rgba(28, 45, 72, 0.95) 0%, rgba(22, 36, 58, 0.98) 70%, rgba(16, 28, 46, 1) 100%)',
+              boxShadow: '0 25px 60px -15px rgba(8, 18, 35, 0.45), inset 0 2px 5px rgba(255, 255, 255, 0.12), inset 0 -3px 8px rgba(0, 0, 0, 0.5)',
             }}
           >
-            <div className="absolute inset-[6%] rounded-full border border-[rgba(90,140,130,0.18)]" />
-            <div className="absolute inset-[13%] rounded-full border border-[rgba(90,140,130,0.15)]" />
+            <div className="absolute inset-[6%] rounded-full border border-[rgba(70,110,170,0.18)]" />
+            <div className="absolute inset-[13%] rounded-full border border-[rgba(70,110,170,0.15)]" />
           </div>
 
           {/* Middle Layer Disc 3 */}
           <div
             className="absolute w-[70%] h-[70%] rounded-full"
             style={{
-              background: 'radial-gradient(circle, rgba(30, 48, 46, 1) 0%, rgba(22, 38, 36, 1) 75%, rgba(16, 28, 27, 1) 100%)',
+              background: 'radial-gradient(circle, rgba(20, 35, 60, 1) 0%, rgba(15, 28, 48, 1) 75%, rgba(11, 20, 36, 1) 100%)',
               boxShadow: '0 16px 36px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.15), inset 0 -4px 10px rgba(0, 0, 0, 0.6)',
             }}
           />
@@ -181,7 +181,7 @@ export default function TechIntegrationHub() {
           <div
             className="absolute w-[50%] h-[50%] rounded-full"
             style={{
-              background: 'radial-gradient(circle, rgba(18, 32, 31, 1) 0%, rgba(13, 24, 23, 1) 85%, rgba(9, 18, 17, 1) 100%)',
+              background: 'radial-gradient(circle, rgba(13, 24, 44, 1) 0%, rgba(10, 19, 35, 1) 85%, rgba(7, 14, 27, 1) 100%)',
               boxShadow: '0 10px 24px rgba(0, 0, 0, 0.6), inset 0 2px 3px rgba(255, 255, 255, 0.18)',
             }}
           />
@@ -190,11 +190,11 @@ export default function TechIntegrationHub() {
           <div
             className="absolute w-[30%] h-[30%] rounded-full flex items-center justify-center"
             style={{
-              background: 'radial-gradient(circle, rgba(8, 18, 17, 1) 0%, rgba(4, 12, 11, 1) 100%)',
-              boxShadow: 'inset 0 4px 14px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 240, 160, 0.15)',
+              background: 'radial-gradient(circle, rgba(6, 14, 28, 1) 0%, rgba(3, 9, 20, 1) 100%)',
+              boxShadow: 'inset 0 4px 14px rgba(0, 0, 0, 0.9), 0 0 30px rgba(47, 143, 255, 0.15)',
             }}
           >
-            <div className="absolute w-[140%] h-[140%] rounded-full bg-[radial-gradient(circle,rgba(0,255,170,0.22)_0%,rgba(14,188,212,0.12)_45%,transparent_70%)] pointer-events-none" />
+            <div className="absolute w-[140%] h-[140%] rounded-full bg-[radial-gradient(circle,rgba(47,143,255,0.22)_0%,rgba(14,188,212,0.12)_45%,transparent_70%)] pointer-events-none" />
           </div>
         </div>
 
@@ -207,14 +207,14 @@ export default function TechIntegrationHub() {
         >
           <defs>
             <linearGradient id="streamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#00FFB2" stopOpacity="0.85" />
-              <stop offset="50%" stopColor="#00E599" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#00B377" stopOpacity="0.7" />
+              <stop offset="0%" stopColor="#2F8FFF" stopOpacity="0.85" />
+              <stop offset="50%" stopColor="#1E88FF" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#1768D6" stopOpacity="0.7" />
             </linearGradient>
 
             <linearGradient id="streamGradHover" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
-              <stop offset="50%" stopColor="#00FFC4" stopOpacity="1" />
+              <stop offset="50%" stopColor="#4FB6FF" stopOpacity="1" />
               <stop offset="100%" stopColor="#0EBCD4" stopOpacity="0.95" />
             </linearGradient>
 
@@ -235,7 +235,7 @@ export default function TechIntegrationHub() {
                 <path
                   d={cfg.d}
                   fill="none"
-                  stroke="rgba(0, 30, 20, 0.6)"
+                  stroke="rgba(0, 15, 35, 0.6)"
                   strokeWidth="3.2"
                   strokeLinecap="round"
                 />
@@ -260,13 +260,13 @@ export default function TechIntegrationHub() {
                 <path
                   d={bp.d}
                   fill="none"
-                  stroke="rgba(0, 30, 20, 0.5)"
+                  stroke="rgba(0, 15, 35, 0.5)"
                   strokeWidth="2.2"
                 />
                 <path
                   d={bp.d}
                   fill="none"
-                  stroke={isHovered ? '#00FFB2' : 'rgba(0, 230, 153, 0.45)'}
+                  stroke={isHovered ? '#2F8FFF' : 'rgba(47, 143, 255, 0.45)'}
                   strokeWidth={isHovered ? '2.0' : '1.2'}
                   strokeOpacity={isHovered ? 0.9 : 0.45}
                   strokeLinecap="round"
@@ -285,9 +285,9 @@ export default function TechIntegrationHub() {
           onMouseEnter={() => setHoveredNode('core')}
           className="absolute z-20 w-[74px] h-[74px] rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 group shadow-xl"
           style={{
-            background: 'radial-gradient(circle, #0B2922 0%, #041410 100%)',
-            border: '2px solid #00FFB2',
-            boxShadow: '0 0 28px rgba(0, 255, 178, 0.45), inset 0 0 14px rgba(0, 255, 178, 0.35)',
+            background: 'radial-gradient(circle, #0B1F35 0%, #041020 100%)',
+            border: '2px solid #2F8FFF',
+            boxShadow: '0 0 28px rgba(47, 143, 255, 0.45), inset 0 0 14px rgba(47, 143, 255, 0.35)',
           }}
           title="Click to pulse energy shockwave"
         >
@@ -295,12 +295,12 @@ export default function TechIntegrationHub() {
           {ripples.map((ripple) => (
             <div
               key={ripple.id}
-              className="absolute inset-0 rounded-full border-2 border-[#00FFB2] animate-shockwave pointer-events-none"
+              className="absolute inset-0 rounded-full border-2 border-[#2F8FFF] animate-shockwave pointer-events-none"
             />
           ))}
 
           {/* Soft Ambient Core Ring */}
-          <div className="absolute inset-[2px] rounded-full border border-[rgba(0,255,178,0.45)] opacity-40 pointer-events-none" />
+          <div className="absolute inset-[2px] rounded-full border border-[rgba(47,143,255,0.45)] opacity-40 pointer-events-none" />
 
           {/* Embedded Brand Logo in Quantum Core */}
           <div className="relative w-[46px] h-[46px] rounded-full overflow-hidden flex items-center justify-center p-[2px] bg-transparent">
@@ -309,7 +309,7 @@ export default function TechIntegrationHub() {
               alt="Quantyro Cyber Core Logo"
               width={46}
               height={46}
-              className="object-contain w-full h-full filter drop-shadow-[0_0_8px_rgba(0,255,178,0.6)] transition-transform duration-300 group-hover:scale-110"
+              className="object-contain w-full h-full filter drop-shadow-[0_0_8px_rgba(47,143,255,0.6)] transition-transform duration-300 group-hover:scale-110"
               priority
             />
           </div>
@@ -326,18 +326,18 @@ export default function TechIntegrationHub() {
               key={cfg.id}
               onMouseEnter={() => setHoveredNode(cfg.id)}
               onMouseLeave={() => setHoveredNode(null)}
-              className="absolute z-30 bg-white/95 px-[10px] py-[4.5px] rounded-full border border-[rgba(0,255,178,0.55)] shadow-[0_4px_14px_rgba(0,0,0,0.08)] flex items-center gap-[6px] cursor-pointer transition-all duration-300 hover:scale-105 hover:border-[#00FFB2] text-[11.5px] font-semibold text-[var(--ink)] whitespace-nowrap"
+              className="absolute z-30 bg-white/95 px-[10px] py-[4.5px] rounded-full border border-[rgba(47,143,255,0.55)] shadow-[0_4px_14px_rgba(0,0,0,0.08)] flex items-center gap-[6px] cursor-pointer transition-all duration-300 hover:scale-105 hover:border-[#2F8FFF] text-[11.5px] font-semibold text-[var(--ink)] whitespace-nowrap"
               style={{
                 top: cfg.y,
                 left: cfg.x !== 'auto' ? cfg.x : undefined,
                 right: cfg.right || undefined,
               }}
             >
-              <span className="text-[#00B377] shrink-0">
+              <span className="text-[#1768D6] shrink-0">
                 <ServiceIcon type={currentService.iconType} />
               </span>
               <CodingServiceText targetText={currentService.title} />
-              <span className="mono text-[9px] text-[#00B377] bg-[#00FFB2]/12 px-[5px] py-[1px] rounded-full font-medium">
+              <span className="mono text-[9px] text-[#1768D6] bg-[#2F8FFF]/12 px-[5px] py-[1px] rounded-full font-medium">
                 .{currentService.ext}
               </span>
             </div>
@@ -354,9 +354,9 @@ export default function TechIntegrationHub() {
             WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
           }}
         >
-          {/* Row 1 — Static */}
-          <div className="flex gap-[7px] w-max justify-center">
-            {ROW1_APPS.map((app, idx) => (
+          {/* Row 1 — scrolls left to right */}
+          <div className="flex gap-[7px] w-max animate-marquee-ltr">
+            {[...ROW1_APPS, ...ROW1_APPS].map((app, idx) => (
               <div
                 key={`r1-${idx}`}
                 onMouseEnter={() => setHoveredNode(app.id)}
@@ -364,8 +364,8 @@ export default function TechIntegrationHub() {
                 title={app.label}
                 className={`w-[36px] h-[36px] rounded-xl bg-white/95 border flex items-center justify-center cursor-pointer transition-all duration-200 shadow-xs shrink-0 ${
                   hoveredNode === app.id
-                    ? 'scale-115 border-[#00FFB2] shadow-[0_6px_16px_rgba(0,255,178,0.4)] -translate-y-1'
-                    : 'border-[rgba(10,23,47,0.12)] hover:border-[#00FFB2] hover:shadow-sm'
+                    ? 'scale-115 border-[#2F8FFF] shadow-[0_6px_16px_rgba(47,143,255,0.4)] -translate-y-1'
+                    : 'border-[rgba(10,23,47,0.12)] hover:border-[#2F8FFF] hover:shadow-sm'
                 }`}
               >
                 <AppIcon type={app.iconType} />
@@ -373,9 +373,9 @@ export default function TechIntegrationHub() {
             ))}
           </div>
 
-          {/* Row 2 — Static */}
-          <div className="flex gap-[7px] w-max justify-center">
-            {ROW2_APPS.map((app, idx) => (
+          {/* Row 2 — scrolls right to left */}
+          <div className="flex gap-[7px] w-max animate-marquee-rtl">
+            {[...ROW2_APPS, ...ROW2_APPS].map((app, idx) => (
               <div
                 key={`r2-${idx}`}
                 onMouseEnter={() => setHoveredNode(app.id)}
@@ -383,8 +383,8 @@ export default function TechIntegrationHub() {
                 title={app.label}
                 className={`w-[36px] h-[36px] rounded-xl bg-white/95 border flex items-center justify-center cursor-pointer transition-all duration-200 shadow-xs shrink-0 ${
                   hoveredNode === app.id
-                    ? 'scale-115 border-[#00FFB2] shadow-[0_6px_16px_rgba(0,255,178,0.4)] -translate-y-1'
-                    : 'border-[rgba(10,23,47,0.12)] hover:border-[#00FFB2] hover:shadow-sm'
+                    ? 'scale-115 border-[#2F8FFF] shadow-[0_6px_16px_rgba(47,143,255,0.4)] -translate-y-1'
+                    : 'border-[rgba(10,23,47,0.12)] hover:border-[#2F8FFF] hover:shadow-sm'
                 }`}
               >
                 <AppIcon type={app.iconType} />
@@ -403,14 +403,14 @@ function ServiceIcon({ type }: { type: string }) {
   switch (type) {
     case 'software':
       return (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1768D6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="16 18 22 12 16 6" />
           <polyline points="8 6 2 12 8 18" />
         </svg>
       );
     case 'ai':
       return (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1768D6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="3" />
           <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
           <path d="m4.93 4.93 2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
@@ -418,20 +418,20 @@ function ServiceIcon({ type }: { type: string }) {
       );
     case 'cloud':
       return (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1768D6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
         </svg>
       );
     case 'mobile':
       return (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1768D6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
           <path d="M12 18h.01" />
         </svg>
       );
     case 'commerce':
       return (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1768D6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="8" cy="21" r="1" />
           <circle cx="19" cy="21" r="1" />
           <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
@@ -439,7 +439,7 @@ function ServiceIcon({ type }: { type: string }) {
       );
     case 'database':
       return (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1768D6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <ellipse cx="12" cy="5" rx="9" ry="3" />
           <path d="M3 5V19A9 3 0 0 0 21 19V5" />
           <path d="M3 12A9 3 0 0 0 21 12" />
@@ -447,20 +447,20 @@ function ServiceIcon({ type }: { type: string }) {
       );
     case 'security':
       return (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1768D6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
         </svg>
       );
     case 'api':
       return (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1768D6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 14a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4Z" />
           <path d="M6 6h.01M6 10h.01M10 6h.01M10 10h.01M14 6h.01M14 10h.01M18 6h.01M18 10h.01" />
         </svg>
       );
     default:
       return (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.2">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1768D6" strokeWidth="2.2">
           <circle cx="12" cy="12" r="9" />
         </svg>
       );

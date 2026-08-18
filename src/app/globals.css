@@ -7,7 +7,7 @@
   --muted: #5B6478;
   --accent: #1768D6;
   --accent-2: #0EBCD4;
-  --line: rgba(10,23,47,0.10);
+  --line: rgba(10,23,47,0.18);
   --surface: #FFFFFF;
 }
 
@@ -232,19 +232,19 @@ h1, h2, h3, .display {
   overflow: hidden;
   padding: 1.5px;
   display: inline-flex;
-  box-shadow: 0 0 20px -3px rgba(23, 104, 214, 0.25);
+  box-shadow: 0 0 20px -3px rgba(0, 179, 119, 0.25);
   transition: all 0.3s ease;
 }
 
 .border-beam-container:hover {
-  box-shadow: 0 0 30px rgba(23, 104, 214, 0.4);
+  box-shadow: 0 0 30px rgba(0, 255, 178, 0.4);
 }
 
 .border-beam-laser {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(120deg, #1256B4, #1768D6 45%, #0EBCD4 100%);
+  background: linear-gradient(120deg, #045C3D, #00B377 45%, #00FFB2 100%);
   opacity: 0.9;
   pointer-events: none;
 }
@@ -266,6 +266,25 @@ h1, h2, h3, .display {
 .animate-shockwave {
   animation: cyber-shockwave 0.85s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
   pointer-events: none;
+}
+
+/* Hero tech-integration marquee rows — top scrolls left-to-right, bottom right-to-left */
+@keyframes marquee-ltr {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0%); }
+}
+
+@keyframes marquee-rtl {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee-ltr {
+  animation: marquee-ltr 24s linear infinite;
+}
+
+.animate-marquee-rtl {
+  animation: marquee-rtl 24s linear infinite;
 }
 
 @keyframes toast-in {

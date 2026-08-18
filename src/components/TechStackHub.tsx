@@ -93,7 +93,7 @@ export default function TechStackHub() {
           <div>
             <div className="mono text-[12px] uppercase font-bold text-[var(--accent)] mb-[10px] flex items-center gap-[8px]">
               <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)]" />
-              Technology Standards &amp; Tooling
+              02 // Engineering &amp; Website Architecture
             </div>
             <h2 className="text-[clamp(30px,4.5vw,48px)] font-[var(--font-display)] font-bold text-[var(--ink)] leading-[1.1] tracking-tight">
               Enterprise-Grade Tech Stack Matrix

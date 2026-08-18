@@ -6,7 +6,7 @@ import { getFaqs } from '@/lib/data/faqs';
 
 export const metadata: Metadata = {
   title: 'Software Development Services',
-  description: 'Custom software, AI & machine learning, cloud & DevOps, mobile apps and e-commerce — full-stack engineering delivered by senior teams end to end.',
+  description: 'Website development, e-commerce, mobile apps, custom software, AI & machine learning, SEO & marketing, and cloud & DevOps — full-stack engineering delivered by senior teams end to end.',
   alternates: { canonical: '/services' },
 };
 

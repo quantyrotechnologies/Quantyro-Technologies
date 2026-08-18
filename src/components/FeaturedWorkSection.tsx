@@ -61,7 +61,7 @@ export default function FeaturedWorkSection({ projects }: { projects: Project[] 
         <div>
           <div className="inline-flex items-center gap-[6px] px-[12px] py-[3.5px] rounded-full bg-[rgba(23,104,214,0.07)] border border-[rgba(23,104,214,0.2)] text-[var(--accent)] text-[11px] font-mono font-semibold uppercase mb-[8px]">
             <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)]" />
-            <span>03 // Featured work</span>
+            <span>05 // Featured work</span>
           </div>
           <h2 className="text-[clamp(26px,3.6vw,44px)] font-[var(--font-display)] font-bold leading-[1.1] text-[var(--ink)]">
             Real outcomes,{' '}
@@ -85,7 +85,7 @@ export default function FeaturedWorkSection({ projects }: { projects: Project[] 
             type="button"
             layoutId={`featured-card-${p.id}`}
             onClick={() => setSelectedId(p.id)}
-            className="text-left rounded-[22px] bg-[var(--surface)] border border-[rgba(10,23,47,0.14)] overflow-hidden hover:border-[rgba(23,104,214,0.4)] hover:shadow-[0_16px_40px_rgba(23,104,214,0.12)] hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300 cursor-pointer"
+            className="text-left rounded-[22px] bg-[var(--surface)] border border-[rgba(10,23,47,0.18)] overflow-hidden hover:border-[rgba(23,104,214,0.4)] hover:shadow-[0_16px_40px_rgba(23,104,214,0.12)] hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300 cursor-pointer"
           >
             <motion.div layoutId={`featured-visual-${p.id}`} className="relative h-[150px] overflow-hidden bg-[var(--bg-alt)]">
               <Image
@@ -129,7 +129,7 @@ export default function FeaturedWorkSection({ projects }: { projects: Project[] 
             <div className="fixed inset-0 z-[101] flex items-center justify-center p-[5vw] pointer-events-none">
               <motion.div
                 layoutId={`featured-card-${selected.id}`}
-                className="pointer-events-auto w-full max-w-[640px] max-h-[85vh] overflow-y-auto rounded-[26px] bg-[var(--surface)] border border-[rgba(10,23,47,0.1)] shadow-[0_30px_80px_rgba(10,23,47,0.3)]"
+                className="pointer-events-auto w-full max-w-[640px] max-h-[85vh] overflow-y-auto rounded-[26px] bg-[var(--surface)] border border-[rgba(10,23,47,0.18)] shadow-[0_30px_80px_rgba(10,23,47,0.3)]"
               >
                 <motion.div layoutId={`featured-visual-${selected.id}`} className="relative h-[200px] overflow-hidden bg-[var(--bg-alt)]">
                   <Image

@@ -1,4 +1,6 @@
 const SERVICE_ILLUSTRATIONS: Record<string, string> = {
+  'website-development': '/images/illustrations/website-development.svg',
+  'seo-marketing': '/images/illustrations/seo-marketing.svg',
   'custom-software': '/images/illustrations/custom-software.svg',
   'ai-machine-learning': '/images/illustrations/ai-ml.svg',
   'cloud-devops': '/images/illustrations/cloud-devops.svg',

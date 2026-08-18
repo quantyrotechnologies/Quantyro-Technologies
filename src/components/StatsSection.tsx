@@ -59,7 +59,7 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
         {stats.map((s) => (
           <div
             key={s.id}
-            className="stat relative bg-white rounded-2xl p-[28px] md:p-[36px] border border-[rgba(10,23,47,0.07)] shadow-[0_4px_20px_rgba(10,23,47,0.04)] hover:border-[rgba(23,104,214,0.25)] hover:shadow-[0_8px_30px_rgba(23,104,214,0.1)] transition-all duration-300 group overflow-hidden"
+            className="stat relative bg-white rounded-2xl p-[28px] md:p-[36px] border border-[rgba(10,23,47,0.18)] shadow-[0_4px_20px_rgba(10,23,47,0.04)] hover:border-[rgba(23,104,214,0.25)] hover:shadow-[0_8px_30px_rgba(23,104,214,0.1)] transition-all duration-300 group overflow-hidden"
           >
             {/* Subtle top border accent on hover */}
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-[var(--accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-t-2xl" />

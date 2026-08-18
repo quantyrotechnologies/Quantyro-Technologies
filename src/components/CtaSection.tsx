@@ -90,13 +90,13 @@ export default function CtaSection() {
         <div className="cta-actions relative z-10 mt-[38px] flex gap-[16px] justify-center items-center flex-wrap">
           <MagneticLink
             href="/contact"
-            className="bg-white text-[var(--accent)] py-[14px] px-[32px] rounded-full text-[14px] font-bold hover:bg-white/90 transition-all duration-300 shadow-md hover:shadow-xl"
+            className="inline-block bg-white text-[var(--accent)] py-[14px] px-[32px] rounded-full text-[14px] font-bold hover:bg-white/90 transition-all duration-300 shadow-md hover:shadow-xl"
           >
             Start a project
           </MagneticLink>
           <MagneticLink
             href="/work"
-            className="py-[14px] px-[28px] text-[14px] font-semibold text-white border-2 border-white/30 hover:border-white/70 rounded-full hover:bg-white/10 transition-all duration-300"
+            className="inline-block py-[14px] px-[28px] text-[14px] font-semibold text-white border-2 border-white/30 hover:border-white/70 rounded-full hover:bg-white/10 transition-all duration-300"
           >
             See case studies →
           </MagneticLink>

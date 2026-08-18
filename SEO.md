@@ -45,10 +45,11 @@ Legend: ✅ done · 🟡 built but needs real data/action from you · ❌ not co
 
 ## 4. Pages with full SEO infrastructure
 
-- `/` , `/services`, `/services/[slug]` (5 pages), `/services/[slug]/[region]`, `/work`, `/work/[slug]` (6 pages), `/about`, `/contact`, `/blog`, `/blog/[slug]`
+- `/` , `/services`, `/services/[slug]` (5 pages), `/services/[slug]/[region]`, `/industries`, `/industries/[slug]` (8 pages), `/work`, `/work/[slug]` (6 pages), `/about`, `/contact`, `/blog`, `/blog/[slug]`
 
 ## 5. Pending — needs your action
 
+- [ ] (Optional) Run migration `0011_industries.sql` to manage Industries from the admin panel — the site already renders real content from a code fallback (`SAMPLE_INDUSTRIES`) without it
 - [ ] Run migration `0010_projects_full_case_study.sql` (adds `stack`, `duration`, `highlights` to projects)
 - [ ] Add real tech stack / delivery time / "what made this hard" per project (admin → Projects) — sections stay hidden until filled
 - [ ] Add real project `year` (admin → Projects) — falls back to a sequence number until set

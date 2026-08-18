@@ -65,7 +65,7 @@ export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
       <div className="max-w-[640px] mx-auto text-center mb-[50px] md:mb-[70px]">
         <div className="inline-flex items-center gap-[6px] px-[12px] py-[4px] rounded-full bg-[rgba(23,104,214,0.07)] border border-[rgba(23,104,214,0.2)] text-[var(--accent)] text-[11px] font-mono font-semibold uppercase mb-[12px]">
           <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)] animate-pulse" />
-          <span>01 // Complete Delivery Roadmap</span>
+          <span>04 // Complete Delivery Roadmap</span>
         </div>
         <h2 className="text-[clamp(26px,3.2vw,40px)] font-[var(--font-display)] font-bold leading-[1.15] text-[var(--ink)]">
           From first talk to{' '}
@@ -106,7 +106,7 @@ export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
               >
                 {/* Roadmap Card */}
                 <div className="w-full md:w-[44%] pl-[50px] md:pl-0">
-                  <div className="roadmap-card p-[18px] md:p-[22px] rounded-2xl bg-white border border-[rgba(10,23,47,0.09)] shadow-[0_4px_20px_rgba(10,23,47,0.05)] transition-all duration-300 relative overflow-hidden group">
+                  <div className="roadmap-card p-[18px] md:p-[22px] rounded-2xl bg-white border border-[rgba(10,23,47,0.18)] shadow-[0_4px_20px_rgba(10,23,47,0.05)] transition-all duration-300 relative overflow-hidden group">
                     
                     {/* Top Accent Line on Hover */}
                     <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -11,10 +11,18 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const EXPLORE_LINKS = [
   { label: 'Services', href: '/services' },
+  { label: 'Industries', href: '/industries' },
   { label: 'Work', href: '/work' },
   { label: 'Blog', href: '/blog' },
   { label: 'About', href: '/about' },
+  { label: 'Team', href: '/team' },
+  { label: 'Certifications', href: '/certifications' },
   { label: 'Contact', href: '/contact' },
+];
+
+const LEGAL_LINKS = [
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms & Conditions', href: '/terms-and-conditions' },
 ];
 
 function LocalTimeClock() {
@@ -141,7 +149,14 @@ export default function Footer({
         {/* Bottom bar */}
         <div className="footer-reveal pt-[24px] border-t border-[var(--line)] flex flex-col sm:flex-row items-center justify-between gap-[12px] text-[12px] text-[var(--muted)]">
           <span>{settings.copyrightText}</span>
-          <span className="mono text-[11px]">Designed &amp; engineered in-house.</span>
+          <div className="flex items-center gap-[16px]">
+            {LEGAL_LINKS.map((l) => (
+              <Link key={l.href} href={l.href} className="hover:text-[var(--accent)] transition-colors">
+                {l.label}
+              </Link>
+            ))}
+            <span className="mono text-[11px]">Designed &amp; engineered in-house.</span>
+          </div>
         </div>
       </div>
     </footer>

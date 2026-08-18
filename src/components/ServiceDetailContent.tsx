@@ -121,7 +121,7 @@ export default function ServiceDetailContent({
               {highlights.map((h) => (
                 <div
                   key={h.label}
-                  className="inline-flex items-center gap-[7px] px-[13px] py-[7px] rounded-full bg-white border border-[rgba(10,23,47,0.1)] shadow-[0_2px_10px_rgba(10,23,47,0.04)] text-[12.5px] font-medium text-[var(--ink)]"
+                  className="inline-flex items-center gap-[7px] px-[13px] py-[7px] rounded-full bg-white border border-[rgba(10,23,47,0.18)] shadow-[0_2px_10px_rgba(10,23,47,0.04)] text-[12.5px] font-medium text-[var(--ink)]"
                 >
                   <span
                     className="w-[16px] h-[16px] rounded-full flex items-center justify-center"
@@ -143,16 +143,27 @@ export default function ServiceDetailContent({
             </div>
           </div>
 
-          <div className="svc-reveal hidden md:block rounded-[24px] bg-white border border-[rgba(10,23,47,0.08)] shadow-[0_16px_50px_rgba(10,23,47,0.06)] p-[16px]">
-            <Image
-              src={serviceIllustration(service.slug)}
-              alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
-              title={`${service.title} Architecture Blueprint`}
-              width={480}
-              height={320}
-              className="w-full h-auto rounded-[12px]"
-              priority
-            />
+          <div className="svc-reveal rounded-[24px] bg-white border border-[rgba(10,23,47,0.18)] shadow-[0_16px_50px_rgba(10,23,47,0.06)] p-[16px]">
+            {service.imageUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element -- admin-supplied arbitrary URL, host unknown ahead of time
+              <img
+                src={service.imageUrl}
+                alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
+                title={`${service.title} Architecture Blueprint`}
+                loading="eager"
+                className="w-full h-auto rounded-[12px]"
+              />
+            ) : (
+              <Image
+                src={serviceIllustration(service.slug)}
+                alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
+                title={`${service.title} Architecture Blueprint`}
+                width={480}
+                height={320}
+                className="w-full h-auto rounded-[12px]"
+                priority
+              />
+            )}
           </div>
         </div>
       </section>

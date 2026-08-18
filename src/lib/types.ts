@@ -6,6 +6,7 @@ export interface Service {
   desc: string;
   capabilities: string[];
   stack: string[] | null;
+  imageUrl: string | null;
   seoTitle: string | null;
   seoDescription: string | null;
 }
@@ -26,6 +27,22 @@ export interface Project {
   stack: string[] | null;
   duration: string | null;
   highlights: string[] | null;
+}
+
+export interface Industry {
+  id: string;
+  num: string;
+  slug: string;
+  title: string;
+  desc: string;
+  challenges: string[];
+  capabilities: string[];
+  marketStats: string[];
+  relatedServiceSlugs: string[];
+  statValue: string;
+  statLabel: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
 }
 
 export interface ServiceRegionPage {
@@ -62,6 +79,15 @@ export interface BlogComment {
   name: string;
   comment: string;
   createdAt: string;
+}
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  bio: string | null;
+  photoUrl: string | null;
+  linkedinUrl: string | null;
 }
 
 export interface Certification {

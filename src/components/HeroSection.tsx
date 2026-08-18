@@ -99,7 +99,7 @@ export default function HeroSection() {
               <div className="border-beam-laser" />
               <MagneticLink 
                 href="/contact" 
-                className="relative z-10 bg-[#0B2922] text-[#00FFB2] hover:bg-[#041410] hover:text-[#FFFFFF] py-[12px] px-[26px] rounded-full text-[14px] font-semibold transition-all duration-300 flex items-center gap-[7px]"
+                className="relative z-10 bg-[#0B2922] text-[#00FFB2] hover:bg-[#041410] hover:text-[#FFFFFF] py-[12px] px-[26px] rounded-full text-[14px] font-semibold transition-all duration-300 inline-flex items-center gap-[7px]"
               >
                 <span>Get started</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -111,7 +111,7 @@ export default function HeroSection() {
 
             <MagneticLink 
               href="/services" 
-              className="bg-transparent text-[var(--ink)] hover:text-[var(--accent)] py-[12px] px-[22px] rounded-full text-[14px] font-semibold border-2 border-[var(--ink)] hover:border-[var(--accent)] transition-all duration-300"
+              className="inline-block bg-transparent text-[var(--ink)] hover:text-[var(--accent)] py-[12px] px-[22px] rounded-full text-[14px] font-semibold border-2 border-[var(--ink)] hover:border-[var(--accent)] transition-all duration-300"
             >
               Book a demo
             </MagneticLink>

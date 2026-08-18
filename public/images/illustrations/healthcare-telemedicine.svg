@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="hc-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1768D6"/>
+      <stop offset="100%" stop-color="#0EBCD4"/>
+    </linearGradient>
+    <radialGradient id="hc-bg" cx="70%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#EDF3FA"/>
+      <stop offset="100%" stop-color="#EDF3FA" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="480" height="320" fill="url(#hc-bg)"/>
+  <rect x="72" y="58" width="336" height="208" rx="24" fill="#FFFFFF" stroke="rgba(10,23,47,0.10)" stroke-width="1.5"/>
+  <circle cx="240" cy="162" r="86" fill="url(#hc-grad)" opacity="0.08"/>
+  <rect x="222" y="128" width="36" height="90" rx="8" fill="#0A172F"/>
+  <rect x="195" y="155" width="90" height="36" rx="8" fill="#0A172F"/>
+  <path d="M150 232 L188 232 L202 202 L222 258 L242 188 L258 232 L330 232" fill="none" stroke="#1768D6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <circle cx="120" cy="90" r="6" fill="#0EBCD4"/>
+  <circle cx="362" cy="240" r="6" fill="#0EBCD4"/>
+</svg>

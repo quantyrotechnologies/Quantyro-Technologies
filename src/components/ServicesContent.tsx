@@ -51,7 +51,7 @@ export default function ServicesContent({
           Full-stack expertise, end to end.
         </h1>
         <p className="mt-[24px] max-w-[560px] text-[var(--muted)] text-[16px] leading-[1.7]">
-          Five practice areas, one senior team. We plug in wherever your product needs us — from a single sprint to the full build.
+          Seven practice areas, one senior team. We plug in wherever your product needs us — from a single sprint to the full build.
         </p>
       </section>
 
@@ -80,29 +80,40 @@ export default function ServicesContent({
               id={s.slug}
               className="service-card rounded-[22px] bg-[var(--surface)] border border-[var(--line)] overflow-hidden flex flex-col scroll-mt-[100px]"
             >
-              <div className="relative h-[130px] bg-[var(--bg-alt)]">
-                <Image
-                  src={serviceIllustration(s.slug)}
-                  alt={`${s.title} — illustration of the delivery approach`}
-                  title={s.title}
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover"
-                />
+              <div className="relative aspect-[16/9] bg-[var(--bg-alt)]">
+                {s.imageUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- admin-supplied arbitrary URL, host unknown ahead of time
+                  <img
+                    src={s.imageUrl}
+                    alt={`${s.title} — illustration of the delivery approach`}
+                    title={s.title}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={serviceIllustration(s.slug)}
+                    alt={`${s.title} — illustration of the delivery approach`}
+                    title={s.title}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                )}
               </div>
               <div className="p-[36px] flex flex-col flex-1">
               <span className="text-[13px] text-[var(--muted)] mono">{s.num}</span>
               <h3 className="mt-[14px] text-[26px] font-[var(--font-display)] font-bold">{s.title}</h3>
-              <p className="mt-[12px] text-[var(--muted)] text-[15px] leading-[1.6]">{s.desc}</p>
+              <p className="mt-[12px] text-[var(--muted)] text-[15px] leading-[1.6] line-clamp-3">{s.desc}</p>
 
               <h4 className="mt-[20px] text-[11px] font-mono font-semibold uppercase tracking-wide text-[var(--muted)]">
                 What&apos;s included
               </h4>
               <ul className="mt-[10px] space-y-[8px]">
-                {s.capabilities.map((c) => (
+                {s.capabilities.slice(0, 4).map((c) => (
                   <li key={c} className="text-[14px] text-[var(--ink)] flex items-start gap-[8px]">
                     <span className="mt-[7px] w-[5px] h-[5px] rounded-full bg-[var(--accent)] flex-none" />
-                    {c}
+                    <span className="line-clamp-1">{c}</span>
                   </li>
                 ))}
               </ul>

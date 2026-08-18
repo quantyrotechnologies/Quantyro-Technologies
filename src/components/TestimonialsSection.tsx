@@ -52,7 +52,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
       <div className="testimonials-reveal text-center max-w-[600px] mx-auto mb-[48px]">
         <div className="inline-flex items-center gap-[6px] px-[12px] py-[3.5px] rounded-full bg-[rgba(23,104,214,0.07)] border border-[rgba(23,104,214,0.2)] text-[var(--accent)] text-[11px] font-mono font-semibold uppercase mb-[8px]">
           <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)]" />
-          <span>04 // What clients say</span>
+          <span>06 // What clients say</span>
         </div>
         <h2 className="text-[clamp(26px,3.6vw,44px)] font-[var(--font-display)] font-bold leading-[1.1] text-[var(--ink)]">
           Trusted by teams{' '}
@@ -65,7 +65,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        <div className="relative rounded-[28px] bg-[var(--surface)] border border-[rgba(10,23,47,0.12)] shadow-[0_16px_50px_rgba(10,23,47,0.06)] px-[32px] py-[44px] md:px-[64px] md:py-[56px] overflow-hidden min-h-[320px] flex items-center">
+        <div className="relative rounded-[28px] bg-[var(--surface)] border border-[rgba(10,23,47,0.18)] shadow-[0_16px_50px_rgba(10,23,47,0.06)] px-[32px] py-[44px] md:px-[64px] md:py-[56px] overflow-hidden min-h-[320px] flex items-center">
           <AnimatePresence mode="wait" custom={direction} initial={false}>
             <motion.div
               key={index}

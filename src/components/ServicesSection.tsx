@@ -64,10 +64,10 @@ export default function ServicesSection({ services }: { services: Service[] }) {
         <div>
           <div className="inline-flex items-center gap-[6px] px-[12px] py-[3.5px] rounded-full bg-[rgba(23,104,214,0.07)] border border-[rgba(23,104,214,0.2)] text-[var(--accent)] text-[11px] font-mono font-semibold uppercase mb-[8px]">
             <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)]" />
-            <span>02 // What we do</span>
+            <span>01 // What we do</span>
           </div>
           <h2 className="text-[clamp(26px,3.6vw,44px)] font-[var(--font-display)] font-bold leading-[1.1] text-[var(--ink)]">
-            Five services,{' '}
+            Seven services,{' '}
             <span className="text-[var(--accent)]">one senior team</span>.
           </h2>
           <p className="mt-[10px] max-w-[52ch] text-[14.5px] text-[var(--muted)] leading-[1.6]">
@@ -96,20 +96,10 @@ export default function ServicesSection({ services }: { services: Service[] }) {
             href={`/services/${s.slug}`}
             onMouseMove={(e) => tiltOnMouseMove(e, 5)}
             onMouseLeave={tiltOnMouseLeave}
-            className="service-panel-card group flex-none w-[min(78vw,380px)] h-[min(58vh,480px)] mr-[3vw] rounded-[24px] bg-white border border-[rgba(10,23,47,0.16)] shadow-[0_8px_30px_rgba(10,23,47,0.06)] hover:border-[rgba(23,104,214,0.4)] hover:shadow-[0_16px_50px_rgba(23,104,214,0.14)] p-[28px] md:p-[32px] flex flex-col transition-shadow duration-300 ease-out"
+            className="service-panel-card group flex-none w-[min(78vw,380px)] h-[min(58vh,480px)] mr-[3vw] rounded-[24px] bg-white border border-[rgba(10,23,47,0.16)] shadow-[0_8px_30px_rgba(10,23,47,0.06)] hover:border-[rgba(23,104,214,0.4)] hover:shadow-[0_16px_50px_rgba(23,104,214,0.14)] p-[28px] md:p-[32px] flex flex-col overflow-hidden transition-shadow duration-300 ease-out"
             style={{ transition: 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s, border-color 0.3s' }}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between">
-              <span className="text-[13px] font-mono font-bold text-[var(--accent)]">{s.num}</span>
-              <span className="w-[26px] h-[26px] rounded-full border border-[rgba(10,23,47,0.1)] flex items-center justify-center text-[var(--muted)] group-hover:text-[var(--accent)] group-hover:border-[rgba(23,104,214,0.4)] transition-colors">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 17 17 7M8 7h9v9" />
-                </svg>
-              </span>
-            </div>
-
-            <div className="relative mt-[16px] h-[90px] rounded-[14px] overflow-hidden bg-[var(--bg-alt)]">
+            <div className="relative h-[160px] shrink-0 rounded-[14px] overflow-hidden bg-[var(--bg-alt)]">
               <Image
                 src={serviceIllustration(s.slug)}
                 alt={`${s.title} — illustration of the delivery approach`}
@@ -123,7 +113,7 @@ export default function ServicesSection({ services }: { services: Service[] }) {
             <h3 className="mt-[16px] text-[22px] md:text-[24px] font-[var(--font-display)] font-bold text-[var(--ink)]">
               {s.title}
             </h3>
-            <p className="mt-[8px] text-[14px] text-[var(--muted)] leading-[1.6]">
+            <p className="mt-[8px] text-[14px] text-[var(--muted)] leading-[1.6] line-clamp-3">
               {s.desc}
             </p>
 
