@@ -26,17 +26,20 @@ export default function CtaSection() {
       }
     });
 
-    gsap.from('.cta-sub, .cta-actions', {
-      opacity: 0,
-      y: 20,
-      duration: 0.7,
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: container.current,
-        start: 'top 60%',
-        invalidateOnRefresh: true
+    gsap.fromTo('.cta-sub, .cta-actions',
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: container.current,
+          start: 'top 60%',
+          invalidateOnRefresh: true
+        }
       }
-    });
+    );
   }, { scope: container });
 
   const renderTitle = (text: string) => {
@@ -68,7 +71,7 @@ export default function CtaSection() {
 
         {/* Badge */}
         <div className="relative z-10 mono text-[11.5px] text-white/75 font-semibold mb-[20px] bg-white/10 px-[14px] py-[5px] rounded-full inline-block border border-white/20">
-          05 / Next Steps · Direct Access to Senior Engineers
+          06 / Next Steps · Direct Access to Senior Engineers
         </div>
 
         {/* Heading */}

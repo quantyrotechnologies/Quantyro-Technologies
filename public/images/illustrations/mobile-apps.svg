@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-hidden="true">
+  <defs>
+    <radialGradient id="ma-bg" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#EDF3FA"/>
+      <stop offset="100%" stop-color="#EDF3FA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ma-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1768D6"/>
+      <stop offset="100%" stop-color="#0EBCD4"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="320" fill="url(#ma-bg)"/>
+  <rect x="195" y="35" width="150" height="250" rx="26" fill="#FFFFFF" stroke="rgba(10,23,47,0.12)" stroke-width="2"/>
+  <rect x="245" y="48" width="50" height="7" rx="3.5" fill="rgba(10,23,47,0.15)"/>
+  <rect x="217" y="80" width="46" height="46" rx="12" fill="#1768D6"/>
+  <rect x="277" y="80" width="46" height="46" rx="12" fill="#0EBCD4" opacity="0.85"/>
+  <rect x="217" y="140" width="46" height="46" rx="12" fill="#0A172F" opacity="0.7"/>
+  <rect x="277" y="140" width="46" height="46" rx="12" fill="url(#ma-grad)"/>
+  <rect x="217" y="200" width="46" height="46" rx="12" fill="#0EBCD4" opacity="0.5"/>
+  <rect x="277" y="200" width="46" height="46" rx="12" fill="#1768D6" opacity="0.55"/>
+  <rect x="245" y="262" width="50" height="6" rx="3" fill="rgba(10,23,47,0.18)"/>
+  <g stroke="#0EBCD4" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M362 90 a55 55 0 0 1 0 45" opacity="0.8"/>
+    <path d="M378 78 a75 75 0 0 1 0 70" opacity="0.45"/>
+  </g>
+</svg>

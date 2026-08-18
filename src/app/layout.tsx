@@ -5,7 +5,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
 import ScrollRefresh from "@/components/ScrollRefresh";
-import GlobalTechBackground from "@/components/GlobalTechBackground";
+import SmoothScroll from "@/components/SmoothScroll";
+import { SITE_URL } from "@/lib/site";
+import { getSiteSettings } from "@/lib/data/siteSettings";
+import { getSocialLinks } from "@/lib/data/socialLinks";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,20 +26,18 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
 });
 
-// TODO: replace with the real production domain before launch.
-const siteUrl = "https://www.quantyro.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Quantyro Technologies — Engineering the Future",
     template: "%s — Quantyro Technologies",
   },
   description: "Quantyro Technologies is a global software engineering partner designing, building and scaling web, mobile and AI products for ambitious companies.",
+  alternates: { canonical: '/' },
   openGraph: {
     title: "Quantyro Technologies — Engineering the Future",
     description: "Global software engineering partner for web, mobile, AI, cloud and e-commerce products.",
-    url: siteUrl,
+    url: SITE_URL,
     siteName: "Quantyro Technologies",
     type: "website",
   },
@@ -45,21 +46,33 @@ export const metadata: Metadata = {
     title: "Quantyro Technologies — Engineering the Future",
     description: "Global software engineering partner for web, mobile, AI, cloud and e-commerce products.",
   },
+  // Webmaster tool ownership verification — each env var is blank until you
+  // create a (free) account and paste in the code Next.js then emits the
+  // matching <meta> tag; leaving one unset simply omits that tag.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: {
+      ...(process.env.BING_SITE_VERIFICATION && { 'msvalidate.01': process.env.BING_SITE_VERIFICATION }),
+      ...(process.env.AHREFS_SITE_VERIFICATION && { 'ahrefs-site-verification': process.env.AHREFS_SITE_VERIFICATION }),
+    },
+  },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const [settings, socialLinks] = await Promise.all([getSiteSettings(), getSocialLinks()]);
+
   return (
     <html
       lang="en"
       className={`${inter.variable} ${bricolage.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col relative">
-        <GlobalTechBackground />
-        <StructuredData />
+        <StructuredData settings={settings} socialLinks={socialLinks} />
+        <SmoothScroll />
         <ScrollRefresh />
         <Navbar />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer socialLinks={socialLinks} settings={settings} />
       </body>
     </html>
   );

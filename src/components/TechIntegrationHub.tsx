@@ -76,37 +76,9 @@ const ROW2_APPS = [
   { id: 'terraform', label: 'Terraform', iconType: 'terraform' },
 ];
 
-// --- HIGH-TECH CODING TEXT SCRAMBLE COMPONENT ---
+// --- SERVICE TEXT LABEL (static swap, no per-frame scramble) ---
 function CodingServiceText({ targetText }: { targetText: string }) {
-  const [displayText, setDisplayText] = useState(targetText);
-  const chars = '01_#$<>/!%*&~';
-
-  useEffect(() => {
-    let iteration = 0;
-    const maxIterations = targetText.length;
-    const interval = setInterval(() => {
-      setDisplayText(() =>
-        targetText
-          .split('')
-          .map((char, index) => {
-            if (char === ' ') return ' ';
-            if (index < iteration) return targetText[index];
-            return chars[Math.floor(Math.random() * chars.length)];
-          })
-          .join('')
-      );
-
-      if (iteration >= maxIterations) {
-        clearInterval(interval);
-        setDisplayText(targetText);
-      }
-      iteration += 1 / 2;
-    }, 28);
-
-    return () => clearInterval(interval);
-  }, [targetText]);
-
-  return <span className="font-semibold tracking-tight">{displayText}</span>;
+  return <span className="font-semibold tracking-tight">{targetText}</span>;
 }
 
 export default function TechIntegrationHub() {
@@ -222,7 +194,7 @@ export default function TechIntegrationHub() {
               boxShadow: 'inset 0 4px 14px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 240, 160, 0.15)',
             }}
           >
-            <div className="absolute w-[140%] h-[140%] rounded-full bg-[radial-gradient(circle,rgba(0,255,170,0.22)_0%,rgba(14,188,212,0.12)_45%,transparent_70%)] animate-pulse duration-3000 pointer-events-none" />
+            <div className="absolute w-[140%] h-[140%] rounded-full bg-[radial-gradient(circle,rgba(0,255,170,0.22)_0%,rgba(14,188,212,0.12)_45%,transparent_70%)] pointer-events-none" />
           </div>
         </div>
 
@@ -256,7 +228,7 @@ export default function TechIntegrationHub() {
           </defs>
 
           {/* --- TOP INPUT CONDUITS --- */}
-          {BADGE_CONFIGS.map((cfg, idx) => {
+          {BADGE_CONFIGS.map((cfg) => {
             const isHovered = hoveredNode === cfg.id;
             return (
               <g key={cfg.id}>
@@ -276,21 +248,12 @@ export default function TechIntegrationHub() {
                   strokeLinecap="round"
                   filter={isHovered ? 'url(#glowFilter)' : undefined}
                 />
-                <circle r={isHovered ? '3.2' : '2.2'} fill="#FFFFFF" filter="url(#glowFilter)">
-                  <animateMotion
-                    path={cfg.d}
-                    dur={`${2.0 + idx * 0.3}s`}
-                    repeatCount="indefinite"
-                    keyPoints="0;1"
-                    keyTimes="0;1"
-                  />
-                </circle>
               </g>
             );
           })}
 
           {/* --- BOTTOM OUTGOING CONDUITS --- */}
-          {bottomConduits.map((bp, idx) => {
+          {bottomConduits.map((bp) => {
             const isHovered = hoveredNode !== null && !hoveredNode.startsWith('pos-');
             return (
               <g key={bp.id}>
@@ -309,15 +272,6 @@ export default function TechIntegrationHub() {
                   strokeLinecap="round"
                   filter={isHovered ? 'url(#glowFilter)' : undefined}
                 />
-                <circle r={isHovered ? '2.5' : '1.6'} fill={isHovered ? '#FFFFFF' : '#00FFB2'}>
-                  <animateMotion
-                    path={bp.d}
-                    dur={`${1.8 + (idx % 4) * 0.3}s`}
-                    repeatCount="indefinite"
-                    keyPoints="0;1"
-                    keyTimes="0;1"
-                  />
-                </circle>
               </g>
             );
           })}
@@ -345,8 +299,8 @@ export default function TechIntegrationHub() {
             />
           ))}
 
-          {/* Soft Ambient Core Pulse */}
-          <div className="absolute inset-[2px] rounded-full border border-[rgba(0,255,178,0.45)] animate-ping duration-[3000ms] opacity-40 pointer-events-none" />
+          {/* Soft Ambient Core Ring */}
+          <div className="absolute inset-[2px] rounded-full border border-[rgba(0,255,178,0.45)] opacity-40 pointer-events-none" />
 
           {/* Embedded Brand Logo in Quantum Core */}
           <div className="relative w-[46px] h-[46px] rounded-full overflow-hidden flex items-center justify-center p-[2px] bg-transparent">
@@ -372,7 +326,7 @@ export default function TechIntegrationHub() {
               key={cfg.id}
               onMouseEnter={() => setHoveredNode(cfg.id)}
               onMouseLeave={() => setHoveredNode(null)}
-              className="absolute z-30 bg-white/95 backdrop-blur-md px-[10px] py-[4.5px] rounded-full border border-[rgba(0,255,178,0.55)] shadow-[0_4px_14px_rgba(0,0,0,0.08)] flex items-center gap-[6px] cursor-pointer transition-all duration-300 hover:scale-105 hover:border-[#00FFB2] text-[11.5px] font-semibold text-[var(--ink)] whitespace-nowrap"
+              className="absolute z-30 bg-white/95 px-[10px] py-[4.5px] rounded-full border border-[rgba(0,255,178,0.55)] shadow-[0_4px_14px_rgba(0,0,0,0.08)] flex items-center gap-[6px] cursor-pointer transition-all duration-300 hover:scale-105 hover:border-[#00FFB2] text-[11.5px] font-semibold text-[var(--ink)] whitespace-nowrap"
               style={{
                 top: cfg.y,
                 left: cfg.x !== 'auto' ? cfg.x : undefined,
@@ -393,22 +347,22 @@ export default function TechIntegrationHub() {
         {/* ========================================================================= */}
         {/* 5. INFINITE AUTO-SCROLLING TECH INTEGRATIONS (2 Alternating Marquee Rows) */}
         {/* ========================================================================= */}
-        <div 
-          className="absolute bottom-[2%] inset-x-[2%] z-30 flex flex-col gap-[7px] overflow-hidden pause-hover select-none"
+        <div
+          className="absolute bottom-[2%] inset-x-[2%] z-30 flex flex-col gap-[7px] overflow-hidden select-none"
           style={{
             maskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
             WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
           }}
         >
-          {/* Row 1 — Scrolls Smoothly to the Left */}
-          <div className="flex gap-[7px] w-max animate-marquee-left">
-            {[...ROW1_APPS, ...ROW1_APPS].map((app, idx) => (
+          {/* Row 1 — Static */}
+          <div className="flex gap-[7px] w-max justify-center">
+            {ROW1_APPS.map((app, idx) => (
               <div
                 key={`r1-${idx}`}
                 onMouseEnter={() => setHoveredNode(app.id)}
                 onMouseLeave={() => setHoveredNode(null)}
                 title={app.label}
-                className={`w-[36px] h-[36px] rounded-xl bg-white/95 backdrop-blur-md border flex items-center justify-center cursor-pointer transition-all duration-200 shadow-xs shrink-0 ${
+                className={`w-[36px] h-[36px] rounded-xl bg-white/95 border flex items-center justify-center cursor-pointer transition-all duration-200 shadow-xs shrink-0 ${
                   hoveredNode === app.id
                     ? 'scale-115 border-[#00FFB2] shadow-[0_6px_16px_rgba(0,255,178,0.4)] -translate-y-1'
                     : 'border-[rgba(10,23,47,0.12)] hover:border-[#00FFB2] hover:shadow-sm'
@@ -419,15 +373,15 @@ export default function TechIntegrationHub() {
             ))}
           </div>
 
-          {/* Row 2 — Scrolls Smoothly to the Right */}
-          <div className="flex gap-[7px] w-max animate-marquee-right">
-            {[...ROW2_APPS, ...ROW2_APPS].map((app, idx) => (
+          {/* Row 2 — Static */}
+          <div className="flex gap-[7px] w-max justify-center">
+            {ROW2_APPS.map((app, idx) => (
               <div
                 key={`r2-${idx}`}
                 onMouseEnter={() => setHoveredNode(app.id)}
                 onMouseLeave={() => setHoveredNode(null)}
                 title={app.label}
-                className={`w-[36px] h-[36px] rounded-xl bg-white/95 backdrop-blur-md border flex items-center justify-center cursor-pointer transition-all duration-200 shadow-xs shrink-0 ${
+                className={`w-[36px] h-[36px] rounded-xl bg-white/95 border flex items-center justify-center cursor-pointer transition-all duration-200 shadow-xs shrink-0 ${
                   hoveredNode === app.id
                     ? 'scale-115 border-[#00FFB2] shadow-[0_6px_16px_rgba(0,255,178,0.4)] -translate-y-1'
                     : 'border-[rgba(10,23,47,0.12)] hover:border-[#00FFB2] hover:shadow-sm'

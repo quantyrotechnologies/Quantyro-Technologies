@@ -1,65 +1,17 @@
 "use client";
 import React, { useRef } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ServiceVisual, { type ServiceVisualKind } from './ServiceVisual';
+import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
+import { serviceIllustration } from '@/lib/serviceIllustration';
+import type { Service } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-interface ServiceCardItem {
-  num: string;
-  tag: string;
-  title: string;
-  desc: string;
-  alt: boolean;
-  visual: ServiceVisualKind;
-}
-
-const SERVICES_LIST: ServiceCardItem[] = [
-  { 
-    num: '01', 
-    tag: 'Custom Software',
-    title: 'Custom Software', 
-    desc: 'Applications engineered around how your business actually works, not around a generic template.',
-    alt: false, 
-    visual: 'software' 
-  },
-  { 
-    num: '02', 
-    tag: 'AI & Machine Learning',
-    title: 'AI & Machine Learning', 
-    desc: 'Production-grade AI features — retrieval, autonomous agents and automation — not proof-of-concept demos.',
-    alt: true, 
-    visual: 'ai' 
-  },
-  { 
-    num: '03', 
-    tag: 'Cloud & DevOps',
-    title: 'Cloud & DevOps', 
-    desc: 'Scalable infrastructure, CI/CD pipelines and 24/7 reliability built to survive real enterprise traffic.',
-    alt: false, 
-    visual: 'cloud' 
-  },
-  { 
-    num: '04', 
-    tag: 'Mobile Apps',
-    title: 'Mobile Apps', 
-    desc: 'Native and cross-platform apps for iOS and Android that feel fluid, responsive, and fast from day one.',
-    alt: true, 
-    visual: 'mobile' 
-  },
-  { 
-    num: '05', 
-    tag: 'E-Commerce',
-    title: 'E-Commerce', 
-    desc: 'High-converting storefronts and headless commerce architectures built for scale and sub-second speed.',
-    alt: false, 
-    visual: 'commerce' 
-  },
-];
-
-export default function ServicesSection() {
+export default function ServicesSection({ services }: { services: Service[] }) {
   const container = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -67,47 +19,37 @@ export default function ServicesSection() {
     const track = trackRef.current;
     if (!track) return;
 
-    gsap.from('.services-heading > *', {
-      opacity: 0,
-      y: 24,
-      duration: 0.7,
-      stagger: 0.1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: container.current,
-        start: 'top 80%',
-      },
-    });
+    gsap.fromTo('.services-heading > *',
+      { opacity: 0, y: 24 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: container.current,
+          start: 'top 80%',
+        },
+      }
+    );
 
-    const panels = gsap.utils.toArray<HTMLElement>('.service-panel-card', track);
     const matchMedia = gsap.matchMedia();
-    
-    matchMedia.add("(min-width: 821px)", () => {
+
+    matchMedia.add('(min-width: 821px)', () => {
       const getDistance = () => track.scrollWidth - window.innerWidth + window.innerWidth * 0.06;
-      
+
       gsap.to(track, {
         x: () => -getDistance(),
         ease: 'none',
         scrollTrigger: {
           trigger: container.current,
           start: 'top top',
-          end: () => '+=' + (getDistance() + window.innerHeight * 0.8),
+          end: () => '+=' + (getDistance() + window.innerHeight * 0.6),
           scrub: 0.8,
           pin: true,
           invalidateOnRefresh: true,
-          onUpdate: () => {
-            const centerX = window.innerWidth / 2;
-            panels.forEach((p) => {
-              const r = p.getBoundingClientRect();
-              const dist = Math.abs((r.left + r.width / 2) - centerX);
-              if (dist < r.width * 0.55) {
-                p.classList.add('is-center-active');
-              } else {
-                p.classList.remove('is-center-active');
-              }
-            });
-          }
-        }
+        },
       });
     });
 
@@ -116,74 +58,86 @@ export default function ServicesSection() {
 
   return (
     <section ref={container} id="services-wrapper" className="relative h-auto md:h-[100vh] overflow-hidden z-10 flex flex-col justify-center">
-      
+
       {/* Heading */}
-      <div className="services-heading shrink-0 px-[6vw] pt-[60px] md:pt-[30px] pb-[16px] flex flex-col md:flex-row md:items-end justify-between gap-[16px]">
+      <div className="services-heading shrink-0 px-[6vw] pt-[110px] md:pt-[130px] pb-[16px] flex flex-col md:flex-row md:items-end justify-between gap-[16px]">
         <div>
           <div className="inline-flex items-center gap-[6px] px-[12px] py-[3.5px] rounded-full bg-[rgba(23,104,214,0.07)] border border-[rgba(23,104,214,0.2)] text-[var(--accent)] text-[11px] font-mono font-semibold uppercase mb-[8px]">
-            <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)] animate-pulse" />
-            <span>02 // What we build</span>
+            <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)]" />
+            <span>02 // What we do</span>
           </div>
           <h2 className="text-[clamp(26px,3.6vw,44px)] font-[var(--font-display)] font-bold leading-[1.1] text-[var(--ink)]">
-            Full-stack expertise,{' '}
-            <span className="text-[var(--accent)]">end to end</span>.
+            Five services,{' '}
+            <span className="text-[var(--accent)]">one senior team</span>.
           </h2>
+          <p className="mt-[10px] max-w-[52ch] text-[14.5px] text-[var(--muted)] leading-[1.6]">
+            This is the order we actually run projects in — not a menu, a sequence. Each service links to what it includes.
+          </p>
         </div>
 
-        <a 
-          href="/services" 
-          className="inline-flex items-center gap-[6px] text-[13.5px] font-semibold text-[var(--muted)] hover:text-[var(--accent)] transition-colors group"
+        <Link
+          href="/services"
+          className="inline-flex items-center gap-[6px] text-[13.5px] font-semibold text-[var(--muted)] hover:text-[var(--accent)] transition-colors group shrink-0"
         >
           <span>See all services</span>
           <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-        </a>
+        </Link>
       </div>
 
       {/* Horizontal Cards Track */}
-      <div 
-        ref={trackRef} 
-        id="h-track" 
+      <div
+        ref={trackRef}
+        id="services-track"
         className="flex items-center pl-[6vw] flex-1 min-h-0 will-change-transform max-md:overflow-x-auto max-md:pb-[60px] py-[20px]"
       >
-        {SERVICES_LIST.map((s, i) => (
-          <div
-            key={i}
-            onMouseMove={(e) => {
-              const r = e.currentTarget.getBoundingClientRect();
-              e.currentTarget.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
-              e.currentTarget.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
-            }}
-            className="service-panel-card panel-glow flex-none w-[min(76vw,540px)] h-[min(62vh,480px)] mr-[3vw] rounded-[28px] bg-white border border-[rgba(10,23,47,0.07)] shadow-[0_8px_30px_rgba(10,23,47,0.07)] hover:border-[rgba(23,104,214,0.4)] hover:shadow-[0_16px_50px_rgba(23,104,214,0.14)] hover:-translate-y-2 p-[32px] md:p-[40px] flex flex-col justify-between relative overflow-hidden transition-all duration-400 ease-out group"
+        {services.map((s) => (
+          <Link
+            key={s.num}
+            href={`/services/${s.slug}`}
+            onMouseMove={(e) => tiltOnMouseMove(e, 5)}
+            onMouseLeave={tiltOnMouseLeave}
+            className="service-panel-card group flex-none w-[min(78vw,380px)] h-[min(58vh,480px)] mr-[3vw] rounded-[24px] bg-white border border-[rgba(10,23,47,0.16)] shadow-[0_8px_30px_rgba(10,23,47,0.06)] hover:border-[rgba(23,104,214,0.4)] hover:shadow-[0_16px_50px_rgba(23,104,214,0.14)] p-[28px] md:p-[32px] flex flex-col transition-shadow duration-300 ease-out"
+            style={{ transition: 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s, border-color 0.3s' }}
           >
-            {/* Ambient blue radial glow behind visual */}
-            <div 
-              className="absolute w-[260px] h-[260px] rounded-full opacity-[0.18] top-[20%] left-[50%] -translate-x-1/2 blur-[45px] pointer-events-none transition-opacity duration-500 group-hover:opacity-35"
-              style={{ background: `radial-gradient(circle, rgba(23,104,214,0.9) 0%, rgba(14,188,212,0.4) 50%, transparent 70%)` }}
-            />
-
-            {/* Top Header */}
-            <div className="flex items-center justify-between relative z-10">
-              <span className="text-[13px] font-mono font-bold text-[var(--accent)]">
-                {s.num} // {s.tag}
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <span className="text-[13px] font-mono font-bold text-[var(--accent)]">{s.num}</span>
+              <span className="w-[26px] h-[26px] rounded-full border border-[rgba(10,23,47,0.1)] flex items-center justify-center text-[var(--muted)] group-hover:text-[var(--accent)] group-hover:border-[rgba(23,104,214,0.4)] transition-colors">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
               </span>
-              <span className="w-[8px] h-[8px] rounded-full bg-[var(--accent)] opacity-40 group-hover:opacity-100 group-hover:animate-ping transition-opacity" />
             </div>
 
-            {/* 3D Visual */}
-            <div className="relative flex-1 min-h-0 flex items-center justify-center py-[10px] z-10 transition-transform duration-500 group-hover:scale-105">
-              <ServiceVisual kind={s.visual} />
+            <div className="relative mt-[16px] h-[90px] rounded-[14px] overflow-hidden bg-[var(--bg-alt)]">
+              <Image
+                src={serviceIllustration(s.slug)}
+                alt={`${s.title} — illustration of the delivery approach`}
+                title={s.title}
+                fill
+                sizes="380px"
+                className="object-cover"
+              />
             </div>
 
-            {/* Text Footer */}
-            <div className="relative z-10 pt-[10px]">
-              <h3 className="text-[clamp(22px,2.4vw,28px)] mb-[8px] font-[var(--font-display)] font-bold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
-                {s.title}
-              </h3>
-              <p className="text-[var(--muted)] text-[14.5px] leading-[1.6] max-w-[42ch]">
-                {s.desc}
-              </p>
+            <h3 className="mt-[16px] text-[22px] md:text-[24px] font-[var(--font-display)] font-bold text-[var(--ink)]">
+              {s.title}
+            </h3>
+            <p className="mt-[8px] text-[14px] text-[var(--muted)] leading-[1.6]">
+              {s.desc}
+            </p>
+
+            <div className="mt-auto pt-[24px] flex flex-col gap-[9px]">
+              {s.capabilities.map((c) => (
+                <div key={c} className="flex items-center gap-[8px] text-[11px] font-mono uppercase tracking-tight text-slate-500">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span>{c}</span>
+                </div>
+              ))}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

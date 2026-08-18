@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-hidden="true">
+  <defs>
+    <radialGradient id="ai-bg" cx="30%" cy="70%" r="70%">
+      <stop offset="0%" stop-color="#EDF3FA"/>
+      <stop offset="100%" stop-color="#EDF3FA" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="480" height="320" fill="url(#ai-bg)"/>
+  <g stroke="rgba(23,104,214,0.35)" stroke-width="1.5">
+    <line x1="120" y1="90" x2="240" y2="70"/>
+    <line x1="120" y1="90" x2="240" y2="130"/>
+    <line x1="120" y1="90" x2="240" y2="190"/>
+    <line x1="120" y1="160" x2="240" y2="70"/>
+    <line x1="120" y1="160" x2="240" y2="130"/>
+    <line x1="120" y1="160" x2="240" y2="190"/>
+    <line x1="120" y1="160" x2="240" y2="250"/>
+    <line x1="120" y1="230" x2="240" y2="130"/>
+    <line x1="120" y1="230" x2="240" y2="190"/>
+    <line x1="120" y1="230" x2="240" y2="250"/>
+    <line x1="240" y1="70" x2="350" y2="115"/>
+    <line x1="240" y1="130" x2="350" y2="115"/>
+    <line x1="240" y1="190" x2="350" y2="115"/>
+    <line x1="240" y1="130" x2="350" y2="205"/>
+    <line x1="240" y1="190" x2="350" y2="205"/>
+    <line x1="240" y1="250" x2="350" y2="205"/>
+  </g>
+  <circle cx="120" cy="90" r="9" fill="#1768D6"/>
+  <circle cx="120" cy="160" r="9" fill="#1768D6"/>
+  <circle cx="120" cy="230" r="9" fill="#1768D6"/>
+  <circle cx="240" cy="70" r="7" fill="#0EBCD4"/>
+  <circle cx="240" cy="130" r="7" fill="#0EBCD4"/>
+  <circle cx="240" cy="190" r="7" fill="#0EBCD4"/>
+  <circle cx="240" cy="250" r="7" fill="#0EBCD4"/>
+  <circle cx="350" cy="115" r="10" fill="#0A172F"/>
+  <circle cx="350" cy="205" r="10" fill="#0A172F"/>
+</svg>

@@ -225,50 +225,7 @@ h1, h2, h3, .display {
   color: var(--accent);
 }
 
-@keyframes marquee-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes marquee-right {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
-}
-
-.animate-marquee-left {
-  animation: marquee-left 22s linear infinite;
-}
-
-.animate-marquee-right {
-  animation: marquee-right 25s linear infinite;
-}
-
-.pause-hover:hover {
-  animation-play-state: paused;
-}
-
-/* [PHASE-1] Headline Aurora Shimmer Effect */
-@keyframes aurora-shimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.text-aurora-shimmer {
-  background: linear-gradient(135deg, #1768D6 0%, #0EBCD4 35%, #1256B4 60%, #0EBCD4 80%, #1768D6 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: aurora-shimmer 6s ease infinite;
-  display: inline-block;
-}
-
-/* [PHASE-3] CTA Button Radiant Border Beam */
-@keyframes border-beam-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
+/* [PHASE-3] CTA Button Radiant Border (static — no continuous spin) */
 .border-beam-container {
   position: relative;
   border-radius: 9999px;
@@ -285,9 +242,10 @@ h1, h2, h3, .display {
 
 .border-beam-laser {
   position: absolute;
-  inset: -150%;
-  background: conic-gradient(from 0deg, transparent 0deg, transparent 280deg, #1256B4 310deg, #1768D6 340deg, #0EBCD4 360deg);
-  animation: border-beam-spin 3.2s linear infinite;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, #1256B4, #1768D6 45%, #0EBCD4 100%);
+  opacity: 0.9;
   pointer-events: none;
 }
 
@@ -308,5 +266,14 @@ h1, h2, h3, .display {
 .animate-shockwave {
   animation: cyber-shockwave 0.85s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
   pointer-events: none;
+}
+
+@keyframes toast-in {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-toast-in {
+  animation: toast-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 

@@ -1,13 +1,21 @@
-// TODO: replace placeholder org details (address, phone, socials) with real data before launch.
-export default function StructuredData() {
+import { SITE_URL } from "@/lib/site";
+import type { SiteSettings, SocialLink } from "@/lib/types";
+
+export default function StructuredData({
+  settings,
+  socialLinks,
+}: {
+  settings: SiteSettings;
+  socialLinks: SocialLink[];
+}) {
   const data = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Quantyro Technologies",
-    url: "https://www.quantyro.com",
-    description: "Global software engineering partner designing, building and scaling web, mobile and AI products.",
-    email: "hello@quantyro.studio",
-    sameAs: [],
+    name: settings.orgName,
+    url: SITE_URL,
+    description: settings.description,
+    email: settings.contactEmail,
+    sameAs: socialLinks.map((s) => s.href).filter((href) => href && href !== '#'),
   };
 
   return (

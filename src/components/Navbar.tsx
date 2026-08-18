@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 const NAV_LINKS = [
   { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
+  { label: 'Blog', href: '/blog' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -28,37 +29,37 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-[4vw] pt-[14px] md:pt-[18px] pointer-events-none">
       <nav
-        className={`pointer-events-auto w-full max-w-[1100px] rounded-full transition-all duration-300 ${
+        className={`pointer-events-auto w-full max-w-[850px] rounded-full transition-all duration-300 ${
           scrolled || menuOpen
-            ? 'bg-white/90 backdrop-blur-2xl border border-[rgba(23,104,214,0.12)] shadow-[0_20px_50px_rgba(10,23,47,0.1),inset_0_1.5px_2px_rgba(255,255,255,1)]'
-            : 'bg-white/70 backdrop-blur-xl border border-[rgba(23,104,214,0.08)] shadow-[0_12px_36px_rgba(10,23,47,0.06),inset_0_1.5px_2px_rgba(255,255,255,0.95)]'
+            ? 'bg-white/95 border border-[rgba(23,104,214,0.3)] shadow-[0_16px_36px_rgba(10,23,47,0.09)]'
+            : 'bg-white/85 border border-[rgba(23,104,214,0.16)] shadow-[0_8px_24px_rgba(10,23,47,0.05)]'
         }`}
       >
-        <div className="flex items-center justify-between px-[16px] md:px-[24px] py-[8px] md:py-[10px]">
-          
+        <div className="flex items-center justify-between gap-[12px] px-[10px] md:px-[14px] py-[7px]">
+
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center group" aria-label="Quantyro Technologies Home">
-            <div className="relative w-[44px] h-[44px] md:w-[48px] md:h-[48px] rounded-2xl overflow-hidden shadow-sm border border-[rgba(10,23,47,0.1)] bg-white/95 p-[2px] flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_rgba(23,104,214,0.3)]">
+          <Link href="/" className="flex items-center group shrink-0" aria-label="Quantyro Technologies Home">
+            <div className="relative w-[38px] h-[38px] rounded-xl overflow-hidden shadow-sm border border-[rgba(10,23,47,0.1)] bg-white/95 p-[2px] flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_16px_rgba(23,104,214,0.3)]">
               <Image
                 src="/images/logo.jpeg"
                 alt="Quantyro Technologies Logo"
-                width={48}
-                height={48}
-                className="object-cover w-full h-full rounded-[13px]"
+                width={38}
+                height={38}
+                className="object-cover w-full h-full rounded-[10px]"
                 priority
               />
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-[6px] lg:gap-[8px]">
+          <div className="hidden md:flex items-center gap-[2px]">
             {NAV_LINKS.map((item) => {
               const active = pathname === item.href;
               return (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`group relative px-[16px] py-[8px] rounded-full text-[15.5px] lg:text-[16px] font-semibold transition-all duration-300 flex items-center ${
+                  className={`group relative px-[13px] py-[7px] rounded-full text-[14px] font-semibold transition-all duration-300 flex items-center ${
                     active
                       ? 'text-[var(--accent)] bg-[rgba(23,104,214,0.07)]'
                       : 'text-slate-600 hover:text-[var(--ink)] hover:bg-slate-900/[0.04]'
@@ -67,7 +68,7 @@ export default function Navbar() {
                   <span>{item.label}</span>
                   {/* Animated underline */}
                   <span
-                    className={`absolute bottom-[4px] left-[16px] right-[16px] h-[2px] rounded-full bg-[var(--accent)] transition-all duration-300 ${
+                    className={`absolute bottom-[3px] left-[13px] right-[13px] h-[2px] rounded-full bg-[var(--accent)] transition-all duration-300 ${
                       active
                         ? 'opacity-100 scale-x-100'
                         : 'opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100'
@@ -79,20 +80,21 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:block">
+          <div className="hidden md:block shrink-0">
             <Button
               variant="contained"
               component={Link}
               href="/contact"
               sx={{
-                fontSize: '13.5px',
-                padding: '8px 22px',
+                fontSize: '13px',
+                padding: '7px 18px',
                 borderRadius: '999px',
                 backgroundColor: 'var(--accent)',
                 color: '#fff',
                 fontWeight: 600,
                 textTransform: 'none',
                 boxShadow: 'none',
+                whiteSpace: 'nowrap',
                 transition: 'all 0.3s ease',
                 '&:hover': {
                   backgroundColor: '#1256B4',

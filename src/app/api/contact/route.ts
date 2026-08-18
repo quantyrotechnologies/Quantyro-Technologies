@@ -1,6 +1,4 @@
-// TODO: this handler only validates and logs the submission — no email/CRM
-// provider is wired up yet. Connect a real provider (e.g. Resend, SendGrid,
-// or a CRM webhook) before launch, or contact form submissions will be lost.
+import { createAdminClient } from '@/lib/supabase/admin';
 
 type ContactPayload = {
   name?: string;
@@ -31,7 +29,18 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Please provide a valid email address.' }, { status: 400 });
   }
 
-  console.log('[contact] new submission', { name, email, company, message });
+  const supabase = createAdminClient();
+  const { error } = await supabase.from('contact_submissions').insert({
+    name: name.trim(),
+    email: email.trim(),
+    company: company?.trim() || null,
+    message: message.trim(),
+  });
+
+  if (error) {
+    console.error('[contact] failed to store submission', error);
+    return Response.json({ error: 'Something went wrong. Please try again.' }, { status: 500 });
+  }
 
   return Response.json({ ok: true });
 }

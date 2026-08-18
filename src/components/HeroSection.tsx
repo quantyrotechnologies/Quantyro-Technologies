@@ -41,7 +41,7 @@ export default function HeroSection() {
       <span key={index} className="word">
         <span className="inline-block will-change-transform">
           {word === 'unified' ? (
-            <span className="text-aurora-shimmer font-bold drop-shadow-[0_0_24px_rgba(0,255,178,0.25)]">
+            <span className="text-[var(--accent)] font-bold drop-shadow-[0_0_24px_rgba(23,104,214,0.25)]">
               {word}
             </span>
           ) : (
@@ -72,7 +72,7 @@ export default function HeroSection() {
         <div className="lg:col-span-6 flex flex-col justify-center max-w-[580px]">
           
           {/* Eyebrow Badge with 4-petal Quantum Icon */}
-          <div className="eyebrow inline-flex items-center gap-[8px] text-[12.5px] text-[var(--muted)] mb-[14px] bg-white/80 backdrop-blur-md px-[13px] py-[5px] rounded-full border border-[rgba(10,23,47,0.12)] w-fit shadow-xs">
+          <div className="eyebrow inline-flex items-center gap-[8px] text-[12.5px] text-[var(--muted)] mb-[14px] bg-white/90 px-[13px] py-[5px] rounded-full border border-[rgba(10,23,47,0.12)] w-fit shadow-xs">
             <svg width="15" height="15" viewBox="0 0 32 32" fill="none" className="shrink-0">
               <path d="M16 4C16 4 13 8 13 11C13 13.5 14.5 15 16 15C17.5 15 19 13.5 19 11C19 8 16 4 16 4Z" fill="#00B377" />
               <path d="M16 28C16 28 19 24 19 21C19 18.5 17.5 17 16 17C14.5 17 13 18.5 13 21C13 24 16 28 16 28Z" fill="#00B377" />

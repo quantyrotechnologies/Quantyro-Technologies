@@ -3,117 +3,11 @@ import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import type { RoadmapStep } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-interface RoadmapStepItem {
-  step: string;
-  phaseTag: string;
-  badge: string;
-  title: string;
-  desc: string;
-  deliverables: string[];
-  status: string;
-  terminalCmd: string;
-  terminalOutput: string;
-  icon: React.ReactNode;
-}
-
-const ROADMAP_STEPS: RoadmapStepItem[] = [
-  {
-    step: '01',
-    phaseTag: 'STAGE 01 // FIRST TOUCH',
-    badge: '🤝 Direct Connect',
-    title: 'Client Outreach & Scoping',
-    desc: 'You share your vision. Within 24 hours, our senior engineers review scope, constraints, and architecture without sales pitch decks.',
-    deliverables: ['24h Rapid Response', 'Initial Architecture Scope'],
-    status: 'DISCOVERY READY',
-    terminalCmd: 'align_scope --client="Enterprise" --target=MVP',
-    terminalOutput: '✓ Target: 14-Day Sprint · Zero-Lockin Spec locked',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-      </svg>
-    ),
-  },
-  {
-    step: '02',
-    phaseTag: 'STAGE 02 // STRATEGIC ALIGNMENT',
-    badge: '📅 Discovery Call',
-    title: 'Client Discovery Meeting',
-    desc: '1-on-1 strategic session with software architects to align on target users, technology trade-offs, release milestones, and fixed budget.',
-    deliverables: ['1-on-1 Senior Alignment', 'Milestone Schedule Lock'],
-    status: 'MILESTONE COMMITTED',
-    terminalCmd: 'validate_milestones --budget=Fixed --team=SeniorOnly',
-    terminalOutput: '✓ Timeline committed · SLA 99.999% contract active',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-        <line x1="16" y1="2" x2="16" y2="6" />
-        <line x1="8" y1="2" x2="8" y2="6" />
-        <line x1="3" y1="10" x2="21" y2="10" />
-      </svg>
-    ),
-  },
-  {
-    step: '03',
-    phaseTag: 'STAGE 03 // ARCHITECTURE SPEC',
-    badge: '💡 Architecture Spec',
-    title: 'Discussion & Blueprint Lock',
-    desc: 'Collaborative technical planning where database schemas, OpenAPI contracts, and system architecture are locked before writing code.',
-    deliverables: ['System Schema ERD', 'OpenAPI Contracts Locked'],
-    status: 'SCHEMA DEFINED',
-    terminalCmd: 'build_schema --graphql --security=ZeroTrust',
-    terminalOutput: '✓ 32 API endpoints locked · PostgreSQL ERD ready',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="12 2 2 7 12 12 22 7 12 2" />
-        <polyline points="2 17 12 22 22 17" />
-        <polyline points="2 12 12 17 22 12" />
-      </svg>
-    ),
-  },
-  {
-    step: '04',
-    phaseTag: 'STAGE 04 // SPRINT LAB',
-    badge: '⚡ Dev & QA Lab',
-    title: 'Coding & Testing Lab',
-    desc: 'Rapid sprint cycles in our coding lab. Working staging environments are tested with automated CI/CD and demoed live every week.',
-    deliverables: ['Weekly Staging Demos', '100% CI/CD Test Coverage'],
-    status: 'WEEKLY LIVE DEMOS',
-    terminalCmd: 'ci_cd_deploy --branch=main --test=all',
-    terminalOutput: '✓ 142/142 tests passing · Deployed to staging.app',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-        <line x1="12" y1="2" x2="12" y2="22" />
-      </svg>
-    ),
-  },
-  {
-    step: '05',
-    phaseTag: 'STAGE 05 // ENTERPRISE LAUNCH',
-    badge: '🚀 Happy Launch',
-    title: 'Happy Delivery & Ongoing SLA',
-    desc: 'Staged zero-downtime production rollout, real-time observability telemetry from day one, and lifelong senior engineering support.',
-    deliverables: ['Zero-Downtime Deployment', '99.999% SLA Uptime'],
-    status: '99.999% SLA ACTIVE',
-    terminalCmd: 'cluster_cutover --region=multi-region --traffic=100%',
-    terminalOutput: '✓ Production 100% healthy · 0ms downtime cutover',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="m9 12 2 2 4-4" />
-      </svg>
-    ),
-  },
-];
-
-export default function ManifestoSection() {
+export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const spineFillRef = useRef<HTMLDivElement>(null);
   const laserDotRef = useRef<HTMLDivElement>(null);
@@ -155,6 +49,8 @@ export default function ManifestoSection() {
     });
   }, { scope: containerRef });
 
+  if (steps.length === 0) return null;
+
   const handleSimulate = (stepKey: string) => {
     setSimulatedSteps(prev => ({ ...prev, [stepKey]: true }));
     setTimeout(() => {
@@ -181,7 +77,7 @@ export default function ManifestoSection() {
 
         {/* Live Progress Tracker */}
         <div className="mt-[20px] inline-flex items-center gap-[10px] px-[14px] py-[6px] rounded-full bg-white border border-[rgba(23,104,214,0.2)] shadow-[0_4px_16px_rgba(23,104,214,0.1)] text-[11.5px] font-mono text-[var(--ink)] font-bold">
-          <span className="w-[7px] h-[7px] rounded-full bg-[var(--accent)] animate-ping duration-1000" />
+          <span className="w-[7px] h-[7px] rounded-full bg-[var(--accent)]" />
           <span>MILESTONE PROGRESS: <span className="text-[var(--accent)] font-extrabold">{scrollProgress}%</span></span>
         </div>
       </div>
@@ -197,13 +93,13 @@ export default function ManifestoSection() {
 
         {/* Roadmap Milestone Cards */}
         <div className="flex flex-col gap-[36px] md:gap-[44px] relative z-10">
-          {ROADMAP_STEPS.map((item, idx) => {
+          {steps.map((item, idx) => {
             const isEven = idx % 2 === 1;
-            const isRunning = simulatedSteps[item.step];
+            const isRunning = simulatedSteps[item.id];
 
             return (
               <div
-                key={item.step}
+                key={item.id}
                 className={`relative flex flex-col md:flex-row items-start md:items-center gap-[16px] md:gap-0 ${
                   isEven ? 'md:flex-row-reverse' : ''
                 }`}
@@ -226,10 +122,10 @@ export default function ManifestoSection() {
                         </span>
                         {/* Activity indicator bars */}
                         <div className="hidden sm:flex items-end gap-[1.5px] h-[10px]">
-                          <span className="w-[2px] bg-[var(--accent)] h-[40%] animate-pulse opacity-60" />
-                          <span className="w-[2px] bg-[var(--accent)] h-[80%] animate-pulse delay-75 opacity-60" />
-                          <span className="w-[2px] bg-[var(--accent)] h-[100%] animate-pulse delay-150 opacity-60" />
-                          <span className="w-[2px] bg-[var(--accent)] h-[60%] animate-pulse delay-100 opacity-60" />
+                          <span className="w-[2px] bg-[var(--accent)] h-[40%] opacity-60" />
+                          <span className="w-[2px] bg-[var(--accent)] h-[80%] opacity-60" />
+                          <span className="w-[2px] bg-[var(--accent)] h-[100%] opacity-60" />
+                          <span className="w-[2px] bg-[var(--accent)] h-[60%] opacity-60" />
                         </div>
                       </div>
                     </div>
@@ -248,7 +144,7 @@ export default function ManifestoSection() {
                         <span className="truncate">$ {item.terminalCmd}</span>
                         <button
                           type="button"
-                          onClick={() => handleSimulate(item.step)}
+                          onClick={() => handleSimulate(item.id)}
                           className="shrink-0 px-[6px] py-[1.5px] rounded bg-[rgba(23,104,214,0.2)] text-[var(--accent)] hover:bg-[rgba(23,104,214,0.35)] font-bold transition-colors cursor-pointer text-[9px]"
                         >
                           {isRunning ? '⚡ RUNNING...' : '▶ RUN TEST'}
