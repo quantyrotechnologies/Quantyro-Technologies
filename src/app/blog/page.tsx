@@ -1,18 +1,20 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
 import { getPublishedPosts } from '@/lib/data/blog';
 import FaqSection from '@/components/FaqSection';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { getFaqs } from '@/lib/data/faqs';
-import { patternImageForSlug } from '@/lib/patternImage';
+import BlogListingClient from '@/components/BlogListingClient';
 
 export const metadata: Metadata = {
-  title: 'Engineering Blog',
-  description: 'Notes on shipping software — architecture, delivery, and what actually moves the needle for our clients, written by the engineers doing the work.',
-  // Always canonical to the base listing, regardless of any ?tag= filter —
-  // tag views are thin/duplicate variants of this same page, not distinct content.
+  title: 'Engineering Blog & Software Insights',
+  description: 'Technical breakdowns on software architecture, AI systems, cloud scalability, and fullstack performance by Quantyro Technologies engineers.',
   alternates: { canonical: '/blog' },
+  openGraph: {
+    title: 'Engineering Blog & Software Insights — Quantyro Technologies',
+    description: 'Technical breakdowns on software architecture, AI systems, and cloud scalability.',
+    url: '/blog',
+    type: 'website',
+  },
 };
 
 export default async function BlogPage({
@@ -22,100 +24,50 @@ export default async function BlogPage({
 }) {
   const { tag } = await searchParams;
   const [allPosts, faqs] = await Promise.all([getPublishedPosts(), getFaqs('blog')]);
-  const allTags = Array.from(new Set(allPosts.flatMap((p) => p.tags))).sort();
-  const posts = tag ? allPosts.filter((p) => p.tags.includes(tag)) : allPosts;
+  const allTags = Array.from(new Set(allPosts.flatMap((p) => p.tags || []))).sort();
 
   return (
-    <div>
-      <section className="relative px-[6vw] pt-[160px] pb-[60px] z-10">
-        <Breadcrumbs items={[{ label: 'Blog', href: '/blog' }]} />
-        <div className="mono text-[12px] text-[var(--muted)] mb-[20px]">Blog</div>
-        <h1 className="text-[clamp(36px,6vw,72px)] max-w-[18ch] font-[var(--font-display)] font-bold leading-[1]">
-          Notes on shipping software.
-        </h1>
-        <p className="mt-[24px] max-w-[560px] text-[var(--muted)] text-[16px] leading-[1.7]">
-          Architecture, delivery, and what actually moves the needle — written by the engineers doing the work.
-        </p>
-      </section>
+    <div className="relative min-h-screen">
+      {/* Background radial accent glow */}
+      <div
+        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-b from-[var(--accent)]/10 via-[var(--accent-2)]/5 to-transparent blur-3xl -z-10"
+        aria-hidden="true"
+      />
 
-      <section className="relative px-[6vw] pb-[100px] z-10">
-        {allTags.length > 0 && (
-          <nav aria-label="Filter posts by topic" className="mb-[28px] flex flex-wrap gap-[8px]">
-            <Link
-              href="/blog"
-              className={`mono text-[11.5px] px-[12px] py-[6px] rounded-full border transition-colors ${
-                !tag
-                  ? 'bg-[var(--accent)] text-white border-[var(--accent)]'
-                  : 'border-[var(--line)] text-[var(--muted)] hover:text-[var(--accent)] hover:border-[rgba(23,104,214,0.4)]'
-              }`}
-            >
-              All
-            </Link>
-            {allTags.map((t) => (
-              <Link
-                key={t}
-                href={`/blog?tag=${encodeURIComponent(t)}`}
-                className={`mono text-[11.5px] px-[12px] py-[6px] rounded-full border transition-colors ${
-                  tag === t
-                    ? 'bg-[var(--accent)] text-white border-[var(--accent)]'
-                    : 'border-[var(--line)] text-[var(--muted)] hover:text-[var(--accent)] hover:border-[rgba(23,104,214,0.4)]'
-                }`}
-              >
-                {t}
-              </Link>
-            ))}
-          </nav>
-        )}
-
-        {posts.length === 0 ? (
-          <p className="text-[14px] text-[var(--muted)]">
-            {tag ? `No posts tagged "${tag}" yet.` : 'No posts yet — check back soon.'}
-          </p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
-            {posts.map((p) => (
-              <Link
-                key={p.id}
-                href={`/blog/${p.slug}`}
-                className="rounded-[22px] bg-[var(--surface)] border border-[var(--line)] overflow-hidden hover:border-[rgba(23,104,214,0.4)] hover:shadow-[0_16px_40px_rgba(23,104,214,0.12)] hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="relative h-[140px] overflow-hidden bg-[var(--bg-alt)]">
-                  <Image
-                    src={patternImageForSlug(p.slug)}
-                    alt={`${p.title} — cover illustration`}
-                    title={p.title}
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-[24px]">
-                  <div className="flex items-center justify-between text-[12px] text-[var(--muted)] mono">
-                    <span>{p.authorName}</span>
-                    {p.publishedAt && <span>{new Date(p.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>}
-                  </div>
-                  <h2 className="mt-[10px] text-[19px] font-[var(--font-display)] font-bold text-[var(--ink)]">{p.title}</h2>
-                  <p className="mt-[8px] text-[13.5px] text-[var(--muted)] leading-[1.6]">{p.excerpt}</p>
-                  {p.tags.length > 0 && (
-                    <div className="mt-[12px] flex flex-wrap gap-[6px]">
-                      {p.tags.map((t) => (
-                        <span key={t} className="mono text-[10.5px] px-[9px] py-[3px] rounded-full border border-[var(--line)] text-[var(--muted)]">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  <span className="mt-[14px] inline-flex items-center gap-[5px] text-[12.5px] font-semibold text-[var(--accent)]">
-                    Read more →
-                  </span>
-                </div>
-              </Link>
-            ))}
+      {/* Hero Header Section */}
+      <section className="relative px-[6vw] pt-[140px] md:pt-[170px] pb-[30px] z-10">
+        <div className="max-w-[1240px] mx-auto">
+          <Breadcrumbs items={[{ label: 'Blog', href: '/blog' }]} />
+          
+          <div className="inline-flex items-center gap-[8px] mono text-[12px] uppercase font-semibold text-[var(--accent)] px-[12px] py-[5px] rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 mb-[22px]">
+            <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)] animate-pulse" />
+            Engineering & Technology News
           </div>
-        )}
+
+          <h1 className="text-[clamp(34px,5.5vw,68px)] max-w-[22ch] font-[var(--font-display)] font-bold leading-[1.04] text-[var(--ink)] tracking-tight">
+            News & Insights on Website &amp; Software Development
+          </h1>
+
+          <p className="mt-[20px] max-w-[620px] text-[var(--muted)] text-[16px] md:text-[17.5px] leading-[1.65]">
+            Architectural blueprints, production post-mortems, and technical strategies — written by the engineers building the software.
+          </p>
+        </div>
       </section>
 
-      <FaqSection heading="Blog FAQ" items={faqs} />
+      {/* Main Blog Listing Section */}
+      <section className="relative px-[6vw] pb-[80px] z-10">
+        <div className="max-w-[1240px] mx-auto">
+          <BlogListingClient
+            initialPosts={allPosts}
+            allTags={allTags}
+            initialTag={tag}
+          />
+        </div>
+      </section>
+
+      {/* FAQ Section (3+ FAQs for SEO and AI Search engines) */}
+      <FaqSection heading="Frequently Asked Questions about our Engineering Blog" items={faqs} />
     </div>
   );
 }
+

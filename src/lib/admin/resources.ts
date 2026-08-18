@@ -393,6 +393,40 @@ export const RESOURCES: Record<string, ResourceConfig> = {
       { name: 'is_active', label: 'Active', type: 'boolean' },
     ],
   },
+  'showcase-items': {
+    key: 'showcase-items',
+    table: 'showcase_items',
+    label: 'Showcase Item',
+    pluralLabel: 'Showcase Items',
+    orderBy: 'sort_order',
+    listColumns: ['title', 'tag', 'device_type', 'is_active'],
+    revalidateTag: 'showcase-items',
+    fields: [
+      { name: 'tag', label: 'Category Tag', type: 'text', required: true, placeholder: 'e.g. Web & Enterprise Platforms' },
+      { name: 'title', label: 'Main Headline', type: 'text', required: true, placeholder: 'e.g. High-Performance Websites & SaaS' },
+      { name: 'subtitle', label: 'Subtitle', type: 'text', required: true, placeholder: 'e.g. Mission-critical web platforms...' },
+      { name: 'description', label: 'Detailed Description', type: 'textarea', required: true },
+      {
+        name: 'device_type', label: 'Device Type', type: 'select', required: true,
+        options: [
+          { value: 'laptop', label: 'Laptop / Desktop Browser' },
+          { value: 'mobile', label: 'Mobile Device Frame' },
+        ],
+      },
+      {
+        name: 'screen_type', label: 'Mockup Visual Type', type: 'select', required: true,
+        options: [
+          { value: 'web', label: 'Web / SaaS Dashboard' },
+          { value: 'seo', label: 'SEO & Organic Growth' },
+          { value: 'ai', label: 'AI Copilot & Vector RAG' },
+          { value: 'healthcare', label: 'Healthcare & Portals' },
+        ],
+      },
+      { name: 'accent_color', label: 'Accent Color (Hex)', type: 'text', placeholder: '#1768D6' },
+      { name: 'sort_order', label: 'Sort Order', type: 'number', required: true },
+      { name: 'is_active', label: 'Active', type: 'boolean' },
+    ],
+  },
   'service-region-pages': {
     key: 'service-region-pages',
     table: 'service_region_pages',

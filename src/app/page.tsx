@@ -1,7 +1,9 @@
 import HeroSection from '@/components/HeroSection';
 import EnterpriseTicker from '@/components/EnterpriseTicker';
+import DeviceShowcaseSection from '@/components/DeviceShowcaseSection';
 import ManifestoSection from '@/components/ManifestoSection';
 import ServicesSection from '@/components/ServicesSection';
+import TechStackHub from '@/components/TechStackHub';
 import FeaturedWorkSection from '@/components/FeaturedWorkSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import StatsSection from '@/components/StatsSection';
@@ -16,8 +18,10 @@ import { getStats } from '@/lib/data/stats';
 import { getRoadmapSteps } from '@/lib/data/roadmap';
 import { getTickerMetrics } from '@/lib/data/tickerMetrics';
 
+import { getShowcaseItems } from '@/lib/data/showcase';
+
 export default async function Home() {
-  const [services, featuredProjects, homeFaqs, testimonials, stats, roadmapSteps, tickerMetrics] = await Promise.all([
+  const [services, featuredProjects, homeFaqs, testimonials, stats, roadmapSteps, tickerMetrics, showcaseItems] = await Promise.all([
     getServices(),
     getFeaturedProjects(),
     getFaqs('home'),
@@ -25,6 +29,7 @@ export default async function Home() {
     getStats(),
     getRoadmapSteps(),
     getTickerMetrics(),
+    getShowcaseItems(),
   ]);
 
   return (
@@ -32,14 +37,17 @@ export default async function Home() {
       <ScrollProgress />
       <HeroSection />
       <EnterpriseTicker metrics={tickerMetrics} />
+      <DeviceShowcaseSection items={showcaseItems} />
       <ManifestoSection steps={roadmapSteps} />
       <ServicesSection services={services} />
+      <TechStackHub />
       <FeaturedWorkSection projects={featuredProjects} />
       <TestimonialsSection testimonials={testimonials} />
       <StatsSection stats={stats} />
-      <FaqSection heading="Homepage FAQ" items={homeFaqs} />
+      <FaqSection heading="Frequently Asked Questions" items={homeFaqs} />
       <CtaSection />
     </>
   );
 }
+
 

@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,6 +15,44 @@ import CtaSection from './CtaSection';
 import type { Service, RoadmapStep } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const INDUSTRY_APPLICATIONS = [
+  {
+    sector: 'FinTech & Banking',
+    useCase: 'High-throughput transactional ledger systems, sub-second fraud detection pipelines, and PCI-DSS compliant payment gateways.',
+    metric: '99.999% Reliability',
+  },
+  {
+    sector: 'Healthcare & Life Sciences',
+    useCase: 'HIPAA-compliant patient portals, IoT medical device telemetry synchronization, and zero-trust electronic health records.',
+    metric: 'Zero-Trust Security',
+  },
+  {
+    sector: 'Enterprise B2B SaaS',
+    useCase: 'Multi-tenant cloud architectures, role-based access control (RBAC), and automated billing/metering engines.',
+    metric: '10x Faster Time-to-Market',
+  },
+  {
+    sector: 'E-Commerce & Retail',
+    useCase: 'Headless storefronts, dynamic inventory management, and low-latency edge personalization engines.',
+    metric: '< 30ms Edge TTFB',
+  },
+];
+
+const SLA_GUARANTEES = [
+  {
+    title: 'Zero-Downtime Delivery',
+    desc: 'Blue-green deployments and automated canary rollbacks eliminate maintenance downtime.',
+  },
+  {
+    title: 'Deterministic Code Quality',
+    desc: 'Strict TypeScript typing, integration tests, and static security linting on every pull request.',
+  },
+  {
+    title: 'Full Intellectual Property Transfer',
+    desc: 'All source code, CI/CD pipelines, and infrastructure manifests belong 100% to your enterprise.',
+  },
+];
 
 export default function ServiceDetailContent({
   service,
@@ -30,11 +69,13 @@ export default function ServiceDetailContent({
   const accent = Number(service.num) % 2 === 0 ? 'accent-2' : 'accent';
 
   const tocItems = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'included', label: "What's included" },
-    { id: 'process', label: 'How we deliver this' },
-    ...(regions.length > 0 ? [{ id: 'regions', label: 'Available in your region' }] : []),
-    ...(faqs.length > 0 ? [{ id: 'faq', label: 'Frequently asked questions' }] : []),
+    { id: 'overview', label: 'Executive Overview' },
+    { id: 'capabilities', label: 'Core Technical Capabilities' },
+    { id: 'industries', label: 'Industry Applications' },
+    { id: 'sla-standards', label: 'Engineering SLAs & Standards' },
+    { id: 'process', label: '4-Phase Delivery Framework' },
+    ...(regions.length > 0 ? [{ id: 'regions', label: 'Global Availability' }] : []),
+    ...(faqs.length > 0 ? [{ id: 'faq', label: 'Frequently Asked Questions' }] : []),
   ];
 
   const highlights = [
@@ -60,6 +101,7 @@ export default function ServiceDetailContent({
 
   return (
     <div ref={container}>
+      {/* Hero Header Section */}
       <section className="relative px-[6vw] pt-[160px] pb-[70px] z-10 overflow-hidden">
         <div
           className="absolute top-0 right-0 w-[60vw] h-[420px] opacity-[0.5] pointer-events-none"
@@ -70,7 +112,8 @@ export default function ServiceDetailContent({
           <div>
             <Breadcrumbs items={[{ label: 'Services', href: '/services' }, { label: service.title, href: `/services/${service.slug}` }]} />
             <div className="mono text-[12px] text-[var(--muted)] mb-[20px]">Services · {service.title}</div>
-            <h1 className="svc-reveal text-[clamp(32px,5.4vw,56px)] max-w-[20ch] font-[var(--font-display)] font-bold leading-[1.05]">
+            
+            <h1 className="svc-reveal text-[clamp(32px,5.4vw,56px)] max-w-[20ch] font-[var(--font-display)] font-bold leading-[1.05] text-[var(--ink)]">
               {service.title}
             </h1>
 
@@ -103,8 +146,8 @@ export default function ServiceDetailContent({
           <div className="svc-reveal hidden md:block rounded-[24px] bg-white border border-[rgba(10,23,47,0.08)] shadow-[0_16px_50px_rgba(10,23,47,0.06)] p-[16px]">
             <Image
               src={serviceIllustration(service.slug)}
-              alt={`${service.title} — illustration of the delivery approach`}
-              title={`${service.title} at Quantyro Technologies`}
+              alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
+              title={`${service.title} Architecture Blueprint`}
               width={480}
               height={320}
               className="w-full h-auto rounded-[12px]"
@@ -114,60 +157,139 @@ export default function ServiceDetailContent({
         </div>
       </section>
 
+      {/* Main Content Section */}
       <section className="relative px-[6vw] pb-[60px] z-10 max-w-[1100px] mx-auto">
         <div className="svc-reveal">
           <TableOfContents items={tocItems} />
         </div>
 
-        <h2 id="overview" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--muted)] mb-[16px] scroll-mt-[100px]">
-          Overview
-        </h2>
-        <p className="svc-reveal text-[16px] text-[var(--ink)]/85 leading-[1.75] mb-[56px]">
-          {service.desc}
-        </p>
-
-        <h2 id="included" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--muted)] mb-[16px] scroll-mt-[100px]">
-          What&apos;s included
-        </h2>
-        <h3 className="svc-reveal text-[15px] font-semibold text-[var(--ink)] mb-[14px]">Core capabilities</h3>
-        <div className="svc-reveal grid grid-cols-1 md:grid-cols-2 gap-[12px] mb-[32px]">
-          {service.capabilities.map((c) => (
-            <div
-              key={c}
-              onMouseMove={(e) => tiltOnMouseMove(e, 3)}
-              onMouseLeave={tiltOnMouseLeave}
-              className="group relative flex items-center gap-[12px] rounded-[14px] border border-[var(--line)] bg-[var(--surface)] px-[16px] py-[14px] overflow-hidden hover:border-[rgba(23,104,214,0.3)] transition-colors"
-              style={{ transition: 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s' }}
-            >
-              <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[var(--accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              <span className="shrink-0 w-[26px] h-[26px] rounded-full bg-[rgba(23,104,214,0.08)] border border-[rgba(23,104,214,0.18)] flex items-center justify-center text-[var(--accent)]">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-              </span>
-              <span className="text-[14px] text-[var(--ink)] font-medium">{c}</span>
-            </div>
-          ))}
+        {/* 1. Executive Overview */}
+        <div className="mb-[64px]">
+          <h2 id="overview" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
+            01 / Executive Overview
+          </h2>
+          <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[14px]">
+            Engineering Scalable Software Designed for Market Leadership
+          </h3>
+          <p className="svc-reveal text-[16.5px] text-[var(--ink)]/85 leading-[1.8] mb-[20px]">
+            {service.desc}
+          </p>
+          <p className="svc-reveal text-[15.5px] text-[var(--muted)] leading-[1.75]">
+            We bridge deep technical architecture with rapid business delivery. Every system is built by senior engineers using type-safe protocols, decoupled services, and cloud-native resilience patterns.
+          </p>
         </div>
 
-        {service.stack && service.stack.length > 0 && (
-          <div className="svc-reveal mb-[56px]">
-            <h3 className="text-[15px] font-semibold text-[var(--ink)] mb-[14px]">Tech stack</h3>
-            <div className="rounded-[14px] border border-[var(--line)] bg-[var(--surface)] p-[16px] flex flex-wrap gap-[8px]">
-              {service.stack.map((t) => (
-                <span key={t} className="inline-flex items-center gap-[6px] mono text-[11px] px-[10px] py-[5px] rounded-full border border-[var(--line)] bg-white text-[var(--muted)]">
-                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--accent)]" />
-                  {t}
+        {/* 2. Core Capabilities & Tech Stack */}
+        <div className="mb-[64px]">
+          <h2 id="capabilities" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
+            02 / Core Technical Capabilities
+          </h2>
+          <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
+            Comprehensive Engineering Vectors Included in This Service
+          </h3>
+          
+          <div className="svc-reveal grid grid-cols-1 md:grid-cols-2 gap-[14px] mb-[32px]">
+            {service.capabilities.map((c) => (
+              <div
+                key={c}
+                onMouseMove={(e) => tiltOnMouseMove(e, 3)}
+                onMouseLeave={tiltOnMouseLeave}
+                className="group relative flex items-start gap-[14px] rounded-[18px] border border-[var(--line)] bg-[var(--surface)] p-[18px] overflow-hidden hover:border-[rgba(23,104,214,0.4)] hover:shadow-md transition-all"
+              >
+                <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[var(--accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="shrink-0 w-[28px] h-[28px] rounded-full bg-[rgba(23,104,214,0.08)] border border-[rgba(23,104,214,0.18)] flex items-center justify-center text-[var(--accent)] mt-[2px]">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                 </span>
-              ))}
-            </div>
+                <div>
+                  <h4 className="text-[15px] text-[var(--ink)] font-bold">{c}</h4>
+                  <h5 className="text-[12px] mono text-[var(--accent)] mt-[4px] uppercase font-semibold">Production Verified</h5>
+                </div>
+              </div>
+            ))}
           </div>
-        )}
 
+          {service.stack && service.stack.length > 0 && (
+            <div className="svc-reveal rounded-[20px] border border-[var(--line)] bg-[var(--surface)] p-[24px]">
+              <h4 className="text-[14px] font-mono font-bold uppercase tracking-wider text-[var(--muted)] mb-[14px]">
+                Primary Technology Stack
+              </h4>
+              <div className="flex flex-wrap gap-[8px]">
+                {service.stack.map((t) => (
+                  <span key={t} className="inline-flex items-center gap-[6px] mono text-[12px] px-[12px] py-[6px] rounded-full border border-[var(--line)] bg-white text-[var(--ink)] font-medium">
+                    <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)]" />
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* 3. Industry Applications */}
+        <div className="mb-[64px]">
+          <h2 id="industries" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
+            03 / Industry Applications
+          </h2>
+          <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
+            Tailored Domain Solutions for High-Growth Sectors
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
+            {INDUSTRY_APPLICATIONS.map((app) => (
+              <div
+                key={app.sector}
+                className="rounded-[20px] bg-[#0A1324] border border-white/[0.08] p-[24px] text-white flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-[10px]">
+                    <h4 className="text-[18px] font-bold text-white">{app.sector}</h4>
+                    <span className="mono text-[11px] px-[8px] py-[3px] rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                      {app.metric}
+                    </span>
+                  </div>
+                  <p className="text-[14px] text-slate-300 leading-[1.65]">
+                    {app.useCase}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 4. Engineering SLAs & Standards */}
+        <div className="mb-[64px]">
+          <h2 id="sla-standards" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
+            04 / Engineering SLAs &amp; Quality Guarantees
+          </h2>
+          <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
+            Enterprise-Grade Commitments on Every Sprint
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
+            {SLA_GUARANTEES.map((sla) => (
+              <div
+                key={sla.title}
+                className="rounded-[18px] border border-[var(--line)] bg-[var(--surface)] p-[22px]"
+              >
+                <div className="w-[8px] h-[8px] rounded-full bg-[var(--accent)] mb-[12px]" />
+                <h4 className="text-[16px] font-bold text-[var(--ink)] mb-[8px]">{sla.title}</h4>
+                <p className="text-[13.5px] text-[var(--muted)] leading-[1.6]">{sla.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 5. 4-Phase Delivery Process */}
         {roadmapSteps.length > 0 && (
-          <>
-            <h2 id="process" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--muted)] mb-[24px] scroll-mt-[100px]">
-              How we deliver this
+          <div className="mb-[64px]">
+            <h2 id="process" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
+              05 / 4-Phase Delivery Framework
             </h2>
-            <div className="relative mb-[56px]">
+            <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[24px]">
+              Transparent, Agile Lifecycle from Discovery to Scale
+            </h3>
+
+            <div className="relative">
               <div className="absolute left-[19px] top-[8px] bottom-[8px] w-[2px] bg-[var(--line)]" aria-hidden />
               <div className="flex flex-col gap-[20px]">
                 {roadmapSteps.map((step) => (
@@ -175,53 +297,55 @@ export default function ServiceDetailContent({
                     <div className="absolute left-0 top-0 w-[40px] h-[40px] rounded-full bg-white border-2 border-[var(--accent)] text-[var(--accent)] shadow-sm flex items-center justify-center mono font-bold text-[13px] z-10">
                       {step.step}
                     </div>
-                    <div className="rounded-[16px] border border-[var(--line)] bg-[var(--surface)] p-[20px] hover:border-[rgba(23,104,214,0.3)] hover:shadow-[0_8px_24px_rgba(23,104,214,0.08)] transition-all duration-300">
-                      <h3 className="text-[17px] font-[var(--font-display)] font-bold text-[var(--ink)]">
+                    <div className="rounded-[18px] border border-[var(--line)] bg-[var(--surface)] p-[22px] hover:border-[rgba(23,104,214,0.3)] hover:shadow-md transition-all">
+                      <h4 className="text-[17px] font-[var(--font-display)] font-bold text-[var(--ink)]">
                         {step.title}
-                      </h3>
-                      <p className="mt-[6px] text-[13.5px] text-[var(--muted)] leading-[1.6]">{step.desc}</p>
+                      </h4>
+                      <p className="mt-[6px] text-[14px] text-[var(--muted)] leading-[1.65]">{step.desc}</p>
                       {step.deliverables.length > 0 && (
-                        <>
-                          <h4 className="mt-[14px] text-[10.5px] font-mono font-semibold uppercase tracking-wide text-[var(--muted)]">
-                            Key deliverables
-                          </h4>
-                          <ul className="mt-[8px] flex flex-wrap gap-[8px]">
+                        <div className="mt-[14px] pt-[12px] border-t border-[var(--line)]">
+                          <h5 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-[8px]">
+                            Phase Deliverables
+                          </h5>
+                          <ul className="flex flex-wrap gap-[6px]">
                             {step.deliverables.map((d) => (
-                              <li key={d} className="mono text-[11px] px-[9px] py-[3px] rounded-full border border-[var(--line)] bg-white text-[var(--muted)]">
+                              <li key={d} className="mono text-[11px] px-[10px] py-[3px] rounded-full border border-[var(--line)] bg-white text-[var(--ink)]">
                                 {d}
                               </li>
                             ))}
                           </ul>
-                        </>
+                        </div>
                       )}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-          </>
+          </div>
         )}
 
+        {/* 6. Global Regions */}
         {regions.length > 0 && (
-          <>
-            <h2 id="regions" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--muted)] mb-[16px] scroll-mt-[100px]">
-              Available in your region
+          <div className="mb-[64px]">
+            <h2 id="regions" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
+              06 / Global Availability
             </h2>
-            <div className="svc-reveal flex flex-wrap gap-[10px] mb-[56px]">
+            <div className="svc-reveal flex flex-wrap gap-[10px]">
               {regions.map((region) => (
-                <a
+                <Link
                   key={region}
                   href={`/services/${service.slug}/${regionToSlug(region)}`}
-                  className="inline-flex items-center gap-[6px] mono text-[12px] px-[14px] py-[8px] rounded-full border border-[rgba(23,104,214,0.25)] text-[var(--accent)] bg-[rgba(23,104,214,0.04)] hover:bg-[rgba(23,104,214,0.09)] transition-colors"
+                  className="inline-flex items-center gap-[6px] mono text-[12.5px] px-[16px] py-[9px] rounded-full border border-[rgba(23,104,214,0.25)] text-[var(--accent)] bg-[rgba(23,104,214,0.04)] hover:bg-[rgba(23,104,214,0.1)] transition-colors"
                 >
                   {service.title} in {region} →
-                </a>
+                </Link>
               ))}
             </div>
-          </>
+          </div>
         )}
       </section>
 
+      {/* 7. FAQs (3+ structured FAQs with FAQPage schema) */}
       {faqs.length > 0 && (
         <div id="faq" className="svc-reveal scroll-mt-[100px]">
           <FaqSection heading={`${service.title} FAQ`} items={faqs} />
@@ -232,3 +356,4 @@ export default function ServiceDetailContent({
     </div>
   );
 }
+
