@@ -1,9 +1,8 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import { industryIllustration } from '@/lib/industryIllustration';
@@ -16,7 +15,7 @@ import CtaSection from './CtaSection';
 import RichText from './RichText';
 import type { Industry, Service, Project } from '@/lib/types';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function IndustryDetailContent({
@@ -50,22 +49,27 @@ export default function IndustryDetailContent({
     ...(faqs.length > 0 ? [{ id: 'faq', label: 'Frequently Asked Questions' }] : []),
   ];
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current) return;
-    const reveals = gsap.utils.toArray<HTMLElement>('.ind-reveal', container.current);
-    reveals.forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 88%' },
-        }
-      );
-    });
-  }, { scope: container, dependencies: [industry] });
+
+    const ctx = gsap.context(() => {
+      const reveals = gsap.utils.toArray<HTMLElement>('.ind-reveal');
+      reveals.forEach((el) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 88%' },
+          }
+        );
+      });
+    }, container);
+
+    return () => ctx.revert();
+  }, [industry]);
 
   return (
     <div ref={container}>

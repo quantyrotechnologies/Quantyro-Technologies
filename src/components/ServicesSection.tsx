@@ -1,65 +1,66 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import { serviceIllustration } from '@/lib/serviceIllustration';
 import { stripHtml } from '@/lib/stripHtml';
 import type { Service } from '@/lib/types';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function ServicesSection({ services }: { services: Service[] }) {
   const container = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    if (!track || !container.current) return;
 
-    const headingTargets = gsap.utils.toArray('.services-heading > *', container.current);
-    if (headingTargets.length > 0) {
-      gsap.fromTo(headingTargets,
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'power2.out',
+    const ctx = gsap.context(() => {
+      const headingTargets = gsap.utils.toArray<HTMLElement>('.services-heading > *');
+      if (headingTargets.length > 0) {
+        gsap.fromTo(headingTargets,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: container.current,
+              start: 'top 80%',
+            },
+          }
+        );
+      }
+
+      const matchMedia = gsap.matchMedia();
+
+      matchMedia.add('(min-width: 821px)', () => {
+        const getDistance = () => track.scrollWidth - window.innerWidth + window.innerWidth * 0.06;
+
+        gsap.to(track, {
+          x: () => -getDistance(),
+          ease: 'none',
           scrollTrigger: {
             trigger: container.current,
-            start: 'top 80%',
-          },
-        }
-      );
-    }
-
-    const matchMedia = gsap.matchMedia();
-
-    matchMedia.add('(min-width: 821px)', () => {
-      const getDistance = () => track.scrollWidth - window.innerWidth + window.innerWidth * 0.06;
-
-      gsap.to(track, {
-        x: () => -getDistance(),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top top',
-          end: () => '+=' + (getDistance() + window.innerHeight * 0.6),
-          scrub: 0.8,
-          pin: true,
-          invalidateOnRefresh: true,
-        },
+            start: 'top top',
+            end: () => `+=${track.scrollWidth - window.innerWidth}`,
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          }
+        });
       });
-    });
+    }, container);
 
-    return () => matchMedia.revert();
-  }, { scope: container });
+    return () => ctx.revert();
+  }, [services]);
 
   return (
     <section ref={container} id="services-wrapper" className="relative h-auto md:h-[100vh] overflow-hidden z-10 flex flex-col justify-center">

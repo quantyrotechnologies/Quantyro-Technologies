@@ -1,50 +1,54 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import { stripHtml } from '@/lib/stripHtml';
 import type { Industry } from '@/lib/types';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function IndustriesSection({ industries }: { industries: Industry[] }) {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current || !industries || industries.length === 0) return;
-    const headingTargets = gsap.utils.toArray<HTMLElement>('.industries-heading > *', container.current);
-    if (headingTargets.length > 0) {
-      gsap.fromTo(headingTargets,
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: container.current, start: 'top 80%' },
-        }
-      );
-    }
-    const pills = gsap.utils.toArray<HTMLElement>('.industries-pill', container.current);
-    pills.forEach((el, i) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          delay: i * 0.05,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 90%' },
-        }
-      );
-    });
-  }, { scope: container, dependencies: [industries] });
+
+    const ctx = gsap.context(() => {
+      const headingTargets = gsap.utils.toArray<HTMLElement>('.industries-heading > *');
+      if (headingTargets.length > 0) {
+        gsap.fromTo(headingTargets,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: container.current, start: 'top 80%' },
+          }
+        );
+      }
+      const pills = gsap.utils.toArray<HTMLElement>('.industries-pill');
+      pills.forEach((el, i) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            delay: i * 0.05,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 90%' },
+          }
+        );
+      });
+    }, container);
+
+    return () => ctx.revert();
+  }, [industries]);
 
   return (
     <section ref={container} id="industries" className="relative px-[6vw] py-[90px] z-10">

@@ -3,12 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticLink from './MagneticLink';
 import type { SocialLink, SiteSettings } from '@/lib/types';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 const EXPLORE_LINKS = [
@@ -121,33 +120,38 @@ export default function Footer({
   const container = useRef<HTMLDivElement>(null);
   const [showTop, setShowTop] = useState(false);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current) return;
-    const footerTargets = gsap.utils.toArray<HTMLElement>('.footer-reveal', container.current);
-    if (footerTargets.length > 0) {
-      gsap.fromTo(footerTargets,
-        { opacity: 0, y: 18 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: container.current,
-            start: 'top 90%',
-          },
-        }
-      );
-    }
 
-    ScrollTrigger.create({
-      trigger: container.current,
-      start: 'top 85%',
-      onEnter: () => setShowTop(true),
-      onLeaveBack: () => setShowTop(false),
-    });
-  }, { scope: container });
+    const ctx = gsap.context(() => {
+      const footerTargets = gsap.utils.toArray<HTMLElement>('.footer-reveal');
+      if (footerTargets.length > 0) {
+        gsap.fromTo(footerTargets,
+          { opacity: 0, y: 18 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: container.current,
+              start: 'top 90%',
+            },
+          }
+        );
+      }
+
+      ScrollTrigger.create({
+        trigger: container.current,
+        start: 'top 85%',
+        onEnter: () => setShowTop(true),
+        onLeaveBack: () => setShowTop(false),
+      });
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

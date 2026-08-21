@@ -1,56 +1,60 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { Stat } from '@/lib/types';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function StatsSection({ stats }: { stats: Stat[] }) {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current || !stats || stats.length === 0) return;
-    const statTargets = gsap.utils.toArray('.stat', container.current);
-    if (statTargets.length === 0) return;
 
-    gsap.fromTo(statTargets,
-      { opacity: 0, y: 24 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 80%',
-        },
+    const ctx = gsap.context(() => {
+      const statTargets = gsap.utils.toArray<HTMLElement>('.stat');
+      if (statTargets.length > 0) {
+        gsap.fromTo(statTargets,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: container.current,
+              start: 'top 80%',
+            },
+          }
+        );
       }
-    );
 
-    const statsElements = gsap.utils.toArray<HTMLElement>('.stat h2', container.current);
-    statsElements.forEach((el) => {
-      const target = parseInt(el.dataset.count ?? '0', 10);
-      const suffix = el.dataset.suffix || '+';
-      const obj = { v: 0 };
-      gsap.to(obj, {
-        v: target,
-        duration: 1.6,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse'
-        },
-        onUpdate: () => {
-          el.textContent = Math.round(obj.v) + suffix;
-        }
+      const statsElements = gsap.utils.toArray<HTMLElement>('.stat h2');
+      statsElements.forEach((el) => {
+        const target = parseInt(el.dataset.count ?? '0', 10);
+        const suffix = el.dataset.suffix || '+';
+        const obj = { v: 0 };
+        gsap.to(obj, {
+          v: target,
+          duration: 1.6,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          },
+          onUpdate: () => {
+            el.textContent = Math.round(obj.v) + suffix;
+          }
+        });
       });
-    });
-  }, { scope: container, dependencies: [stats] });
+    }, container);
+
+    return () => ctx.revert();
+  }, [stats]);
 
   if (stats.length === 0) return null;
 

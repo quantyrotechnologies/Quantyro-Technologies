@@ -1,53 +1,57 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticLink from './MagneticLink';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function CtaSection() {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current) return;
-    const ctaWords = gsap.utils.toArray<HTMLElement>('.cta-title .word span', container.current);
-    if (ctaWords.length > 0) {
-      gsap.set(ctaWords, { yPercent: 100 });
-      
-      gsap.to(ctaWords, {
-        yPercent: 0,
-        duration: 1,
-        stagger: 0.06,
-        ease: 'power4.out',
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 75%',
-          invalidateOnRefresh: true
-        }
-      });
-    }
 
-    const subTargets = gsap.utils.toArray<HTMLElement>('.cta-sub, .cta-actions', container.current);
-    if (subTargets.length > 0) {
-      gsap.fromTo(subTargets,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
+    const ctx = gsap.context(() => {
+      const ctaWords = gsap.utils.toArray<HTMLElement>('.cta-title .word span');
+      if (ctaWords.length > 0) {
+        gsap.set(ctaWords, { yPercent: 100 });
+        
+        gsap.to(ctaWords, {
+          yPercent: 0,
+          duration: 1,
+          stagger: 0.06,
+          ease: 'power4.out',
           scrollTrigger: {
             trigger: container.current,
-            start: 'top 60%',
+            start: 'top 75%',
             invalidateOnRefresh: true
           }
-        }
-      );
-    }
-  }, { scope: container });
+        });
+      }
+
+      const subTargets = gsap.utils.toArray<HTMLElement>('.cta-sub, .cta-actions');
+      if (subTargets.length > 0) {
+        gsap.fromTo(subTargets,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: container.current,
+              start: 'top 60%',
+              invalidateOnRefresh: true
+            }
+          }
+        );
+      }
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
 
   const renderTitle = (text: string) => {
     return text.split(' ').map((word, index, arr) => (

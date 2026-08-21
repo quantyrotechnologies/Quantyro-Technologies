@@ -1,11 +1,10 @@
 "use client";
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { RoadmapStep } from '@/lib/types';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
@@ -16,40 +15,45 @@ export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
   const [activeStep, setActiveStep] = useState(0);
   const [simulatedSteps, setSimulatedSteps] = useState<Record<string, boolean>>({});
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!containerRef.current || !steps || steps.length === 0) return;
-    const cards = gsap.utils.toArray<HTMLElement>('.roadmap-card', containerRef.current);
-    const beacons = gsap.utils.toArray<HTMLElement>('.roadmap-node-beacon', containerRef.current);
-    const bridges = gsap.utils.toArray<HTMLElement>('.roadmap-bridge-line', containerRef.current);
 
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: 'top 70%',
-      end: 'bottom 80%',
-      scrub: 0.35,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        const p = self.progress;
-        setScrollProgress(Math.round(p * 100));
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>('.roadmap-card');
+      const beacons = gsap.utils.toArray<HTMLElement>('.roadmap-node-beacon');
+      const bridges = gsap.utils.toArray<HTMLElement>('.roadmap-bridge-line');
 
-        if (spineFillRef.current) {
-          spineFillRef.current.style.transform = `scaleY(${p})`;
-        }
-        if (laserDotRef.current) {
-          laserDotRef.current.style.top = `${p * 100}%`;
-        }
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: 'top 70%',
+        end: 'bottom 80%',
+        scrub: 0.35,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const p = self.progress;
+          setScrollProgress(Math.round(p * 100));
 
-        cards.forEach((card, i) => {
-          const threshold = i / cards.length;
-          const isActive = p >= threshold;
-          card.classList.toggle('is-active', isActive);
-          if (beacons[i]) beacons[i].classList.toggle('is-active', isActive);
-          if (bridges[i]) bridges[i].classList.toggle('roadmap-bridge-active', isActive);
-          if (isActive) setActiveStep(i);
-        });
-      },
-    });
-  }, { scope: containerRef, dependencies: [steps] });
+          if (spineFillRef.current) {
+            spineFillRef.current.style.transform = `scaleY(${p})`;
+          }
+          if (laserDotRef.current) {
+            laserDotRef.current.style.top = `${p * 100}%`;
+          }
+
+          cards.forEach((card, i) => {
+            const threshold = i / cards.length;
+            const isActive = p >= threshold;
+            card.classList.toggle('is-active', isActive);
+            if (beacons[i]) beacons[i].classList.toggle('is-active', isActive);
+            if (bridges[i]) bridges[i].classList.toggle('roadmap-bridge-active', isActive);
+            if (isActive) setActiveStep(i);
+          });
+        },
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [steps]);
 
   if (steps.length === 0) return null;
 

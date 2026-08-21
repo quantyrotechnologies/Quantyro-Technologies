@@ -1,7 +1,6 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import StatsSection from './StatsSection';
 import CtaSection from './CtaSection';
@@ -10,7 +9,7 @@ import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import type { Certification, Value, Office, Stat } from '@/lib/types';
 import Breadcrumbs from './Breadcrumbs';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function AboutContent({
@@ -28,26 +27,31 @@ export default function AboutContent({
 }) {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current) return;
-    const cards = gsap.utils.toArray<HTMLElement>('.value-card, .office-chip', container.current);
-    cards.forEach((el, i) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          delay: i * 0.03,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 88%',
-          },
-        }
-      );
-    });
-  }, { scope: container, dependencies: [values, offices] });
+
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>('.value-card, .office-chip');
+      cards.forEach((el, i) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            delay: i * 0.03,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+            },
+          }
+        );
+      });
+    }, container);
+
+    return () => ctx.revert();
+  }, [values, offices]);
 
   return (
     <div ref={container}>

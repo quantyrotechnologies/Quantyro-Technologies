@@ -1,9 +1,8 @@
 "use client";
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CtaSection from './CtaSection';
 import FaqSection, { type FaqItem } from './FaqSection';
@@ -11,29 +10,34 @@ import { patternImageForSlug } from '@/lib/patternImage';
 import type { Project } from '@/lib/types';
 import Breadcrumbs from './Breadcrumbs';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function WorkContent({ projects, faqs }: { projects: Project[]; faqs: FaqItem[] }) {
   const container = useRef<HTMLDivElement>(null);
   const [openId, setOpenId] = useState<string | null>(projects[0]?.id ?? null);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current) return;
-    const rows = gsap.utils.toArray<HTMLElement>('.work-row', container.current);
-    rows.forEach((row) => {
-      gsap.fromTo(row,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: row, start: 'top 88%' },
-        }
-      );
-    });
-  }, { scope: container, dependencies: [projects] });
+
+    const ctx = gsap.context(() => {
+      const rows = gsap.utils.toArray<HTMLElement>('.work-row');
+      rows.forEach((row) => {
+        gsap.fromTo(row,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: row, start: 'top 88%' },
+          }
+        );
+      });
+    }, container);
+
+    return () => ctx.revert();
+  }, [projects]);
 
   return (
     <div ref={container}>

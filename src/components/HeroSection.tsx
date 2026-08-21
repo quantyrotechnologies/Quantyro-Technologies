@@ -1,51 +1,54 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticLink from './MagneticLink';
 import TechIntegrationHub from './TechIntegrationHub';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function HeroSection() {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current) return;
-    const heroWords = gsap.utils.toArray<HTMLElement>('.hero-title .word span', container.current);
-    if (heroWords.length > 0) {
-      gsap.set(heroWords, { yPercent: 110 });
-    }
 
-    const subTargets = gsap.utils.toArray<HTMLElement>('.eyebrow, .hero-actions, .hero-visual', container.current);
-
-    if (heroWords.length > 0 || subTargets.length > 0) {
-      const tl = gsap.timeline({ delay: 0.15 });
+    const ctx = gsap.context(() => {
+      const heroWords = gsap.utils.toArray<HTMLElement>('.hero-title .word span');
       if (heroWords.length > 0) {
-        tl.to(heroWords, { yPercent: 0, duration: 1.0, stagger: 0.04, ease: 'power4.out' });
+        gsap.set(heroWords, { yPercent: 110 });
       }
-      if (subTargets.length > 0) {
-        tl.from(subTargets, {
-          opacity: 0, y: 20, duration: 0.7, stagger: 0.08, ease: 'power2.out'
-        }, '-=0.6');
-      }
-    }
 
-    // Stay crisp for the first quarter of the scroll, then fade out smoothly
-    gsap.to(container.current, {
-      scrollTrigger: {
-        trigger: container.current,
-        start: '35% top',
-        end: 'bottom top',
-        scrub: true,
-        invalidateOnRefresh: true
-      },
-      opacity: 0,
-      y: -30
-    });
-  }, { scope: container });
+      const subTargets = gsap.utils.toArray<HTMLElement>('.eyebrow, .hero-actions, .hero-visual');
+
+      if (heroWords.length > 0 || subTargets.length > 0) {
+        const tl = gsap.timeline({ delay: 0.15 });
+        if (heroWords.length > 0) {
+          tl.to(heroWords, { yPercent: 0, duration: 1.0, stagger: 0.04, ease: 'power4.out' });
+        }
+        if (subTargets.length > 0) {
+          tl.from(subTargets, {
+            opacity: 0, y: 20, duration: 0.7, stagger: 0.08, ease: 'power2.out'
+          }, '-=0.6');
+        }
+      }
+
+      gsap.to(container.current, {
+        scrollTrigger: {
+          trigger: container.current,
+          start: '35% top',
+          end: 'bottom top',
+          scrub: true,
+          invalidateOnRefresh: true
+        },
+        opacity: 0,
+        y: -30
+      });
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
 
   const title = "Fuel growth with unified systems";
   const renderTitle = () => {

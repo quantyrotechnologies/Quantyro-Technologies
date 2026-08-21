@@ -1,9 +1,8 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CtaSection from './CtaSection';
 import FaqSection, { type FaqItem } from './FaqSection';
@@ -14,7 +13,7 @@ import { stripHtml } from '@/lib/stripHtml';
 import type { Industry } from '@/lib/types';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function IndustriesContent({
@@ -31,22 +30,27 @@ export default function IndustriesContent({
   );
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current) return;
-    const cards = gsap.utils.toArray<HTMLElement>('.industry-card', container.current);
-    cards.forEach((card) => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: card, start: 'top 85%' },
-        }
-      );
-    });
-  }, { scope: container, dependencies: [industries] });
+
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>('.industry-card');
+      cards.forEach((card) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: card, start: 'top 85%' },
+          }
+        );
+      });
+    }, container);
+
+    return () => ctx.revert();
+  }, [industries]);
 
   return (
     <div ref={container}>

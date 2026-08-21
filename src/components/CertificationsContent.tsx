@@ -1,14 +1,13 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CtaSection from './CtaSection';
 import FaqSection, { type FaqItem } from './FaqSection';
 import Breadcrumbs from './Breadcrumbs';
 import type { Certification } from '@/lib/types';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function CertificationsContent({
@@ -20,22 +19,27 @@ export default function CertificationsContent({
 }) {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current) return;
-    const cards = gsap.utils.toArray<HTMLElement>('.cert-card', container.current);
-    cards.forEach((card) => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: card, start: 'top 90%' },
-        }
-      );
-    });
-  }, { scope: container, dependencies: [certifications] });
+
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>('.cert-card');
+      cards.forEach((card) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: card, start: 'top 90%' },
+          }
+        );
+      });
+    }, container);
+
+    return () => ctx.revert();
+  }, [certifications]);
 
   return (
     <div ref={container}>

@@ -2,11 +2,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { Testimonial } from '@/lib/types';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function TestimonialsSection({ testimonials }: { testimonials: Testimonial[] }) {
@@ -29,26 +28,31 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
     return () => clearInterval(id);
   }, [paused, testimonials.length]);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current || !testimonials || testimonials.length === 0) return;
-    const targets = gsap.utils.toArray('.testimonials-reveal', container.current);
-    if (targets.length === 0) return;
 
-    gsap.fromTo(targets,
-      { opacity: 0, y: 24 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 80%',
-        },
-      }
-    );
-  }, { scope: container, dependencies: [testimonials] });
+    const ctx = gsap.context(() => {
+      const targets = gsap.utils.toArray<HTMLElement>('.testimonials-reveal');
+      if (targets.length === 0) return;
+
+      gsap.fromTo(targets,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 80%',
+          },
+        }
+      );
+    }, container);
+
+    return () => ctx.revert();
+  }, [testimonials]);
 
   if (testimonials.length === 0) return null;
 

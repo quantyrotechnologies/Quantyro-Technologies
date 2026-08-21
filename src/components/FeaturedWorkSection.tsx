@@ -4,13 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'motion/react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { getLenis } from './SmoothScroll';
 import { patternImageForSlug } from '@/lib/patternImage';
 import type { Project } from '@/lib/types';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
 export default function FeaturedWorkSection({ projects }: { projects: Project[] }) {
@@ -18,26 +17,31 @@ export default function FeaturedWorkSection({ projects }: { projects: Project[] 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = projects.find((p) => p.id === selectedId) ?? null;
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!container.current || !projects || projects.length === 0) return;
-    const targets = gsap.utils.toArray('.featured-work-reveal', container.current);
-    if (targets.length === 0) return;
 
-    gsap.fromTo(targets,
-      { opacity: 0, y: 24 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 80%',
-        },
-      }
-    );
-  }, { scope: container, dependencies: [projects] });
+    const ctx = gsap.context(() => {
+      const targets = gsap.utils.toArray<HTMLElement>('.featured-work-reveal');
+      if (targets.length === 0) return;
+
+      gsap.fromTo(targets,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 80%',
+          },
+        }
+      );
+    }, container);
+
+    return () => ctx.revert();
+  }, [projects]);
 
   useEffect(() => {
     if (!selected) return;
