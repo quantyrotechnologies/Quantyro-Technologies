@@ -17,7 +17,7 @@ export default function HeroSection() {
 
     gsap.timeline({ delay: 0.15 })
       .to(heroWords, { yPercent: 0, duration: 1.0, stagger: 0.04, ease: 'power4.out' })
-      .from(['.eyebrow', '.hero-sub', '.hero-actions', '.hero-trust', '.hero-visual'], {
+      .from(['.eyebrow', '.hero-sub', '.hero-actions', '.hero-visual'], {
         opacity: 0, y: 20, duration: 0.7, stagger: 0.08, ease: 'power2.out'
       }, '-=0.6');
 
@@ -115,57 +115,6 @@ export default function HeroSection() {
             >
               Book a demo
             </MagneticLink>
-          </div>
-
-          {/* [PHASE-5] Enterprise Social Proof & Rating Badge */}
-          <div className="hero-trust mt-[20px] flex flex-col sm:flex-row sm:items-center gap-[12px] sm:gap-[16px] text-[12px] text-[var(--muted)]">
-            {/* Avatar Stack + Rating */}
-            <div className="flex items-center gap-[8px]">
-              <div className="flex -space-x-[7px] items-center">
-                <div className="w-[24px] h-[24px] rounded-full bg-[#FF671F] text-white border-2 border-white flex items-center justify-center text-[9px] font-bold shadow-xs">
-                  IN
-                </div>
-                <div className="w-[24px] h-[24px] rounded-full bg-[#0B2922] text-[#00FFB2] border-2 border-white flex items-center justify-center text-[9px] font-bold shadow-xs">
-                  US
-                </div>
-                <div className="w-[24px] h-[24px] rounded-full bg-[#1768D6] text-white border-2 border-white flex items-center justify-center text-[9px] font-bold shadow-xs">
-                  EU
-                </div>
-                <div className="w-[24px] h-[24px] rounded-full bg-[#0A172F] text-[#00FFB2] border-2 border-white flex items-center justify-center text-[9px] font-bold shadow-xs">
-                  UK
-                </div>
-                <div className="w-[24px] h-[24px] rounded-full bg-[#00B377] text-white border-2 border-white flex items-center justify-center text-[8.5px] font-bold shadow-xs">
-                  +80
-                </div>
-              </div>
-
-              <div className="flex items-center gap-[4px]">
-                <span className="text-[#FFB800] text-[11px] tracking-tighter">★★★★★</span>
-                <span className="font-semibold text-[var(--ink)] text-[12px]">4.9/5</span>
-                <span className="text-slate-300">·</span>
-                <span className="text-[11.5px] text-slate-500">80+ Global Enterprises</span>
-              </div>
-            </div>
-
-            <span className="hidden sm:inline text-slate-300">|</span>
-
-            {/* Quick Trust Checks */}
-            <div className="flex items-center gap-[14px] text-[11.5px]">
-              <div className="flex items-center gap-[4px]">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="m9 12 2 2 4-4" />
-                </svg>
-                <span>No lock-in</span>
-              </div>
-              <div className="flex items-center gap-[4px]">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="m9 12 2 2 4-4" />
-                </svg>
-                <span>99.999% SLA</span>
-              </div>
-            </div>
           </div>
 
         </div>

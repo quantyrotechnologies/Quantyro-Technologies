@@ -30,11 +30,12 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-[3vw] pt-[12px] md:pt-[16px] pointer-events-none transition-all duration-300">
       <nav
-        className={`pointer-events-auto w-full max-w-[1280px] rounded-[24px] md:rounded-full transition-all duration-300 ${
+        className={`pointer-events-auto w-full max-w-[1280px] rounded-[24px] md:rounded-full transition-all duration-300 backdrop-saturate-[220%] ${
           scrolled || menuOpen
-            ? 'bg-white/95 backdrop-blur-xl border border-[rgba(10,23,47,0.2)] shadow-[0_16px_40px_rgba(10,23,47,0.08)] py-[8px] md:py-[10px]'
-            : 'bg-white/80 backdrop-blur-lg border border-[rgba(10,23,47,0.16)] shadow-[0_8px_28px_rgba(10,23,47,0.04)] py-[10px] md:py-[12px]'
+            ? 'bg-white/18 backdrop-blur-3xl border border-[rgba(23,104,214,0.35)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_0_0_1px_rgba(255,255,255,0.15),0_16px_44px_rgba(23,104,214,0.16)] py-[8px] md:py-[10px]'
+            : 'bg-white/10 backdrop-blur-3xl border border-[rgba(23,104,214,0.26)] shadow-[inset_0_1px_0_rgba(255,255,255,0.6),inset_0_0_0_1px_rgba(255,255,255,0.1),0_8px_32px_rgba(23,104,214,0.1)] py-[10px] md:py-[12px]'
         }`}
+        style={{ backdropFilter: 'blur(28px) saturate(220%)', WebkitBackdropFilter: 'blur(28px) saturate(220%)' }}
       >
         <div className="flex items-center justify-between px-[16px] md:px-[24px]">
           
@@ -72,10 +73,10 @@ export default function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`px-[16px] py-[8px] rounded-full text-[14px] font-semibold transition-all duration-200 ${
+                  className={`px-[16px] py-[8px] rounded-full text-[16px] font-semibold transition-all duration-200 ${
                     active
                       ? 'text-[var(--accent)] bg-[var(--accent)]/10 font-bold'
-                      : 'text-[var(--ink)]/80 hover:text-[var(--ink)] hover:bg-[rgba(10,23,47,0.04)]'
+                      : 'text-black hover:text-black hover:bg-[rgba(10,23,47,0.04)]'
                   }`}
                 >
                   {item.label}

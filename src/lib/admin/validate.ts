@@ -48,6 +48,13 @@ export function validateResourcePayload(
           data[field.name] = raw;
         }
         break;
+      case 'json':
+        try {
+          data[field.name] = JSON.parse(String(raw));
+        } catch {
+          errors.push(`${field.label} is not valid JSON`);
+        }
+        break;
       default:
         data[field.name] = String(raw);
     }

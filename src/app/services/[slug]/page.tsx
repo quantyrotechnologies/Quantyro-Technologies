@@ -1,20 +1,32 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getServiceBySlug } from '@/lib/data/services';
+import { getServiceBySlug, getServices } from '@/lib/data/services';
 import { getFaqs } from '@/lib/data/faqs';
 import { getRoadmapSteps } from '@/lib/data/roadmap';
 import { getActiveRegionsByService } from '@/lib/data/serviceRegionPages';
-import { SITE_URL } from '@/lib/site';
+import { getActiveCitiesByService } from '@/lib/data/locationPages';
+import { techStackSlugMapForService } from '@/lib/data/techStackPages';
+import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/site';
 import ServiceDetailContent from '@/components/ServiceDetailContent';
+
+export async function generateStaticParams() {
+  const services = await getServices();
+  return services.map((s) => ({ slug: s.slug }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
   if (!service) return {};
+  const title = service.seoTitle || `${service.title} Services`;
+  const description = service.seoDescription || service.desc;
   return {
-    title: service.seoTitle || `${service.title} Services`,
-    description: service.seoDescription || service.desc,
+    title,
+    description,
+    keywords: service.targetKeywords?.length ? service.targetKeywords : undefined,
     alternates: { canonical: `/services/${slug}` },
+    openGraph: { title, description, url: `/services/${slug}`, type: 'website', images: [DEFAULT_OG_IMAGE] },
+    twitter: { card: 'summary_large_image', title, description, images: [DEFAULT_OG_IMAGE] },
   };
 }
 
@@ -23,12 +35,15 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const service = await getServiceBySlug(slug);
   if (!service) notFound();
 
-  const [faqs, roadmapSteps, regionsByService] = await Promise.all([
+  const [faqs, roadmapSteps, regionsByService, citiesByService, techStackSlugs] = await Promise.all([
     getFaqs(`service-${slug}`),
     getRoadmapSteps(),
     getActiveRegionsByService(),
+    getActiveCitiesByService(),
+    techStackSlugMapForService(slug),
   ]);
   const regions = regionsByService[service.id] ?? [];
+  const cities = citiesByService[service.id] ?? [];
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -37,7 +52,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     serviceType: service.title,
     description: service.desc,
     provider: { '@type': 'Organization', name: 'Quantyro Technologies', url: SITE_URL },
-    ...(regions.length > 0 ? { areaServed: regions } : {}),
+    ...(regions.length + cities.length > 0 ? { areaServed: [...regions, ...cities] } : {}),
   };
 
   return (
@@ -46,7 +61,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ServiceDetailContent service={service} faqs={faqs} roadmapSteps={roadmapSteps} regions={regions} />
+      <ServiceDetailContent service={service} faqs={faqs} roadmapSteps={roadmapSteps} regions={regions} cities={cities} techStackSlugs={techStackSlugs} />
     </>
   );
 }

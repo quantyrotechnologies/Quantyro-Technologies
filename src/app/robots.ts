@@ -4,7 +4,7 @@ import { SITE_URL } from '@/lib/site';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: '*', allow: '/' },
+      { userAgent: '*', allow: '/', disallow: '/api/' },
       // Explicit allow for AI crawlers/answer engines — /admin/* is kept
       // crawlable (not disallowed here) and handled instead via a `noindex`
       // meta tag, which still lets these bots read and cite the site.

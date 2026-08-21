@@ -9,6 +9,7 @@ export interface Service {
   imageUrl: string | null;
   seoTitle: string | null;
   seoDescription: string | null;
+  targetKeywords?: string[];
 }
 
 export interface Project {
@@ -43,6 +44,7 @@ export interface Industry {
   statLabel: string;
   seoTitle: string | null;
   seoDescription: string | null;
+  targetKeywords?: string[];
 }
 
 export interface ServiceRegionPage {
@@ -52,6 +54,25 @@ export interface ServiceRegionPage {
   seoTitle: string | null;
   seoDescription: string | null;
   service: {
+    id: string;
+    slug: string;
+    title: string;
+    desc: string;
+    capabilities: string[];
+  };
+}
+
+export interface LocationPage {
+  id: string;
+  city: string;
+  nearbyAreas: string | null;
+  localNote: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  faqs: { q: string; a: string }[];
+  targetKeywords: string[];
+  entity: {
+    kind: 'service' | 'industry';
     id: string;
     slug: string;
     title: string;
@@ -72,6 +93,8 @@ export interface BlogPost {
   seoDescription: string | null;
   tags: string[];
   accent: 'accent' | 'accent-2';
+  relatedService: { slug: string; title: string } | null;
+  relatedIndustry: { slug: string; title: string } | null;
 }
 
 export interface BlogComment {

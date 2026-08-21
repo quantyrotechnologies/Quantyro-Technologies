@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque, IBM_Plex_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
-import ScrollRefresh from "@/components/ScrollRefresh";
-import SmoothScroll from "@/components/SmoothScroll";
+import SiteChrome from "@/components/SiteChrome";
 import { SITE_URL } from "@/lib/site";
 import { getSiteSettings } from "@/lib/data/siteSettings";
 import { getSocialLinks } from "@/lib/data/socialLinks";
@@ -68,12 +66,13 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col relative">
         <StructuredData settings={settings} socialLinks={socialLinks} />
-        <SmoothScroll />
-        <ScrollRefresh />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer socialLinks={socialLinks} settings={settings} />
+        <SiteChrome settings={settings} socialLinks={socialLinks}>
+          {children}
+        </SiteChrome>
       </body>
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+      )}
     </html>
   );
 }

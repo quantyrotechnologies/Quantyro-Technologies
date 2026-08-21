@@ -31,7 +31,7 @@ export default function LatticeBackground() {
     resize();
     window.addEventListener('resize', resize);
 
-    const N = reduceMotion ? 0 : (window.innerWidth < 700 ? 40 : 90);
+    const N = reduceMotion ? 0 : (window.innerWidth < 700 ? 26 : 55);
     const nodes = Array.from({ length: N }, () => ({
       x: Math.random(), y: Math.random(),
       vx: (Math.random() - 0.5) * 0.0003, vy: (Math.random() - 0.5) * 0.0003
@@ -115,10 +115,23 @@ export default function LatticeBackground() {
         ctx.fill();
       });
 
-      animationFrameId = requestAnimationFrame(draw);
+      animationFrameId = requestAnimationFrame(tick);
     }
 
-    if (N > 0) draw();
+    let frameCount = 0;
+    function tick() {
+      frameCount++;
+      // Halves the O(n^2) connection-line cost — a static-ish background
+      // effect doesn't need full 60fps, and this is the main GC/CPU cost
+      // competing with Lenis + GSAP ScrollTrigger during scroll.
+      if (frameCount % 2 === 0) {
+        draw();
+      } else {
+        animationFrameId = requestAnimationFrame(tick);
+      }
+    }
+
+    if (N > 0) tick();
 
     return () => {
       window.removeEventListener('resize', resize);

@@ -46,6 +46,8 @@ Always design for failure: incorporate distributed OpenTelemetry tracing, config
     seoDescription: 'Learn how to architect high-concurrency Next.js and Node.js microservices with edge caching, distributed queuing, and automated circuit breakers.',
     tags: ['Architecture', 'Backend', 'Next.js', 'Performance'],
     accent: 'accent',
+    relatedService: { slug: 'custom-software', title: 'Custom Software' },
+    relatedIndustry: null,
   },
   {
     id: 'post-2',
@@ -90,6 +92,8 @@ Monitor retrieval accuracy with automated evaluation metrics (Hit Rate, MRR, Con
     seoDescription: 'How to build production-grade enterprise RAG systems with hybrid vector search, cross-encoder reranking, and zero-trust security.',
     tags: ['AI & ML', 'Vector Search', 'Cloud & DevOps', 'Architecture'],
     accent: 'accent-2',
+    relatedService: { slug: 'ai-machine-learning', title: 'AI & Machine Learning' },
+    relatedIndustry: null,
   },
   {
     id: 'post-3',
@@ -134,8 +138,17 @@ Combining server-rendered speed, semantic heading structures, and automated JSON
     seoDescription: 'Master modern technical SEO with Next.js App Router: 100/100 Core Web Vitals, JSON-LD schema graphs, and automated canonical enforcement.',
     tags: ['Technical', 'Web Dev', 'Performance', 'Next.js'],
     accent: 'accent',
+    relatedService: { slug: 'seo-marketing', title: 'SEO & Marketing' },
+    relatedIndustry: null,
   },
 ];
+
+type RelatedRef = { slug: string; title: string } | { slug: string; title: string }[] | null;
+
+function normalizeRelated(ref: RelatedRef): { slug: string; title: string } | null {
+  if (!ref) return null;
+  return Array.isArray(ref) ? (ref[0] ?? null) : ref;
+}
 
 function mapPost(row: Record<string, unknown>): BlogPost {
   return {
@@ -150,6 +163,8 @@ function mapPost(row: Record<string, unknown>): BlogPost {
     seoDescription: (row.seo_description as string) ?? null,
     tags: (row.tags as string[]) ?? [],
     accent: (row.accent as 'accent' | 'accent-2') ?? 'accent',
+    relatedService: normalizeRelated(row.related_service as RelatedRef),
+    relatedIndustry: normalizeRelated(row.related_industry as RelatedRef),
   };
 }
 
@@ -158,7 +173,7 @@ async function fetchPublishedPosts(): Promise<BlogPost[]> {
     const supabase = createPublicClient();
     const { data, error } = await supabase
       .from('blog_posts')
-      .select('*')
+      .select('*, related_service:services(slug, title), related_industry:industries(slug, title)')
       .or(`status.eq.published,and(status.eq.scheduled,published_at.lte.${new Date().toISOString()})`)
       .order('published_at', { ascending: false });
 
@@ -182,7 +197,7 @@ async function fetchPostBySlug(slug: string): Promise<BlogPost | null> {
     const supabase = createPublicClient();
     const { data, error } = await supabase
       .from('blog_posts')
-      .select('*')
+      .select('*, related_service:services(slug, title), related_industry:industries(slug, title)')
       .eq('slug', slug)
       .maybeSingle();
 

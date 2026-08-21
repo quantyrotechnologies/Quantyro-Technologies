@@ -10,7 +10,7 @@ import TableOfContents from '@/components/TableOfContents';
 import FaqSection from '@/components/FaqSection';
 import BlogCard from '@/components/BlogCard';
 import ArticleBody, { extractHeadings } from '@/components/ArticleBody';
-import { SITE_URL } from '@/lib/site';
+import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/site';
 import { patternImageForSlug } from '@/lib/patternImage';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -28,11 +28,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'article',
       publishedTime: post.publishedAt || undefined,
       authors: [post.authorName],
+      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.seoTitle || post.title,
       description: post.seoDescription || post.excerpt,
+      images: [DEFAULT_OG_IMAGE],
     },
   };
 }
@@ -238,6 +240,36 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </svg>
               <span>Back to all insights</span>
             </Link>
+
+            {/* Related Service / Industry CTA */}
+            {(post.relatedService || post.relatedIndustry) && (
+              <div className="rounded-[24px] border border-[rgba(23,104,214,0.2)] bg-[rgba(23,104,214,0.04)] p-[24px]">
+                <h3 className="mono text-[12px] font-bold uppercase tracking-wider text-[var(--accent)] mb-[10px]">
+                  Need help with this?
+                </h3>
+                <p className="text-[13.5px] text-[var(--muted)] leading-[1.6] mb-[16px]">
+                  We build exactly this kind of work day-to-day.
+                </p>
+                <div className="flex flex-col gap-[10px]">
+                  {post.relatedService && (
+                    <Link
+                      href={`/services/${post.relatedService.slug}`}
+                      className="inline-flex items-center justify-between gap-[8px] rounded-[12px] bg-white border border-[var(--line)] px-[16px] py-[12px] text-[13.5px] font-semibold text-[var(--ink)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                    >
+                      {post.relatedService.title} →
+                    </Link>
+                  )}
+                  {post.relatedIndustry && (
+                    <Link
+                      href={`/industries/${post.relatedIndustry.slug}`}
+                      className="inline-flex items-center justify-between gap-[8px] rounded-[12px] bg-white border border-[var(--line)] px-[16px] py-[12px] text-[13.5px] font-semibold text-[var(--ink)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                    >
+                      {post.relatedIndustry.title} →
+                    </Link>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Related Articles Box */}
             {relatedPosts.length > 0 && (

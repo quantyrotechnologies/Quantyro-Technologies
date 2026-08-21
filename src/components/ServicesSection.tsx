@@ -88,7 +88,7 @@ export default function ServicesSection({ services }: { services: Service[] }) {
       <div
         ref={trackRef}
         id="services-track"
-        className="flex items-center pl-[6vw] flex-1 min-h-0 will-change-transform max-md:overflow-x-auto max-md:pb-[60px] py-[20px]"
+        className="flex items-stretch pl-[6vw] flex-1 min-h-0 will-change-transform max-md:overflow-x-auto max-md:pb-[60px] py-[20px]"
       >
         {services.map((s) => (
           <Link
@@ -96,29 +96,29 @@ export default function ServicesSection({ services }: { services: Service[] }) {
             href={`/services/${s.slug}`}
             onMouseMove={(e) => tiltOnMouseMove(e, 5)}
             onMouseLeave={tiltOnMouseLeave}
-            className="service-panel-card group flex-none w-[min(78vw,380px)] h-[min(58vh,480px)] mr-[3vw] rounded-[24px] bg-white border border-[rgba(10,23,47,0.16)] shadow-[0_8px_30px_rgba(10,23,47,0.06)] hover:border-[rgba(23,104,214,0.4)] hover:shadow-[0_16px_50px_rgba(23,104,214,0.14)] p-[28px] md:p-[32px] flex flex-col overflow-hidden transition-shadow duration-300 ease-out"
+            className="service-panel-card group flex-none w-[min(78vw,360px)] h-auto mr-[3vw] rounded-[22px] bg-white border border-[rgba(10,23,47,0.16)] shadow-[0_8px_30px_rgba(10,23,47,0.06)] hover:border-[rgba(23,104,214,0.4)] hover:shadow-[0_16px_50px_rgba(23,104,214,0.14)] p-[26px] md:p-[28px] flex flex-col overflow-hidden transition-shadow duration-300 ease-out"
             style={{ transition: 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s, border-color 0.3s' }}
           >
-            <div className="relative h-[160px] shrink-0 rounded-[14px] overflow-hidden bg-[var(--bg-alt)]">
+            <div className="relative h-[150px] shrink-0 rounded-[14px] overflow-hidden bg-[var(--bg-alt)]">
               <Image
                 src={serviceIllustration(s.slug)}
-                alt={`${s.title} — illustration of the delivery approach`}
+                alt={`${s.title} services by Quantyro Technologies`}
                 title={s.title}
                 fill
-                sizes="380px"
+                sizes="360px"
                 className="object-cover"
               />
             </div>
 
-            <h3 className="mt-[16px] text-[22px] md:text-[24px] font-[var(--font-display)] font-bold text-[var(--ink)]">
+            <h3 className="mt-[16px] text-[21px] md:text-[22px] font-[var(--font-display)] font-bold text-[var(--ink)]">
               {s.title}
             </h3>
-            <p className="mt-[8px] text-[14px] text-[var(--muted)] leading-[1.6] line-clamp-3">
+            <p className="mt-[8px] text-[14px] text-[var(--muted)] leading-[1.6] line-clamp-2">
               {s.desc}
             </p>
 
-            <div className="mt-auto pt-[24px] flex flex-col gap-[9px]">
-              {s.capabilities.map((c) => (
+            <div className="mt-auto pt-[20px] flex flex-col gap-[8px]">
+              {s.capabilities.slice(0, 3).map((c) => (
                 <div key={c} className="flex items-center gap-[8px] text-[11px] font-mono uppercase tracking-tight text-slate-500">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
                     <polyline points="20 6 9 17 4 12" />

@@ -1,11 +1,11 @@
 const SERVICE_ILLUSTRATIONS: Record<string, string> = {
-  'website-development': '/images/illustrations/website-development.svg',
-  'seo-marketing': '/images/illustrations/seo-marketing.svg',
-  'custom-software': '/images/illustrations/custom-software.svg',
-  'ai-machine-learning': '/images/illustrations/ai-ml.svg',
-  'cloud-devops': '/images/illustrations/cloud-devops.svg',
-  'mobile-apps': '/images/illustrations/mobile-apps.svg',
-  'e-commerce': '/images/illustrations/e-commerce.svg',
+  'website-development': '/images/photos/services/website-development.jpg',
+  'seo-marketing': '/images/photos/services/seo-marketing.jpg',
+  'custom-software': '/images/photos/services/custom-software.jpg',
+  'ai-machine-learning': '/images/photos/services/ai-machine-learning.jpg',
+  'cloud-devops': '/images/photos/services/cloud-devops.jpg',
+  'mobile-apps': '/images/photos/services/mobile-apps.jpg',
+  'e-commerce': '/images/photos/services/e-commerce.jpg',
 };
 
 const FALLBACK = '/images/illustrations/pattern-1.svg';

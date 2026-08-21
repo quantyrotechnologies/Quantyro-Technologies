@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import { trackEvent } from '@/lib/gtag';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -33,6 +34,7 @@ export default function ContactForm() {
       }
 
       setStatus('success');
+      trackEvent('generate_lead', { source: 'Contact Page', form_type: 'contact_page' });
       form.reset();
     } catch (err) {
       setStatus('error');

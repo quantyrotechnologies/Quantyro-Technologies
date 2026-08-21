@@ -5,7 +5,11 @@ import { getServices } from '@/lib/data/services';
 import { getIndustries } from '@/lib/data/industries';
 import { getProjects } from '@/lib/data/projects';
 import { getAllActiveServiceRegionSlugs } from '@/lib/data/serviceRegionPages';
+import { getAllActiveLocationSlugs } from '@/lib/data/locationPages';
 import { regionToSlug } from '@/lib/regions';
+import { citySlug } from '@/lib/cities';
+import { getTechStackPages } from '@/lib/data/techStackPages';
+import { getIndustrySolutionPages } from '@/lib/data/industrySolutionPages';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -62,5 +66,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...industryRoutes, ...projectRoutes, ...postRoutes, ...regionRoutes];
+  const techStackPages = await getTechStackPages();
+  const techStackRoutes: MetadataRoute.Sitemap = techStackPages.map((p) => ({
+    url: `${SITE_URL}/services/${p.serviceSlug}/stack/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  const industrySolutionPages = await getIndustrySolutionPages();
+  const industrySolutionRoutes: MetadataRoute.Sitemap = industrySolutionPages.map((p) => ({
+    url: `${SITE_URL}/industries/${p.industrySlug}/solutions/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  const locationPages = await getAllActiveLocationSlugs();
+  const locationRoutes: MetadataRoute.Sitemap = locationPages.map(({ kind, slug, city }) => ({
+    url: `${SITE_URL}/${kind === 'service' ? 'services' : 'industries'}/${slug}/${citySlug(city)}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.55,
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...industryRoutes, ...projectRoutes, ...postRoutes, ...regionRoutes, ...techStackRoutes, ...industrySolutionRoutes, ...locationRoutes];
 }

@@ -157,6 +157,7 @@ async function fetchServices(): Promise<Service[]> {
       imageUrl: row.image_url ?? null,
       seoTitle: row.seo_title ?? null,
       seoDescription: row.seo_description ?? null,
+      targetKeywords: row.target_keywords ?? [],
     }));
   } catch (err) {
     console.error('[getServices] falling back to sample services', err);

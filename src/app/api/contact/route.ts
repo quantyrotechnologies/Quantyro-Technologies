@@ -5,6 +5,8 @@ type ContactPayload = {
   email?: string;
   company?: string;
   message?: string;
+  /** Which page the inquiry came from, e.g. "Service: Website Development — Delhi". */
+  source?: string;
 };
 
 function isValidEmail(email: string) {
@@ -19,10 +21,10 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Invalid request body.' }, { status: 400 });
   }
 
-  const { name, email, company, message } = body;
+  const { name, email, company, message, source } = body;
 
-  if (!name?.trim() || !email?.trim() || !message?.trim()) {
-    return Response.json({ error: 'Name, email and message are required.' }, { status: 400 });
+  if (!name?.trim() || !email?.trim()) {
+    return Response.json({ error: 'Name and email are required.' }, { status: 400 });
   }
 
   if (!isValidEmail(email)) {
@@ -34,7 +36,8 @@ export async function POST(request: Request) {
     name: name.trim(),
     email: email.trim(),
     company: company?.trim() || null,
-    message: message.trim(),
+    message: message?.trim() || null,
+    source: source?.trim() || null,
   });
 
   if (error) {

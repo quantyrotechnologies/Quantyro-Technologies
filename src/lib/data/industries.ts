@@ -296,6 +296,7 @@ async function fetchIndustries(): Promise<Industry[]> {
       statLabel: row.stat_label,
       seoTitle: row.seo_title ?? null,
       seoDescription: row.seo_description ?? null,
+      targetKeywords: row.target_keywords ?? [],
     }));
   } catch (err) {
     console.error('[getIndustries] falling back to sample industries', err);

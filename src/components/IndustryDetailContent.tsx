@@ -7,9 +7,11 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import { industryIllustration } from '@/lib/industryIllustration';
+import { citySlug } from '@/lib/cities';
 import Breadcrumbs from './Breadcrumbs';
 import TableOfContents from './TableOfContents';
 import FaqSection, { type FaqItem } from './FaqSection';
+import InlineInquiryForm from './InlineInquiryForm';
 import CtaSection from './CtaSection';
 import type { Industry, Service } from '@/lib/types';
 
@@ -19,10 +21,15 @@ export default function IndustryDetailContent({
   industry,
   relatedServices,
   faqs,
+  cities = [],
+  industrySolutionSlugs = {},
 }: {
   industry: Industry;
   relatedServices: Service[];
   faqs: FaqItem[];
+  cities?: string[];
+  /** capabilityLabel -> deep-dive page slug, pre-fetched by the page so this client component doesn't call async data functions per capability. */
+  industrySolutionSlugs?: Record<string, string>;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const accent = Number(industry.num) % 2 === 0 ? 'accent-2' : 'accent';
@@ -33,6 +40,7 @@ export default function IndustryDetailContent({
     { id: 'capabilities', label: 'What We Deliver' },
     ...(industry.marketStats.length > 0 ? [{ id: 'market-context', label: 'Market Context' }] : []),
     ...(relatedServices.length > 0 ? [{ id: 'related-services', label: 'Related Services' }] : []),
+    ...(cities.length > 0 ? [{ id: 'locations', label: 'Global Availability' }] : []),
     ...(faqs.length > 0 ? [{ id: 'faq', label: 'Frequently Asked Questions' }] : []),
   ];
 
@@ -106,7 +114,9 @@ export default function IndustryDetailContent({
       </section>
 
       {/* Main Content Section */}
-      <section className="relative px-[6vw] pb-[60px] z-10 max-w-[1100px] mx-auto">
+      <section className="relative px-[6vw] pb-[60px] z-10">
+      <div className="max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-x-[40px] items-start">
+      <div>
         <div className="ind-reveal">
           <TableOfContents items={tocItems} />
         </div>
@@ -161,20 +171,48 @@ export default function IndustryDetailContent({
           </h3>
 
           <div className="ind-reveal grid grid-cols-1 md:grid-cols-2 gap-[14px]">
-            {industry.capabilities.map((c) => (
-              <div
-                key={c}
-                onMouseMove={(e) => tiltOnMouseMove(e, 3)}
-                onMouseLeave={tiltOnMouseLeave}
-                className="group relative flex items-start gap-[14px] rounded-[18px] border border-[var(--line)] bg-[var(--surface)] p-[18px] overflow-hidden hover:border-[rgba(23,104,214,0.4)] hover:shadow-md transition-all"
-              >
-                <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[var(--accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                <span className="shrink-0 w-[28px] h-[28px] rounded-full bg-[rgba(23,104,214,0.08)] border border-[rgba(23,104,214,0.18)] flex items-center justify-center text-[var(--accent)] mt-[2px]">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-                </span>
-                <h4 className="text-[15px] text-[var(--ink)] font-bold leading-[1.4]">{c}</h4>
-              </div>
-            ))}
+            {industry.capabilities.map((c) => {
+              const solutionSlug = industrySolutionSlugs[c] ?? null;
+              const Card = (
+                <>
+                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[var(--accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="shrink-0 w-[28px] h-[28px] rounded-full bg-[rgba(23,104,214,0.08)] border border-[rgba(23,104,214,0.18)] flex items-center justify-center text-[var(--accent)] mt-[2px]">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  </span>
+                  <div className="flex-1">
+                    <h4 className="text-[15px] text-[var(--ink)] font-bold leading-[1.4]">{c}</h4>
+                    {solutionSlug && (
+                      <h5 className="text-[12px] mono text-[var(--accent)] mt-[4px] uppercase font-semibold">
+                        View deep dive →
+                      </h5>
+                    )}
+                  </div>
+                </>
+              );
+
+              const className = "group relative flex items-start gap-[14px] rounded-[18px] border border-[var(--line)] bg-[var(--surface)] p-[18px] overflow-hidden hover:border-[rgba(23,104,214,0.4)] hover:shadow-md transition-all";
+
+              return solutionSlug ? (
+                <Link
+                  key={c}
+                  href={`/industries/${industry.slug}/solutions/${solutionSlug}`}
+                  onMouseMove={(e) => tiltOnMouseMove(e, 3)}
+                  onMouseLeave={tiltOnMouseLeave}
+                  className={className}
+                >
+                  {Card}
+                </Link>
+              ) : (
+                <div
+                  key={c}
+                  onMouseMove={(e) => tiltOnMouseMove(e, 3)}
+                  onMouseLeave={tiltOnMouseLeave}
+                  className={className}
+                >
+                  {Card}
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -229,6 +267,32 @@ export default function IndustryDetailContent({
             </div>
           </div>
         )}
+
+        {/* 6. Global Availability */}
+        {cities.length > 0 && (
+          <div className="mb-[64px]">
+            <h2 id="locations" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
+              06 / Global Availability
+            </h2>
+            <div className="ind-reveal flex flex-wrap gap-[10px]">
+              {cities.map((city) => (
+                <Link
+                  key={city}
+                  href={`/industries/${industry.slug}/${citySlug(city)}`}
+                  className="inline-flex items-center gap-[6px] mono text-[12.5px] px-[16px] py-[9px] rounded-full border border-[rgba(23,104,214,0.25)] text-[var(--accent)] bg-[rgba(23,104,214,0.04)] hover:bg-[rgba(23,104,214,0.1)] transition-colors"
+                >
+                  {industry.title} in {city} →
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <aside className="ind-reveal lg:sticky lg:top-[100px]">
+        <InlineInquiryForm source={`Industry: ${industry.title}`} heading={`Get a quote for ${industry.title}`} />
+      </aside>
+      </div>
       </section>
 
       {/* 5. FAQs */}

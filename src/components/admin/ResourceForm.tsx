@@ -121,6 +121,8 @@ export default function ResourceForm({
       const existing = initialData?.[field.name];
       if (field.type === 'string-array') {
         initial[field.name] = Array.isArray(existing) ? existing : [];
+      } else if (field.type === 'json') {
+        initial[field.name] = existing != null ? JSON.stringify(existing, null, 2) : '[]';
       } else if (field.type === 'boolean') {
         initial[field.name] = Boolean(existing);
       } else if (field.type === 'number') {
@@ -177,6 +179,20 @@ export default function ResourceForm({
     }
 
     switch (field.type) {
+      case 'json':
+        return (
+          <>
+            <textarea
+              value={values[field.name] as string}
+              onChange={(e) => setField(field.name, e.target.value)}
+              rows={8}
+              spellCheck={false}
+              required={field.required}
+              className="w-full rounded-[10px] border border-[var(--line)] bg-white px-[12px] py-[9px] text-[12.5px] text-[var(--ink)] outline-none focus:border-[var(--accent)] resize-y font-mono"
+            />
+            <p className="mt-[4px] text-[11px] text-slate-400">Raw JSON — must be valid, e.g. {'[{"name": "...", "note": "..."}]'}</p>
+          </>
+        );
       case 'textarea':
         return (
           <textarea

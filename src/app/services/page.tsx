@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ServicesContent from '@/components/ServicesContent';
 import { getServices } from '@/lib/data/services';
 import { getActiveRegionsByService } from '@/lib/data/serviceRegionPages';
+import { getActiveCitiesByService } from '@/lib/data/locationPages';
 import { getFaqs } from '@/lib/data/faqs';
 
 export const metadata: Metadata = {
@@ -11,10 +12,11 @@ export const metadata: Metadata = {
 };
 
 export default async function ServicesPage() {
-  const [services, regionsByService, faqs] = await Promise.all([
+  const [services, regionsByService, citiesByService, faqs] = await Promise.all([
     getServices(),
     getActiveRegionsByService(),
+    getActiveCitiesByService(),
     getFaqs('services'),
   ]);
-  return <ServicesContent services={services} regionsByService={regionsByService} faqs={faqs} />;
+  return <ServicesContent services={services} regionsByService={regionsByService} citiesByService={citiesByService} faqs={faqs} />;
 }

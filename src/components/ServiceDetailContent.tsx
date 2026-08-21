@@ -7,10 +7,12 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import { regionToSlug } from '@/lib/regions';
+import { citySlug } from '@/lib/cities';
 import { serviceIllustration } from '@/lib/serviceIllustration';
 import Breadcrumbs from './Breadcrumbs';
 import TableOfContents from './TableOfContents';
 import FaqSection, { type FaqItem } from './FaqSection';
+import InlineInquiryForm from './InlineInquiryForm';
 import CtaSection from './CtaSection';
 import type { Service, RoadmapStep } from '@/lib/types';
 
@@ -59,11 +61,16 @@ export default function ServiceDetailContent({
   faqs,
   roadmapSteps,
   regions,
+  cities = [],
+  techStackSlugs = {},
 }: {
   service: Service;
   faqs: FaqItem[];
   roadmapSteps: RoadmapStep[];
   regions: string[];
+  cities?: string[];
+  /** capabilityLabel -> deep-dive page slug, pre-fetched by the page so this client component doesn't call async data functions per capability. */
+  techStackSlugs?: Record<string, string>;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const accent = Number(service.num) % 2 === 0 ? 'accent-2' : 'accent';
@@ -74,7 +81,7 @@ export default function ServiceDetailContent({
     { id: 'industries', label: 'Industry Applications' },
     { id: 'sla-standards', label: 'Engineering SLAs & Standards' },
     { id: 'process', label: '4-Phase Delivery Framework' },
-    ...(regions.length > 0 ? [{ id: 'regions', label: 'Global Availability' }] : []),
+    ...(regions.length + cities.length > 0 ? [{ id: 'regions', label: 'Global Availability' }] : []),
     ...(faqs.length > 0 ? [{ id: 'faq', label: 'Frequently Asked Questions' }] : []),
   ];
 
@@ -144,32 +151,35 @@ export default function ServiceDetailContent({
           </div>
 
           <div className="svc-reveal rounded-[24px] bg-white border border-[rgba(10,23,47,0.18)] shadow-[0_16px_50px_rgba(10,23,47,0.06)] p-[16px]">
-            {service.imageUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element -- admin-supplied arbitrary URL, host unknown ahead of time
-              <img
-                src={service.imageUrl}
-                alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
-                title={`${service.title} Architecture Blueprint`}
-                loading="eager"
-                className="w-full h-auto rounded-[12px]"
-              />
-            ) : (
-              <Image
-                src={serviceIllustration(service.slug)}
-                alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
-                title={`${service.title} Architecture Blueprint`}
-                width={480}
-                height={320}
-                className="w-full h-auto rounded-[12px]"
-                priority
-              />
-            )}
+            <div className="relative w-full aspect-video overflow-hidden rounded-[12px]">
+              {service.imageUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element -- admin-supplied arbitrary URL, host unknown ahead of time
+                <img
+                  src={service.imageUrl}
+                  alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
+                  title={`${service.title} Architecture Blueprint`}
+                  loading="eager"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={serviceIllustration(service.slug)}
+                  alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
+                  title={`${service.title} Architecture Blueprint`}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              )}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Main Content Section */}
-      <section className="relative px-[6vw] pb-[60px] z-10 max-w-[1100px] mx-auto">
+      <section className="relative px-[6vw] pb-[60px] z-10">
+      <div className="max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-x-[40px] items-start">
+      <div>
         <div className="svc-reveal">
           <TableOfContents items={tocItems} />
         </div>
@@ -200,23 +210,46 @@ export default function ServiceDetailContent({
           </h3>
           
           <div className="svc-reveal grid grid-cols-1 md:grid-cols-2 gap-[14px] mb-[32px]">
-            {service.capabilities.map((c) => (
-              <div
-                key={c}
-                onMouseMove={(e) => tiltOnMouseMove(e, 3)}
-                onMouseLeave={tiltOnMouseLeave}
-                className="group relative flex items-start gap-[14px] rounded-[18px] border border-[var(--line)] bg-[var(--surface)] p-[18px] overflow-hidden hover:border-[rgba(23,104,214,0.4)] hover:shadow-md transition-all"
-              >
-                <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[var(--accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                <span className="shrink-0 w-[28px] h-[28px] rounded-full bg-[rgba(23,104,214,0.08)] border border-[rgba(23,104,214,0.18)] flex items-center justify-center text-[var(--accent)] mt-[2px]">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-                </span>
-                <div>
-                  <h4 className="text-[15px] text-[var(--ink)] font-bold">{c}</h4>
-                  <h5 className="text-[12px] mono text-[var(--accent)] mt-[4px] uppercase font-semibold">Production Verified</h5>
+            {service.capabilities.map((c) => {
+              const stackSlug = techStackSlugs[c] ?? null;
+              const Card = (
+                <>
+                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[var(--accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="shrink-0 w-[28px] h-[28px] rounded-full bg-[rgba(23,104,214,0.08)] border border-[rgba(23,104,214,0.18)] flex items-center justify-center text-[var(--accent)] mt-[2px]">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  </span>
+                  <div className="flex-1">
+                    <h4 className="text-[15px] text-[var(--ink)] font-bold">{c}</h4>
+                    <h5 className="text-[12px] mono text-[var(--accent)] mt-[4px] uppercase font-semibold">
+                      {stackSlug ? 'Production Verified · View deep dive →' : 'Production Verified'}
+                    </h5>
+                  </div>
+                </>
+              );
+
+              const className = "group relative flex items-start gap-[14px] rounded-[18px] border border-[var(--line)] bg-[var(--surface)] p-[18px] overflow-hidden hover:border-[rgba(23,104,214,0.4)] hover:shadow-md transition-all";
+
+              return stackSlug ? (
+                <Link
+                  key={c}
+                  href={`/services/${service.slug}/stack/${stackSlug}`}
+                  onMouseMove={(e) => tiltOnMouseMove(e, 3)}
+                  onMouseLeave={tiltOnMouseLeave}
+                  className={className}
+                >
+                  {Card}
+                </Link>
+              ) : (
+                <div
+                  key={c}
+                  onMouseMove={(e) => tiltOnMouseMove(e, 3)}
+                  onMouseLeave={tiltOnMouseLeave}
+                  className={className}
+                >
+                  {Card}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {service.stack && service.stack.length > 0 && (
@@ -335,8 +368,8 @@ export default function ServiceDetailContent({
           </div>
         )}
 
-        {/* 6. Global Regions */}
-        {regions.length > 0 && (
+        {/* 6. Global Regions & Cities */}
+        {regions.length + cities.length > 0 && (
           <div className="mb-[64px]">
             <h2 id="regions" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
               06 / Global Availability
@@ -351,9 +384,24 @@ export default function ServiceDetailContent({
                   {service.title} in {region} →
                 </Link>
               ))}
+              {cities.map((city) => (
+                <Link
+                  key={city}
+                  href={`/services/${service.slug}/${citySlug(city)}`}
+                  className="inline-flex items-center gap-[6px] mono text-[12.5px] px-[16px] py-[9px] rounded-full border border-[rgba(23,104,214,0.25)] text-[var(--accent)] bg-[rgba(23,104,214,0.04)] hover:bg-[rgba(23,104,214,0.1)] transition-colors"
+                >
+                  {service.title} in {city} →
+                </Link>
+              ))}
             </div>
           </div>
         )}
+      </div>
+
+      <aside className="svc-reveal lg:sticky lg:top-[100px]">
+        <InlineInquiryForm source={`Service: ${service.title}`} heading={`Get a quote for ${service.title}`} />
+      </aside>
+      </div>
       </section>
 
       {/* 7. FAQs (3+ structured FAQs with FAQPage schema) */}

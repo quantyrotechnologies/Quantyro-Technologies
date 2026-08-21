@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import IndustriesContent from '@/components/IndustriesContent';
 import { getIndustries } from '@/lib/data/industries';
+import { getActiveCitiesByIndustry } from '@/lib/data/locationPages';
 import { getFaqs } from '@/lib/data/faqs';
 
 export const metadata: Metadata = {
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default async function IndustriesPage() {
-  const [industries, faqs] = await Promise.all([
+  const [industries, citiesByIndustry, faqs] = await Promise.all([
     getIndustries(),
+    getActiveCitiesByIndustry(),
     getFaqs('industries'),
   ]);
-  return <IndustriesContent industries={industries} faqs={faqs} />;
+  return <IndustriesContent industries={industries} citiesByIndustry={citiesByIndustry} faqs={faqs} />;
 }
