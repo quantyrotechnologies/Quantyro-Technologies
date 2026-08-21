@@ -13,7 +13,7 @@ import TableOfContents from './TableOfContents';
 import FaqSection, { type FaqItem } from './FaqSection';
 import InlineInquiryForm from './InlineInquiryForm';
 import CtaSection from './CtaSection';
-import type { Industry, Service } from '@/lib/types';
+import type { Industry, Service, Project } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -23,6 +23,7 @@ export default function IndustryDetailContent({
   faqs,
   cities = [],
   industrySolutionSlugs = {},
+  relatedProjects = [],
 }: {
   industry: Industry;
   relatedServices: Service[];
@@ -30,6 +31,7 @@ export default function IndustryDetailContent({
   cities?: string[];
   /** capabilityLabel -> deep-dive page slug, pre-fetched by the page so this client component doesn't call async data functions per capability. */
   industrySolutionSlugs?: Record<string, string>;
+  relatedProjects?: Project[];
 }) {
   const container = useRef<HTMLDivElement>(null);
   const accent = Number(industry.num) % 2 === 0 ? 'accent-2' : 'accent';
@@ -41,6 +43,7 @@ export default function IndustryDetailContent({
     ...(industry.marketStats.length > 0 ? [{ id: 'market-context', label: 'Market Context' }] : []),
     ...(relatedServices.length > 0 ? [{ id: 'related-services', label: 'Related Services' }] : []),
     { id: 'engagement', label: 'Engagement at a Glance' },
+    ...(relatedProjects.length > 0 ? [{ id: 'related-work', label: 'Related Work' }] : []),
     ...(cities.length > 0 ? [{ id: 'locations', label: 'Global Availability' }] : []),
     ...(faqs.length > 0 ? [{ id: 'faq', label: 'Frequently Asked Questions' }] : []),
   ];
@@ -299,10 +302,33 @@ export default function IndustryDetailContent({
           </div>
         </div>
 
-        {/* 7. Global Availability */}
+        {/* 7. Related Work */}
+        {relatedProjects.length > 0 && (
+          <div className="mb-[64px]">
+            <h2 id="related-work" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['07_/_']">
+              Related Work
+            </h2>
+            <div className="ind-reveal grid grid-cols-1 md:grid-cols-2 gap-[14px]">
+              {relatedProjects.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/work/${p.slug}`}
+                  className="group relative flex flex-col gap-[6px] rounded-[18px] border border-[var(--line)] bg-[var(--surface)] p-[18px] hover:border-[rgba(23,104,214,0.4)] hover:shadow-md transition-all"
+                >
+                  <span className="mono text-[11px] text-[var(--muted)]">{p.client} · {p.region}</span>
+                  <h4 className="text-[15px] text-[var(--ink)] font-bold">{p.title}</h4>
+                  <span className="text-[13px] text-[var(--muted)]">{p.result}</span>
+                  <span className="mt-[4px] text-[12px] mono text-[var(--accent)] font-semibold">View case study →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 8. Global Availability */}
         {cities.length > 0 && (
           <div className="mb-[64px]">
-            <h2 id="locations" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['07_/_']">
+            <h2 id="locations" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['08_/_']">
               Global Availability
             </h2>
             <div className="ind-reveal flex flex-wrap gap-[10px]">

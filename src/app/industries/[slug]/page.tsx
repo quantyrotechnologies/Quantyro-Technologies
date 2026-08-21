@@ -5,6 +5,7 @@ import { getServices } from '@/lib/data/services';
 import { getFaqs } from '@/lib/data/faqs';
 import { getActiveCitiesByIndustry } from '@/lib/data/locationPages';
 import { industrySolutionSlugMapForIndustry } from '@/lib/data/industrySolutionPages';
+import { getProjectsForIndustry } from '@/lib/data/projects';
 import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
 import IndustryDetailContent from '@/components/IndustryDetailContent';
 
@@ -28,11 +29,12 @@ export default async function IndustryDetailPage({ params }: { params: Promise<{
   const industry = await getIndustryBySlug(slug);
   if (!industry) notFound();
 
-  const [faqs, allServices, citiesByIndustry, industrySolutionSlugs] = await Promise.all([
+  const [faqs, allServices, citiesByIndustry, industrySolutionSlugs, relatedProjects] = await Promise.all([
     getFaqs(`industry-${slug}`),
     getServices(),
     getActiveCitiesByIndustry(),
     industrySolutionSlugMapForIndustry(slug),
+    getProjectsForIndustry(industry.id),
   ]);
 
   const relatedServices = allServices.filter((s) => industry.relatedServiceSlugs.includes(s.slug));
@@ -60,7 +62,7 @@ export default async function IndustryDetailPage({ params }: { params: Promise<{
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <IndustryDetailContent industry={industry} relatedServices={relatedServices} faqs={faqs} cities={cities} industrySolutionSlugs={industrySolutionSlugs} />
+      <IndustryDetailContent industry={industry} relatedServices={relatedServices} faqs={faqs} cities={cities} industrySolutionSlugs={industrySolutionSlugs} relatedProjects={relatedProjects} />
     </>
   );
 }

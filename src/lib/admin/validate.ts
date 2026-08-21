@@ -41,6 +41,13 @@ export function validateResourcePayload(
           data[field.name] = raw.filter((v): v is string => typeof v === 'string' && v.trim() !== '');
         }
         break;
+      case 'relation-multi':
+        if (!Array.isArray(raw)) {
+          errors.push(`${field.label} must be a list`);
+        } else {
+          data[field.name] = raw.filter((v): v is string => typeof v === 'string' && v.trim() !== '');
+        }
+        break;
       case 'select':
         if (field.options && !field.options.some((o) => o.value === raw)) {
           errors.push(`${field.label} has an invalid value`);

@@ -8,7 +8,7 @@ import type { ResourceConfig } from './resources';
  * ResourceForm, since the form itself is a client component and can't fetch.
  */
 export async function resolveRelationFields(config: ResourceConfig): Promise<ResourceConfig> {
-  const relationFields = config.fields.filter((f) => f.type === 'relation' && f.relationTable);
+  const relationFields = config.fields.filter((f) => (f.type === 'relation' || f.type === 'relation-multi') && f.relationTable);
   if (relationFields.length === 0) return config;
 
   const supabase = createAdminClient();

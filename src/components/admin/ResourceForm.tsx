@@ -119,7 +119,7 @@ export default function ResourceForm({
     const initial: Record<string, FormValue> = {};
     for (const field of config.fields) {
       const existing = initialData?.[field.name];
-      if (field.type === 'string-array') {
+      if (field.type === 'string-array' || field.type === 'relation-multi') {
         initial[field.name] = Array.isArray(existing) ? existing : [];
       } else if (field.type === 'json') {
         initial[field.name] = existing != null ? JSON.stringify(existing, null, 2) : '[]';
@@ -260,6 +260,34 @@ export default function ResourceForm({
             onChange={(v) => setField(field.name, v)}
           />
         );
+      case 'relation-multi': {
+        const selected = (values[field.name] as string[]) ?? [];
+        const toggle = (id: string) => {
+          setField(
+            field.name,
+            selected.includes(id) ? selected.filter((v) => v !== id) : [...selected, id]
+          );
+        };
+        return (
+          <div className="rounded-[10px] border border-[var(--line)] bg-white max-h-[220px] overflow-y-auto divide-y divide-[var(--line)]">
+            {(field.options ?? []).length === 0 ? (
+              <p className="px-[12px] py-[9px] text-[13px] text-slate-400">No options available</p>
+            ) : (
+              field.options!.map((opt) => (
+                <label key={opt.value} className="flex items-center gap-[10px] px-[12px] py-[8px] cursor-pointer hover:bg-[var(--bg-alt)]">
+                  <input
+                    type="checkbox"
+                    checked={selected.includes(opt.value)}
+                    onChange={() => toggle(opt.value)}
+                    className="w-[15px] h-[15px] accent-[var(--accent)]"
+                  />
+                  <span className="text-[13.5px] text-[var(--ink)]">{opt.label}</span>
+                </label>
+              ))
+            )}
+          </div>
+        );
+      }
       default:
         return (
           <input

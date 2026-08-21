@@ -1,6 +1,6 @@
 import { CITIES } from '@/lib/cities';
 
-export type FieldType = 'text' | 'textarea' | 'number' | 'boolean' | 'string-array' | 'select' | 'datetime' | 'relation' | 'json';
+export type FieldType = 'text' | 'textarea' | 'number' | 'boolean' | 'string-array' | 'select' | 'datetime' | 'relation' | 'relation-multi' | 'json';
 
 export interface FieldOption {
   value: string;
@@ -12,11 +12,11 @@ export interface FieldConfig {
   label: string;
   type: FieldType;
   required?: boolean;
-  /** Static choices for type 'select'. For type 'relation' this is populated dynamically at request time — see relationTable/etc. */
+  /** Static choices for type 'select'. For type 'relation'/'relation-multi' this is populated dynamically at request time — see relationTable/etc. */
   options?: FieldOption[];
-  /** type 'relation' only: which table to pull dropdown choices from. */
+  /** type 'relation'/'relation-multi' only: which table to pull dropdown choices from. */
   relationTable?: string;
-  /** type 'relation' only: column used as the option's visible label (defaults to 'title'). */
+  /** type 'relation'/'relation-multi' only: column used as the option's visible label (defaults to 'title'). */
   relationLabelField?: string;
   /** Shown in the edit form but not submittable — e.g. created_at. */
   readOnly?: boolean;
@@ -145,6 +145,8 @@ export const RESOURCES: Record<string, ResourceConfig> = {
       { name: 'result', label: 'Result', type: 'text', required: true },
       { name: 'year', label: 'Year (optional)', type: 'number', placeholder: 'e.g. 2025 — leave blank to hide' },
       TAGS_FIELD,
+      { name: 'service_ids', label: 'Show on these services (Related Work section)', type: 'relation-multi', relationTable: 'services', relationLabelField: 'title' },
+      { name: 'industry_ids', label: 'Show on these industries (Related Work section)', type: 'relation-multi', relationTable: 'industries', relationLabelField: 'title' },
       { name: 'summary', label: 'Short summary (card)', type: 'textarea', required: true },
       { name: 'detail', label: 'Full detail (expanded view)', type: 'textarea', required: true },
       { name: 'stack', label: 'Tech stack (optional)', type: 'string-array' },

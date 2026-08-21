@@ -104,3 +104,45 @@ export const getProjectsByRegion = unstable_cache(fetchProjectsByRegion, ['proje
   tags: ['projects'],
   revalidate: 60,
 });
+
+async function fetchProjectsForService(serviceId: string): Promise<Project[]> {
+  const supabase = createPublicClient();
+  const { data, error } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('is_active', true)
+    .contains('service_ids', [serviceId])
+    .order('sort_order', { ascending: true });
+
+  if (error) {
+    console.error('[getProjectsForService] failed', error);
+    return [];
+  }
+  return (data ?? []).map(mapProject);
+}
+
+export const getProjectsForService = unstable_cache(fetchProjectsForService, ['projects-for-service'], {
+  tags: ['projects'],
+  revalidate: 60,
+});
+
+async function fetchProjectsForIndustry(industryId: string): Promise<Project[]> {
+  const supabase = createPublicClient();
+  const { data, error } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('is_active', true)
+    .contains('industry_ids', [industryId])
+    .order('sort_order', { ascending: true });
+
+  if (error) {
+    console.error('[getProjectsForIndustry] failed', error);
+    return [];
+  }
+  return (data ?? []).map(mapProject);
+}
+
+export const getProjectsForIndustry = unstable_cache(fetchProjectsForIndustry, ['projects-for-industry'], {
+  tags: ['projects'],
+  revalidate: 60,
+});
