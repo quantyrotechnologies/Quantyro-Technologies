@@ -30,7 +30,7 @@ export default async function WorkDetailPage({ params }: { params: Promise<{ slu
     about: project.client,
     ...(project.tags.length > 0 ? { keywords: project.tags.join(', ') } : {}),
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/work/${project.slug}` },
-    creator: { '@type': 'Organization', name: 'Quantyro Technologies', url: SITE_URL },
+    creator: { '@id': `${SITE_URL}/#organization` },
   };
 
   return (

@@ -67,7 +67,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Can I add technical SEO to an existing site, or does it require a rebuild?', a: 'Most issues can be fixed incrementally — canonical tags, schema markup, and heading structure don’t require a rebuild. Rendering strategy (client-side vs. server-rendered) is the one fix that sometimes does require deeper architectural change.' },
     ],
     primaryTech: ['Next.js', 'Schema.org', 'Google Search Console', 'Core Web Vitals'],
-    seoTitle: 'Technical SEO Architecture & Core Web Vitals Development | Quantyro',
+    seoTitle: 'Technical SEO Architecture & Core Web Vitals Development',
     seoDescription: 'Technical SEO built into the codebase — Core Web Vitals, semantic HTML, and schema markup engineered by developers, not patched on after launch.',
   },
   {
@@ -108,7 +108,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'When would you NOT recommend MERN?', a: 'For workloads needing strict multi-table transactional consistency — complex financial ledgers, for example — a relational database (PostgreSQL) is usually the better default, sometimes alongside MongoDB rather than instead of it.' },
     ],
     primaryTech: ['MongoDB', 'Express', 'React', 'Node.js'],
-    seoTitle: 'MERN Stack Web Development (MongoDB, Express, React, Node.js) | Quantyro',
+    seoTitle: 'MERN Stack Web Development (MongoDB, Express, React, Node.js)',
     seoDescription: 'Full-stack MERN development — MongoDB, Express, React and Node.js engineered as one cohesive JavaScript system for fast-moving products.',
   },
   {
@@ -149,7 +149,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Can Laravel handle enterprise-scale traffic?', a: 'Yes, with standard scaling patterns — horizontal scaling behind a load balancer, Redis for caching and sessions, and queue workers for background processing. The framework itself isn’t the bottleneck; database and infrastructure design determine the ceiling.' },
     ],
     primaryTech: ['PHP', 'Laravel', 'MySQL', 'Eloquent ORM'],
-    seoTitle: 'PHP & Laravel Enterprise Web Development | Quantyro',
+    seoTitle: 'PHP & Laravel Enterprise Web Development',
     seoDescription: 'Enterprise-grade PHP and Laravel web platforms — mature conventions, a massive ecosystem, and production-hardened reliability at scale.',
   },
   {
@@ -190,7 +190,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Does server rendering slow down interactivity once the page loads?', a: 'No — Next.js “hydrates” the server-rendered HTML with React’s interactivity after load, so you get fast initial content and full app interactivity, not a tradeoff between the two.' },
     ],
     primaryTech: ['Next.js', 'React', 'Vercel Edge Network', 'TypeScript'],
-    seoTitle: 'Next.js & React Server-Rendered Website Development | Quantyro',
+    seoTitle: 'Next.js & React Server-Rendered Website Development',
     seoDescription: 'Server-rendered Next.js and React marketing sites engineered for sub-second load times, full SEO indexability, and high conversion.',
   },
   {
@@ -231,7 +231,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Is headless WordPress harder for a non-technical content team to use?', a: 'No — content teams still log into the same WordPress admin they already know. The headless architecture is invisible to editors; it only changes how the published content gets rendered to visitors.' },
     ],
     primaryTech: ['WordPress', 'WPGraphQL / REST API', 'Next.js', 'Headless CMS'],
-    seoTitle: 'WordPress & Headless CMS Development | Quantyro',
+    seoTitle: 'WordPress & Headless CMS Development',
     seoDescription: 'WordPress and headless CMS development — familiar editorial workflows paired with a fast, modern front end when performance matters.',
   },
   {
@@ -272,7 +272,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'How much offline functionality is actually possible?', a: 'Static content and previously-loaded data work fully offline. New data requiring a live server round-trip queues locally and syncs automatically once the connection returns — the app doesn’t block, it just catches up.' },
     ],
     primaryTech: ['Service Workers', 'Next.js', 'JAMstack', 'Web App Manifest'],
-    seoTitle: 'Progressive Web App (PWA) & JAMstack Development | Quantyro',
+    seoTitle: 'Progressive Web App (PWA) & JAMstack Development',
     seoDescription: 'PWA and JAMstack architecture — installable, offline-capable, edge-fast web apps that deliver app-like engagement without an app store.',
   },
 
@@ -314,7 +314,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'How does edge caching handle personalized content like a shopping cart?', a: 'The page shell and product content are cached at the edge as static content, while cart, pricing, and account-specific data load dynamically on top — so the fast parts stay fast and the personalized parts stay correct.' },
     ],
     primaryTech: ['Next.js', 'Vercel Edge Network', 'Headless Commerce API'],
-    seoTitle: 'Headless Next.js E-Commerce Storefronts & Edge Caching | Quantyro',
+    seoTitle: 'Headless Next.js E-Commerce Storefronts & Edge Caching',
     seoDescription: 'Headless Next.js storefronts with global edge caching — decoupled from the commerce backend for design freedom and sub-second load times.',
   },
   {
@@ -353,7 +353,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Is it safe to handle payments ourselves instead of using a third-party checkout?', a: 'We never handle raw card data directly — payment fields are tokenized by the processor (Stripe or equivalent) so sensitive data never touches our servers, which keeps PCI compliance scope minimal while still giving full control over the checkout experience.' },
     ],
     primaryTech: ['Stripe', 'Payment Orchestration', 'PCI DSS', 'Webhooks'],
-    seoTitle: 'Sub-Second Checkout & Global Payment Routing Development | Quantyro',
+    seoTitle: 'Sub-Second Checkout & Global Payment Routing Development',
     seoDescription: 'Checkout engineering built for speed and global reach — sub-second response times and smart payment routing across regions and currencies.',
   },
   {
@@ -393,7 +393,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Can this integrate with our existing point-of-sale and ERP systems?', a: 'Yes — the event-driven pattern is designed to sit alongside existing POS and ERP systems as an integration layer, rather than requiring you to replace them outright.' },
     ],
     primaryTech: ['Event Streaming', 'ERP Integration', 'Real-Time Sync APIs'],
-    seoTitle: 'Omnichannel Real-Time Inventory Synchronization | Quantyro',
+    seoTitle: 'Omnichannel Real-Time Inventory Synchronization',
     seoDescription: 'Real-time inventory synchronization across online, in-store, and marketplace channels — one source of truth, zero overselling.',
   },
   {
@@ -434,7 +434,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Does personalization slow down page load?', a: 'No — recommendation results are pre-computed and cached per shopper segment, or served from a low-latency vector lookup, so personalization adds milliseconds, not a visible delay.' },
     ],
     primaryTech: ['Vector Search', 'Collaborative Filtering', 'Machine Learning'],
-    seoTitle: 'AI-Powered Product Recommendation Engines for E-Commerce | Quantyro',
+    seoTitle: 'AI-Powered Product Recommendation Engines for E-Commerce',
     seoDescription: 'Personalized AI recommendation engines that increase average order value and conversion — the highest-ROI feature in modern e-commerce.',
   },
   {
@@ -473,7 +473,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Does showing local currency mean we get paid in that currency too?', a: 'Not necessarily — you can display and charge in local currency for a better shopper experience while still settling payouts in your home currency; the payment processor handles the conversion at settlement.' },
     ],
     primaryTech: ['Stripe Tax', 'Currency APIs', 'Localization'],
-    seoTitle: 'Multi-Currency & Automated Tax Localization for E-Commerce | Quantyro',
+    seoTitle: 'Multi-Currency & Automated Tax Localization for E-Commerce',
     seoDescription: 'Automated multi-currency pricing and tax localization — correct, compliant checkout for every market you sell into, without manual upkeep.',
   },
 
@@ -515,7 +515,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'What happens if we need a feature the framework doesn’t support?', a: 'Both frameworks support native modules — small pieces of platform-specific Swift or Kotlin code that plug directly into the cross-platform app, so a missing capability is an addition, not a blocker requiring a full rewrite.' },
     ],
     primaryTech: ['React Native', 'Flutter', 'TypeScript', 'Dart'],
-    seoTitle: 'Cross-Platform React Native & Flutter App Development | Quantyro',
+    seoTitle: 'Cross-Platform React Native & Flutter App Development',
     seoDescription: 'React Native and Flutter development — one codebase, native performance on iOS and Android, engineered for fast iteration.',
   },
   {
@@ -555,7 +555,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Is native development significantly more expensive?', a: 'Building and maintaining two codebases costs more than one, but for apps where a specific feature is the core value proposition (advanced AR, professional camera control), the performance and capability gain is usually worth the added cost for that specific module.' },
     ],
     primaryTech: ['Swift', 'Kotlin', 'SwiftUI', 'Jetpack Compose'],
-    seoTitle: 'Native Swift & Kotlin Mobile App Development | Quantyro',
+    seoTitle: 'Native Swift & Kotlin Mobile App Development',
     seoDescription: 'Fully native Swift and Kotlin development for iOS and Android — full platform capability where cross-platform can’t reach.',
   },
   {
@@ -595,7 +595,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Is data safe if the app crashes while offline?', a: 'Yes — writes commit to the local database (SQLite/IndexedDB) immediately and durably, the same way they would on a server, so a crash doesn’t lose unsynced data any more than it would lose data already saved to a server.' },
     ],
     primaryTech: ['SQLite', 'IndexedDB', 'Conflict-Free Sync', 'Background Sync'],
-    seoTitle: 'Offline-First Mobile App Development (SQLite & IndexedDB Sync) | Quantyro',
+    seoTitle: 'Offline-First Mobile App Development (SQLite & IndexedDB Sync)',
     seoDescription: 'Offline-first mobile architecture with SQLite and IndexedDB sync — apps that stay instant and usable with no network connection.',
   },
   {
@@ -634,7 +634,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Can biometric authentication be spoofed?', a: 'Modern implementations (Face ID’s depth-sensing, Android’s hardware-backed biometric classes) are built specifically to resist photo/video spoofing, and we only use the platform’s certified "strong" biometric classes for security-sensitive actions.' },
     ],
     primaryTech: ['Face ID / Touch ID', 'Android BiometricPrompt', 'Secure Enclave'],
-    seoTitle: 'Biometric Security & Hardware Telemetry for Mobile Apps | Quantyro',
+    seoTitle: 'Biometric Security & Hardware Telemetry for Mobile Apps',
     seoDescription: 'Biometric authentication and hardware telemetry built to platform security standard — frictionless, secure login for mobile apps.',
   },
   {
@@ -673,7 +673,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'What happens if an automated release introduces a bug?', a: 'The same pipeline that ships releases also manages rollback — a previous known-good build can be re-promoted, and phased rollout (releasing to a small percentage of users first) limits exposure before a full release.' },
     ],
     primaryTech: ['Fastlane', 'GitHub Actions', 'App Store Connect', 'Google Play Console'],
-    seoTitle: 'App Store & Google Play CI/CD Automation | Quantyro',
+    seoTitle: 'App Store & Google Play CI/CD Automation',
     seoDescription: 'Automated App Store and Google Play deployment pipelines — repeatable, audited mobile releases without the manual submission overhead.',
   },
 
@@ -716,7 +716,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Why use event streaming instead of services calling each other’s APIs directly?', a: 'Direct API calls create tight coupling — if service B is down, every service calling it directly fails too. Event streaming decouples that: a service publishes an event and moves on, and consumers process it whenever they’re able to, which is far more resilient to partial failures.' },
     ],
     primaryTech: ['Kafka', 'gRPC', 'Docker', 'Kubernetes'],
-    seoTitle: 'Distributed Microservices & Event Streaming Architecture | Quantyro',
+    seoTitle: 'Distributed Microservices & Event Streaming Architecture',
     seoDescription: 'Distributed microservices and event streaming architecture engineered for independent scaling, resilience, and team autonomy.',
   },
   {
@@ -757,7 +757,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Does using Node.js on the backend and React on the frontend actually help?', a: 'Yes, meaningfully — beyond hiring simplicity, sharing TypeScript types between the API and the client eliminates an entire class of integration bugs, and engineers can move between frontend and backend work without a language switch.' },
     ],
     primaryTech: ['Node.js', 'Next.js', 'TypeScript', 'Event Loop'],
-    seoTitle: 'High-Concurrency Node.js & Next.js Architecture | Quantyro',
+    seoTitle: 'High-Concurrency Node.js & Next.js Architecture',
     seoDescription: 'High-concurrency Node.js and Next.js architecture engineered to handle large request volumes on lean, efficient infrastructure.',
   },
   {
@@ -797,7 +797,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'How does role-based access control differ from simple user permissions?', a: 'Simple permissions are typically a fixed list (admin, user); role-based access control lets each tenant define custom roles with specific permission sets, which matters once customers are large enough to need departments, approval chains, or restricted internal access.' },
     ],
     primaryTech: ['PostgreSQL Row-Level Security', 'RBAC', 'Multi-Tenancy'],
-    seoTitle: 'Multi-Tenant SaaS Architecture & Role-Based Access Control | Quantyro',
+    seoTitle: 'Multi-Tenant SaaS Architecture & Role-Based Access Control',
     seoDescription: 'Role-based multi-tenant SaaS architecture engineered for strict data isolation, instant onboarding, and low per-customer cost.',
   },
   {
@@ -837,7 +837,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'How is this different from just being careful during a manual deploy?', a: 'Being careful still leaves a window where users hit errors during the switch and a rollback means redeploying the old code, which takes time. Blue/green makes the switch and rollback instantaneous by design, removing human timing and judgment from the risk equation.' },
     ],
     primaryTech: ['Docker', 'Kubernetes', 'GitHub Actions', 'Blue/Green Deployment'],
-    seoTitle: 'Zero-Downtime Blue/Green CI/CD Pipeline Engineering | Quantyro',
+    seoTitle: 'Zero-Downtime Blue/Green CI/CD Pipeline Engineering',
     seoDescription: 'Zero-downtime blue/green CI/CD pipelines with instant rollback — deploy to production daily without ever taking the system offline.',
   },
   {
@@ -877,7 +877,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Do we need an API gateway if we only have a few services?', a: 'The value scales with the number of services and consumers — with just a couple of services, a gateway may be premature. It earns its place once you have enough services that centralizing auth, rate limiting, and routing saves real duplicated effort.' },
     ],
     primaryTech: ['gRPC', 'Protocol Buffers', 'API Gateway', 'HTTP/2'],
-    seoTitle: 'API Gateway & gRPC Protocol Engineering | Quantyro',
+    seoTitle: 'API Gateway & gRPC Protocol Engineering',
     seoDescription: 'API gateway design and sub-millisecond gRPC protocol engineering for high-throughput, low-latency microservice communication.',
   },
 
@@ -919,7 +919,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'How much data do we need for vector search to be worthwhile?', a: 'It scales down further than most assume — even a few hundred documents benefit from better retrieval quality, and the infrastructure investment pays off increasingly as content volume grows into the thousands or millions of documents.' },
     ],
     primaryTech: ['Pinecone', 'Qdrant', 'Embeddings', 'Hybrid Search'],
-    seoTitle: 'Hybrid Dense-Sparse Vector Search Engineering | Quantyro',
+    seoTitle: 'Hybrid Dense-Sparse Vector Search Engineering',
     seoDescription: 'Hybrid vector search combining semantic and keyword retrieval — the foundation of accurate enterprise search and RAG systems.',
   },
   {
@@ -959,7 +959,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Is multi-agent AI reliable enough for production use today?', a: 'For well-scoped workflows with clear success criteria and human checkpoints on high-stakes steps, yes — companies are running this in production today. Fully autonomous, unchecked multi-step agents for high-stakes decisions is still an area of active caution across the industry.' },
     ],
     primaryTech: ['LangChain', 'LlamaIndex', 'OpenAI', 'Agent Orchestration'],
-    seoTitle: 'Autonomous Multi-Agent AI Workflow Orchestration | Quantyro',
+    seoTitle: 'Autonomous Multi-Agent AI Workflow Orchestration',
     seoDescription: 'Multi-agent AI orchestration engineering — specialized, coordinated agents that reliably complete complex, multi-step workflows.',
   },
   {
@@ -998,7 +998,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Can this still integrate with tools employees already use, like Slack or Teams?', a: 'Yes — the private enclave handles retrieval and inference, and a thin integration layer connects it to existing chat tools, so employees interact with it through familiar interfaces without any query or data leaving the security boundary.' },
     ],
     primaryTech: ['Private VPC Deployment', 'RAG', 'Access-Controlled Retrieval'],
-    seoTitle: 'Private, Zero-Data-Leakage Enterprise AI Knowledge Systems | Quantyro',
+    seoTitle: 'Private, Zero-Data-Leakage Enterprise AI Knowledge Systems',
     seoDescription: 'Private RAG and enterprise knowledge enclaves — AI grounded in your data with zero data leakage, built for regulated industries.',
   },
   {
@@ -1038,7 +1038,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'At what point does fine-tuning make more financial sense than just using a general API?', a: 'Roughly, once inference volume is high enough that per-call API costs at scale exceed the fixed cost of fine-tuning and self-hosting — the exact crossover point depends on volume and the specific model, but it’s a calculable ROI question, not a purely technical one.' },
     ],
     primaryTech: ['PyTorch', 'LoRA Fine-Tuning', 'vLLM', 'Quantization'],
-    seoTitle: 'Domain-Specific AI Model Fine-Tuning & Quantization | Quantyro',
+    seoTitle: 'Domain-Specific AI Model Fine-Tuning & Quantization',
     seoDescription: 'Fine-tuning and quantization engineering for domain-specific AI models — higher accuracy, lower inference cost, full model ownership.',
   },
   {
@@ -1078,7 +1078,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'What happens when the AI misreads what it sees or hears?', a: 'A well-built system surfaces its own uncertainty rather than presenting a guess as fact — confidence thresholds trigger a fallback (asking for clarification, deferring to a human) rather than confidently stating an incorrect interpretation.' },
     ],
     primaryTech: ['Multimodal Models', 'Computer Vision', 'Real-Time Inference'],
-    seoTitle: 'Real-Time Multimodal Vision & Audio AI Processing | Quantyro',
+    seoTitle: 'Real-Time Multimodal Vision & Audio AI Processing',
     seoDescription: 'Real-time multimodal AI engineering — vision, audio, and text processed together for accessibility, security, and analysis products.',
   },
 
@@ -1120,7 +1120,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'What’s the single highest-impact technical SEO fix, typically?', a: 'It varies by site, but resolving crawl/indexing blockers (pages accidentally excluded via robots.txt or noindex tags) and fixing severe Core Web Vitals failures tend to produce the fastest, most measurable ranking recovery when present.' },
     ],
     primaryTech: ['Google Search Console', 'Screaming Frog', 'Core Web Vitals'],
-    seoTitle: 'Technical SEO Audits & Core Web Vitals Optimization | Quantyro',
+    seoTitle: 'Technical SEO Audits & Core Web Vitals Optimization',
     seoDescription: 'Engineer-led technical SEO audits and Core Web Vitals optimization — fixing what actually blocks rankings, at the code level.',
   },
   {
@@ -1159,7 +1159,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Is JSON-LD better than other schema formats like Microdata?', a: 'Google explicitly recommends JSON-LD, largely because it’s implemented as a separate script block rather than woven into the HTML, which makes it far easier to maintain and less likely to break as the visible page design changes.' },
     ],
     primaryTech: ['Schema.org', 'JSON-LD', 'Google Rich Results'],
-    seoTitle: 'Structured Data & Schema Markup Implementation | Quantyro',
+    seoTitle: 'Structured Data & Schema Markup Implementation',
     seoDescription: 'Schema.org structured data implementation engineered to unlock rich results and improve search engine understanding of your content.',
   },
   {
@@ -1199,7 +1199,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Does this approach work for a small site with limited content resources?', a: 'Yes, arguably more — a small site benefits disproportionately from concentrating its limited content effort into a few well-structured, deeply covered clusters rather than spreading thin across many disconnected, shallow pages.' },
     ],
     primaryTech: ['Keyword Research', 'Topic Clusters', 'Internal Linking'],
-    seoTitle: 'Content Architecture & Keyword-Driven Information Design | Quantyro',
+    seoTitle: 'Content Architecture & Keyword-Driven Information Design',
     seoDescription: 'Content architecture and keyword-driven information design engineered to build topical authority and rank for long-tail search.',
   },
   {
@@ -1239,7 +1239,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'What kind of business benefits most from this approach?', a: 'Any business with a genuinely large, structured dataset that maps to real search demand — multi-location service providers, marketplaces, or products with many integrations — since the strategy’s value comes directly from that underlying data, not from the technique alone.' },
     ],
     primaryTech: ['Next.js Dynamic Routes', 'Structured Data Templates', 'Sitemap Automation'],
-    seoTitle: 'Programmatic SEO for Multi-Location & Multi-Service Pages | Quantyro',
+    seoTitle: 'Programmatic SEO for Multi-Location & Multi-Service Pages',
     seoDescription: 'Programmatic SEO engineering — one template generating thousands of individually rankable, genuinely useful landing pages.',
   },
   {
@@ -1279,7 +1279,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'What’s the risk of calling a test winner too early?', a: 'A false positive — a variant that looks like a win on early, noisy data but performs no better (or worse) once it becomes the permanent default, which is exactly what pre-defined significance thresholds are designed to prevent.' },
     ],
     primaryTech: ['PostHog', 'GA4', 'A/B Testing', 'Statistical Analysis'],
-    seoTitle: 'Conversion-Rate Optimization & A/B Testing Infrastructure | Quantyro',
+    seoTitle: 'Conversion-Rate Optimization & A/B Testing Infrastructure',
     seoDescription: 'CRO and A/B testing infrastructure engineered for statistically rigorous experimentation that increases revenue from existing traffic.',
   },
   {
@@ -1318,7 +1318,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Do we need a data engineering team to build this, or can marketing tools handle it alone?', a: 'Off-the-shelf marketing attribution tools handle basic cases reasonably well, but a business with meaningful ad spend across multiple channels and a longer sales cycle typically outgrows their limitations and benefits from custom-built attribution infrastructure.' },
     ],
     primaryTech: ['GA4', 'Google Tag Manager', 'PostHog', 'Data Pipelines'],
-    seoTitle: 'Marketing Analytics & Attribution Pipeline Engineering | Quantyro',
+    seoTitle: 'Marketing Analytics & Attribution Pipeline Engineering',
     seoDescription: 'Marketing analytics and attribution pipeline engineering — a reliable data foundation for confident, channel-level spend decisions.',
   },
 
@@ -1360,7 +1360,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'What’s the hardest part of building multi-region architecture?', a: 'Data — replicating a database across regions while maintaining acceptable consistency guarantees is significantly harder than replicating stateless application servers, and it’s the part most "multi-region" implementations underinvest in.' },
     ],
     primaryTech: ['AWS', 'GCP', 'Multi-Region Load Balancing', 'Chaos Engineering'],
-    seoTitle: 'Multi-Region Automated Failover Architecture | Quantyro',
+    seoTitle: 'Multi-Region Automated Failover Architecture',
     seoDescription: 'Multi-region cloud architecture with automated failover — surviving a full regional outage in seconds, not hours.',
   },
   {
@@ -1400,7 +1400,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Do we need a service mesh, or is Kubernetes enough on its own?', a: 'Kubernetes handles orchestration and scaling; a service mesh adds a specific layer on top for secure, encrypted service-to-service communication and fine-grained traffic control — valuable once you have enough interdependent services that manually securing each connection becomes impractical.' },
     ],
     primaryTech: ['Kubernetes', 'Docker', 'Service Mesh', 'Helm'],
-    seoTitle: 'Kubernetes Autoscaling & Service Mesh Orchestration | Quantyro',
+    seoTitle: 'Kubernetes Autoscaling & Service Mesh Orchestration',
     seoDescription: 'Kubernetes autoscaling and service mesh orchestration engineered to scale with real traffic and self-heal from failures automatically.',
   },
   {
@@ -1440,7 +1440,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Does infrastructure-as-code slow down making quick changes?', a: 'It adds a review step compared to clicking a console directly, but that’s the point — the small amount of added friction is what prevents the undocumented, unreviewed changes that cause configuration drift and disaster-recovery failures later.' },
     ],
     primaryTech: ['Terraform', 'OpenTofu', 'AWS', 'GCP'],
-    seoTitle: 'Terraform & OpenTofu Infrastructure-as-Code Engineering | Quantyro',
+    seoTitle: 'Terraform & OpenTofu Infrastructure-as-Code Engineering',
     seoDescription: 'Terraform and OpenTofu infrastructure-as-code engineering — version-controlled, auditable cloud infrastructure across any provider.',
   },
   {
@@ -1479,7 +1479,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Is zero-trust only relevant for large enterprises?', a: 'No — while it’s often discussed in enterprise/compliance contexts, the underlying principle (verify every request, limit what each service can reach) is valuable at any scale where a security breach would be costly, which is most production systems handling real user data.' },
     ],
     primaryTech: ['Zero-Trust Architecture', 'Service Mesh', 'mTLS'],
-    seoTitle: 'Zero-Trust Network Microsegmentation Engineering | Quantyro',
+    seoTitle: 'Zero-Trust Network Microsegmentation Engineering',
     seoDescription: 'Zero-trust network microsegmentation engineering — every request verified, blast radius contained, no implicit internal trust.',
   },
   {
@@ -1519,7 +1519,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'What’s the difference between APM and distributed tracing?', a: 'APM is the broader practice of monitoring application performance (metrics, errors, resource usage); distributed tracing is a specific technique within APM focused on following one request’s full journey across multiple services — the two are typically used together, not as alternatives.' },
     ],
     primaryTech: ['Datadog', 'Distributed Tracing', 'OpenTelemetry'],
-    seoTitle: 'Real-Time APM & Distributed Tracing Engineering | Quantyro',
+    seoTitle: 'Real-Time APM & Distributed Tracing Engineering',
     seoDescription: 'Real-time APM and distributed tracing engineering — pinpoint performance issues across microservices in minutes, not hours.',
   },
 
@@ -1563,7 +1563,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Do faster pages really rank higher in Google, or is that overstated?', a: 'Core Web Vitals are a confirmed part of Google’s page experience signals — not the dominant ranking factor, but a real tiebreaker between pages of similar content quality, and poor scores can suppress an otherwise strong page.' },
     ],
     primaryTech: ['Core Web Vitals', 'Image Optimization', 'Real User Monitoring'],
-    seoTitle: 'E-Commerce Performance & Core Web Vitals Engineering | Quantyro',
+    seoTitle: 'E-Commerce Performance & Core Web Vitals Engineering',
     seoDescription: 'E-commerce performance and Core Web Vitals engineering — storefront speed optimization built for measurable conversion impact.',
   },
   {
@@ -1601,7 +1601,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'What’s the biggest sign a project skipped discovery?', a: 'Scope and requirements that keep changing mid-build, or an architecture that has to be substantially reworked partway through — both are usually symptoms of decisions made before the real complexity was understood.' },
     ],
     primaryTech: ['Requirements Engineering', 'Technical Spikes', 'Stakeholder Mapping'],
-    seoTitle: 'Product Discovery & Scoping for Custom Software | Quantyro',
+    seoTitle: 'Product Discovery & Scoping for Custom Software',
     seoDescription: 'Product discovery and scoping engineering — clarifying real requirements and technical risk before custom software development begins.',
   },
   {
@@ -1639,7 +1639,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'How do you keep internal tools from becoming unmaintainable over time?', a: 'By building them with proper architecture and testing from the start rather than treating them as disposable scripts — the "quick hack" internal tools are exactly the ones that become fragile and expensive to change a year later.' },
     ],
     primaryTech: ['Next.js', 'Role-Based Access Control', 'Internal APIs'],
-    seoTitle: 'Web & Internal Platform Development | Quantyro',
+    seoTitle: 'Web & Internal Platform Development',
     seoDescription: 'Web and internal platform engineering — admin dashboards and operational tools built to the same standard as customer-facing product.',
   },
   {
@@ -1677,7 +1677,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'How do you prevent an integration from duplicating data on retry?', a: 'Through idempotent request handling — each operation is designed so that processing it twice has the same effect as processing it once, which is what makes automatic retry safe rather than a source of duplicate records.' },
     ],
     primaryTech: ['REST/GraphQL APIs', 'Webhooks', 'ETL Pipelines'],
-    seoTitle: 'API & Systems Integration Development | Quantyro',
+    seoTitle: 'API & Systems Integration Development',
     seoDescription: 'API and systems integration engineering — connecting CRM, ERP, and legacy systems into one reliable, monitored data flow.',
   },
   {
@@ -1715,7 +1715,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'How long does legacy modernization typically take?', a: 'It varies enormously with the system’s size and how much of the business depends on it, but multi-year incremental programs are common for genuinely critical legacy systems — individual modules can still ship in months as part of that longer program.' },
     ],
     primaryTech: ['Strangler-Fig Pattern', 'Legacy Integration', 'Incremental Migration'],
-    seoTitle: 'Legacy System Modernization Development | Quantyro',
+    seoTitle: 'Legacy System Modernization Development',
     seoDescription: 'Legacy system modernization engineering — incremental, low-risk migration off outdated technology without stopping the business.',
   },
   {
@@ -1753,7 +1753,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'Does AI quality stay consistent once launched, or does it need ongoing monitoring?', a: 'It needs ongoing monitoring — usage patterns shift, underlying model versions get updated by providers, and what worked well at launch can quietly degrade, which is why continuous evaluation against real production traffic matters, not just a one-time launch test.' },
     ],
     primaryTech: ['Evaluation Frameworks', 'Content Filtering', 'A/B Testing'],
-    seoTitle: 'AI Model Evaluation & Guardrails Development | Quantyro',
+    seoTitle: 'AI Model Evaluation & Guardrails Development',
     seoDescription: 'AI model evaluation and guardrail engineering — objective accuracy measurement and production safety constraints for AI features.',
   },
   {
@@ -1791,7 +1791,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'How long does it take to set up CI/CD for an existing project?', a: 'It depends on the project’s current testing coverage and deployment complexity, but a basic pipeline (automated tests plus deployment) can often be set up in days; the ongoing investment is in expanding test coverage and refining the pipeline as the system evolves.' },
     ],
     primaryTech: ['GitHub Actions', 'Docker', 'Automated Testing'],
-    seoTitle: 'CI/CD Pipeline Engineering & Automation | Quantyro',
+    seoTitle: 'CI/CD Pipeline Engineering & Automation',
     seoDescription: 'CI/CD pipeline engineering — automated testing, building, and deployment that makes shipping to production routine, not risky.',
   },
   {
@@ -1829,7 +1829,7 @@ export const SAMPLE_TECH_STACK_PAGES: TechStackPage[] = [
       { q: 'How do you prevent cost creep from coming back after an initial cleanup?', a: 'By establishing ongoing monitoring and alerting on cost anomalies and utilization trends, rather than treating tuning as a one-time project — cost creep happens gradually and silently without deliberate, continued attention.' },
     ],
     primaryTech: ['AWS Cost Explorer', 'Resource Right-Sizing', 'Performance Profiling'],
-    seoTitle: 'Cloud Cost & Performance Tuning Engineering | Quantyro',
+    seoTitle: 'Cloud Cost & Performance Tuning Engineering',
     seoDescription: 'Cloud cost and performance tuning engineering — identifying over-provisioned and forgotten infrastructure for immediate, recurring savings.',
   },
 ];

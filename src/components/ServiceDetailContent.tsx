@@ -189,8 +189,8 @@ export default function ServiceDetailContent({
 
         {/* 1. Executive Overview */}
         <div className="mb-[64px]">
-          <h2 id="overview" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-            01 / Executive Overview
+          <h2 id="overview" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['01_/_']">
+            Executive Overview
           </h2>
           <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[14px]">
             Engineering Scalable Software Designed for Market Leadership
@@ -205,8 +205,8 @@ export default function ServiceDetailContent({
 
         {/* 2. Core Capabilities & Tech Stack */}
         <div className="mb-[64px]">
-          <h2 id="capabilities" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-            02 / Core Technical Capabilities
+          <h2 id="capabilities" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['02_/_']">
+            Core Technical Capabilities
           </h2>
           <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
             Comprehensive Engineering Vectors Included in This Service
@@ -274,8 +274,8 @@ export default function ServiceDetailContent({
 
         {/* 3. Industry Applications */}
         <div className="mb-[64px]">
-          <h2 id="industries" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-            03 / Industry Applications
+          <h2 id="industries" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['03_/_']">
+            Industry Applications
           </h2>
           <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
             Tailored Domain Solutions for High-Growth Sectors
@@ -305,8 +305,8 @@ export default function ServiceDetailContent({
 
         {/* 4. Engineering SLAs & Standards */}
         <div className="mb-[64px]">
-          <h2 id="sla-standards" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-            04 / Engineering SLAs &amp; Quality Guarantees
+          <h2 id="sla-standards" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['04_/_']">
+            Engineering SLAs &amp; Quality Guarantees
           </h2>
           <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
             Enterprise-Grade Commitments on Every Sprint
@@ -329,8 +329,8 @@ export default function ServiceDetailContent({
         {/* 5. 4-Phase Delivery Process */}
         {roadmapSteps.length > 0 && (
           <div className="mb-[64px]">
-            <h2 id="process" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-              05 / 4-Phase Delivery Framework
+            <h2 id="process" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['05_/_']">
+              4-Phase Delivery Framework
             </h2>
             <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[24px]">
               Transparent, Agile Lifecycle from Discovery to Scale
@@ -374,8 +374,8 @@ export default function ServiceDetailContent({
         {/* 6. Global Regions & Cities */}
         {regions.length + cities.length > 0 && (
           <div className="mb-[64px]">
-            <h2 id="regions" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-              06 / Global Availability
+            <h2 id="regions" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['06_/_']">
+              Global Availability
             </h2>
             <div className="svc-reveal flex flex-wrap gap-[10px]">
               {regions.map((region) => (
@@ -403,8 +403,8 @@ export default function ServiceDetailContent({
         {/* Related Work */}
         {relatedProjects.length > 0 && (
           <div className="mb-[64px]">
-            <h2 id="related-work" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-              {String(regions.length + cities.length > 0 ? 7 : 6).padStart(2, '0')} / Related Work
+            <h2 id="related-work" className={`svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] ${regions.length + cities.length > 0 ? "before:content-['07_/_']" : "before:content-['06_/_']"}`}>
+              Related Work
             </h2>
             <div className="svc-reveal grid grid-cols-1 md:grid-cols-2 gap-[14px]">
               {relatedProjects.map((p) => (

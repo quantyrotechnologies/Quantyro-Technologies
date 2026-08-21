@@ -123,8 +123,8 @@ export default function IndustryDetailContent({
 
         {/* 1. Overview */}
         <div className="mb-[64px]">
-          <h2 id="overview" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-            01 / Overview
+          <h2 id="overview" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['01_/_']">
+            Overview
           </h2>
           <h3 className="ind-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[14px]">
             {industry.title} Software Built for the Constraints That Actually Matter
@@ -136,8 +136,8 @@ export default function IndustryDetailContent({
 
         {/* 2. Common Challenges */}
         <div className="mb-[64px]">
-          <h2 id="challenges" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-            02 / Common Challenges
+          <h2 id="challenges" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['02_/_']">
+            Common Challenges
           </h2>
           <h3 className="ind-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
             What Usually Blocks Teams in {industry.title}
@@ -163,8 +163,8 @@ export default function IndustryDetailContent({
 
         {/* 3. What We Deliver */}
         <div className="mb-[64px]">
-          <h2 id="capabilities" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-            03 / What We Deliver
+          <h2 id="capabilities" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['03_/_']">
+            What We Deliver
           </h2>
           <h3 className="ind-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
             Capabilities We Bring to {industry.title} Projects
@@ -219,8 +219,8 @@ export default function IndustryDetailContent({
         {/* 4. Market Context */}
         {industry.marketStats.length > 0 && (
           <div className="mb-[64px]">
-            <h2 id="market-context" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-              04 / Market Context
+            <h2 id="market-context" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['04_/_']">
+              Market Context
             </h2>
             <h3 className="ind-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
               Why {industry.title} Is Investing in Software Right Now
@@ -243,8 +243,8 @@ export default function IndustryDetailContent({
         {/* 5. Related Services */}
         {relatedServices.length > 0 && (
           <div className="mb-[64px]">
-            <h2 id="related-services" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-              05 / Related Services
+            <h2 id="related-services" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['05_/_']">
+              Related Services
             </h2>
             <h3 className="ind-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
               Practice Areas We Apply Here
@@ -271,8 +271,8 @@ export default function IndustryDetailContent({
         {/* 6. Global Availability */}
         {cities.length > 0 && (
           <div className="mb-[64px]">
-            <h2 id="locations" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
-              06 / Global Availability
+            <h2 id="locations" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['06_/_']">
+              Global Availability
             </h2>
             <div className="ind-reveal flex flex-wrap gap-[10px]">
               {cities.map((city) => (

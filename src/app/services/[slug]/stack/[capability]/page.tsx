@@ -24,7 +24,6 @@ export async function generateMetadata({
   return {
     title: page.seoTitle,
     description: page.seoDescription,
-    keywords: page.targetKeywords?.length ? page.targetKeywords : undefined,
     alternates: { canonical: `/services/${slug}/stack/${capability}` },
     openGraph: { title: page.seoTitle, description: page.seoDescription, url: `/services/${slug}/stack/${capability}`, type: 'website', images: [DEFAULT_OG_IMAGE] },
     twitter: { card: 'summary_large_image', title: page.seoTitle, description: page.seoDescription, images: [DEFAULT_OG_IMAGE] },
@@ -56,7 +55,7 @@ export default async function TechStackDetailPage({
       name: service.title,
       url: `${SITE_URL}/services/${service.slug}`,
     },
-    publisher: { '@type': 'Organization', name: 'Quantyro Technologies', url: SITE_URL },
+    publisher: { '@id': `${SITE_URL}/#organization` },
   };
 
   const faqJsonLd = {
@@ -119,8 +118,8 @@ export default async function TechStackDetailPage({
           <div>
             {/* How we build it */}
             <div className="mb-[56px]">
-              <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px]">
-                01 / Implementation
+              <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] before:content-['01_/_']">
+                Implementation
               </h2>
               <h3 className="text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[24px] max-w-[40ch]">
                 How We Actually Build This
@@ -142,8 +141,8 @@ export default async function TechStackDetailPage({
 
             {/* Benefits */}
             <div className="mb-[56px]">
-              <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px]">
-                02 / Key Benefits
+              <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] before:content-['02_/_']">
+                Key Benefits
               </h2>
               <h3 className="text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[24px] max-w-[36ch]">
                 Why {page.title} Is the Right Choice
@@ -165,8 +164,8 @@ export default async function TechStackDetailPage({
 
             {/* Companies using this */}
             <div className="mb-[56px]">
-              <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px]">
-                03 / Proven at Scale
+              <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] before:content-['03_/_']">
+                Proven at Scale
               </h2>
               <h3 className="text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[24px] max-w-[40ch]">
                 Companies Building on This Technology
@@ -186,8 +185,8 @@ export default async function TechStackDetailPage({
 
             {/* Use cases */}
             <div className="mb-[56px]">
-              <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px]">
-                04 / Where This Applies
+              <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] before:content-['04_/_']">
+                Where This Applies
               </h2>
               <h3 className="text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[24px] max-w-[40ch]">
                 Common Use Cases
@@ -204,8 +203,8 @@ export default async function TechStackDetailPage({
 
             {/* FAQ */}
             <div className="mb-[56px]">
-              <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px]">
-                05 / Frequently Asked Questions
+              <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] before:content-['05_/_']">
+                Frequently Asked Questions
               </h2>
               <h3 className="text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[24px] max-w-[40ch]">
                 Common Questions About {page.title}

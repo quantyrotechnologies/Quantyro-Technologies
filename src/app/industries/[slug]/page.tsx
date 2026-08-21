@@ -17,7 +17,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title,
     description,
-    keywords: industry.targetKeywords?.length ? industry.targetKeywords : undefined,
     alternates: { canonical: `/industries/${slug}` },
     openGraph: { title, description, url: `/industries/${slug}`, type: 'website', images: [DEFAULT_OG_IMAGE] },
     twitter: { card: 'summary_large_image', title, description, images: [DEFAULT_OG_IMAGE] },
@@ -45,7 +44,7 @@ export default async function IndustryDetailPage({ params }: { params: Promise<{
     name: `${industry.title} Software Development`,
     serviceType: `${industry.title} Software Development`,
     description: industry.desc,
-    provider: { '@type': 'Organization', name: 'Quantyro Technologies', url: SITE_URL },
+    provider: { '@id': `${SITE_URL}/#organization` },
     ...(cities.length > 0 ? { areaServed: cities } : {}),
   };
 

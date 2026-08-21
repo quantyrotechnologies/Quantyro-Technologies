@@ -52,7 +52,7 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
   return (
     <section ref={container} id="stats" className="relative py-[80px] md:py-[100px] px-[6vw] z-10">
       {/* Section Label */}
-      <div className="mono text-[12px] text-[var(--muted)] mb-[40px]">05 / Enterprise Impact</div>
+      <div className="mono text-[12px] text-[var(--muted)] mb-[40px] before:content-['05_/_']">Enterprise Impact</div>
       
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px] md:gap-[20px]">

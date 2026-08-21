@@ -60,7 +60,6 @@ export async function generateMetadata({
     return {
       title,
       description,
-      keywords: page.targetKeywords.length ? page.targetKeywords : undefined,
       alternates: { canonical: `/services/${slug}/${locationSlug}` },
       openGraph: { title, description, url: `/services/${slug}/${locationSlug}`, type: 'website', images: [DEFAULT_OG_IMAGE] },
       twitter: { card: 'summary_large_image', title, description, images: [DEFAULT_OG_IMAGE] },
@@ -90,7 +89,7 @@ export default async function ServiceLocationPage({
       name: `${page.service.title} in ${page.region}`,
       description: page.intro,
       areaServed: page.region,
-      provider: { "@type": "Organization", name: "Quantyro Technologies", url: SITE_URL },
+      provider: { "@id": `${SITE_URL}/#organization` },
     };
 
     return (
@@ -191,7 +190,7 @@ export default async function ServiceLocationPage({
     name: `${page.entity.title} in ${page.city}`,
     description: page.localNote || page.entity.desc,
     areaServed: page.city,
-    provider: { "@type": "Organization", name: "Quantyro Technologies", url: SITE_URL },
+    provider: { "@id": `${SITE_URL}/#organization` },
   };
 
   return (

@@ -64,7 +64,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Is it safe to build new digital products on top of a legacy core?', a: 'Yes, when the integration layer is built with strict data consistency and reconciliation checks — this is exactly the pattern that lets banks ship modern mobile apps and APIs today while the legacy ledger keeps running underneath, unchanged.' },
     ],
     primaryTech: ['Core Banking APIs', 'Event-Driven Integration', 'Reconciliation Systems'],
-    seoTitle: 'Core Banking System Integration & Modernization | Quantyro',
+    seoTitle: 'Core Banking System Integration & Modernization',
     seoDescription: 'Core banking modernization and legacy system integration engineered with zero-downtime, incremental migration strategies for banks.',
   },
   {
@@ -103,7 +103,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'What happens if the real-time payment network itself has an outage?', a: 'A resilient implementation falls back to standard payment rails automatically rather than failing the transaction outright, trading instant settlement for the traditional slower window during the outage rather than blocking payments entirely.' },
     ],
     primaryTech: ['FedNow / RTP / UPI', 'Tokenization', 'Fraud Scoring APIs'],
-    seoTitle: 'Real-Time Payment Gateways & Digital Wallet Development | Quantyro',
+    seoTitle: 'Real-Time Payment Gateways & Digital Wallet Development',
     seoDescription: 'Real-time payment gateway and digital wallet engineering — instant settlement with synchronous fraud scoring, built for modern fintech.',
   },
   {
@@ -142,7 +142,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does real-time fraud scoring slow down legitimate transactions?', a: 'No — scoring happens within the transaction authorization window (typically well under a second), fast enough that legitimate customers experience no perceptible delay while risky transactions still get caught before funds move.' },
     ],
     primaryTech: ['Machine Learning', 'Real-Time Scoring', 'Behavioral Analytics'],
-    seoTitle: 'AI-Powered Fraud Detection & Risk Scoring for FinTech | Quantyro',
+    seoTitle: 'AI-Powered Fraud Detection & Risk Scoring for FinTech',
     seoDescription: 'Real-time AI fraud detection and risk scoring engineered to catch sophisticated fraud patterns while minimizing false positives.',
   },
   {
@@ -180,7 +180,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'What if a customer’s biometric data doesn’t match due to injury or aging?', a: 'A secure fallback (PIN, password, or additional verification) is always available — biometric authentication is never the sole path to an account, precisely to handle cases where matching legitimately fails for a real customer.' },
     ],
     primaryTech: ['Face ID / Touch ID', 'Voice Biometrics', 'Liveness Detection'],
-    seoTitle: 'Biometric Authentication for Banking & FinTech Apps | Quantyro',
+    seoTitle: 'Biometric Authentication for Banking & FinTech Apps',
     seoDescription: 'Banking-grade biometric authentication with liveness detection — fingerprint, facial, and voice verification built to financial security standards.',
   },
   {
@@ -219,7 +219,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can a customer control exactly what data a third-party app can see?', a: 'Yes — properly implemented open banking consent is granular (balance only, transaction history, payment initiation, etc.), not an all-or-nothing grant, giving customers meaningful control over what each connected app can actually access.' },
     ],
     primaryTech: ['PSD2 / Open Banking Standards', 'OAuth 2.0', 'API Gateway'],
-    seoTitle: 'Open Banking API Integration & Development | Quantyro',
+    seoTitle: 'Open Banking API Integration & Development',
     seoDescription: 'Open banking API integration engineered to PSD2 and Financial Data Exchange standards — secure, scoped, auditable data sharing.',
   },
   {
@@ -257,7 +257,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How is bill pay different from a simple P2P transfer?', a: 'Bill pay typically supports recurring scheduling and, for many billers, a "pull" model where the biller is authorized to request payment on its own schedule — P2P transfers are always user-initiated, one-off "push" transactions.' },
     ],
     primaryTech: ['Real-Time Payment Rails', 'Directory Services', 'ACH Processing'],
-    seoTitle: 'P2P Transfers & Instant Bill Payment Development | Quantyro',
+    seoTitle: 'P2P Transfers & Instant Bill Payment Development',
     seoDescription: 'Peer-to-peer transfer and instant bill payment engineering — directory-based, real-time money movement built for modern banking apps.',
   },
   {
@@ -295,7 +295,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How long is a cardless withdrawal code valid?', a: 'Typically a short window (often just a few minutes) specifically to limit the risk if the code is somehow intercepted — it’s tied to a specific transaction amount and expires quickly if unused, unlike a reusable card number.' },
     ],
     primaryTech: ['QR/NFC Tokens', 'One-Time Codes', 'Real-Time Authorization'],
-    seoTitle: 'Cardless ATM & QR-Based Transaction Development | Quantyro',
+    seoTitle: 'Cardless ATM & QR-Based Transaction Development',
     seoDescription: 'Cardless ATM and QR-based transaction engineering — phone-first cash access and payments that eliminate card skimming risk.',
   },
   {
@@ -333,7 +333,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can this feature give bad or generic financial advice?', a: 'A well-built system grounds every recommendation in the specific customer’s actual data (their real income, their real spending pattern) rather than generic rules of thumb, which is precisely what separates genuinely useful insight from a canned "save 20% of your income" tip that ignores individual circumstances.' },
     ],
     primaryTech: ['Machine Learning', 'Transaction Categorization', 'Anomaly Detection'],
-    seoTitle: 'AI-Driven Personalized Financial Insights for Banking Apps | Quantyro',
+    seoTitle: 'AI-Driven Personalized Financial Insights for Banking Apps',
     seoDescription: 'AI-powered personalized financial insights engineering — automatic spending analysis, anomaly detection, and savings recommendations.',
   },
   // ───────────────────────── Fitness & Wellness ─────────────────────────
@@ -373,7 +373,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'What happens if a user has data from two different wearables?', a: 'A well-built sync layer deduplicates overlapping activity data across sources rather than double-counting it, using timestamp and activity-type matching to reconcile which source is authoritative for a given workout.' },
     ],
     primaryTech: ['HealthKit', 'Google Fit / Health Connect', 'Wearable APIs'],
-    seoTitle: 'Wearable Device & Health API Integration (HealthKit, Google Fit) | Quantyro',
+    seoTitle: 'Wearable Device & Health API Integration (HealthKit, Google Fit)',
     seoDescription: 'Wearable and health API integration engineering — automatic HealthKit, Google Fit, and device data sync for fitness and wellness apps.',
   },
   {
@@ -411,7 +411,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does personalization work without a connected wearable device?', a: 'Yes, using self-reported completion and difficulty data as the adaptation signal instead of biometric recovery data — a connected wearable improves precision but isn’t a hard requirement for the personalization to function.' },
     ],
     primaryTech: ['Machine Learning', 'Recommendation Systems', 'Wearable Data'],
-    seoTitle: 'AI-Driven Workout & Nutrition Personalization | Quantyro',
+    seoTitle: 'AI-Driven Workout & Nutrition Personalization',
     seoDescription: 'AI-powered workout and nutrition personalization engineering — plans that adapt to real recovery data and progress, not a fixed template.',
   },
   {
@@ -450,7 +450,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can this work for strength training, not just cardio activities?', a: 'Yes — the same principles apply to tracking weight, reps, and volume progression over time, with real-time feedback during a set (rest timers, rep counting) and longer-term strength progression analytics.' },
     ],
     primaryTech: ['Real-Time Data Streaming', 'Wearable Sensors', 'Data Visualization'],
-    seoTitle: 'Real-Time Activity Tracking & Progress Analytics | Quantyro',
+    seoTitle: 'Real-Time Activity Tracking & Progress Analytics',
     seoDescription: 'Real-time activity tracking and progress analytics engineering — live workout feedback and motivating long-term trend visualization.',
   },
   {
@@ -488,7 +488,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does on-demand video need to be re-encoded for every device type?', a: 'Adaptive bitrate encoding produces multiple quality versions of the same video once at upload time, and the player automatically selects the right version per device and connection speed — not a separate re-encode per device.' },
     ],
     primaryTech: ['WebRTC / LL-HLS', 'CDN', 'Adaptive Bitrate Streaming'],
-    seoTitle: 'Live & On-Demand Video Coaching Platform Development | Quantyro',
+    seoTitle: 'Live & On-Demand Video Coaching Platform Development',
     seoDescription: 'Live and on-demand fitness video coaching engineering — low-latency streaming and adaptive playback built to handle traffic spikes.',
   },
   {
@@ -527,7 +527,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does gamification work equally well for all fitness goals?', a: 'It’s most effective for building consistency and habit formation broadly — for highly specific performance goals (competitive athletic training), progress analytics and coaching quality tend to matter more than gamified streaks and badges.' },
     ],
     primaryTech: ['Behavioral Design', 'Notification Systems', 'Social Features'],
-    seoTitle: 'Gamification & Streak/Challenge Systems for Fitness Apps | Quantyro',
+    seoTitle: 'Gamification & Streak/Challenge Systems for Fitness Apps',
     seoDescription: 'Gamification and streak/challenge system engineering for fitness apps — behavioral mechanics that measurably improve consistency.',
   },
   {
@@ -565,7 +565,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can recovery tracking work without a wearable device?', a: 'Not with the same precision — sleep stage and HRV data specifically require continuous physiological sensing that only a wearable provides; without one, recovery tracking is limited to subjective self-reported feeling, which is far less reliable.' },
     ],
     primaryTech: ['Heart Rate Variability', 'Sleep Stage Algorithms', 'Wearable Sensors'],
-    seoTitle: 'Sleep & Recovery Tracking for Fitness & Wellness Apps | Quantyro',
+    seoTitle: 'Sleep & Recovery Tracking for Fitness & Wellness Apps',
     seoDescription: 'Sleep and recovery tracking engineering — HRV-based readiness scoring and sleep stage analysis for fitness and wellness platforms.',
   },
   {
@@ -603,7 +603,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'What’s the risk of getting social features wrong?', a: 'A feed that feels like a vanity metric contest (only celebrating impressive outcomes) can discourage rather than motivate users who are earlier in their fitness journey — well-designed systems celebrate consistency and effort broadly, not just top performers.' },
     ],
     primaryTech: ['Social Graph', 'Activity Feeds', 'Privacy Controls'],
-    seoTitle: 'Social & Community Engagement Features for Fitness Apps | Quantyro',
+    seoTitle: 'Social & Community Engagement Features for Fitness Apps',
     seoDescription: 'Social and community engagement feature engineering for fitness apps — activity feeds, group challenges, and accountability that improve retention.',
   },
   {
@@ -641,7 +641,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does dunning (payment recovery) email actually work?', a: 'Yes, meaningfully — a well-timed sequence of reminders and card-update prompts recovers a real share of subscriptions that would otherwise be lost purely to an expired card, not a deliberate decision to cancel.' },
     ],
     primaryTech: ['Stripe / In-App Purchases', 'Subscription Billing', 'Dunning Automation'],
-    seoTitle: 'Subscription & In-App Payment Integration for Fitness Apps | Quantyro',
+    seoTitle: 'Subscription & In-App Payment Integration for Fitness Apps',
     seoDescription: 'Subscription and in-app payment engineering for fitness apps — smart billing retry and churn recovery that protects recurring revenue.',
   },
   // ───────────────────────── Taxi & Ride-Hailing ─────────────────────────
@@ -681,7 +681,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'What happens if GPS signal is temporarily lost (in a tunnel or dense urban canyon)?', a: 'A robust system interpolates position based on recent trajectory and speed until signal returns, rather than showing a driver as frozen or jumping to an inaccurate new position once the signal reconnects.' },
     ],
     primaryTech: ['Geospatial Indexing (H3)', 'Live Traffic APIs', 'Real-Time Location Streaming'],
-    seoTitle: 'Real-Time GPS Tracking & Route Optimization for Ride-Hailing | Quantyro',
+    seoTitle: 'Real-Time GPS Tracking & Route Optimization for Ride-Hailing',
     seoDescription: 'Real-time GPS tracking and route optimization engineering — accurate ETAs and dynamic traffic-aware routing for ride-hailing platforms.',
   },
   {
@@ -719,7 +719,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Do riders always see the surge price before confirming a trip?', a: 'In a properly built system, yes — showing the price (or multiplier) clearly before trip confirmation is both a trust requirement and, in many markets, a regulatory one; surprise post-trip pricing is exactly the failure mode transparent upfront pricing is designed to prevent.' },
     ],
     primaryTech: ['Machine Learning', 'Real-Time Geospatial Analytics', 'Dynamic Pricing Models'],
-    seoTitle: 'AI-Powered Dynamic Fare & Surge Pricing Engines | Quantyro',
+    seoTitle: 'AI-Powered Dynamic Fare & Surge Pricing Engines',
     seoDescription: 'AI-driven dynamic fare and surge pricing engineering — real-time supply-demand balancing for ride-hailing and delivery platforms.',
   },
   {
@@ -758,7 +758,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How long does automated driver onboarding typically take?', a: 'Straightforward applications with clean documentation can clear automated checks within hours rather than the days or weeks manual review often requires — applications needing human review or third-party background check turnaround still take longer.' },
     ],
     primaryTech: ['Computer Vision', 'Facial Verification', 'Background Check APIs'],
-    seoTitle: 'Driver Onboarding & Automated KYC Verification | Quantyro',
+    seoTitle: 'Driver Onboarding & Automated KYC Verification',
     seoDescription: 'Automated KYC and driver onboarding verification engineering — fast, consistent identity and background checks for ride-hailing platforms.',
   },
   {
@@ -796,7 +796,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can a dispatch dashboard scale to thousands of vehicles?', a: 'Yes, with the right architecture — the dashboard itself is a real-time data visualization layer on top of the same geospatial and event infrastructure that powers rider-facing tracking, and that infrastructure is built specifically to handle large concurrent fleets.' },
     ],
     primaryTech: ['Real-Time Dashboards', 'Geospatial Visualization', 'Operational Analytics'],
-    seoTitle: 'Fleet & Dispatch Admin Dashboard Development | Quantyro',
+    seoTitle: 'Fleet & Dispatch Admin Dashboard Development',
     seoDescription: 'Fleet and dispatch admin dashboard engineering — real-time vehicle visibility, manual override tools, and performance analytics.',
   },
   {
@@ -834,7 +834,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How is cash trip revenue tracked and reconciled with driver commission?', a: 'The platform tracks the expected fare and commission for cash trips the same way as digital trips, then reconciles what the driver owes the platform (their commission share) separately, typically through a periodic settlement process.' },
     ],
     primaryTech: ['Payment Gateway Integration', 'Digital Wallets', 'Corporate Billing Systems'],
-    seoTitle: 'Multi-Payment & Digital Wallet Integration for Ride-Hailing | Quantyro',
+    seoTitle: 'Multi-Payment & Digital Wallet Integration for Ride-Hailing',
     seoDescription: 'Multi-payment and digital wallet integration engineering for ride-hailing — card, wallet, cash, and corporate billing in one platform.',
   },
   {
@@ -872,7 +872,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Is safety trip-sharing only useful during an actual emergency?', a: 'No — many riders use proactive trip sharing routinely as a precaution, sharing live location with a trusted contact for any trip regardless of whether anything goes wrong, which is itself a meaningful trust and safety feature independent of the emergency-specific tools.' },
     ],
     primaryTech: ['Real-Time Location Sharing', 'Anomaly Detection', 'Emergency Response Integration'],
-    seoTitle: 'In-App SOS & Safety/Route-Deviation Alert Development | Quantyro',
+    seoTitle: 'In-App SOS & Safety/Route-Deviation Alert Development',
     seoDescription: 'In-app SOS and safety alert engineering for ride-hailing — instant emergency response and automated route-deviation monitoring.',
   },
   {
@@ -910,7 +910,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Do scheduling tools conflict with the flexibility that defines gig work?', a: 'No, well-designed tools enhance rather than restrict flexibility — they help a driver optimize the hours they’ve already chosen to work, surfacing useful information (demand patterns, incentive windows) without requiring fixed shifts or reducing their autonomy over when to drive.' },
     ],
     primaryTech: ['Real-Time Earnings Tracking', 'Demand Prediction', 'Driver-Facing Analytics'],
-    seoTitle: 'Driver Earnings & Shift-Scheduling Tool Development | Quantyro',
+    seoTitle: 'Driver Earnings & Shift-Scheduling Tool Development',
     seoDescription: 'Driver earnings and shift-scheduling tool engineering — transparent real-time payouts and demand-driven scheduling for ride-hailing.',
   },
   {
@@ -948,7 +948,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does adding a new service line (like delivery) require a separate app or platform?', a: 'Not necessarily — the underlying dispatch, payment, and driver management infrastructure can be shared across service lines, with the service-specific logic (delivery routing versus ride matching) layered on top as configuration and specialized modules rather than entirely separate systems.' },
     ],
     primaryTech: ['Multi-Tenant Configuration', 'Regulatory Compliance Modeling', 'Shared Dispatch Infrastructure'],
-    seoTitle: 'Multi-City & Multi-Service Fleet Platform Development | Quantyro',
+    seoTitle: 'Multi-City & Multi-Service Fleet Platform Development',
     seoDescription: 'Multi-city and multi-service fleet platform engineering — shared infrastructure supporting expansion across markets and service lines.',
   },
   // ───────────────────────── Education & EdTech ─────────────────────────
@@ -988,7 +988,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does adaptive pacing work for group classroom settings, or only individual self-paced learning?', a: 'Both — many implementations blend adaptive individual practice and homework with shared classroom instruction, using the adaptive data to inform what the teacher covers with the whole group versus what gets addressed through individualized practice.' },
     ],
     primaryTech: ['Machine Learning', 'Knowledge Modeling', 'Adaptive Content Sequencing'],
-    seoTitle: 'AI-Powered Tutoring & Adaptive Learning Path Development | Quantyro',
+    seoTitle: 'AI-Powered Tutoring & Adaptive Learning Path Development',
     seoDescription: 'AI tutoring and adaptive learning path engineering — personalized pacing and instruction that matches each student’s actual understanding.',
   },
   {
@@ -1026,7 +1026,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How quickly is a recorded live class available as on-demand video?', a: 'Typically within minutes of the session ending, processed and made searchable automatically, rather than requiring a teacher to manually export, edit, and upload a recording separately.' },
     ],
     primaryTech: ['WebRTC', 'Adaptive Bitrate Streaming', 'Automatic Recording Pipelines'],
-    seoTitle: 'Live & On-Demand Video Classroom Development | Quantyro',
+    seoTitle: 'Live & On-Demand Video Classroom Development',
     seoDescription: 'Live and on-demand video classroom engineering — reliable classroom video built for education-specific pedagogy and connection quality.',
   },
   {
@@ -1064,7 +1064,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How is student data kept private and compliant with regulations like FERPA?', a: 'Through strict role-based access control (only authorized staff and the student’s own guardians can see individual data), data minimization, and audit logging of who accessed what — privacy and compliance requirements shape the system’s access model from the start, not as an afterthought.' },
     ],
     primaryTech: ['Learning Analytics', 'FERPA-Compliant Data Handling', 'Dashboard Reporting'],
-    seoTitle: 'Student Progress Analytics & Reporting Development | Quantyro',
+    seoTitle: 'Student Progress Analytics & Reporting Development',
     seoDescription: 'Student progress analytics and reporting engineering — early intervention dashboards for teachers, administrators, and institutions.',
   },
   {
@@ -1102,7 +1102,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How does adaptive difficulty work within a single assessment?', a: 'Question difficulty adjusts in real time based on the student’s performance on prior questions within that same assessment — answering correctly leads to more challenging follow-up questions, keeping the assessment appropriately calibrated rather than too easy or too hard throughout.' },
     ],
     primaryTech: ['Interactive Question Types', 'Adaptive Assessment', 'Gamification Mechanics'],
-    seoTitle: 'Gamification & Interactive Assessment Tool Development | Quantyro',
+    seoTitle: 'Gamification & Interactive Assessment Tool Development',
     seoDescription: 'Gamified and interactive assessment tool engineering for education — engaging, lower-anxiety formats that measure understanding accurately.',
   },
   {
@@ -1140,7 +1140,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'What is grade passback and why does it matter?', a: 'It’s the automatic synchronization of assessment results from the integrated tool back into the institution’s official gradebook — without it, teachers would need to manually re-enter every score from the external tool, which is exactly the kind of friction that kills adoption of an otherwise good tool.' },
     ],
     primaryTech: ['LTI', 'SCORM', 'Single Sign-On (SSO)'],
-    seoTitle: 'School & Corporate LMS Integration Development | Quantyro',
+    seoTitle: 'School & Corporate LMS Integration Development',
     seoDescription: 'LMS integration engineering for EdTech — LTI and SCORM-compliant tools that fit seamlessly into existing school and corporate systems.',
   },
   {
@@ -1178,7 +1178,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can parents choose how they’re notified, or is it one broadcast for everyone?', a: 'A well-built hub lets each family set their own preferred channel and frequency — some parents prefer an app notification, others prefer email or text — respecting that families have genuinely different communication preferences and constraints.' },
     ],
     primaryTech: ['Two-Way Messaging', 'Automated Translation', 'Notification Systems'],
-    seoTitle: 'Parent-Teacher Communication Hub Development | Quantyro',
+    seoTitle: 'Parent-Teacher Communication Hub Development',
     seoDescription: 'Parent-teacher communication hub engineering — centralized, translated, two-way communication that reduces teacher workload.',
   },
   {
@@ -1217,7 +1217,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Is it expensive to add multilingual support to an existing platform?', a: 'It’s significantly more expensive to retrofit than to build in from the start, since content and code that assumed one language throughout typically requires real restructuring — this is why translation-readiness is worth planning for early even if only one language launches initially.' },
     ],
     primaryTech: ['i18n Architecture', 'Translation Management', 'Localization'],
-    seoTitle: 'Multilingual Content Support Development for EdTech | Quantyro',
+    seoTitle: 'Multilingual Content Support Development for EdTech',
     seoDescription: 'Multilingual content engineering for education platforms — translated curriculum and assessments built for global and diverse learners.',
   },
   {
@@ -1255,7 +1255,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'What usage data do institutions typically want to see for renewal decisions?', a: 'Adoption and engagement metrics — how many licensed seats are actually being used, how frequently, with what outcomes — since demonstrating real usage and value is usually what determines whether a procurement contract renews at the end of its term.' },
     ],
     primaryTech: ['Subscription Billing', 'License Management', 'Institutional Invoicing'],
-    seoTitle: 'Subscription & Institutional Billing Model Development | Quantyro',
+    seoTitle: 'Subscription & Institutional Billing Model Development',
     seoDescription: 'Subscription and institutional billing engineering for EdTech — seat-based licensing and invoiced billing alongside consumer subscriptions.',
   },
   // ───────────────────────── Dating & Social ─────────────────────────
@@ -1294,7 +1294,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'What metrics actually indicate a matching algorithm is working well?', a: 'Match quality is measured through outcome signals — conversation length and depth, mutual match rate, and where available, self-reported satisfaction — rather than raw match volume alone, since more matches isn’t the same as better matches.' },
     ],
     primaryTech: ['Machine Learning', 'Behavioral Analytics', 'Recommendation Systems'],
-    seoTitle: 'AI-Powered Matchmaking & Compatibility Scoring Development | Quantyro',
+    seoTitle: 'AI-Powered Matchmaking & Compatibility Scoring Development',
     seoDescription: 'AI matchmaking and compatibility scoring engineering — behavioral signal-based matching that improves genuine connection outcomes.',
   },
   {
@@ -1332,7 +1332,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Is end-to-end encryption standard for dating app messaging?', a: 'It’s increasingly considered a baseline expectation given the personal and sensitive nature of dating conversations, though implementation varies by platform — it’s a meaningful trust signal for users concerned about privacy in a category where that concern is especially acute.' },
     ],
     primaryTech: ['WebSocket', 'WebRTC', 'End-to-End Encryption'],
-    seoTitle: 'Real-Time Chat & Video Calling Infrastructure Development | Quantyro',
+    seoTitle: 'Real-Time Chat & Video Calling Infrastructure Development',
     seoDescription: 'Real-time chat and video calling engineering for dating and social apps — reliable, encrypted in-app communication infrastructure.',
   },
   {
@@ -1370,7 +1370,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does verification meaningfully reduce fake profiles, or is it mostly symbolic?', a: 'It genuinely reduces casual fake-profile creation by raising the effort required, though determined bad actors with sophisticated resources can still attempt to circumvent it — it’s one layer of a broader trust-and-safety strategy, not a complete solution on its own.' },
     ],
     primaryTech: ['Facial Recognition', 'Liveness Detection', 'Reverse Image Search'],
-    seoTitle: 'Photo & Identity Verification System Development | Quantyro',
+    seoTitle: 'Photo & Identity Verification System Development',
     seoDescription: 'Photo and identity verification engineering for dating and social apps — facial recognition and liveness checks that reduce fake profiles.',
   },
   {
@@ -1408,7 +1408,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can users control who can see they’re nearby?', a: 'Yes, in a well-designed system — discovery radius, visibility settings, and the ability to pause or disable location-based discovery entirely are standard user controls, not just a fixed always-on setting.' },
     ],
     primaryTech: ['Geospatial Indexing', 'Privacy-Preserving Location', 'Geofencing'],
-    seoTitle: 'Geolocation-Based Discovery & Matching Development | Quantyro',
+    seoTitle: 'Geolocation-Based Discovery & Matching Development',
     seoDescription: 'Geolocation-based discovery engineering for dating and social apps — privacy-protected proximity matching that prevents location triangulation.',
   },
   {
@@ -1446,7 +1446,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How is a bot account distinguished from an unusually active real user?', a: 'Through interaction pattern analysis — bots typically show telltale signs like inhuman response timing, repetitive scripted messaging, or coordinated behavior across many accounts, patterns distinguishable from even a very active genuine user’s more naturally varied behavior.' },
     ],
     primaryTech: ['Computer Vision', 'Behavioral Pattern Detection', 'Machine Learning'],
-    seoTitle: 'Automated Content Moderation & Fraud Detection Development | Quantyro',
+    seoTitle: 'Automated Content Moderation & Fraud Detection Development',
     seoDescription: 'Automated content moderation and fraud detection engineering for dating and social apps — real-time scam and bot detection at scale.',
   },
   {
@@ -1484,7 +1484,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How is the swipe order determined — is it random?', a: 'No, in well-built platforms the order is informed by the underlying matching algorithm, surfacing profiles estimated to be higher-compatibility matches earlier rather than a purely random or chronological queue.' },
     ],
     primaryTech: ['Gesture-Based UI', 'Card Stack Interfaces', 'Search & Filtering'],
-    seoTitle: 'Swipe-Based & Preference-Based Discovery UI Development | Quantyro',
+    seoTitle: 'Swipe-Based & Preference-Based Discovery UI Development',
     seoDescription: 'Swipe and preference-based discovery UI engineering for dating and social apps — low-friction browsing and directed search interfaces.',
   },
   {
@@ -1522,7 +1522,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can users control exactly which notifications they receive?', a: 'In a well-built system, yes — granular settings let users opt into high-value alerts (matches, messages) while disabling lower-priority ones, rather than an all-or-nothing toggle that pushes users toward disabling everything.' },
     ],
     primaryTech: ['Push Notification Infrastructure', 'A/B Testing', 'Notification Personalization'],
-    seoTitle: 'Push Notifications & Re-Engagement Flow Development | Quantyro',
+    seoTitle: 'Push Notifications & Re-Engagement Flow Development',
     seoDescription: 'Push notification and re-engagement engineering for dating and social apps — timely, personalized alerts that build trust, not fatigue.',
   },
   {
@@ -1560,7 +1560,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Do privacy controls slow down or complicate the core discovery experience?', a: 'Not when designed well — granular settings operate in the background once configured, letting users set their comfort level once rather than having to make privacy decisions repeatedly during normal use of the app.' },
     ],
     primaryTech: ['Access Control Systems', 'Content Moderation Queues', 'Privacy Settings Architecture'],
-    seoTitle: 'Privacy Controls & Reporting/Blocking Tool Development | Quantyro',
+    seoTitle: 'Privacy Controls & Reporting/Blocking Tool Development',
     seoDescription: 'Privacy control and reporting/blocking tool engineering for dating and social apps — safety infrastructure that builds genuine user trust.',
   },
   // ───────────────────────── E-Commerce & Retail ─────────────────────────
@@ -1599,7 +1599,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Is a headless rebuild worth it for a smaller retail brand?', a: 'The performance and conversion benefits scale with traffic volume, so the ROI is clearest for brands doing meaningful e-commerce revenue — smaller brands may get more value starting with a well-optimized traditional platform before investing in a full headless rebuild.' },
     ],
     primaryTech: ['Next.js', 'Vercel Edge Network', 'Headless Commerce API'],
-    seoTitle: 'Headless Retail Storefronts on Next.js with Edge Caching | Quantyro',
+    seoTitle: 'Headless Retail Storefronts on Next.js with Edge Caching',
     seoDescription: 'Headless Next.js retail storefront engineering with global edge caching — decoupled architecture built for conversion and design freedom.',
   },
   {
@@ -1637,7 +1637,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does multi-processor payment routing actually reduce failed transactions during peak load?', a: 'Yes — if one payment processor experiences degraded performance or an outage under heavy load, routing to an alternate processor prevents that single point of failure from blocking checkout entirely, which is a meaningful reliability improvement during exactly the moments checkout matters most.' },
     ],
     primaryTech: ['Payment Orchestration', 'Load Testing', 'Inventory Reservation Systems'],
-    seoTitle: 'Sub-Second Checkout & Payment Orchestration for Retail | Quantyro',
+    seoTitle: 'Sub-Second Checkout & Payment Orchestration for Retail',
     seoDescription: 'Retail checkout and payment orchestration engineering built to survive flash sales — resilient, sub-second checkout at extreme scale.',
   },
   {
@@ -1675,7 +1675,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does real-time sync require replacing our existing point-of-sale system?', a: 'Not necessarily — most modern POS systems support event-based integration, meaning the synchronization layer can typically sit alongside existing POS infrastructure as an integration rather than requiring a full replacement.' },
     ],
     primaryTech: ['Event Streaming', 'POS Integration', 'Real-Time Sync APIs'],
-    seoTitle: 'Omnichannel Real-Time Inventory Synchronization for Retail | Quantyro',
+    seoTitle: 'Omnichannel Real-Time Inventory Synchronization for Retail',
     seoDescription: 'Real-time omnichannel inventory sync engineering for retail — one live stock count across stores, warehouses, and online channels.',
   },
   {
@@ -1713,7 +1713,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does this integration work with existing systems, or does it require replacing our ERP?', a: 'Integration is typically built to connect with existing ERP, warehouse, and shipping systems through their APIs — the goal is connecting what already exists, not requiring a wholesale replacement of established backend infrastructure.' },
     ],
     primaryTech: ['ERP APIs', 'Warehouse Management Systems', 'Shipping Carrier Integration'],
-    seoTitle: 'ERP & Fulfillment System Integration for Retail | Quantyro',
+    seoTitle: 'ERP & Fulfillment System Integration for Retail',
     seoDescription: 'ERP and fulfillment system integration engineering for retail — automated order flow from storefront to accounting and warehousing.',
   },
   {
@@ -1751,7 +1751,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How is this different from generic "related products" rules a merchandiser sets manually?', a: 'Manual rules are static and require ongoing manual maintenance as the catalog changes; an AI recommendation engine adapts automatically to real shopper behavior and catalog changes without requiring a merchandiser to manually update rules for every product.' },
     ],
     primaryTech: ['Vector Search', 'Collaborative Filtering', 'Real-Time Personalization'],
-    seoTitle: 'AI-Driven Product Recommendation Engines for Retail | Quantyro',
+    seoTitle: 'AI-Driven Product Recommendation Engines for Retail',
     seoDescription: 'AI product recommendation engine engineering for retail — personalized suggestions that increase conversion and average order value.',
   },
   {
@@ -1789,7 +1789,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does voice search require a specific device, or does it work within a standard app?', a: 'It can work within a standard mobile app or website using the device’s microphone, independent of dedicated voice assistant hardware — the underlying speech-to-text and intent parsing works the same regardless of the device context.' },
     ],
     primaryTech: ['Computer Vision', 'Speech-to-Text', 'Visual Similarity Search'],
-    seoTitle: 'Visual & Voice-Enabled Search Development for Retail | Quantyro',
+    seoTitle: 'Visual & Voice-Enabled Search Development for Retail',
     seoDescription: 'Visual and voice-enabled search engineering for retail — image-based and spoken product discovery for fashion, home, and lifestyle categories.',
   },
   {
@@ -1827,7 +1827,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How accurate is furniture placement AR at representing real size and scale?', a: 'Modern AR frameworks use the phone’s depth sensing and spatial tracking to place a life-size, accurately-scaled 3D model in the shopper’s real space, which is generally quite accurate for size and fit assessment when the 3D model itself is built to precise real-world dimensions.' },
     ],
     primaryTech: ['ARKit / ARCore', 'WebAR', '3D Product Modeling'],
-    seoTitle: 'AR/VR Virtual Try-On & Product Preview Development | Quantyro',
+    seoTitle: 'AR/VR Virtual Try-On & Product Preview Development',
     seoDescription: 'AR/VR virtual try-on and product preview engineering for retail — reducing purchase uncertainty and returns through realistic previews.',
   },
   {
@@ -1865,7 +1865,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How is marketplace inventory management different from a standard single-seller storefront?', a: 'Each seller manages their own inventory independently through their own portal, while the platform aggregates all sellers’ catalogs into one unified shopping experience for buyers — requiring the underlying architecture to isolate seller data while presenting a seamless combined catalog.' },
     ],
     primaryTech: ['Split Payment Processing', 'Multi-Vendor Architecture', 'Marketplace Infrastructure'],
-    seoTitle: 'Marketplace & Multi-Vendor Portal Development | Quantyro',
+    seoTitle: 'Marketplace & Multi-Vendor Portal Development',
     seoDescription: 'Marketplace and multi-vendor portal engineering for retail — split payments, unified checkout, and independent seller infrastructure.',
   },
   // ───────────────────────── Real Estate & PropTech ─────────────────────────
@@ -1904,7 +1904,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can buyers still use traditional filters alongside AI-powered recommendations?', a: 'Yes — the two work together rather than one replacing the other; hard requirements (must have 3 bedrooms, under a specific price) still filter the pool, while AI ranking determines the order and highlights within results that meet those requirements.' },
     ],
     primaryTech: ['Machine Learning', 'Recommendation Systems', 'Property Embeddings'],
-    seoTitle: 'AI-Driven Property Search & Recommendation Engine Development | Quantyro',
+    seoTitle: 'AI-Driven Property Search & Recommendation Engine Development',
     seoDescription: 'AI-powered property search and recommendation engineering for real estate — personalized listing discovery beyond basic filters.',
   },
   {
@@ -1942,7 +1942,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How accurate are measurements taken within a virtual tour?', a: 'Modern 3D scanning technology captures dimensions with meaningful accuracy for practical purposes like checking furniture fit, though it’s generally not a substitute for precise measurements when that level of exactness genuinely matters (like for renovation planning).' },
     ],
     primaryTech: ['3D Scanning / Photogrammetry', 'WebXR', 'Matterport / Similar Platforms'],
-    seoTitle: 'Virtual 3D Tour & AR/VR Walkthrough Development for Real Estate | Quantyro',
+    seoTitle: 'Virtual 3D Tour & AR/VR Walkthrough Development for Real Estate',
     seoDescription: 'Virtual 3D tour and AR/VR walkthrough engineering for real estate — immersive property exploration that increases listing engagement.',
   },
   {
@@ -1980,7 +1980,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Are there legal restrictions on how MLS data can be used or displayed?', a: 'Yes — MLS data typically comes with specific licensing and display requirements (attribution, certain data fields that can’t be shown publicly) that vary by region, and compliance with these rules is a genuine legal requirement, not just a technical consideration.' },
     ],
     primaryTech: ['RESO Data Standard', 'MLS APIs', 'Data Normalization'],
-    seoTitle: 'MLS & Third-Party Listing Data Integration Development | Quantyro',
+    seoTitle: 'MLS & Third-Party Listing Data Integration Development',
     seoDescription: 'MLS and third-party real estate listing data integration engineering — accurate, compliant, near-real-time property data synchronization.',
   },
   {
@@ -2018,7 +2018,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can this system handle different commission structures for different agent teams?', a: 'Yes — commission logic is typically configured per agent, team, or agreement rather than one fixed rule for the entire brokerage, since compensation structures commonly vary between individual agents, teams, and specific referral arrangements.' },
     ],
     primaryTech: ['CRM Systems', 'Commission Calculation Engines', 'Pipeline Tracking'],
-    seoTitle: 'Lead & Commission Management Development for Real Estate Brokers | Quantyro',
+    seoTitle: 'Lead & Commission Management Development for Real Estate Brokers',
     seoDescription: 'Lead and commission management engineering for real estate brokers — full pipeline tracking and accurate multi-party commission splits.',
   },
   {
@@ -2056,7 +2056,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'What happens if there’s a dispute about whether a document was actually signed?', a: 'A properly built system maintains a complete, timestamped audit trail — who signed, when, from what device and location — providing tamper-evident documentation that resolves exactly this kind of dispute far more reliably than a paper record.' },
     ],
     primaryTech: ['E-Signature APIs', 'Document Workflow Automation', 'Audit Trail Systems'],
-    seoTitle: 'Document Management & E-Signature Development for Real Estate | Quantyro',
+    seoTitle: 'Document Management & E-Signature Development for Real Estate',
     seoDescription: 'Document management and e-signature engineering for real estate — legally binding digital contracts and automated document workflows.',
   },
   {
@@ -2094,7 +2094,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Does using the calculator connect a buyer to an actual lender?', a: 'That depends on the platform — some calculators are purely informational, while others integrate with lending partners to let an interested buyer move directly from an affordability estimate into an actual pre-qualification conversation.' },
     ],
     primaryTech: ['Mortgage Rate APIs', 'Interactive Calculators', 'Lending Integration'],
-    seoTitle: 'Mortgage & Affordability Calculator Development for Real Estate | Quantyro',
+    seoTitle: 'Mortgage & Affordability Calculator Development for Real Estate',
     seoDescription: 'Mortgage and affordability calculator engineering for real estate platforms — interactive, realistic payment estimates within listings.',
   },
   {
@@ -2132,7 +2132,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can buyers control how many alerts they receive to avoid notification fatigue?', a: 'Yes — well-designed alert systems let buyers tune criteria specificity and choose delivery frequency and channel, balancing timely notification against not being overwhelmed by alerts for every minor match.' },
     ],
     primaryTech: ['Geofencing', 'Real-Time Matching Engines', 'Multi-Channel Notifications'],
-    seoTitle: 'Geofenced Price-Drop & New-Listing Alert Development | Quantyro',
+    seoTitle: 'Geofenced Price-Drop & New-Listing Alert Development',
     seoDescription: 'Geofenced price-drop and new-listing alert engineering for real estate — near-instant, precisely targeted property notifications.',
   },
   {
@@ -2170,7 +2170,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can property management tools scale from a single rental to a large portfolio?', a: 'Yes — the same underlying rent collection, maintenance tracking, and screening infrastructure scales from managing one property to hundreds, with portfolio-level reporting and dashboards becoming more valuable as the number of managed units grows.' },
     ],
     primaryTech: ['Credit & Background Check APIs', 'Payment Processing', 'Property Management Systems'],
-    seoTitle: 'Tenant Screening & Property Management Tool Development | Quantyro',
+    seoTitle: 'Tenant Screening & Property Management Tool Development',
     seoDescription: 'Tenant screening and property management engineering for real estate — automated, fair-housing-compliant screening and lease lifecycle tools.',
   },
   // ───────────────────────── Healthcare & Telemedicine ─────────────────────────
@@ -2209,7 +2209,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Is it more expensive to build HIPAA compliance in from the start versus adding it later?', a: 'Significantly less expensive — retrofitting compliance onto an existing system that wasn’t architected for it typically requires substantial rework of data storage, access control, and infrastructure choices, whereas building it in from the start costs comparatively little at each individual design decision.' },
     ],
     primaryTech: ['HIPAA-Compliant Infrastructure', 'End-to-End Encryption', 'Audit Logging'],
-    seoTitle: 'HIPAA-Compliant Patient Portal & Telemedicine Platform Development | Quantyro',
+    seoTitle: 'HIPAA-Compliant Patient Portal & Telemedicine Platform Development',
     seoDescription: 'HIPAA-compliant patient portal and telemedicine platform engineering — secure video visits and patient data access built to healthcare standards.',
   },
   {
@@ -2247,7 +2247,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Who controls what patient data actually gets shared between systems?', a: 'Patient consent and regulatory requirements (like those under HIPAA) govern data sharing — FHIR provides the technical mechanism for exchange, but the decision of what’s shared, with whom, and under what authorization is a separate governance and compliance layer built on top of the technical standard.' },
     ],
     primaryTech: ['HL7 FHIR', 'EHR APIs', 'Healthcare Data Standards'],
-    seoTitle: 'HL7/FHIR EHR Interoperability Development for Healthcare | Quantyro',
+    seoTitle: 'HL7/FHIR EHR Interoperability Development for Healthcare',
     seoDescription: 'HL7 FHIR-based EHR interoperability engineering — standardized health data exchange across previously siloed clinical systems.',
   },
   {
@@ -2285,7 +2285,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How are false alarms avoided when monitoring continuous data streams?', a: 'Anomaly detection is tuned against each patient’s own established normal range rather than a generic population threshold, and typically requires a sustained trend rather than a single outlier reading before triggering a provider alert, reducing alert fatigue from noise in individual readings.' },
     ],
     primaryTech: ['Medical IoT Devices', 'Bluetooth/Cellular Connectivity', 'Anomaly Detection'],
-    seoTitle: 'Remote Patient Monitoring & IoT Device Integration Development | Quantyro',
+    seoTitle: 'Remote Patient Monitoring & IoT Device Integration Development',
     seoDescription: 'Remote patient monitoring and medical IoT integration engineering — continuous health data streaming for earlier clinical intervention.',
   },
   {
@@ -2323,7 +2323,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'How does this differ from standard hospital IT access controls?', a: 'Standard perimeter-based IT security often grants broad trust to anything inside the network once initial login succeeds; zero-trust specifically verifies every individual request to sensitive clinical data on its own merits, continuously, rather than trusting a session indefinitely once initial access is granted.' },
     ],
     primaryTech: ['Zero-Trust Architecture', 'Role-Based Access Control', 'Continuous Authentication'],
-    seoTitle: 'Zero-Trust Access Control for Clinical Data Development | Quantyro',
+    seoTitle: 'Zero-Trust Access Control for Clinical Data Development',
     seoDescription: 'Zero-trust access control engineering for clinical data — continuously verified access that limits breach exposure for healthcare systems.',
   },
   {
@@ -2361,7 +2361,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can billing and scheduling systems integrate with an existing EHR?', a: 'Yes — most modern billing and scheduling platforms are built to integrate with major EHR systems, syncing patient records, visit documentation, and billing codes rather than requiring duplicate data entry across separate, disconnected systems.' },
     ],
     primaryTech: ['Insurance Clearinghouse APIs', 'Medical Coding Systems', 'Automated Scheduling'],
-    seoTitle: 'Medical Billing & Appointment Scheduling System Development | Quantyro',
+    seoTitle: 'Medical Billing & Appointment Scheduling System Development',
     seoDescription: 'Medical billing and appointment scheduling engineering for healthcare — automated claims processing and no-show-reducing scheduling.',
   },
   {
@@ -2399,7 +2399,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'What happens if a patient’s chosen pharmacy isn’t connected to the e-prescribing network?', a: 'Coverage across major pharmacy networks is now extensive, but a well-built system should handle the edge case gracefully — typically falling back to a printable or faxable prescription for the rare pharmacy not electronically connected.' },
     ],
     primaryTech: ['Surescripts Network', 'Drug Interaction Databases', 'EHR Integration'],
-    seoTitle: 'E-Prescription & Pharmacy Integration Development | Quantyro',
+    seoTitle: 'E-Prescription & Pharmacy Integration Development',
     seoDescription: 'E-prescription and pharmacy integration engineering for healthcare — secure, safety-checked electronic prescribing at the point of care.',
   },
   {
@@ -2437,7 +2437,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Is dashboard design purely a UI concern, or does it affect patient outcomes?', a: 'It genuinely affects outcomes — clinical information that’s harder to find or less prominent is more likely to be missed under the real time pressure of a patient encounter, which is why dashboard design for clinical interfaces is treated as a patient-safety consideration, not just a visual preference.' },
     ],
     primaryTech: ['Clinical Data Visualization', 'EHR Integration', 'Alert Systems'],
-    seoTitle: 'Doctor-Side Dashboard & Patient Data Insight Development | Quantyro',
+    seoTitle: 'Doctor-Side Dashboard & Patient Data Insight Development',
     seoDescription: 'Doctor-facing clinical dashboard engineering for healthcare — surfacing relevant patient data and trends within real clinical time constraints.',
   },
   {
@@ -2475,7 +2475,7 @@ export const SAMPLE_INDUSTRY_SOLUTION_PAGES: IndustrySolutionPage[] = [
       { q: 'Can a network see aggregate performance data across all its clinics while keeping clinical records separate?', a: 'Yes — administrative and operational reporting (scheduling utilization, billing performance) can be aggregated at the network level for management visibility, while clinical patient records remain properly isolated per care relationship, since these are genuinely different data governance requirements.' },
     ],
     primaryTech: ['Multi-Tenant Healthcare Architecture', 'Care-Team Access Control', 'Cross-Clinic Referral Systems'],
-    seoTitle: 'Multi-Provider & Multi-Clinic Platform Development | Quantyro',
+    seoTitle: 'Multi-Provider & Multi-Clinic Platform Development',
     seoDescription: 'Multi-provider and multi-clinic healthcare platform engineering — shared infrastructure with care-team-based data access controls.',
   },
 ];
