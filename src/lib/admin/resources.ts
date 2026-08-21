@@ -111,6 +111,23 @@ export const RESOURCES: Record<string, ResourceConfig> = {
       { name: 'is_active', label: 'Active', type: 'boolean' },
     ],
   },
+  'industry-applications': {
+    key: 'industry-applications',
+    table: 'industry_applications',
+    label: 'Industry Application',
+    pluralLabel: 'Industry Applications',
+    orderBy: 'sort_order',
+    listColumns: ['sector', 'metric', 'is_active'],
+    revalidateTag: 'industry-applications',
+    fields: [
+      { name: 'service_id', label: 'Service (which service page this card shows on)', type: 'relation', required: true, relationTable: 'services', relationLabelField: 'title' },
+      { name: 'sector', label: 'Industry / sector name', type: 'text', required: true, placeholder: 'e.g. FinTech & Banking' },
+      { name: 'use_case', label: 'Use case description', type: 'textarea', required: true },
+      { name: 'metric', label: 'Highlight badge (short capability phrase — avoid fabricated stats)', type: 'text', required: true, placeholder: 'e.g. Built for High Reliability' },
+      { name: 'sort_order', label: 'Sort order', type: 'number', required: true },
+      { name: 'is_active', label: 'Active', type: 'boolean' },
+    ],
+  },
   projects: {
     key: 'projects',
     table: 'projects',

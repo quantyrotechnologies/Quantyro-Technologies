@@ -14,32 +14,9 @@ import TableOfContents from './TableOfContents';
 import FaqSection, { type FaqItem } from './FaqSection';
 import InlineInquiryForm from './InlineInquiryForm';
 import CtaSection from './CtaSection';
-import type { Service, RoadmapStep, Project } from '@/lib/types';
+import type { Service, RoadmapStep, Project, IndustryApplication } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-const INDUSTRY_APPLICATIONS = [
-  {
-    sector: 'FinTech & Banking',
-    useCase: 'High-throughput transactional ledger systems, fraud-detection pipelines, and PCI DSS–aligned payment gateway architecture.',
-    metric: 'Built for High Reliability',
-  },
-  {
-    sector: 'Healthcare & Life Sciences',
-    useCase: 'HIPAA-aware patient portals, IoT medical device telemetry synchronization, and zero-trust electronic health record architecture.',
-    metric: 'Security-First Architecture',
-  },
-  {
-    sector: 'Enterprise B2B SaaS',
-    useCase: 'Multi-tenant cloud architectures, role-based access control (RBAC), and automated billing/metering engines.',
-    metric: 'Faster Time-to-Market',
-  },
-  {
-    sector: 'E-Commerce & Retail',
-    useCase: 'Headless storefronts, dynamic inventory management, and low-latency edge personalization engines.',
-    metric: 'Low-Latency Edge Delivery',
-  },
-];
 
 const SLA_GUARANTEES = [
   {
@@ -64,6 +41,7 @@ export default function ServiceDetailContent({
   cities = [],
   techStackSlugs = {},
   relatedProjects = [],
+  industryApplications = [],
 }: {
   service: Service;
   faqs: FaqItem[];
@@ -73,6 +51,7 @@ export default function ServiceDetailContent({
   /** capabilityLabel -> deep-dive page slug, pre-fetched by the page so this client component doesn't call async data functions per capability. */
   techStackSlugs?: Record<string, string>;
   relatedProjects?: Project[];
+  industryApplications?: IndustryApplication[];
 }) {
   const container = useRef<HTMLDivElement>(null);
   const accent = Number(service.num) % 2 === 0 ? 'accent-2' : 'accent';
@@ -80,7 +59,7 @@ export default function ServiceDetailContent({
   const tocItems = [
     { id: 'overview', label: 'Executive Overview' },
     { id: 'capabilities', label: 'Core Technical Capabilities' },
-    { id: 'industries', label: 'Industry Applications' },
+    ...(industryApplications.length > 0 ? [{ id: 'industries', label: 'Industry Applications' }] : []),
     { id: 'sla-standards', label: 'Engineering SLAs & Standards' },
     { id: 'process', label: '4-Phase Delivery Framework' },
     { id: 'engagement', label: 'Engagement at a Glance' },
@@ -274,35 +253,37 @@ export default function ServiceDetailContent({
         </div>
 
         {/* 3. Industry Applications */}
-        <div className="mb-[64px]">
-          <h2 id="industries" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['03_/_']">
-            Industry Applications
-          </h2>
-          <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
-            Tailored Domain Solutions for High-Growth Sectors
-          </h3>
+        {industryApplications.length > 0 && (
+          <div className="mb-[64px]">
+            <h2 id="industries" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['03_/_']">
+              Industry Applications
+            </h2>
+            <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
+              Tailored Domain Solutions for High-Growth Sectors
+            </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
-            {INDUSTRY_APPLICATIONS.map((app) => (
-              <div
-                key={app.sector}
-                className="rounded-[20px] bg-[#0A1324] border border-white/[0.08] p-[24px] text-white flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-[10px]">
-                    <h4 className="text-[18px] font-bold text-white">{app.sector}</h4>
-                    <span className="mono text-[11px] px-[8px] py-[3px] rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                      {app.metric}
-                    </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
+              {industryApplications.map((app) => (
+                <div
+                  key={app.id}
+                  className="rounded-[20px] bg-[#0A1324] border border-white/[0.08] p-[24px] text-white flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-[10px]">
+                      <h4 className="text-[18px] font-bold text-white">{app.sector}</h4>
+                      <span className="mono text-[11px] px-[8px] py-[3px] rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                        {app.metric}
+                      </span>
+                    </div>
+                    <p className="text-[14px] text-slate-300 leading-[1.65]">
+                      {app.useCase}
+                    </p>
                   </div>
-                  <p className="text-[14px] text-slate-300 leading-[1.65]">
-                    {app.useCase}
-                  </p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* 4. Engineering SLAs & Standards */}
         <div className="mb-[64px]">

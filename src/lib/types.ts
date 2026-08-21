@@ -12,6 +12,14 @@ export interface Service {
   targetKeywords?: string[];
 }
 
+export interface IndustryApplication {
+  id: string;
+  serviceId: string;
+  sector: string;
+  useCase: string;
+  metric: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
