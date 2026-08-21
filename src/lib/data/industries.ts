@@ -35,6 +35,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     statLabel: 'Transaction processing',
     seoTitle: 'Banking & FinTech Software Development | Quantyro',
     seoDescription: 'Secure banking platforms, real-time payment gateways, and AI-driven fraud detection engineered for regulated financial institutions and neobanks.',
+    targetKeywords: ['fintech software development company', 'banking software development services', 'payment gateway development company', 'fraud detection software development', 'core banking modernization services'],
   },
   {
     id: 'ind-2',
@@ -68,6 +69,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     statLabel: 'Activity sync',
     seoTitle: 'Fitness & Wellness App Development | Quantyro',
     seoDescription: 'Wearable-integrated fitness apps, AI-driven personalization, and live coaching platforms engineered for gyms, trainers, and wellness startups.',
+    targetKeywords: ['fitness app development company', 'wellness app development services', 'gym management software development', 'fitness wearable app integration', 'personal training app development company'],
   },
   {
     id: 'ind-3',
@@ -101,6 +103,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     statLabel: 'Dispatch matching',
     seoTitle: 'Taxi & Ride-Hailing App Development | Quantyro',
     seoDescription: 'Real-time dispatch, GPS tracking, and dynamic fare engines engineered for ride-hailing startups and fleet operators at scale.',
+    targetKeywords: ['taxi app development company', 'ride-hailing app development services', 'on-demand taxi booking app development', 'fleet management software development', 'Uber-like app development company'],
   },
   {
     id: 'ind-4',
@@ -134,6 +137,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     statLabel: 'AI-personalized learning',
     seoTitle: 'Education & EdTech Software Development | Quantyro',
     seoDescription: 'AI-powered tutoring, live classrooms, and school management systems engineered for EdTech platforms and corporate training teams.',
+    targetKeywords: ['edtech app development company', 'e-learning platform development services', 'online tutoring app development', 'school management software development', 'LMS development company India'],
   },
   {
     id: 'ind-5',
@@ -167,6 +171,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     statLabel: 'Compatibility scoring',
     seoTitle: 'Dating & Social App Development | Quantyro',
     seoDescription: 'AI-powered matchmaking, real-time messaging, and identity verification systems engineered for dating and social discovery platforms.',
+    targetKeywords: ['dating app development company', 'social networking app development services', 'matchmaking app development', 'dating app development company India', 'social discovery app development'],
   },
   {
     id: 'ind-6',
@@ -200,6 +205,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     statLabel: 'Edge response',
     seoTitle: 'Headless E-Commerce Development for Retail | Quantyro',
     seoDescription: 'Headless storefronts, real-time inventory sync, and peak-traffic-proof checkout systems built for e-commerce and retail brands.',
+    targetKeywords: ['e-commerce app development company', 'retail software development services', 'headless storefront development for retail', 'inventory management software development', 'e-commerce platform development company India'],
   },
   {
     id: 'ind-7',
@@ -233,13 +239,14 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     statLabel: 'Virtual tour ready',
     seoTitle: 'Real Estate & PropTech Software Development | Quantyro',
     seoDescription: 'AI-driven property search, virtual tour platforms, and MLS-integrated listing systems engineered for real estate and PropTech businesses.',
+    targetKeywords: ['real estate software development company', 'proptech app development services', 'property listing platform development', 'virtual tour app development company', 'MLS integration development services'],
   },
   {
     id: 'ind-8',
     num: '08',
     slug: 'healthcare-telemedicine',
     title: 'Healthcare & Telemedicine',
-    desc: 'HIPAA-compliant patient platforms, telemedicine, and EHR integrations built with zero-trust security as the default, not a retrofit before a compliance review.',
+    desc: 'HIPAA-aware patient platforms, telemedicine, and EHR integrations built with zero-trust security as the default, not a retrofit before a compliance review.',
     challenges: [
       'HIPAA and HL7/FHIR interoperability requirements',
       'Fragmented patient data across EHR systems',
@@ -247,7 +254,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
       'Medication adherence and patient engagement',
     ],
     capabilities: [
-      'HIPAA-compliant patient portals and telemedicine platforms',
+      'HIPAA-aware patient portals and telemedicine platforms',
       'HL7/FHIR-based EHR interoperability',
       'Remote patient monitoring and IoT device integration',
       'Zero-trust access control for clinical data',
@@ -265,7 +272,8 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     statValue: 'Zero-Trust',
     statLabel: 'Security architecture',
     seoTitle: 'Healthcare & Telemedicine Software Development | Quantyro',
-    seoDescription: 'HIPAA-compliant patient portals, telemedicine platforms, and EHR-integrated systems engineered for healthcare providers.',
+    seoDescription: 'HIPAA-aware patient portals, telemedicine platforms, and EHR-integrated systems engineered for healthcare providers.',
+    targetKeywords: ['telemedicine app development company', 'healthcare software development services', 'HIPAA-aware healthcare app development', 'EHR integration development company', 'patient portal development services'],
   },
 ];
 
