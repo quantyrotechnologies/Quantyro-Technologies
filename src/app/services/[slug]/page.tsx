@@ -9,6 +9,7 @@ import { techStackSlugMapForService } from '@/lib/data/techStackPages';
 import { getProjectsForService } from '@/lib/data/projects';
 import { getIndustryApplicationsForService } from '@/lib/data/industryApplications';
 import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
+import { stripHtml } from '@/lib/stripHtml';
 import ServiceDetailContent from '@/components/ServiceDetailContent';
 
 export async function generateStaticParams() {
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const service = await getServiceBySlug(slug);
   if (!service) return {};
   const title = service.seoTitle || `${service.title} Services`;
-  const description = service.seoDescription || service.desc;
+  const description = service.seoDescription || stripHtml(service.desc);
   return {
     title,
     description,
@@ -57,7 +58,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         '@id': `${SITE_URL}/services/${slug}/#service`,
         name: service.title,
         serviceType: service.title,
-        description: service.desc,
+        description: stripHtml(service.desc),
         provider: { '@id': `${SITE_URL}/#organization` },
         ...(regions.length + cities.length > 0 ? { areaServed: [...regions, ...cities] } : {}),
       },

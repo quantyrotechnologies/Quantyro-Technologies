@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { FieldConfig, ResourceConfig } from '@/lib/admin/resources';
 import { useToast } from './Toast';
+import RichTextEditor from './RichTextEditor';
+import { stripHtml } from '@/lib/stripHtml';
 
 type FormValue = string | number | boolean | string[];
 
@@ -50,7 +52,7 @@ interface SeoCheck {
 function computeSeoChecks(values: Record<string, FormValue>, seoFields: NonNullable<ResourceConfig['seoFields']>): SeoCheck[] {
   const title = String(values[seoFields.title] || (seoFields.titleFallback ? values[seoFields.titleFallback] : '') || '');
   const description = String(values[seoFields.description] || (seoFields.descriptionFallback ? values[seoFields.descriptionFallback] : '') || '');
-  const body = seoFields.body ? String(values[seoFields.body] || '') : '';
+  const body = seoFields.body ? stripHtml(String(values[seoFields.body] || '')) : '';
   const wordCount = body.trim() ? body.trim().split(/\s+/).length : 0;
 
   const checks: SeoCheck[] = [
@@ -201,6 +203,14 @@ export default function ResourceForm({
             rows={4}
             required={field.required}
             className="w-full rounded-[10px] border border-[var(--line)] bg-white px-[12px] py-[9px] text-[14px] text-[var(--ink)] outline-none focus:border-[var(--accent)] resize-y"
+          />
+        );
+      case 'richtext':
+        return (
+          <RichTextEditor
+            value={values[field.name] as string}
+            onChange={(html) => setField(field.name, html)}
+            required={field.required}
           />
         );
       case 'boolean':

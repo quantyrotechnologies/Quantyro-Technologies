@@ -7,6 +7,7 @@ import { getActiveCitiesByIndustry } from '@/lib/data/locationPages';
 import { industrySolutionSlugMapForIndustry } from '@/lib/data/industrySolutionPages';
 import { getProjectsForIndustry } from '@/lib/data/projects';
 import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
+import { stripHtml } from '@/lib/stripHtml';
 import IndustryDetailContent from '@/components/IndustryDetailContent';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const industry = await getIndustryBySlug(slug);
   if (!industry) return {};
   const title = industry.seoTitle || `${industry.title} Software Development`;
-  const description = industry.seoDescription || industry.desc;
+  const description = industry.seoDescription || stripHtml(industry.desc);
   return {
     title,
     description,
@@ -49,7 +50,7 @@ export default async function IndustryDetailPage({ params }: { params: Promise<{
         '@id': `${SITE_URL}/industries/${slug}/#service`,
         name: `${industry.title} Software Development`,
         serviceType: `${industry.title} Software Development`,
-        description: industry.desc,
+        description: stripHtml(industry.desc),
         provider: { '@id': `${SITE_URL}/#organization` },
         ...(cities.length > 0 ? { areaServed: cities } : {}),
       },

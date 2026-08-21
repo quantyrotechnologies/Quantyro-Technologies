@@ -13,6 +13,7 @@ import { slugToCity } from '@/lib/cities';
 import { CITY_CONTEXT } from '@/lib/cityContext';
 import { serviceIllustration } from '@/lib/serviceIllustration';
 import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
+import { stripHtml } from '@/lib/stripHtml';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CtaSection from '@/components/CtaSection';
 import FaqSection from '@/components/FaqSection';
@@ -56,7 +57,7 @@ export async function generateMetadata({
     // service description) so cities sharing the same service don't end up
     // with byte-identical meta descriptions in search results.
     const description = page.seoDescription || page.localNote?.slice(0, 160)
-      || `${page.entity.title} in ${page.city} — ${page.entity.desc}`.slice(0, 160);
+      || `${page.entity.title} in ${page.city} — ${stripHtml(page.entity.desc)}`.slice(0, 160);
     return {
       title,
       description,
@@ -198,7 +199,7 @@ export default async function ServiceLocationPage({
         "@type": "Service",
         "@id": `${SITE_URL}/services/${slug}/${locationSlug}/#service`,
         name: `${page.entity.title} in ${page.city}`,
-        description: page.localNote || page.entity.desc,
+        description: page.localNote || stripHtml(page.entity.desc),
         areaServed: page.city,
         provider: { "@id": `${SITE_URL}/#organization` },
       },
@@ -229,7 +230,7 @@ export default async function ServiceLocationPage({
               {page.entity.title} in {page.city}
             </h1>
             <p className="mt-[24px] max-w-[640px] text-[var(--muted)] text-[16px] leading-[1.7]">
-              {page.localNote || page.entity.desc}
+              {page.localNote || stripHtml(page.entity.desc)}
             </p>
             {page.nearbyAreas && (
               <p className="mt-[14px] max-w-[640px] text-[13.5px] text-[var(--muted)]">
@@ -268,7 +269,7 @@ export default async function ServiceLocationPage({
                   {cityContext} That makes reliable, production-grade {page.entity.title.toLowerCase()} a real differentiator for teams based here — not just a checkbox.
                 </p>
                 <p className="mt-[16px] text-[15px] text-[var(--muted)] leading-[1.8]">
-                  {page.entity.desc} Whether you&apos;re a {page.city}-based startup shipping a first product or an established team modernizing a legacy system, the engagement looks the same: senior engineers, clear scope, and code you fully own at the end of it — not an outsourced hand-off that needs rebuilding a year later.
+                  {stripHtml(page.entity.desc)} Whether you&apos;re a {page.city}-based startup shipping a first product or an established team modernizing a legacy system, the engagement looks the same: senior engineers, clear scope, and code you fully own at the end of it — not an outsourced hand-off that needs rebuilding a year later.
                 </p>
               </div>
             )}

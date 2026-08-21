@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CtaSection from './CtaSection';
 import FaqSection, { type FaqItem } from './FaqSection';
 import Breadcrumbs from './Breadcrumbs';
+import RichText from './RichText';
 import type { TeamMember } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -83,7 +84,7 @@ export default function TeamContent({
                 <div className="mt-[16px] text-[17px] font-bold text-[var(--ink)]">{m.name}</div>
                 <div className="mt-[3px] text-[13px] text-[var(--accent)] font-semibold">{m.role}</div>
                 {m.bio && (
-                  <p className="mt-[10px] text-[13.5px] text-[var(--muted)] leading-[1.6]">{m.bio}</p>
+                  <RichText html={m.bio} className="mt-[10px] text-[13.5px] text-[var(--muted)] leading-[1.6]" />
                 )}
                 {m.linkedinUrl && (
                   <a

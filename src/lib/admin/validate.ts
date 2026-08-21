@@ -1,4 +1,5 @@
 import type { ResourceConfig } from './resources';
+import { sanitizeRichText } from '@/lib/sanitizeHtml';
 
 /**
  * Coerces + validates a raw request body against a resource's field config.
@@ -61,6 +62,12 @@ export function validateResourcePayload(
         } catch {
           errors.push(`${field.label} is not valid JSON`);
         }
+        break;
+      case 'richtext':
+        // Never trust client-submitted HTML — this is the actual XSS
+        // boundary, not the editor (which could be bypassed with a raw
+        // API call). Allowlist-sanitize before it ever reaches the DB.
+        data[field.name] = sanitizeRichText(String(raw));
         break;
       default:
         data[field.name] = String(raw);

@@ -13,6 +13,7 @@ import { regionToSlug } from '@/lib/regions';
 import { citySlug } from '@/lib/cities';
 import { serviceIllustration } from '@/lib/serviceIllustration';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
+import { stripHtml } from '@/lib/stripHtml';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -124,7 +125,7 @@ export default function ServicesContent({
               <div className="p-[18px] flex flex-col flex-1">
               <span className="text-[11px] text-[var(--muted)] mono">{s.num}</span>
               <h3 className="mt-[8px] text-[18px] font-[var(--font-display)] font-bold group-hover:text-[var(--accent)] transition-colors duration-300">{s.title}</h3>
-              <p className="mt-[6px] text-[var(--muted)] text-[13px] leading-[1.5] line-clamp-2">{s.desc}</p>
+              <p className="mt-[6px] text-[var(--muted)] text-[13px] leading-[1.5] line-clamp-2">{stripHtml(s.desc)}</p>
 
               <h4 className="mt-[12px] text-[9.5px] font-mono font-semibold uppercase tracking-wide text-[var(--muted)]">
                 What&apos;s included

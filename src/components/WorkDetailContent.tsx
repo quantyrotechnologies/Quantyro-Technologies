@@ -10,6 +10,7 @@ import { serviceSlugForTag } from '@/lib/serviceTagMap';
 import Breadcrumbs from './Breadcrumbs';
 import TableOfContents from './TableOfContents';
 import CtaSection from './CtaSection';
+import RichText from './RichText';
 import type { Project } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -114,9 +115,10 @@ export default function WorkDetailContent({ project }: { project: Project }) {
         <h2 id="overview" className="wd-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--muted)] mb-[16px] scroll-mt-[100px]">
           Overview
         </h2>
-        <p className="wd-reveal text-[16px] text-[var(--ink)]/85 leading-[1.75] max-w-[760px] mb-[16px]">
-          {project.detail}
-        </p>
+        <RichText
+          html={project.detail}
+          className="wd-reveal text-[16px] text-[var(--ink)]/85 leading-[1.75] max-w-[760px] mb-[16px]"
+        />
         {project.tags.length > 0 && (
           <div className="wd-reveal flex flex-wrap gap-[8px] mb-[56px]">
             {project.tags.map((t) => {

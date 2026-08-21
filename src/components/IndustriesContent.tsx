@@ -10,6 +10,7 @@ import FaqSection, { type FaqItem } from './FaqSection';
 import Breadcrumbs from './Breadcrumbs';
 import { industryIllustration } from '@/lib/industryIllustration';
 import { citySlug } from '@/lib/cities';
+import { stripHtml } from '@/lib/stripHtml';
 import type { Industry } from '@/lib/types';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 
@@ -109,7 +110,7 @@ export default function IndustriesContent({
                   </span>
                 </div>
                 <h3 className="mt-[8px] text-[18px] font-[var(--font-display)] font-bold group-hover:text-[var(--accent)] transition-colors duration-300">{i.title}</h3>
-                <p className="mt-[6px] text-[var(--muted)] text-[13px] leading-[1.5] line-clamp-2">{i.desc}</p>
+                <p className="mt-[6px] text-[var(--muted)] text-[13px] leading-[1.5] line-clamp-2">{stripHtml(i.desc)}</p>
 
                 <h4 className="mt-[12px] text-[9.5px] font-mono font-semibold uppercase tracking-wide text-[var(--muted)]">
                   What we deliver

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import PrintButton from './PrintButton';
+import { stripHtml } from '@/lib/stripHtml';
 import type { Service, Industry, RoadmapStep, SiteSettings } from '@/lib/types';
 
 export default function BrochureContent({
@@ -78,7 +79,7 @@ export default function BrochureContent({
           {services.map((s) => (
             <div key={s.id} className="rounded-[14px] border border-[var(--line)] bg-[var(--surface)] p-[18px]">
               <div className="text-[14.5px] font-bold text-[var(--ink)]">{s.title}</div>
-              <p className="mt-[6px] text-[12.5px] text-[var(--muted)] leading-[1.55] line-clamp-2">{s.desc}</p>
+              <p className="mt-[6px] text-[12.5px] text-[var(--muted)] leading-[1.55] line-clamp-2">{stripHtml(s.desc)}</p>
             </div>
           ))}
         </div>

@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
+import { stripHtml } from '@/lib/stripHtml';
 import type { Industry } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -83,7 +84,7 @@ export default function IndustriesSection({ industries }: { industries: Industry
               {i.title}
             </h3>
             <p className="mt-[8px] text-[13.5px] text-[var(--muted)] leading-[1.6] line-clamp-2">
-              {i.desc}
+              {stripHtml(i.desc)}
             </p>
           </Link>
         ))}

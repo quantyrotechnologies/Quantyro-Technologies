@@ -13,6 +13,7 @@ import TableOfContents from './TableOfContents';
 import FaqSection, { type FaqItem } from './FaqSection';
 import InlineInquiryForm from './InlineInquiryForm';
 import CtaSection from './CtaSection';
+import RichText from './RichText';
 import type { Industry, Service, Project } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -133,9 +134,10 @@ export default function IndustryDetailContent({
           <h3 className="ind-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[14px]">
             {industry.title} Software Built for the Constraints That Actually Matter
           </h3>
-          <p className="ind-reveal text-[16.5px] text-[var(--ink)]/85 leading-[1.8]">
-            {industry.desc}
-          </p>
+          <RichText
+            html={industry.desc}
+            className="ind-reveal text-[16.5px] text-[var(--ink)]/85 leading-[1.8]"
+          />
         </div>
 
         {/* 2. Common Challenges */}

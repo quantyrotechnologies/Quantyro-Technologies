@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import { serviceIllustration } from '@/lib/serviceIllustration';
+import { stripHtml } from '@/lib/stripHtml';
 import type { Service } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -114,7 +115,7 @@ export default function ServicesSection({ services }: { services: Service[] }) {
               {s.title}
             </h3>
             <p className="mt-[8px] text-[14px] text-[var(--muted)] leading-[1.6] line-clamp-2">
-              {s.desc}
+              {stripHtml(s.desc)}
             </p>
 
             <div className="mt-auto pt-[20px] flex flex-col gap-[8px]">

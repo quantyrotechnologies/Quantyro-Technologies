@@ -10,6 +10,7 @@ import { slugToCity } from '@/lib/cities';
 import { CITY_CONTEXT } from '@/lib/cityContext';
 import { industryIllustration } from '@/lib/industryIllustration';
 import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
+import { stripHtml } from '@/lib/stripHtml';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CtaSection from '@/components/CtaSection';
 import FaqSection from '@/components/FaqSection';
@@ -37,7 +38,7 @@ export async function generateMetadata({
   // industry description) so cities sharing the same industry don't end up
   // with byte-identical meta descriptions in search results.
   const description = page.seoDescription || page.localNote?.slice(0, 160)
-    || `${page.entity.title} in ${page.city} — ${page.entity.desc}`.slice(0, 160);
+    || `${page.entity.title} in ${page.city} — ${stripHtml(page.entity.desc)}`.slice(0, 160);
   return {
     title,
     description,
@@ -84,7 +85,7 @@ export default async function IndustryLocationPage({
         "@type": "Service",
         "@id": `${SITE_URL}/industries/${slug}/${locationSlug}/#service`,
         name: `${page.entity.title} in ${page.city}`,
-        description: page.localNote || page.entity.desc,
+        description: page.localNote || stripHtml(page.entity.desc),
         areaServed: page.city,
         provider: { "@id": `${SITE_URL}/#organization` },
       },
@@ -115,7 +116,7 @@ export default async function IndustryLocationPage({
               {page.entity.title} in {page.city}
             </h1>
             <p className="mt-[24px] max-w-[640px] text-[var(--muted)] text-[16px] leading-[1.7]">
-              {page.localNote || page.entity.desc}
+              {page.localNote || stripHtml(page.entity.desc)}
             </p>
             {page.nearbyAreas && (
               <p className="mt-[14px] max-w-[640px] text-[13.5px] text-[var(--muted)]">
@@ -152,7 +153,7 @@ export default async function IndustryLocationPage({
                   {cityContext} That combination shapes what {page.entity.title.toLowerCase()} businesses here actually need from a software partner — not a generic build, but one that fits the local pace and compliance bar.
                 </p>
                 <p className="mt-[16px] text-[15px] text-[var(--muted)] leading-[1.8]">
-                  {page.entity.desc} We work with {page.entity.title.toLowerCase()} teams in {page.city} the same way we work with them everywhere: senior engineers who understand the domain, a clear scope before code gets written, and full ownership of what ships — no black-box vendor lock-in.
+                  {stripHtml(page.entity.desc)} We work with {page.entity.title.toLowerCase()} teams in {page.city} the same way we work with them everywhere: senior engineers who understand the domain, a clear scope before code gets written, and full ownership of what ships — no black-box vendor lock-in.
                 </p>
               </div>
             )}

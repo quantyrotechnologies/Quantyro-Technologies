@@ -1,6 +1,6 @@
 import { CITIES } from '@/lib/cities';
 
-export type FieldType = 'text' | 'textarea' | 'number' | 'boolean' | 'string-array' | 'select' | 'datetime' | 'relation' | 'relation-multi' | 'json';
+export type FieldType = 'text' | 'textarea' | 'richtext' | 'number' | 'boolean' | 'string-array' | 'select' | 'datetime' | 'relation' | 'relation-multi' | 'json';
 
 export interface FieldOption {
   value: string;
@@ -74,7 +74,7 @@ export const RESOURCES: Record<string, ResourceConfig> = {
     fields: [
       { name: 'slug', label: 'Slug', type: 'text', required: true },
       { name: 'title', label: 'Title', type: 'text', required: true },
-      { name: 'description', label: 'Description', type: 'textarea', required: true },
+      { name: 'description', label: 'Description', type: 'richtext', required: true },
       CAPABILITIES_FIELD,
       { name: 'stack', label: 'Tech stack', type: 'string-array' },
       { name: 'image_url', label: 'Custom image URL (optional — recommended 16:9, overrides the default illustration)', type: 'text', placeholder: 'https://... — leave blank to use the default illustration' },
@@ -97,7 +97,7 @@ export const RESOURCES: Record<string, ResourceConfig> = {
     fields: [
       { name: 'slug', label: 'Slug', type: 'text', required: true },
       { name: 'title', label: 'Title', type: 'text', required: true },
-      { name: 'description', label: 'Description', type: 'textarea', required: true },
+      { name: 'description', label: 'Description', type: 'richtext', required: true },
       { name: 'challenges', label: 'Challenges this industry faces', type: 'string-array', required: true },
       CAPABILITIES_FIELD,
       { name: 'market_stats', label: 'Market context stats (full sentences, e.g. "39% of people worldwide use a digital banking app")', type: 'string-array' },
@@ -148,7 +148,7 @@ export const RESOURCES: Record<string, ResourceConfig> = {
       { name: 'service_ids', label: 'Show on these services (Related Work section)', type: 'relation-multi', relationTable: 'services', relationLabelField: 'title' },
       { name: 'industry_ids', label: 'Show on these industries (Related Work section)', type: 'relation-multi', relationTable: 'industries', relationLabelField: 'title' },
       { name: 'summary', label: 'Short summary (card)', type: 'textarea', required: true },
-      { name: 'detail', label: 'Full detail (expanded view)', type: 'textarea', required: true },
+      { name: 'detail', label: 'Full detail (expanded view)', type: 'richtext', required: true },
       { name: 'stack', label: 'Tech stack (optional)', type: 'string-array' },
       { name: 'duration', label: 'Delivery time (optional)', type: 'text', placeholder: 'e.g. 6 weeks' },
       { name: 'highlights', label: 'Advanced / notable features (optional)', type: 'string-array' },
@@ -169,7 +169,7 @@ export const RESOURCES: Record<string, ResourceConfig> = {
     fields: [
       { name: 'name', label: 'Name', type: 'text', required: true },
       { name: 'role', label: 'Role / title', type: 'text', required: true },
-      { name: 'bio', label: 'Bio (optional)', type: 'textarea' },
+      { name: 'bio', label: 'Bio (optional)', type: 'richtext' },
       { name: 'photo_url', label: 'Photo URL (optional)', type: 'text', placeholder: 'https://... — leave blank to show initials' },
       { name: 'linkedin_url', label: 'LinkedIn URL (optional)', type: 'text' },
       { name: 'sort_order', label: 'Sort order', type: 'number', required: true },

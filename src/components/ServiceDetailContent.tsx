@@ -14,6 +14,7 @@ import TableOfContents from './TableOfContents';
 import FaqSection, { type FaqItem } from './FaqSection';
 import InlineInquiryForm from './InlineInquiryForm';
 import CtaSection from './CtaSection';
+import RichText from './RichText';
 import type { Service, RoadmapStep, Project, IndustryApplication } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -175,9 +176,10 @@ export default function ServiceDetailContent({
           <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[14px]">
             Engineering Scalable Software Designed for Market Leadership
           </h3>
-          <p className="svc-reveal text-[16.5px] text-[var(--ink)]/85 leading-[1.8] mb-[20px]">
-            {service.desc}
-          </p>
+          <RichText
+            html={service.desc}
+            className="svc-reveal text-[16.5px] text-[var(--ink)]/85 leading-[1.8] mb-[20px]"
+          />
           <p className="svc-reveal text-[15.5px] text-[var(--muted)] leading-[1.75]">
             We bridge deep technical architecture with rapid business delivery. Every system is built by senior engineers using type-safe protocols, decoupled services, and cloud-native resilience patterns.
           </p>
