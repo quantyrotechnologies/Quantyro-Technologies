@@ -83,6 +83,7 @@ export default function ServiceDetailContent({
     { id: 'industries', label: 'Industry Applications' },
     { id: 'sla-standards', label: 'Engineering SLAs & Standards' },
     { id: 'process', label: '4-Phase Delivery Framework' },
+    { id: 'engagement', label: 'Engagement at a Glance' },
     ...(regions.length + cities.length > 0 ? [{ id: 'regions', label: 'Global Availability' }] : []),
     ...(relatedProjects.length > 0 ? [{ id: 'related-work', label: 'Related Work' }] : []),
     ...(faqs.length > 0 ? [{ id: 'faq', label: 'Frequently Asked Questions' }] : []),
@@ -371,10 +372,40 @@ export default function ServiceDetailContent({
           </div>
         )}
 
-        {/* 6. Global Regions & Cities */}
+        {/* 6. Engagement at a Glance */}
+        <div className="mb-[64px]">
+          <h2 id="engagement" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['06_/_']">
+            Engagement at a Glance
+          </h2>
+          <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
+            How Working Together Actually Looks
+          </h3>
+          <div className="svc-reveal overflow-hidden rounded-[16px] border border-[var(--line)]">
+            <table className="w-full text-[14px] border-collapse">
+              <tbody>
+                {[
+                  ['Delivery timeline', 'Typically 6–16 weeks, depending on scope'],
+                  ['Engagement model', 'Fixed-scope project or dedicated team — your choice'],
+                  ['Team', 'Senior engineers only — no outsourced junior benches'],
+                  ['Code & IP ownership', '100% transferred to you — source code, CI/CD, infra'],
+                  ['Pricing', 'Scoped to your project during discovery — request a custom quote below'],
+                ].map(([label, value], i) => (
+                  <tr key={label} className={i > 0 ? 'border-t border-[var(--line)]' : ''}>
+                    <th scope="row" className="text-left font-semibold text-[var(--ink)] bg-[var(--surface)] px-[18px] py-[13px] w-[220px] align-top">
+                      {label}
+                    </th>
+                    <td className="px-[18px] py-[13px] text-[var(--muted)] align-top">{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* 7. Global Regions & Cities */}
         {regions.length + cities.length > 0 && (
           <div className="mb-[64px]">
-            <h2 id="regions" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['06_/_']">
+            <h2 id="regions" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['07_/_']">
               Global Availability
             </h2>
             <div className="svc-reveal flex flex-wrap gap-[10px]">
@@ -403,7 +434,7 @@ export default function ServiceDetailContent({
         {/* Related Work */}
         {relatedProjects.length > 0 && (
           <div className="mb-[64px]">
-            <h2 id="related-work" className={`svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] ${regions.length + cities.length > 0 ? "before:content-['07_/_']" : "before:content-['06_/_']"}`}>
+            <h2 id="related-work" className={`svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] ${regions.length + cities.length > 0 ? "before:content-['08_/_']" : "before:content-['07_/_']"}`}>
               Related Work
             </h2>
             <div className="svc-reveal grid grid-cols-1 md:grid-cols-2 gap-[14px]">

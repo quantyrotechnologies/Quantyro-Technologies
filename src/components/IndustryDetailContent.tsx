@@ -40,6 +40,7 @@ export default function IndustryDetailContent({
     { id: 'capabilities', label: 'What We Deliver' },
     ...(industry.marketStats.length > 0 ? [{ id: 'market-context', label: 'Market Context' }] : []),
     ...(relatedServices.length > 0 ? [{ id: 'related-services', label: 'Related Services' }] : []),
+    { id: 'engagement', label: 'Engagement at a Glance' },
     ...(cities.length > 0 ? [{ id: 'locations', label: 'Global Availability' }] : []),
     ...(faqs.length > 0 ? [{ id: 'faq', label: 'Frequently Asked Questions' }] : []),
   ];
@@ -268,10 +269,40 @@ export default function IndustryDetailContent({
           </div>
         )}
 
-        {/* 6. Global Availability */}
+        {/* 6. Engagement at a Glance */}
+        <div className="mb-[64px]">
+          <h2 id="engagement" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['06_/_']">
+            Engagement at a Glance
+          </h2>
+          <h3 className="ind-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[20px]">
+            How Working Together Actually Looks
+          </h3>
+          <div className="ind-reveal overflow-hidden rounded-[16px] border border-[var(--line)]">
+            <table className="w-full text-[14px] border-collapse">
+              <tbody>
+                {[
+                  ['Delivery timeline', 'Typically 6–16 weeks, depending on scope'],
+                  ['Engagement model', 'Fixed-scope project or dedicated team — your choice'],
+                  ['Team', 'Senior engineers only — no outsourced junior benches'],
+                  ['Code & IP ownership', '100% transferred to you — source code, CI/CD, infra'],
+                  ['Pricing', 'Scoped to your project during discovery — request a custom quote below'],
+                ].map(([label, value], i) => (
+                  <tr key={label} className={i > 0 ? 'border-t border-[var(--line)]' : ''}>
+                    <th scope="row" className="text-left font-semibold text-[var(--ink)] bg-[var(--surface)] px-[18px] py-[13px] w-[220px] align-top">
+                      {label}
+                    </th>
+                    <td className="px-[18px] py-[13px] text-[var(--muted)] align-top">{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* 7. Global Availability */}
         {cities.length > 0 && (
           <div className="mb-[64px]">
-            <h2 id="locations" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['06_/_']">
+            <h2 id="locations" className="ind-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['07_/_']">
               Global Availability
             </h2>
             <div className="ind-reveal flex flex-wrap gap-[10px]">
