@@ -8,7 +8,7 @@ import { getActiveCitiesByService } from '@/lib/data/locationPages';
 import { techStackSlugMapForService } from '@/lib/data/techStackPages';
 import { getProjects } from '@/lib/data/projects';
 import { serviceSlugForTag } from '@/lib/serviceTagMap';
-import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/site';
+import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
 import ServiceDetailContent from '@/components/ServiceDetailContent';
 
 export async function generateStaticParams() {
@@ -50,12 +50,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: service.title,
-    serviceType: service.title,
-    description: service.desc,
-    provider: { '@id': `${SITE_URL}/#organization` },
-    ...(regions.length + cities.length > 0 ? { areaServed: [...regions, ...cities] } : {}),
+    '@graph': [
+      organizationNode(),
+      {
+        '@type': 'Service',
+        '@id': `${SITE_URL}/services/${slug}/#service`,
+        name: service.title,
+        serviceType: service.title,
+        description: service.desc,
+        provider: { '@id': `${SITE_URL}/#organization` },
+        ...(regions.length + cities.length > 0 ? { areaServed: [...regions, ...cities] } : {}),
+      },
+    ],
   };
 
   return (

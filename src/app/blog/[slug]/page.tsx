@@ -10,7 +10,7 @@ import TableOfContents from '@/components/TableOfContents';
 import FaqSection from '@/components/FaqSection';
 import BlogCard from '@/components/BlogCard';
 import ArticleBody, { extractHeadings } from '@/components/ArticleBody';
-import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/site';
+import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
 import { patternImageForSlug } from '@/lib/patternImage';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -65,29 +65,27 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       })
     : 'Recent Publication';
 
+  const organization = organizationNode();
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    articleBody: post.content,
-    image: coverImage,
-    author: {
-      "@type": "Organization",
-      name: post.authorName || "Quantyro Technologies",
-      url: SITE_URL,
-    },
-    datePublished: post.publishedAt ?? undefined,
-    dateModified: post.publishedAt ?? undefined,
-    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${post.slug}` },
-    publisher: {
-      "@type": "Organization",
-      name: "Quantyro Technologies",
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/images/logo.jpeg`,
+    "@graph": [
+      { ...organization, logo: { "@type": "ImageObject", url: `${SITE_URL}/images/logo.jpeg` } },
+      {
+        "@type": "BlogPosting",
+        "@id": `${SITE_URL}/blog/${post.slug}/#article`,
+        headline: post.title,
+        description: post.excerpt,
+        articleBody: post.content,
+        image: coverImage,
+        author: post.authorName
+          ? { "@type": "Person", name: post.authorName }
+          : { "@id": `${SITE_URL}/#organization` },
+        datePublished: post.publishedAt ?? undefined,
+        dateModified: post.publishedAt ?? undefined,
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${post.slug}` },
+        publisher: { "@id": `${SITE_URL}/#organization` },
       },
-    },
+    ],
   };
 
   return (

@@ -70,7 +70,7 @@ export default function BrochureContent({
 
       {/* Services */}
       <section className="brochure-section px-[6vw] py-[56px]">
-        <div className="mono text-[11px] font-semibold uppercase tracking-wide text-[var(--accent)] mb-[10px]">01 // What we do</div>
+        <div className="mono text-[11px] font-semibold uppercase tracking-wide text-[var(--accent)] mb-[10px] before:content-['01_//_']">What we do</div>
         <h3 className="font-[var(--font-display)] font-bold text-[26px] text-[var(--ink)] mb-[26px]">
           Seven services, one senior team.
         </h3>
@@ -86,7 +86,7 @@ export default function BrochureContent({
 
       {/* Industries + trust */}
       <section className="brochure-section px-[6vw] py-[56px] bg-[var(--bg-alt)]">
-        <div className="mono text-[11px] font-semibold uppercase tracking-wide text-[var(--accent)] mb-[10px]">02 // Who we build for</div>
+        <div className="mono text-[11px] font-semibold uppercase tracking-wide text-[var(--accent)] mb-[10px] before:content-['02_//_']">Who we build for</div>
         <h3 className="font-[var(--font-display)] font-bold text-[26px] text-[var(--ink)] mb-[26px]">
           Industries we build for.
         </h3>
@@ -121,7 +121,7 @@ export default function BrochureContent({
       {/* Process */}
       {roadmapSteps.length > 0 && (
         <section className="brochure-section px-[6vw] py-[56px]">
-          <div className="mono text-[11px] font-semibold uppercase tracking-wide text-[var(--accent)] mb-[10px]">03 // How we work</div>
+          <div className="mono text-[11px] font-semibold uppercase tracking-wide text-[var(--accent)] mb-[10px] before:content-['03_//_']">How we work</div>
           <h3 className="font-[var(--font-display)] font-bold text-[26px] text-[var(--ink)] mb-[26px]">
             From first talk to happy delivery.
           </h3>

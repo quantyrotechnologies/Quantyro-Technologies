@@ -5,7 +5,7 @@ import { getServices } from '@/lib/data/services';
 import { getFaqs } from '@/lib/data/faqs';
 import { getActiveCitiesByIndustry } from '@/lib/data/locationPages';
 import { industrySolutionSlugMapForIndustry } from '@/lib/data/industrySolutionPages';
-import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/site';
+import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
 import IndustryDetailContent from '@/components/IndustryDetailContent';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -40,12 +40,18 @@ export default async function IndustryDetailPage({ params }: { params: Promise<{
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: `${industry.title} Software Development`,
-    serviceType: `${industry.title} Software Development`,
-    description: industry.desc,
-    provider: { '@id': `${SITE_URL}/#organization` },
-    ...(cities.length > 0 ? { areaServed: cities } : {}),
+    '@graph': [
+      organizationNode(),
+      {
+        '@type': 'Service',
+        '@id': `${SITE_URL}/industries/${slug}/#service`,
+        name: `${industry.title} Software Development`,
+        serviceType: `${industry.title} Software Development`,
+        description: industry.desc,
+        provider: { '@id': `${SITE_URL}/#organization` },
+        ...(cities.length > 0 ? { areaServed: cities } : {}),
+      },
+    ],
   };
 
   return (

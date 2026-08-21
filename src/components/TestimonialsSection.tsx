@@ -52,7 +52,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
       <div className="testimonials-reveal text-center max-w-[600px] mx-auto mb-[48px]">
         <div className="inline-flex items-center gap-[6px] px-[12px] py-[3.5px] rounded-full bg-[rgba(23,104,214,0.07)] border border-[rgba(23,104,214,0.2)] text-[var(--accent)] text-[11px] font-mono font-semibold uppercase mb-[8px]">
           <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)]" />
-          <span>06 // What clients say</span>
+          <span className="before:content-['06_//_']">What clients say</span>
         </div>
         <h2 className="text-[clamp(26px,3.6vw,44px)] font-[var(--font-display)] font-bold leading-[1.1] text-[var(--ink)]">
           Trusted by teams{' '}

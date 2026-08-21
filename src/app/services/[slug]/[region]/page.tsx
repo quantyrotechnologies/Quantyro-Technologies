@@ -12,7 +12,7 @@ import { slugToRegion } from '@/lib/regions';
 import { slugToCity } from '@/lib/cities';
 import { CITY_CONTEXT } from '@/lib/cityContext';
 import { serviceIllustration } from '@/lib/serviceIllustration';
-import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/site';
+import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CtaSection from '@/components/CtaSection';
 import FaqSection from '@/components/FaqSection';
@@ -85,11 +85,17 @@ export default async function ServiceLocationPage({
 
     const jsonLd = {
       "@context": "https://schema.org",
-      "@type": "Service",
-      name: `${page.service.title} in ${page.region}`,
-      description: page.intro,
-      areaServed: page.region,
-      provider: { "@id": `${SITE_URL}/#organization` },
+      "@graph": [
+        organizationNode(),
+        {
+          "@type": "Service",
+          "@id": `${SITE_URL}/services/${slug}/${locationSlug}/#service`,
+          name: `${page.service.title} in ${page.region}`,
+          description: page.intro,
+          areaServed: page.region,
+          provider: { "@id": `${SITE_URL}/#organization` },
+        },
+      ],
     };
 
     return (
@@ -186,11 +192,17 @@ export default async function ServiceLocationPage({
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    name: `${page.entity.title} in ${page.city}`,
-    description: page.localNote || page.entity.desc,
-    areaServed: page.city,
-    provider: { "@id": `${SITE_URL}/#organization` },
+    "@graph": [
+      organizationNode(),
+      {
+        "@type": "Service",
+        "@id": `${SITE_URL}/services/${slug}/${locationSlug}/#service`,
+        name: `${page.entity.title} in ${page.city}`,
+        description: page.localNote || page.entity.desc,
+        areaServed: page.city,
+        provider: { "@id": `${SITE_URL}/#organization` },
+      },
+    ],
   };
 
   return (

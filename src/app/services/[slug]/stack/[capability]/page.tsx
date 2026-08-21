@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getServiceBySlug } from '@/lib/data/services';
 import { findTechStackPage, techStackPagesForService, getAllTechStackParams } from '@/lib/data/techStackPages';
-import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/site';
+import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import InlineInquiryForm from '@/components/InlineInquiryForm';
 import CtaSection from '@/components/CtaSection';
@@ -46,26 +46,30 @@ export default async function TechStackDetailPage({
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'TechArticle',
-    headline: page.title,
-    description: page.overview,
-    about: page.primaryTech,
-    isPartOf: {
-      '@type': 'Service',
-      name: service.title,
-      url: `${SITE_URL}/services/${service.slug}`,
-    },
-    publisher: { '@id': `${SITE_URL}/#organization` },
-  };
-
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: page.faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
+    '@graph': [
+      organizationNode(),
+      {
+        '@type': 'TechArticle',
+        '@id': `${SITE_URL}/services/${slug}/stack/${capability}/#article`,
+        headline: page.title,
+        description: page.overview,
+        about: page.primaryTech,
+        isPartOf: {
+          '@type': 'Service',
+          name: service.title,
+          url: `${SITE_URL}/services/${service.slug}`,
+        },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: page.faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      },
+    ],
   };
 
   return (
@@ -73,10 +77,6 @@ export default async function TechStackDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Hero */}

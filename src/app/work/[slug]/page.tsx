@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getProjectBySlug } from '@/lib/data/projects';
-import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/site';
+import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
 import WorkDetailContent from '@/components/WorkDetailContent';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -24,13 +24,19 @@ export default async function WorkDetailPage({ params }: { params: Promise<{ slu
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
-    name: project.title,
-    description: project.summary,
-    about: project.client,
-    ...(project.tags.length > 0 ? { keywords: project.tags.join(', ') } : {}),
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/work/${project.slug}` },
-    creator: { '@id': `${SITE_URL}/#organization` },
+    '@graph': [
+      organizationNode(),
+      {
+        '@type': 'CreativeWork',
+        '@id': `${SITE_URL}/work/${slug}/#creativework`,
+        name: project.title,
+        description: project.summary,
+        about: project.client,
+        ...(project.tags.length > 0 ? { keywords: project.tags.join(', ') } : {}),
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/work/${project.slug}` },
+        creator: { '@id': `${SITE_URL}/#organization` },
+      },
+    ],
   };
 
   return (

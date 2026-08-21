@@ -61,7 +61,7 @@ export default function FeaturedWorkSection({ projects }: { projects: Project[] 
         <div>
           <div className="inline-flex items-center gap-[6px] px-[12px] py-[3.5px] rounded-full bg-[rgba(23,104,214,0.07)] border border-[rgba(23,104,214,0.2)] text-[var(--accent)] text-[11px] font-mono font-semibold uppercase mb-[8px]">
             <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)]" />
-            <span>05 // Featured work</span>
+            <span className="before:content-['05_//_']">Featured work</span>
           </div>
           <h2 className="text-[clamp(26px,3.6vw,44px)] font-[var(--font-display)] font-bold leading-[1.1] text-[var(--ink)]">
             Real outcomes,{' '}
