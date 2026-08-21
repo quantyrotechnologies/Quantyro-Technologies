@@ -11,7 +11,11 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.fromTo('.stat',
+    if (!container.current || !stats || stats.length === 0) return;
+    const statTargets = gsap.utils.toArray('.stat', container.current);
+    if (statTargets.length === 0) return;
+
+    gsap.fromTo(statTargets,
       { opacity: 0, y: 24 },
       {
         opacity: 1,
@@ -45,7 +49,7 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
         }
       });
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [stats] });
 
   if (stats.length === 0) return null;
 

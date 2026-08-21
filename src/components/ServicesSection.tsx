@@ -20,20 +20,23 @@ export default function ServicesSection({ services }: { services: Service[] }) {
     const track = trackRef.current;
     if (!track) return;
 
-    gsap.fromTo('.services-heading > *',
-      { opacity: 0, y: 24 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 80%',
-        },
-      }
-    );
+    const headingTargets = gsap.utils.toArray('.services-heading > *', container.current);
+    if (headingTargets.length > 0) {
+      gsap.fromTo(headingTargets,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 80%',
+          },
+        }
+      );
+    }
 
     const matchMedia = gsap.matchMedia();
 

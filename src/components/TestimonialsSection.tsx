@@ -29,7 +29,11 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
   }, [paused, testimonials.length]);
 
   useGSAP(() => {
-    gsap.fromTo('.testimonials-reveal',
+    if (!container.current || !testimonials || testimonials.length === 0) return;
+    const targets = gsap.utils.toArray('.testimonials-reveal', container.current);
+    if (targets.length === 0) return;
+
+    gsap.fromTo(targets,
       { opacity: 0, y: 24 },
       {
         opacity: 1,
@@ -43,7 +47,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
         },
       }
     );
-  }, { scope: container });
+  }, { scope: container, dependencies: [testimonials] });
 
   if (testimonials.length === 0) return null;
 
@@ -58,6 +62,16 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
           Trusted by teams{' '}
           <span className="text-[var(--accent)]">who ship fast</span>.
         </h2>
+
+        {/* Visible Aggregate Rating Badge matching Schema */}
+        <div className="mt-[16px] inline-flex items-center gap-[8px] px-[14px] py-[6px] rounded-full bg-white border border-[rgba(23,104,214,0.18)] shadow-sm text-[12.5px] text-[var(--ink)]">
+          <div className="flex items-center text-[#FFB800] text-[14px] tracking-[-1px]">
+            ★★★★★
+          </div>
+          <span className="font-bold">4.8 / 5.0</span>
+          <span className="text-[var(--muted)]">·</span>
+          <span className="text-[var(--muted)]">250+ verified client reviews</span>
+        </div>
       </div>
 
       <div

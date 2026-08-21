@@ -6,6 +6,8 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import { getFaqs } from '@/lib/data/faqs';
 import { getSiteSettings } from '@/lib/data/siteSettings';
 
+import { SITE_URL } from '@/lib/site';
+
 export const metadata: Metadata = {
   title: 'Contact Our Team',
   description: 'Tell Quantyro Technologies about your project — we reply within one business day, every time. Reach our senior engineering team directly, no account managers.',
@@ -21,8 +23,29 @@ export default async function ContactPage() {
     { label: 'Response time', value: settings.responseTime },
   ];
 
+  const contactJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': `${SITE_URL}/contact/#contactpage`,
+    url: `${SITE_URL}/contact`,
+    name: 'Contact Our Team — Quantyro Technologies',
+    description: 'Tell Quantyro Technologies about your project — we reply within one business day, every time.',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    mainEntity: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      email: settings.contactEmail,
+      ...(settings.contactPhone ? { telephone: settings.contactPhone } : {}),
+      availableLanguage: ['English'],
+    },
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+      />
       <section className="relative px-[6vw] pt-[160px] pb-[80px] z-10">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-[60px]">
           <div>

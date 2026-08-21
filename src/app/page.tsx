@@ -22,6 +22,8 @@ import { getTickerMetrics } from '@/lib/data/tickerMetrics';
 
 import { getShowcaseItems } from '@/lib/data/showcase';
 
+import { SITE_URL } from '@/lib/site';
+
 export default async function Home() {
   const [services, industries, featuredProjects, homeFaqs, testimonials, stats, roadmapSteps, tickerMetrics, showcaseItems] = await Promise.all([
     getServices(),
@@ -35,8 +37,35 @@ export default async function Home() {
     getShowcaseItems(),
   ]);
 
+  const homeJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}/#webpage`,
+    url: SITE_URL,
+    name: 'Quantyro Technologies — Engineering the Future',
+    description: 'Global software engineering partner designing, building and scaling web, mobile and AI products for ambitious companies.',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    about: { '@id': `${SITE_URL}/#organization` },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Software Engineering Services',
+      itemListElement: services.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: s.title,
+          url: `${SITE_URL}/services/${s.slug}`,
+        },
+      })),
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
       <ScrollProgress />
       <HeroSection />
       <EnterpriseTicker metrics={tickerMetrics} />

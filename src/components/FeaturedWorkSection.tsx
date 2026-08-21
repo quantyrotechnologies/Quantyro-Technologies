@@ -18,7 +18,11 @@ export default function FeaturedWorkSection({ projects }: { projects: Project[] 
   const selected = projects.find((p) => p.id === selectedId) ?? null;
 
   useGSAP(() => {
-    gsap.fromTo('.featured-work-reveal',
+    if (!container.current || !projects || projects.length === 0) return;
+    const targets = gsap.utils.toArray('.featured-work-reveal', container.current);
+    if (targets.length === 0) return;
+
+    gsap.fromTo(targets,
       { opacity: 0, y: 24 },
       {
         opacity: 1,
@@ -32,7 +36,7 @@ export default function FeaturedWorkSection({ projects }: { projects: Project[] 
         },
       }
     );
-  }, { scope: container });
+  }, { scope: container, dependencies: [projects] });
 
   useEffect(() => {
     if (!selected) return;

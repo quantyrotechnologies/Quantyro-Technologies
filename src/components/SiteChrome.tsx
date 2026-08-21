@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import SmoothScroll from './SmoothScroll';
 import ScrollRefresh from './ScrollRefresh';
+import CookieConsent from './CookieConsent';
 import type { SocialLink, SiteSettings } from '@/lib/types';
 
 /**
@@ -36,6 +37,7 @@ export default function SiteChrome({
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer socialLinks={socialLinks} settings={settings} />
+      <CookieConsent />
     </>
   );
 }
