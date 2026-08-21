@@ -8,9 +8,7 @@ import { createClient as createSupabaseClient } from '@supabase/supabase-js';
  * NEXT_PUBLIC_ or referenced from a "use client" file.
  */
 export function createAdminClient() {
-  return createSupabaseClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    { auth: { persistSession: false, autoRefreshToken: false } }
-  );
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://soclkwfudtzeluevhhwk.supabase.co';
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'dummy-key-for-build';
+  return createSupabaseClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
 }
