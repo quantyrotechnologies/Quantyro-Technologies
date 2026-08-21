@@ -57,7 +57,7 @@ const TECH_CATEGORIES: TechCategory[] = [
   {
     id: 'cloud-devops',
     name: 'Cloud & Infrastructure',
-    badge: '99.99% Availability',
+    badge: 'High Availability',
     description: 'Multi-region automated cloud infrastructure with automated CI/CD pipelines and zero-downtime releases.',
     tools: [
       { name: 'AWS & Google Cloud Platform', role: 'Cloud Infrastructure', highlight: 'Multi-Region High Availability' },

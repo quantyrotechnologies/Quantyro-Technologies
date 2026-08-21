@@ -21,23 +21,23 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const INDUSTRY_APPLICATIONS = [
   {
     sector: 'FinTech & Banking',
-    useCase: 'High-throughput transactional ledger systems, sub-second fraud detection pipelines, and PCI-DSS compliant payment gateways.',
-    metric: '99.999% Reliability',
+    useCase: 'High-throughput transactional ledger systems, fraud-detection pipelines, and PCI DSS–aligned payment gateway architecture.',
+    metric: 'Built for High Reliability',
   },
   {
     sector: 'Healthcare & Life Sciences',
-    useCase: 'HIPAA-compliant patient portals, IoT medical device telemetry synchronization, and zero-trust electronic health records.',
-    metric: 'Zero-Trust Security',
+    useCase: 'HIPAA-aware patient portals, IoT medical device telemetry synchronization, and zero-trust electronic health record architecture.',
+    metric: 'Security-First Architecture',
   },
   {
     sector: 'Enterprise B2B SaaS',
     useCase: 'Multi-tenant cloud architectures, role-based access control (RBAC), and automated billing/metering engines.',
-    metric: '10x Faster Time-to-Market',
+    metric: 'Faster Time-to-Market',
   },
   {
     sector: 'E-Commerce & Retail',
     useCase: 'Headless storefronts, dynamic inventory management, and low-latency edge personalization engines.',
-    metric: '< 30ms Edge TTFB',
+    metric: 'Low-Latency Edge Delivery',
   },
 ];
 

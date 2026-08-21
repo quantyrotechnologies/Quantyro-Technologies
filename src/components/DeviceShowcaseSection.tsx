@@ -180,7 +180,7 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
                       <div className="flex items-center justify-between border-b border-white/10 pb-[8px]">
                         <div className="text-[12px] font-bold">PulseCare Telehealth</div>
                         <span className="mono text-[9px] px-[7px] py-[2px] rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                          HIPAA Encrypted
+                          Healthcare-Grade Security
                         </span>
                       </div>
 

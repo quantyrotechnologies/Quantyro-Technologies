@@ -63,7 +63,7 @@ export default function BrochureContent({
 
           <div className="mt-[28px] inline-flex items-center gap-[10px] mono text-[12px] text-white/80">
             <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent-2)]" />
-            99.999% SLA · Senior engineers only · Global delivery
+            Senior engineers only · Full IP ownership · Global delivery
           </div>
         </div>
       </section>
@@ -100,8 +100,8 @@ export default function BrochureContent({
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px] pt-[24px] border-t border-[var(--line)]">
           <div>
-            <div className="font-[var(--font-display)] font-extrabold text-[26px] text-[var(--accent)]">99.999%</div>
-            <div className="text-[12px] text-[var(--muted)] mt-[4px]">Uptime SLA</div>
+            <div className="font-[var(--font-display)] font-extrabold text-[22px] text-[var(--accent)]">Zero-Downtime</div>
+            <div className="text-[12px] text-[var(--muted)] mt-[4px]">Deployment practice</div>
           </div>
           <div>
             <div className="font-[var(--font-display)] font-extrabold text-[26px] text-[var(--accent)]">100%</div>

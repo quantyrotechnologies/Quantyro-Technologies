@@ -29,7 +29,7 @@ const BADGE_STREAMS: ServiceBadgeData[][] = [
     { title: 'Cloud & DevOps', ext: 'k8s', iconType: 'cloud' },
     { title: 'Multi-Cloud Scale', ext: 'aws', iconType: 'cloud' },
     { title: 'CI/CD Pipelines', ext: 'yml', iconType: 'cloud' },
-    { title: '99.999% Uptime', ext: 'sla', iconType: 'cloud' },
+    { title: 'High Availability', ext: 'sla', iconType: 'cloud' },
   ],
   // Position 4: Mid Right Stream
   [

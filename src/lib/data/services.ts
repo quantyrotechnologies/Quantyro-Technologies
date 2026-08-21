@@ -129,7 +129,7 @@ export const SAMPLE_SERVICES: Service[] = [
     stack: ['AWS', 'GCP', 'Kubernetes', 'Terraform', 'Docker', 'GitHub Actions', 'Datadog', 'ArgoCD'],
     imageUrl: null,
     seoTitle: 'Cloud Architecture & DevOps Engineering | Quantyro',
-    seoDescription: 'Enterprise cloud infrastructure, automated CI/CD pipelines, and 99.99% availability SLAs engineered by certified cloud architects.',
+    seoDescription: 'Enterprise cloud infrastructure, automated CI/CD pipelines, and high-availability architecture engineered by senior cloud engineers.',
   },
 ];
 
