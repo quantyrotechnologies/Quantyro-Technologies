@@ -65,6 +65,11 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${bricolage.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col relative">
+        {/* Preconnect to GA's cross-origin hosts — shaves the DNS/TLS
+            handshake off the analytics request, which otherwise showed up
+            as LCP-adjacent connection overhead in Lighthouse. */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
         <StructuredData settings={settings} socialLinks={socialLinks} />
         <SiteChrome settings={settings} socialLinks={socialLinks}>
           {children}
