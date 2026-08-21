@@ -21,7 +21,7 @@ export const SAMPLE_SERVICES: Service[] = [
     imageUrl: null,
     seoTitle: 'Website Development Services (SEO-First) | Quantyro',
     seoDescription: 'SEO-optimized website development across MERN, React, PHP, and Laravel — built for Core Web Vitals, technical SEO, and search visibility from day one.',
-    targetKeywords: ['website development company', 'SEO-first website development', 'custom website development services', 'Next.js website development company', 'website development company in India'],
+    targetKeywords: ['website development services', 'web development company', 'custom website development', 'custom website development services', 'web development services', 'website development company in India', 'website development services in India', 'SEO-friendly website development', 'SEO-ready website development'],
   },
   {
     id: 'svc-5',
@@ -40,7 +40,7 @@ export const SAMPLE_SERVICES: Service[] = [
     imageUrl: null,
     seoTitle: 'Headless E-Commerce Development & Storefronts | Quantyro',
     seoDescription: 'Sub-second headless e-commerce platforms engineered for extreme peak traffic, instant checkout, and maximum conversion rates.',
-    targetKeywords: ['headless e-commerce development', 'e-commerce website development company', 'Shopify Plus development agency', 'custom e-commerce development services', 'headless commerce development company India'],
+    targetKeywords: ['e-commerce website development', 'e-commerce development company', 'custom e-commerce development', 'custom e-commerce development services', 'e-commerce development services', 'e-commerce development company in India', 'e-commerce development services in India', 'headless e-commerce development', 'Shopify Plus development company'],
   },
   {
     id: 'svc-4',
@@ -59,7 +59,7 @@ export const SAMPLE_SERVICES: Service[] = [
     imageUrl: null,
     seoTitle: 'Cross-Platform Mobile App Development (iOS & Android) | Quantyro',
     seoDescription: 'Build beautiful, high-retention mobile applications with offline-first synchronization and native device performance.',
-    targetKeywords: ['mobile app development company', 'iOS and Android app development services', 'React Native app development company', 'cross-platform mobile app development', 'hire mobile app developers India'],
+    targetKeywords: ['mobile app development services', 'mobile app development company', 'custom mobile app development', 'custom mobile app development services', 'app development services', 'mobile app development company in India', 'mobile app development services in India', 'iOS and Android app development', 'cross-platform app development company'],
   },
   {
     id: 'svc-1',
@@ -78,7 +78,7 @@ export const SAMPLE_SERVICES: Service[] = [
     imageUrl: null,
     seoTitle: 'Custom Software Development & Enterprise SaaS Engineering | Quantyro',
     seoDescription: 'Bespoke enterprise software development and scalable fullstack web engineering built for ambitious high-growth companies.',
-    targetKeywords: ['custom software development company', 'enterprise software development services', 'bespoke software development company', 'SaaS product development company', 'custom software development company India'],
+    targetKeywords: ['custom software development services', 'software development company', 'custom software development', 'bespoke software development services', 'software development services', 'custom software development company in India', 'software development services in India', 'enterprise software development company', 'SaaS product development services'],
   },
   {
     id: 'svc-2',
@@ -97,7 +97,7 @@ export const SAMPLE_SERVICES: Service[] = [
     imageUrl: null,
     seoTitle: 'Enterprise AI & Machine Learning Engineering | Quantyro',
     seoDescription: 'Build production-ready AI solutions, vector search pipelines, and autonomous agents grounded in your private enterprise data.',
-    targetKeywords: ['AI development company', 'machine learning development services', 'generative AI development company', 'RAG pipeline development services', 'AI agent development company India'],
+    targetKeywords: ['AI development services', 'AI development company', 'custom AI solutions', 'machine learning development services', 'AI and ML development services', 'AI development company in India', 'machine learning development services in India', 'generative AI development company', 'RAG pipeline development services'],
   },
   {
     id: 'svc-7',
@@ -117,7 +117,7 @@ export const SAMPLE_SERVICES: Service[] = [
     imageUrl: null,
     seoTitle: 'SEO & Marketing Services (Engineer-Led) | Quantyro',
     seoDescription: 'Technical SEO, structured data, and performance marketing engineered by developers — Core Web Vitals, schema markup, and measurable organic growth.',
-    targetKeywords: ['technical SEO agency', 'SEO services for startups', 'programmatic SEO agency', 'Core Web Vitals optimization services', 'SEO company in India'],
+    targetKeywords: ['SEO services', 'SEO company', 'technical SEO services', 'SEO agency', 'digital marketing services', 'SEO company in India', 'SEO services in India', 'Core Web Vitals optimization services', 'programmatic SEO agency'],
   },
   {
     id: 'svc-3',
@@ -136,7 +136,7 @@ export const SAMPLE_SERVICES: Service[] = [
     imageUrl: null,
     seoTitle: 'Cloud Architecture & DevOps Engineering | Quantyro',
     seoDescription: 'Enterprise cloud infrastructure, automated CI/CD pipelines, and high-availability architecture engineered by senior cloud engineers.',
-    targetKeywords: ['cloud DevOps services', 'DevOps consulting company', 'AWS cloud infrastructure services', 'Kubernetes consulting services', 'cloud migration company India'],
+    targetKeywords: ['cloud DevOps services', 'DevOps consulting company', 'cloud infrastructure services', 'cloud migration services', 'DevOps services', 'DevOps consulting company in India', 'cloud infrastructure services in India', 'AWS cloud infrastructure company', 'Kubernetes consulting services'],
   },
 ];
 
