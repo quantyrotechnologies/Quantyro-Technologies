@@ -12,13 +12,16 @@ import type { Project } from '@/lib/types';
 import Breadcrumbs from './Breadcrumbs';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function WorkContent({ projects, faqs }: { projects: Project[]; faqs: FaqItem[] }) {
   const container = useRef<HTMLDivElement>(null);
   const [openId, setOpenId] = useState<string | null>(projects[0]?.id ?? null);
 
   useGSAP(() => {
-    gsap.utils.toArray<HTMLElement>('.work-row').forEach((row) => {
+    if (!container.current) return;
+    const rows = gsap.utils.toArray<HTMLElement>('.work-row', container.current);
+    rows.forEach((row) => {
       gsap.fromTo(row,
         { opacity: 0, y: 20 },
         {
@@ -30,7 +33,7 @@ export default function WorkContent({ projects, faqs }: { projects: Project[]; f
         }
       );
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [projects] });
 
   return (
     <div ref={container}>

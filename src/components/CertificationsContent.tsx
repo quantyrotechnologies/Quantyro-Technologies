@@ -9,6 +9,7 @@ import Breadcrumbs from './Breadcrumbs';
 import type { Certification } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function CertificationsContent({
   certifications,
@@ -20,7 +21,9 @@ export default function CertificationsContent({
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.utils.toArray<HTMLElement>('.cert-card').forEach((card) => {
+    if (!container.current) return;
+    const cards = gsap.utils.toArray<HTMLElement>('.cert-card', container.current);
+    cards.forEach((card) => {
       gsap.fromTo(card,
         { opacity: 0, y: 24 },
         {
@@ -32,7 +35,7 @@ export default function CertificationsContent({
         }
       );
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [certifications] });
 
   return (
     <div ref={container}>

@@ -10,6 +10,7 @@ import RichText from './RichText';
 import type { TeamMember } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 function initials(name: string): string {
   return name
@@ -30,7 +31,9 @@ export default function TeamContent({
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.utils.toArray<HTMLElement>('.team-card').forEach((card) => {
+    if (!container.current) return;
+    const cards = gsap.utils.toArray<HTMLElement>('.team-card', container.current);
+    cards.forEach((card) => {
       gsap.fromTo(card,
         { opacity: 0, y: 24 },
         {
@@ -42,7 +45,7 @@ export default function TeamContent({
         }
       );
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [team] });
 
   return (
     <div ref={container}>

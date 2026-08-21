@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { Testimonial } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function TestimonialsSection({ testimonials }: { testimonials: Testimonial[] }) {
   const container = useRef<HTMLDivElement>(null);

@@ -9,6 +9,7 @@ import MagneticLink from './MagneticLink';
 import type { SocialLink, SiteSettings } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 const EXPLORE_LINKS = [
   { label: 'Services', href: '/services' },
@@ -121,20 +122,24 @@ export default function Footer({
   const [showTop, setShowTop] = useState(false);
 
   useGSAP(() => {
-    gsap.fromTo('.footer-reveal',
-      { opacity: 0, y: 18 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 90%',
-        },
-      }
-    );
+    if (!container.current) return;
+    const footerTargets = gsap.utils.toArray<HTMLElement>('.footer-reveal', container.current);
+    if (footerTargets.length > 0) {
+      gsap.fromTo(footerTargets,
+        { opacity: 0, y: 18 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 90%',
+          },
+        }
+      );
+    }
 
     ScrollTrigger.create({
       trigger: container.current,

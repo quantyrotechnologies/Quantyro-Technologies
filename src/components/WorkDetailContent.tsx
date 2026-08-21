@@ -14,6 +14,7 @@ import RichText from './RichText';
 import type { Project } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function WorkDetailContent({ project }: { project: Project }) {
   const container = useRef<HTMLDivElement>(null);
@@ -31,7 +32,9 @@ export default function WorkDetailContent({ project }: { project: Project }) {
   ];
 
   useGSAP(() => {
-    gsap.utils.toArray<HTMLElement>('.wd-reveal').forEach((el) => {
+    if (!container.current) return;
+    const reveals = gsap.utils.toArray<HTMLElement>('.wd-reveal', container.current);
+    reveals.forEach((el) => {
       gsap.fromTo(el,
         { opacity: 0, y: 24 },
         {
@@ -43,7 +46,7 @@ export default function WorkDetailContent({ project }: { project: Project }) {
         }
       );
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [project] });
 
   return (
     <div ref={container}>

@@ -9,23 +9,29 @@ import { stripHtml } from '@/lib/stripHtml';
 import type { Industry } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function IndustriesSection({ industries }: { industries: Industry[] }) {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.fromTo('.industries-heading > *',
-      { opacity: 0, y: 24 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: container.current, start: 'top 80%' },
-      }
-    );
-    gsap.utils.toArray<HTMLElement>('.industries-pill').forEach((el, i) => {
+    if (!container.current || !industries || industries.length === 0) return;
+    const headingTargets = gsap.utils.toArray<HTMLElement>('.industries-heading > *', container.current);
+    if (headingTargets.length > 0) {
+      gsap.fromTo(headingTargets,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: container.current, start: 'top 80%' },
+        }
+      );
+    }
+    const pills = gsap.utils.toArray<HTMLElement>('.industries-pill', container.current);
+    pills.forEach((el, i) => {
       gsap.fromTo(el,
         { opacity: 0, y: 20 },
         {
@@ -38,7 +44,7 @@ export default function IndustriesSection({ industries }: { industries: Industry
         }
       );
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [industries] });
 
   return (
     <section ref={container} id="industries" className="relative px-[6vw] py-[90px] z-10">

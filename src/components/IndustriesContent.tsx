@@ -15,6 +15,7 @@ import type { Industry } from '@/lib/types';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function IndustriesContent({
   industries,
@@ -31,7 +32,9 @@ export default function IndustriesContent({
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.utils.toArray<HTMLElement>('.industry-card').forEach((card) => {
+    if (!container.current) return;
+    const cards = gsap.utils.toArray<HTMLElement>('.industry-card', container.current);
+    cards.forEach((card) => {
       gsap.fromTo(card,
         { opacity: 0, y: 28 },
         {
@@ -43,7 +46,7 @@ export default function IndustriesContent({
         }
       );
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [industries] });
 
   return (
     <div ref={container}>

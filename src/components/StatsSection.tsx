@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { Stat } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function StatsSection({ stats }: { stats: Stat[] }) {
   const container = useRef<HTMLDivElement>(null);

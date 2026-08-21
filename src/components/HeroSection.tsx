@@ -7,23 +7,31 @@ import MagneticLink from './MagneticLink';
 import TechIntegrationHub from './TechIntegrationHub';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function HeroSection() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const heroWords = gsap.utils.toArray('.hero-title .word span');
-    gsap.set(heroWords, { yPercent: 110 });
+    if (!container.current) return;
+    const heroWords = gsap.utils.toArray<HTMLElement>('.hero-title .word span', container.current);
+    if (heroWords.length > 0) {
+      gsap.set(heroWords, { yPercent: 110 });
+    }
 
-    // .hero-sub is excluded — it's the page's LCP element, so it must be
-    // paintable from the initial SSR HTML, not hidden behind a JS-driven
-    // fade-in. Gating it on GSAP added multiple seconds to LCP under CPU
-    // throttling (real hydration delay, not simulated).
-    gsap.timeline({ delay: 0.15 })
-      .to(heroWords, { yPercent: 0, duration: 1.0, stagger: 0.04, ease: 'power4.out' })
-      .from(['.eyebrow', '.hero-actions', '.hero-visual'], {
-        opacity: 0, y: 20, duration: 0.7, stagger: 0.08, ease: 'power2.out'
-      }, '-=0.6');
+    const subTargets = gsap.utils.toArray<HTMLElement>('.eyebrow, .hero-actions, .hero-visual', container.current);
+
+    if (heroWords.length > 0 || subTargets.length > 0) {
+      const tl = gsap.timeline({ delay: 0.15 });
+      if (heroWords.length > 0) {
+        tl.to(heroWords, { yPercent: 0, duration: 1.0, stagger: 0.04, ease: 'power4.out' });
+      }
+      if (subTargets.length > 0) {
+        tl.from(subTargets, {
+          opacity: 0, y: 20, duration: 0.7, stagger: 0.08, ease: 'power2.out'
+        }, '-=0.6');
+      }
+    }
 
     // Stay crisp for the first quarter of the scroll, then fade out smoothly
     gsap.to(container.current, {

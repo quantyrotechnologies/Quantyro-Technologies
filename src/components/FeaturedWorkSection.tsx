@@ -11,6 +11,7 @@ import { patternImageForSlug } from '@/lib/patternImage';
 import type { Project } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function FeaturedWorkSection({ projects }: { projects: Project[] }) {
   const container = useRef<HTMLDivElement>(null);

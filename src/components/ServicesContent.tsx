@@ -16,6 +16,7 @@ import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import { stripHtml } from '@/lib/stripHtml';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function ServicesContent({
   services,
@@ -31,7 +32,9 @@ export default function ServicesContent({
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.utils.toArray<HTMLElement>('.service-card').forEach((card) => {
+    if (!container.current) return;
+    const cards = gsap.utils.toArray<HTMLElement>('.service-card', container.current);
+    cards.forEach((card) => {
       gsap.fromTo(card,
         { opacity: 0, y: 28 },
         {
@@ -46,7 +49,7 @@ export default function ServicesContent({
         }
       );
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [services] });
 
   return (
     <div ref={container}>

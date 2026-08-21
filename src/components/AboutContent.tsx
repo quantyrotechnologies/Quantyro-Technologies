@@ -11,6 +11,7 @@ import type { Certification, Value, Office, Stat } from '@/lib/types';
 import Breadcrumbs from './Breadcrumbs';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function AboutContent({
   certifications,
@@ -28,7 +29,9 @@ export default function AboutContent({
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.utils.toArray<HTMLElement>('.value-card, .office-chip').forEach((el, i) => {
+    if (!container.current) return;
+    const cards = gsap.utils.toArray<HTMLElement>('.value-card, .office-chip', container.current);
+    cards.forEach((el, i) => {
       gsap.fromTo(el,
         { opacity: 0, y: 20 },
         {
@@ -44,7 +47,7 @@ export default function AboutContent({
         }
       );
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [values, offices] });
 
   return (
     <div ref={container}>

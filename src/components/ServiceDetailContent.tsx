@@ -18,6 +18,7 @@ import RichText from './RichText';
 import type { Service, RoadmapStep, Project, IndustryApplication } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 const SLA_GUARANTEES = [
   {
@@ -76,7 +77,9 @@ export default function ServiceDetailContent({
   ];
 
   useGSAP(() => {
-    gsap.utils.toArray<HTMLElement>('.svc-reveal').forEach((el) => {
+    if (!container.current) return;
+    const reveals = gsap.utils.toArray<HTMLElement>('.svc-reveal', container.current);
+    reveals.forEach((el) => {
       gsap.fromTo(el,
         { opacity: 0, y: 24 },
         {
@@ -88,7 +91,7 @@ export default function ServiceDetailContent({
         }
       );
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [service] });
 
   return (
     <div ref={container}>

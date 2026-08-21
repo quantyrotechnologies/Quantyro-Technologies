@@ -11,6 +11,7 @@ import { stripHtml } from '@/lib/stripHtml';
 import type { Service } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function ServicesSection({ services }: { services: Service[] }) {
   const container = useRef<HTMLDivElement>(null);

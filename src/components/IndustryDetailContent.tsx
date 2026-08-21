@@ -17,6 +17,7 @@ import RichText from './RichText';
 import type { Industry, Service, Project } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function IndustryDetailContent({
   industry,
@@ -50,7 +51,9 @@ export default function IndustryDetailContent({
   ];
 
   useGSAP(() => {
-    gsap.utils.toArray<HTMLElement>('.ind-reveal').forEach((el) => {
+    if (!container.current) return;
+    const reveals = gsap.utils.toArray<HTMLElement>('.ind-reveal', container.current);
+    reveals.forEach((el) => {
       gsap.fromTo(el,
         { opacity: 0, y: 24 },
         {
@@ -62,7 +65,7 @@ export default function IndustryDetailContent({
         }
       );
     });
-  }, { scope: container });
+  }, { scope: container, dependencies: [industry] });
 
   return (
     <div ref={container}>

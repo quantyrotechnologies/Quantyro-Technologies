@@ -6,40 +6,47 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticLink from './MagneticLink';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function CtaSection() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const ctaWords = gsap.utils.toArray('.cta-title .word span');
-    gsap.set(ctaWords, { yPercent: 100 });
-    
-    gsap.to(ctaWords, {
-      yPercent: 0,
-      duration: 1,
-      stagger: 0.06,
-      ease: 'power4.out',
-      scrollTrigger: {
-        trigger: container.current,
-        start: 'top 75%',
-        invalidateOnRefresh: true
-      }
-    });
-
-    gsap.fromTo('.cta-sub, .cta-actions',
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
+    if (!container.current) return;
+    const ctaWords = gsap.utils.toArray<HTMLElement>('.cta-title .word span', container.current);
+    if (ctaWords.length > 0) {
+      gsap.set(ctaWords, { yPercent: 100 });
+      
+      gsap.to(ctaWords, {
+        yPercent: 0,
+        duration: 1,
+        stagger: 0.06,
+        ease: 'power4.out',
         scrollTrigger: {
           trigger: container.current,
-          start: 'top 60%',
+          start: 'top 75%',
           invalidateOnRefresh: true
         }
-      }
-    );
+      });
+    }
+
+    const subTargets = gsap.utils.toArray<HTMLElement>('.cta-sub, .cta-actions', container.current);
+    if (subTargets.length > 0) {
+      gsap.fromTo(subTargets,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 60%',
+            invalidateOnRefresh: true
+          }
+        }
+      );
+    }
   }, { scope: container });
 
   const renderTitle = (text: string) => {

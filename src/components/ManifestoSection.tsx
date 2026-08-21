@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { RoadmapStep } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ nullTargetWarn: false });
 
 export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,9 +17,10 @@ export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
   const [simulatedSteps, setSimulatedSteps] = useState<Record<string, boolean>>({});
 
   useGSAP(() => {
-    const cards = gsap.utils.toArray<HTMLElement>('.roadmap-card');
-    const beacons = gsap.utils.toArray<HTMLElement>('.roadmap-node-beacon');
-    const bridges = gsap.utils.toArray<HTMLElement>('.roadmap-bridge-line');
+    if (!containerRef.current || !steps || steps.length === 0) return;
+    const cards = gsap.utils.toArray<HTMLElement>('.roadmap-card', containerRef.current);
+    const beacons = gsap.utils.toArray<HTMLElement>('.roadmap-node-beacon', containerRef.current);
+    const bridges = gsap.utils.toArray<HTMLElement>('.roadmap-bridge-line', containerRef.current);
 
     ScrollTrigger.create({
       trigger: containerRef.current,
@@ -47,7 +49,7 @@ export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
         });
       },
     });
-  }, { scope: containerRef });
+  }, { scope: containerRef, dependencies: [steps] });
 
   if (steps.length === 0) return null;
 
