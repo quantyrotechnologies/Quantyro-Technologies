@@ -19,7 +19,7 @@ export const SAMPLE_SERVICES: Service[] = [
     ],
     stack: ['Next.js 15', 'React', 'Node.js', 'MongoDB', 'PHP', 'Laravel', 'WordPress', 'MySQL'],
     imageUrl: null,
-    seoTitle: 'Website Development Services (SEO-First)',
+    seoTitle: 'Website Development Services',
     seoDescription: 'SEO-optimized website development across MERN, React, PHP, and Laravel — built for Core Web Vitals, technical SEO, and search visibility from day one.',
     targetKeywords: ['website development services', 'web development company', 'custom website development', 'custom website development services', 'web development services', 'website development company in India', 'website development services in India', 'SEO-friendly website development', 'SEO-ready website development'],
   },
