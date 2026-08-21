@@ -6,6 +6,8 @@ import { getRoadmapSteps } from '@/lib/data/roadmap';
 import { getActiveRegionsByService } from '@/lib/data/serviceRegionPages';
 import { getActiveCitiesByService } from '@/lib/data/locationPages';
 import { techStackSlugMapForService } from '@/lib/data/techStackPages';
+import { getProjects } from '@/lib/data/projects';
+import { serviceSlugForTag } from '@/lib/serviceTagMap';
 import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/site';
 import ServiceDetailContent from '@/components/ServiceDetailContent';
 
@@ -35,15 +37,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const service = await getServiceBySlug(slug);
   if (!service) notFound();
 
-  const [faqs, roadmapSteps, regionsByService, citiesByService, techStackSlugs] = await Promise.all([
+  const [faqs, roadmapSteps, regionsByService, citiesByService, techStackSlugs, projects] = await Promise.all([
     getFaqs(`service-${slug}`),
     getRoadmapSteps(),
     getActiveRegionsByService(),
     getActiveCitiesByService(),
     techStackSlugMapForService(slug),
+    getProjects(),
   ]);
   const regions = regionsByService[service.id] ?? [];
   const cities = citiesByService[service.id] ?? [];
+  const relatedProjects = projects.filter((p) => p.tags.some((t) => serviceSlugForTag(t) === slug)).slice(0, 3);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -61,7 +65,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ServiceDetailContent service={service} faqs={faqs} roadmapSteps={roadmapSteps} regions={regions} cities={cities} techStackSlugs={techStackSlugs} />
+      <ServiceDetailContent service={service} faqs={faqs} roadmapSteps={roadmapSteps} regions={regions} cities={cities} techStackSlugs={techStackSlugs} relatedProjects={relatedProjects} />
     </>
   );
 }

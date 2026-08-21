@@ -14,7 +14,7 @@ import TableOfContents from './TableOfContents';
 import FaqSection, { type FaqItem } from './FaqSection';
 import InlineInquiryForm from './InlineInquiryForm';
 import CtaSection from './CtaSection';
-import type { Service, RoadmapStep } from '@/lib/types';
+import type { Service, RoadmapStep, Project } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -63,6 +63,7 @@ export default function ServiceDetailContent({
   regions,
   cities = [],
   techStackSlugs = {},
+  relatedProjects = [],
 }: {
   service: Service;
   faqs: FaqItem[];
@@ -71,6 +72,7 @@ export default function ServiceDetailContent({
   cities?: string[];
   /** capabilityLabel -> deep-dive page slug, pre-fetched by the page so this client component doesn't call async data functions per capability. */
   techStackSlugs?: Record<string, string>;
+  relatedProjects?: Project[];
 }) {
   const container = useRef<HTMLDivElement>(null);
   const accent = Number(service.num) % 2 === 0 ? 'accent-2' : 'accent';
@@ -82,6 +84,7 @@ export default function ServiceDetailContent({
     { id: 'sla-standards', label: 'Engineering SLAs & Standards' },
     { id: 'process', label: '4-Phase Delivery Framework' },
     ...(regions.length + cities.length > 0 ? [{ id: 'regions', label: 'Global Availability' }] : []),
+    ...(relatedProjects.length > 0 ? [{ id: 'related-work', label: 'Related Work' }] : []),
     ...(faqs.length > 0 ? [{ id: 'faq', label: 'Frequently Asked Questions' }] : []),
   ];
 
@@ -391,6 +394,29 @@ export default function ServiceDetailContent({
                   className="inline-flex items-center gap-[6px] mono text-[12.5px] px-[16px] py-[9px] rounded-full border border-[rgba(23,104,214,0.25)] text-[var(--accent)] bg-[rgba(23,104,214,0.04)] hover:bg-[rgba(23,104,214,0.1)] transition-colors"
                 >
                   {service.title} in {city} →
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Related Work */}
+        {relatedProjects.length > 0 && (
+          <div className="mb-[64px]">
+            <h2 id="related-work" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px]">
+              {String(regions.length + cities.length > 0 ? 7 : 6).padStart(2, '0')} / Related Work
+            </h2>
+            <div className="svc-reveal grid grid-cols-1 md:grid-cols-2 gap-[14px]">
+              {relatedProjects.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/work/${p.slug}`}
+                  className="group relative flex flex-col gap-[6px] rounded-[18px] border border-[var(--line)] bg-[var(--surface)] p-[18px] hover:border-[rgba(23,104,214,0.4)] hover:shadow-md transition-all"
+                >
+                  <span className="mono text-[11px] text-[var(--muted)]">{p.client} · {p.region}</span>
+                  <h4 className="text-[15px] text-[var(--ink)] font-bold">{p.title}</h4>
+                  <span className="text-[13px] text-[var(--muted)]">{p.result}</span>
+                  <span className="mt-[4px] text-[12px] mono text-[var(--accent)] font-semibold">View case study →</span>
                 </Link>
               ))}
             </div>

@@ -1,10 +1,12 @@
 "use client";
 import React, { useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { patternImageForSlug } from '@/lib/patternImage';
+import { serviceSlugForTag } from '@/lib/serviceTagMap';
 import Breadcrumbs from './Breadcrumbs';
 import TableOfContents from './TableOfContents';
 import CtaSection from './CtaSection';
@@ -117,11 +119,22 @@ export default function WorkDetailContent({ project }: { project: Project }) {
         </p>
         {project.tags.length > 0 && (
           <div className="wd-reveal flex flex-wrap gap-[8px] mb-[56px]">
-            {project.tags.map((t) => (
-              <span key={t} className="mono text-[11px] px-[10px] py-[5px] rounded-full border border-[var(--line)] text-[var(--muted)]">
-                {t}
-              </span>
-            ))}
+            {project.tags.map((t) => {
+              const serviceSlug = serviceSlugForTag(t);
+              return serviceSlug ? (
+                <Link
+                  key={t}
+                  href={`/services/${serviceSlug}`}
+                  className="mono text-[11px] px-[10px] py-[5px] rounded-full border border-[var(--line)] text-[var(--accent)] hover:bg-[rgba(23,104,214,0.06)] transition-colors"
+                >
+                  {t} →
+                </Link>
+              ) : (
+                <span key={t} className="mono text-[11px] px-[10px] py-[5px] rounded-full border border-[var(--line)] text-[var(--muted)]">
+                  {t}
+                </span>
+              );
+            })}
           </div>
         )}
         {project.tags.length === 0 && <div className="mb-[40px]" />}
