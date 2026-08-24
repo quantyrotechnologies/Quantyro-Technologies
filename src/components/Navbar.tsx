@@ -43,22 +43,19 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-[12px] group shrink-0" aria-label="Quantyro Technologies Home">
             <div className="relative w-[38px] h-[38px] md:w-[42px] md:h-[42px] rounded-xl overflow-hidden shadow-sm border border-[rgba(10,23,47,0.12)] bg-white p-[2px] flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_rgba(23,104,214,0.35)]">
               <Image
-                src="/images/logo.jpeg"
+                src="/images/logo.png"
                 alt="Quantyro Technologies Logo"
                 width={42}
                 height={42}
-                className="object-cover w-full h-full rounded-[9px]"
+                className="object-contain w-full h-full rounded-[9px]"
                 priority
               />
             </div>
             
             <div className="flex flex-col justify-center">
-              <div className="flex items-center gap-[6px]">
-                <span className="font-[var(--font-display)] font-extrabold text-[18px] md:text-[20px] text-[var(--ink)] tracking-tight leading-none group-hover:text-[var(--accent)] transition-colors">
-                  Quantyro
-                </span>
-                <span className="w-[5px] h-[5px] rounded-full bg-[var(--accent-2)]" />
-              </div>
+              <span className="font-[var(--font-display)] font-extrabold text-[18px] md:text-[20px] text-[var(--ink)] tracking-tight leading-none group-hover:text-[var(--accent)] transition-colors">
+                Quantyro
+              </span>
               <span className="mono text-[9px] md:text-[10px] uppercase font-bold tracking-[0.14em] text-[var(--muted)] mt-[3px] group-hover:text-[var(--ink)] transition-colors">
                 Technologies
               </span>

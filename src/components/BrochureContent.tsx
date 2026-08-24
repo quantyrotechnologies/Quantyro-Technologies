@@ -48,7 +48,7 @@ export default function BrochureContent({
         <div className="relative max-w-[900px] mx-auto text-center">
           <div className="inline-flex items-center gap-[10px] mb-[28px]">
             <div className="w-[44px] h-[44px] rounded-[12px] overflow-hidden bg-white p-[2px] shadow-lg">
-              <Image src="/images/logo.jpeg" alt={`${settings.orgName} logo`} width={44} height={44} className="w-full h-full object-cover rounded-[9px]" />
+              <Image src="/images/logo.png" alt={`${settings.orgName} logo`} width={44} height={44} className="w-full h-full object-contain rounded-[9px]" />
             </div>
             <div className="text-left">
               <div className="font-[var(--font-display)] font-extrabold text-[20px] text-white leading-none">{settings.orgName}</div>

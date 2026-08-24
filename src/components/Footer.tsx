@@ -174,11 +174,11 @@ export default function Footer({
             <Link href="/" className="inline-flex items-center gap-[10px] group">
               <div className="relative w-[38px] h-[38px] rounded-xl overflow-hidden shadow-sm border border-[rgba(10,23,47,0.12)] bg-white p-[2px] flex items-center justify-center transition-all duration-300 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_rgba(23,104,214,0.25)]">
                 <Image
-                  src="/images/logo.jpeg"
+                  src="/images/logo.png"
                   alt={`${settings.orgName} logo`}
                   width={38}
                   height={38}
-                  className="object-cover w-full h-full rounded-[8px]"
+                  className="object-contain w-full h-full rounded-[8px]"
                 />
               </div>
               <span className="font-[var(--font-display)] font-extrabold text-[19px] text-[var(--ink)] tracking-tight leading-none">
