@@ -41,22 +41,22 @@ export default function Navbar() {
           
           {/* Brand Logo with Icon & Full Name "Quantyro Technologies" */}
           <Link href="/" className="flex items-center gap-[12px] group shrink-0" aria-label="Quantyro Technologies Home">
-            <div className="relative w-[38px] h-[38px] md:w-[42px] md:h-[42px] rounded-xl overflow-hidden shadow-sm border border-[rgba(10,23,47,0.12)] bg-white p-[2px] flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_rgba(23,104,214,0.35)]">
+            <div className="relative w-[44px] h-[44px] md:w-[50px] md:h-[50px] rounded-xl overflow-hidden shadow-sm border border-[rgba(10,23,47,0.1)] bg-white p-[1px] flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_rgba(23,104,214,0.35)]">
               <Image
                 src="/images/logo.png"
                 alt="Quantyro Technologies Logo"
-                width={42}
-                height={42}
-                className="object-contain w-full h-full rounded-[9px]"
+                width={50}
+                height={50}
+                className="object-contain w-full h-full rounded-[9px] scale-[1.08]"
                 priority
               />
             </div>
             
             <div className="flex flex-col justify-center">
-              <span className="font-[var(--font-display)] font-extrabold text-[18px] md:text-[20px] text-[var(--ink)] tracking-tight leading-none group-hover:text-[var(--accent)] transition-colors">
+              <span className="font-[var(--font-display)] font-extrabold text-[19px] md:text-[21px] text-[var(--ink)] tracking-tight leading-none group-hover:text-[var(--accent)] transition-colors">
                 Quantyro
               </span>
-              <span className="mono text-[9px] md:text-[10px] uppercase font-bold tracking-[0.14em] text-[var(--muted)] mt-[3px] group-hover:text-[var(--ink)] transition-colors">
+              <span className="mono text-[9.5px] md:text-[10.5px] uppercase font-bold tracking-[0.14em] text-[var(--muted)] mt-[3px] group-hover:text-[var(--ink)] transition-colors">
                 Technologies
               </span>
             </div>
