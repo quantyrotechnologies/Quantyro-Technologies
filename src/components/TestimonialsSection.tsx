@@ -4,18 +4,21 @@ import { AnimatePresence, motion } from 'motion/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { Testimonial } from '@/lib/types';
+import RichText from './RichText';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
-export default function TestimonialsSection({ testimonials }: { testimonials: Testimonial[] }) {
+export default function TestimonialsSection({ testimonials = [] }: { testimonials: Testimonial[] }) {
   const container = useRef<HTMLDivElement>(null);
   const [[index, direction], setIndex] = useState<[number, number]>([0, 0]);
   const [paused, setPaused] = useState(false);
 
-  const active = testimonials[index];
+  const safeIndex = (index >= 0 && index < testimonials.length) ? index : 0;
+  const active = testimonials[safeIndex];
 
   const go = (dir: number) => {
+    if (!testimonials || testimonials.length <= 1) return;
     setIndex(([prev]) => {
       const next = (prev + dir + testimonials.length) % testimonials.length;
       return [next, dir];
@@ -23,10 +26,10 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
   };
 
   useEffect(() => {
-    if (paused || testimonials.length <= 1) return;
+    if (paused || !testimonials || testimonials.length <= 1) return;
     const id = setInterval(() => go(1), 6000);
     return () => clearInterval(id);
-  }, [paused, testimonials.length]);
+  }, [paused, testimonials]);
 
   useEffect(() => {
     if (!container.current || !testimonials || testimonials.length === 0) return;
@@ -55,7 +58,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
     return () => ctx.revert();
   }, [testimonials]);
 
-  if (testimonials.length === 0) return null;
+  if (!testimonials || testimonials.length === 0 || !active) return null;
 
   return (
     <section ref={container} id="testimonials" className="relative px-[6vw] py-[80px] md:py-[100px] z-10">
@@ -69,7 +72,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
           <span className="text-[var(--accent)]">who ship fast</span>.
         </h2>
 
-        {/* Visible Aggregate Rating Badge matching Schema */}
+        {/* Visible Aggregate Rating Badge */}
         <div className="mt-[16px] inline-flex items-center gap-[8px] px-[14px] py-[6px] rounded-full bg-white border border-[rgba(23,104,214,0.18)] shadow-sm text-[12.5px] text-[var(--ink)]">
           <div className="flex items-center text-[#FFB800] text-[14px] tracking-[-1px]">
             ★★★★★
@@ -86,14 +89,13 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
         onMouseLeave={() => setPaused(false)}
       >
         <div className="relative rounded-[28px] bg-[var(--surface)] border border-[rgba(10,23,47,0.18)] shadow-[0_16px_50px_rgba(10,23,47,0.06)] px-[32px] py-[44px] md:px-[64px] md:py-[56px] overflow-hidden min-h-[320px] flex items-center">
-          <AnimatePresence mode="wait" custom={direction} initial={false}>
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
-              key={index}
-              custom={direction}
-              initial={{ opacity: 0, x: direction >= 0 ? 40 : -40 }}
+              key={active.name ? `${active.name}-${safeIndex}` : safeIndex}
+              initial={{ opacity: 0, x: direction >= 0 ? 30 : -30 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction >= 0 ? -40 : 40 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0, x: direction >= 0 ? -30 : 30 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="w-full text-center"
             >
               <div className="flex items-center justify-center gap-[3px] mb-[18px]">
@@ -101,15 +103,15 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
                   <span key={i} className="text-[#FFB800] text-[16px]">★</span>
                 ))}
               </div>
-              <p className="text-[18px] md:text-[21px] leading-[1.55] text-[var(--ink)] font-[var(--font-display)] font-medium">
-                &ldquo;{active.quote}&rdquo;
-              </p>
+              <div className="text-[18px] md:text-[21px] leading-[1.55] text-[var(--ink)] font-[var(--font-display)] font-medium">
+                <RichText html={active.quote || ''} />
+              </div>
               <div className="mt-[28px] flex items-center justify-center gap-[12px]">
                 <div
                   className="w-[40px] h-[40px] rounded-full flex items-center justify-center text-[12px] font-bold shrink-0"
-                  style={{ background: active.avatarBg, color: active.avatarFg }}
+                  style={{ background: active.avatarBg || '#1768D6', color: active.avatarFg || '#FFFFFF' }}
                 >
-                  {active.initials}
+                  {active.initials || 'QT'}
                 </div>
                 <div className="text-left">
                   <div className="text-[14px] font-semibold text-[var(--ink)]">{active.name}</div>
@@ -125,7 +127,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
           type="button"
           onClick={() => go(-1)}
           aria-label="Previous testimonial"
-          className="hidden md:flex absolute top-1/2 -translate-y-1/2 -left-[54px] w-[42px] h-[42px] rounded-full border border-[var(--line)] bg-white items-center justify-center text-[var(--muted)] hover:text-[var(--accent)] hover:border-[rgba(23,104,214,0.4)] transition-colors shadow-sm"
+          className="hidden md:flex absolute top-1/2 -translate-y-1/2 -left-[54px] w-[42px] h-[42px] rounded-full border border-[var(--line)] bg-white items-center justify-center text-[var(--muted)] hover:text-[var(--accent)] hover:border-[rgba(23,104,214,0.4)] transition-colors shadow-sm cursor-pointer"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
         </button>
@@ -133,7 +135,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
           type="button"
           onClick={() => go(1)}
           aria-label="Next testimonial"
-          className="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-[54px] w-[42px] h-[42px] rounded-full border border-[var(--line)] bg-white items-center justify-center text-[var(--muted)] hover:text-[var(--accent)] hover:border-[rgba(23,104,214,0.4)] transition-colors shadow-sm"
+          className="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-[54px] w-[42px] h-[42px] rounded-full border border-[var(--line)] bg-white items-center justify-center text-[var(--muted)] hover:text-[var(--accent)] hover:border-[rgba(23,104,214,0.4)] transition-colors shadow-sm cursor-pointer"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
         </button>
@@ -142,12 +144,12 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
         <div className="flex items-center justify-center gap-[8px] mt-[24px]">
           {testimonials.map((t, i) => (
             <button
-              key={t.name}
+              key={t.name ? `${t.name}-${i}` : i}
               type="button"
-              onClick={() => setIndex([i, i > index ? 1 : -1])}
+              onClick={() => setIndex([i, i > safeIndex ? 1 : -1])}
               aria-label={`Show testimonial from ${t.name}`}
-              className={`h-[7px] rounded-full transition-all duration-300 ${
-                i === index ? 'w-[22px] bg-[var(--accent)]' : 'w-[7px] bg-[rgba(10,23,47,0.15)] hover:bg-[rgba(23,104,214,0.4)]'
+              className={`h-[7px] rounded-full transition-all duration-300 cursor-pointer ${
+                i === safeIndex ? 'w-[22px] bg-[var(--accent)]' : 'w-[7px] bg-[rgba(10,23,47,0.15)] hover:bg-[rgba(23,104,214,0.4)]'
               }`}
             />
           ))}

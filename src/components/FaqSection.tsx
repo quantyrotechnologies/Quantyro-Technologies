@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from 'react';
+import RichText from './RichText';
+import { stripHtml } from '@/lib/stripHtml';
 
 export interface FaqItem {
   q: string;
@@ -17,7 +19,7 @@ export default function FaqSection({ items, heading = 'Frequently asked question
       name: item.q,
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.a,
+        text: stripHtml(item.a),
       },
     })),
   };
@@ -62,9 +64,9 @@ export default function FaqSection({ items, heading = 'Frequently asked question
                 style={{ gridTemplateRows: open ? '1fr' : '0fr' }}
               >
                 <div className="overflow-hidden">
-                  <p className="px-[20px] pb-[18px] text-[14px] text-[var(--muted)] leading-[1.65]">
-                    {item.a}
-                  </p>
+                  <div className="px-[20px] pb-[18px] text-[14px] text-[var(--muted)] leading-[1.65]">
+                    <RichText html={item.a} />
+                  </div>
                 </div>
               </div>
             </div>

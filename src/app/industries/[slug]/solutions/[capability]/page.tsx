@@ -8,6 +8,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import InlineInquiryForm from '@/components/InlineInquiryForm';
 import CtaSection from '@/components/CtaSection';
 import TechArchitectureCard from '@/components/TechArchitectureCard';
+import RichText from '@/components/RichText';
 
 export async function generateStaticParams() {
   const params = await getAllIndustrySolutionParams();
@@ -105,13 +106,15 @@ export default async function IndustrySolutionDetailPage({
               {page.tagline}
             </p>
             
-            <p className="mt-[16px] max-w-[680px] text-[var(--muted)] text-[15px] md:text-[16px] leading-[1.75]">
-              {page.overview}
-            </p>
+            <div className="mt-[16px] max-w-[680px] text-[var(--muted)] text-[15px] md:text-[16px] leading-[1.75]">
+              <RichText html={page.overview} />
+            </div>
             
-            <p className="mt-[12px] max-w-[680px] text-[var(--muted)] text-[14.5px] md:text-[15.5px] leading-[1.75]">
-              {page.overviewExtra}
-            </p>
+            {page.overviewExtra && (
+              <div className="mt-[12px] max-w-[680px] text-[var(--muted)] text-[14.5px] md:text-[15.5px] leading-[1.75]">
+                <RichText html={page.overviewExtra} />
+              </div>
+            )}
 
             <div className="mt-[24px] flex flex-wrap gap-[8px]">
               {page.primaryTech.map((t) => (

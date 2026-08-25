@@ -9,6 +9,7 @@ import FaqSection, { type FaqItem } from './FaqSection';
 import { patternImageForSlug } from '@/lib/patternImage';
 import type { Project } from '@/lib/types';
 import Breadcrumbs from './Breadcrumbs';
+import RichText from './RichText';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
@@ -129,9 +130,9 @@ export default function WorkContent({ projects, faqs }: { projects: Project[]; f
                             <div className="inline-flex items-center gap-[6px] text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-bold mb-[12px]">
                               <span aria-hidden>✳</span> Executive Overview
                             </div>
-                            <p className="text-[14.5px] md:text-[15.5px] text-slate-200 leading-[1.7]">
-                              {p.summary}
-                            </p>
+                            <div className="text-[14.5px] md:text-[15.5px] text-slate-200 leading-[1.7]">
+                              <RichText html={p.summary} />
+                            </div>
                             <div className="mt-[16px] flex items-center gap-[14px] text-[12px] text-slate-400 mono">
                               <span className="text-white font-semibold">{p.client}</span>
                               <span>·</span>

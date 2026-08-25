@@ -390,9 +390,9 @@ export default function ServiceDetailContent({
                         {app.metric}
                       </span>
                     </div>
-                    <p className="text-[14px] text-slate-300 leading-[1.65]">
-                      {app.useCase}
-                    </p>
+                    <div className="text-[14px] text-slate-300 leading-[1.65]">
+                      <RichText html={app.useCase} />
+                    </div>
                   </div>
                 </div>
               ))}

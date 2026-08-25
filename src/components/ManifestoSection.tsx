@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { RoadmapStep } from '@/lib/types';
+import RichText from './RichText';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
@@ -140,9 +141,9 @@ export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
                     <h3 className="mt-[8px] text-[17px] md:text-[18px] font-[var(--font-display)] font-bold text-[var(--ink)] leading-[1.2]">
                       {item.title}
                     </h3>
-                    <p className="mt-[6px] text-[13px] text-[var(--muted)] leading-[1.55]">
-                      {item.desc}
-                    </p>
+                    <div className="mt-[6px] text-[13px] text-[var(--muted)] leading-[1.55]">
+                      <RichText html={item.desc} />
+                    </div>
 
                     {/* Mini Terminal */}
                     <div className="mt-[12px] rounded-xl bg-[#0F172A] p-[10px] border border-slate-700/50 font-mono text-[10.5px] leading-[1.5] text-blue-300">

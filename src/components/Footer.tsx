@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticLink from './MagneticLink';
 import type { SocialLink, SiteSettings } from '@/lib/types';
+import RichText from './RichText';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
@@ -174,9 +175,9 @@ export default function Footer({
               </span>
             </Link>
 
-            <p className="mt-[16px] max-w-[34ch] text-[13.5px] text-slate-300 leading-[1.65]">
-              {settings.footerBlurb || 'Senior software engineering and digital transformation consultancy. Direct GitHub IP ownership, zero junior benches.'}
-            </p>
+            <div className="mt-[16px] max-w-[34ch] text-[13.5px] text-slate-300 leading-[1.65]">
+              <RichText html={settings.footerBlurb || 'Senior software engineering and digital transformation consultancy. Direct GitHub IP ownership, zero junior benches.'} />
+            </div>
 
             {/* Social Icons */}
             {socialLinks.length > 0 && (

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { DEFAULT_SHOWCASE_ITEMS, type ShowcaseItem } from '@/lib/data/showcase';
+import RichText from './RichText';
 
 export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }: { items?: ShowcaseItem[] }) {
   const showcaseList = items && items.length > 0 ? items : DEFAULT_SHOWCASE_ITEMS;
@@ -117,9 +118,9 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
                     {activeItem.subtitle}
                   </p>
 
-                  <p className="text-[14px] md:text-[15px] text-[var(--muted)] leading-[1.7]">
-                    {activeItem.description}
-                  </p>
+                  <div className="text-[14px] md:text-[15px] text-[var(--muted)] leading-[1.7]">
+                    <RichText html={activeItem.description} />
+                  </div>
                 </div>
 
                 <div>

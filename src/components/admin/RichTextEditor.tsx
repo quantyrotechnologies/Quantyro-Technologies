@@ -118,6 +118,13 @@ export default function RichTextEditor({
     },
   });
 
+  React.useEffect(() => {
+    if (!editor || editor.isDestroyed) return;
+    if (value !== editor.getHTML() && !editor.isFocused) {
+      editor.commands.setContent(value || '', { emitUpdate: false });
+    }
+  }, [value, editor]);
+
   if (!editor) {
     return <div className="w-full h-[180px] rounded-[10px] border border-[var(--line)] bg-white animate-pulse" />;
   }

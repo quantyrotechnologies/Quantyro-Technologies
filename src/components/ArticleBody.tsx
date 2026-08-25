@@ -1,4 +1,5 @@
 import React from 'react';
+import RichText from './RichText';
 
 interface ArticleBodyProps {
   content: string;
@@ -10,10 +11,25 @@ export interface TocHeading {
   level: number;
 }
 
-export function extractHeadings(markdown: string): TocHeading[] {
-  const lines = markdown.split('\n');
+export function extractHeadings(content: string): TocHeading[] {
   const headings: TocHeading[] = [];
+  const isHtml = /<[a-z][\s\S]*>/i.test(content);
 
+  if (isHtml) {
+    const headingRegex = /<h([2-5])[^>]*>([\s\S]*?)<\/h\1>/gi;
+    let match;
+    while ((match = headingRegex.exec(content)) !== null) {
+      const level = parseInt(match[1], 10);
+      const rawText = match[2].replace(/<[^>]+>/g, '').trim();
+      if (rawText) {
+        const id = rawText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        headings.push({ id, label: rawText, level });
+      }
+    }
+    return headings;
+  }
+
+  const lines = content.split('\n');
   for (const line of lines) {
     const trimmed = line.trim();
     if (trimmed.startsWith('## ')) {
@@ -39,6 +55,26 @@ export function extractHeadings(markdown: string): TocHeading[] {
 }
 
 export default function ArticleBody({ content }: ArticleBodyProps) {
+  const isHtml = /<[a-z][\s\S]*>/i.test(content);
+
+  if (isHtml) {
+    // Inject IDs into HTML headings for Table of Contents anchor jumping
+    const processedHtml = content.replace(
+      /<h([2-5])([^>]*)>([\s\S]*?)<\/h\1>/gi,
+      (match, level, attrs, text) => {
+        const plainText = text.replace(/<[^>]+>/g, '').trim();
+        const id = plainText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        return `<h${level}${attrs} id="${id}" class="scroll-mt-28">${text}</h${level}>`;
+      }
+    );
+
+    return (
+      <div className="article-body text-[16.5px] text-[var(--ink)]/90 leading-[1.8]">
+        <RichText html={processedHtml} />
+      </div>
+    );
+  }
+
   const blocks = content.split(/\n\s*\n/).filter(Boolean);
 
   return (
@@ -91,7 +127,7 @@ export default function ArticleBody({ content }: ArticleBodyProps) {
           );
         }
 
-        // H5 Heading (Ensuring depth up to H5 as requested)
+        // H5 Heading
         if (trimmed.startsWith('##### ')) {
           const text = trimmed.replace(/^#####\s+/, '');
           const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -113,7 +149,6 @@ export default function ArticleBody({ content }: ArticleBodyProps) {
             <ul key={index} className="my-[8px] flex flex-col gap-[10px] pl-[6px]">
               {items.map((item, i) => {
                 const raw = item.replace(/^[-*]\s+/, '');
-                // Handle bold prefix e.g. **Bold**: text
                 const boldMatch = raw.match(/^\*\*(.+?)\*\*:\s*(.+)$/);
                 if (boldMatch) {
                   return (

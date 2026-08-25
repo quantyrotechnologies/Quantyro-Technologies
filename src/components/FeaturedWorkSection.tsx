@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { patternImageForSlug } from '@/lib/patternImage';
 import type { Project } from '@/lib/types';
+import { stripHtml } from '@/lib/stripHtml';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
@@ -114,7 +115,7 @@ export default function FeaturedWorkSection({ projects }: { projects: Project[] 
                 )}
 
                 <p className="mt-[12px] text-[13.5px] text-[var(--muted)] leading-[1.6] line-clamp-2">
-                  {p.summary || p.detail}
+                  {stripHtml(p.summary || p.detail)}
                 </p>
               </div>
             </div>

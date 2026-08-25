@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { BlogPost } from '@/lib/types';
+import { stripHtml } from '@/lib/stripHtml';
 
 interface BlogCardProps {
   post: BlogPost;
@@ -47,7 +48,7 @@ export default function BlogCard({ post, compact = false }: BlogCardProps) {
         {/* Excerpt if not compact */}
         {!compact && post.excerpt && (
           <p className="mt-[14px] text-[14.5px] leading-[1.65] text-slate-300/80 line-clamp-3">
-            {post.excerpt}
+            {stripHtml(post.excerpt)}
           </p>
         )}
 

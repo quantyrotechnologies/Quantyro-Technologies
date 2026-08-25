@@ -9,6 +9,7 @@ import FaqSection, { type FaqItem } from './FaqSection';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import type { Certification, Value, Office, Stat } from '@/lib/types';
 import Breadcrumbs from './Breadcrumbs';
+import RichText from './RichText';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
@@ -373,7 +374,9 @@ export default function AboutContent({
                 VALUE 0{idx + 1}
               </div>
               <h3 className="text-[21px] md:text-[22px] font-[var(--font-display)] font-bold text-[var(--ink)]">{v.title}</h3>
-              <p className="mt-[10px] text-[var(--muted)] text-[14.5px] md:text-[15px] leading-[1.65]">{v.desc}</p>
+              <div className="mt-[10px] text-[var(--muted)] text-[14.5px] md:text-[15px] leading-[1.65]">
+                <RichText html={v.desc} />
+              </div>
             </div>
           ))}
         </div>
