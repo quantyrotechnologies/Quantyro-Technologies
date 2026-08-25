@@ -18,16 +18,12 @@ gsap.config({ nullTargetWarn: false });
 
 export default function IndustriesContent({
   industries,
-  citiesByIndustry = {},
   faqs,
 }: {
   industries: Industry[];
   citiesByIndustry?: Record<string, string[]>;
   faqs: FaqItem[];
 }) {
-  const locationLinks = industries.flatMap((i) =>
-    (citiesByIndustry[i.id] ?? []).map((city) => ({ industry: i, city }))
-  );
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,13 +33,13 @@ export default function IndustriesContent({
       const cards = gsap.utils.toArray<HTMLElement>('.industry-card');
       cards.forEach((card) => {
         gsap.fromTo(card,
-          { opacity: 0, y: 28 },
+          { opacity: 0, y: 14 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
+            duration: 0.35,
             ease: 'power2.out',
-            scrollTrigger: { trigger: card, start: 'top 85%' },
+            scrollTrigger: { trigger: card, start: 'top 96%', once: true },
           }
         );
       });
@@ -56,8 +52,7 @@ export default function IndustriesContent({
     <div ref={container}>
       <section className="relative px-[6vw] pt-[160px] pb-[60px] z-10">
         <Breadcrumbs items={[{ label: 'Industries', href: '/industries' }]} />
-        <div className="mono text-[12px] text-[var(--muted)] mb-[20px]">Industries</div>
-        <h1 className="text-[clamp(36px,6vw,72px)] max-w-[20ch] font-[var(--font-display)] font-bold leading-[1]">
+        <h1 className="text-[clamp(32px,4.8vw,64px)] font-[var(--font-display)] font-bold leading-[1.1] text-[var(--ink)] tracking-tight">
           Domain expertise, not a generic template.
         </h1>
         <p className="mt-[24px] max-w-[560px] text-[var(--muted)] text-[16px] leading-[1.7]">
@@ -101,6 +96,7 @@ export default function IndustriesContent({
                   fill
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute top-[10px] right-[10px] w-[32px] h-[32px] rounded-full bg-white flex items-center justify-center opacity-0 -translate-y-2 translate-x-2 rotate-[-35deg] group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:rotate-0 transition-all duration-300 ease-out shadow-[0_4px_14px_rgba(10,23,47,0.25)]">
@@ -140,25 +136,6 @@ export default function IndustriesContent({
           ))}
         </div>
       </section>
-
-      {locationLinks.length > 0 && (
-        <section className="relative px-[6vw] pb-[80px] z-10">
-          <h2 className="text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--muted)] mb-[16px]">
-            Explore Industry Solutions by Location
-          </h2>
-          <div className="flex flex-wrap gap-x-[18px] gap-y-[10px] max-w-[1000px]">
-            {locationLinks.map(({ industry, city }) => (
-              <Link
-                key={`${industry.slug}-${city}`}
-                href={`/industries/${industry.slug}/${citySlug(city)}`}
-                className="text-[13.5px] text-[var(--ink)]/75 hover:text-[var(--accent)] transition-colors"
-              >
-                {industry.title} in {city}
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
 
       <FaqSection heading="Industries FAQ" items={faqs} />
 

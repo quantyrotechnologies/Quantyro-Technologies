@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import HeroSection from '@/components/HeroSection';
 import EnterpriseTicker from '@/components/EnterpriseTicker';
 import DeviceShowcaseSection from '@/components/DeviceShowcaseSection';
@@ -19,10 +20,31 @@ import { getTestimonials } from '@/lib/data/testimonials';
 import { getStats } from '@/lib/data/stats';
 import { getRoadmapSteps } from '@/lib/data/roadmap';
 import { getTickerMetrics } from '@/lib/data/tickerMetrics';
-
 import { getShowcaseItems } from '@/lib/data/showcase';
-
 import { SITE_URL } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: "Quantyro Technologies — Enterprise Custom Software, Cloud & AI Engineering",
+  description: "Quantyro is a premier software engineering company. We design, build, and scale high-performance web applications, composable commerce, mobile apps, and enterprise AI solutions with guaranteed SLAs and 100% IP ownership.",
+  keywords: [
+    "custom software development company",
+    "enterprise web development services",
+    "cloud devops consulting",
+    "AI and machine learning development",
+    "mobile app development company",
+    "headless ecommerce development",
+    "Next.js web development agency",
+    "Quantyro Technologies",
+  ],
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: "Quantyro Technologies — Enterprise Software & AI Engineering",
+    description: "Design, build, and scale high-performance digital products, cloud platforms, and enterprise AI with senior software engineers.",
+    url: SITE_URL,
+    siteName: "Quantyro Technologies",
+    type: "website",
+  },
+};
 
 export default async function Home() {
   const [services, industries, featuredProjects, homeFaqs, testimonials, stats, roadmapSteps, tickerMetrics, showcaseItems] = await Promise.all([

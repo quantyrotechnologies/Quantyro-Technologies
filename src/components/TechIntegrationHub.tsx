@@ -139,7 +139,7 @@ export default function TechIntegrationHub() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-[460px] lg:max-w-[540px] aspect-square mx-auto select-none flex items-center justify-center"
+      className="relative w-full max-w-[340px] sm:max-w-[440px] lg:max-w-[540px] aspect-square mx-auto select-none flex items-center justify-center mt-[10px] lg:mt-0"
       style={{
         perspective: '1200px',
       }}

@@ -8,12 +8,14 @@ import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import { regionToSlug } from '@/lib/regions';
 import { citySlug } from '@/lib/cities';
 import { serviceIllustration } from '@/lib/serviceIllustration';
+import { stripHtml } from '@/lib/stripHtml';
 import Breadcrumbs from './Breadcrumbs';
 import TableOfContents from './TableOfContents';
 import FaqSection, { type FaqItem } from './FaqSection';
 import InlineInquiryForm from './InlineInquiryForm';
 import CtaSection from './CtaSection';
 import RichText from './RichText';
+import { SERVICE_EXECUTIVE_DATA } from '@/lib/data/serviceExecutiveData';
 import type { Service, RoadmapStep, Project, IndustryApplication } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -82,13 +84,13 @@ export default function ServiceDetailContent({
       const reveals = gsap.utils.toArray<HTMLElement>('.svc-reveal');
       reveals.forEach((el) => {
         gsap.fromTo(el,
-          { opacity: 0, y: 24 },
+          { opacity: 0, y: 12 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
+            duration: 0.35,
             ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 88%' },
+            scrollTrigger: { trigger: el, start: 'top 96%', once: true },
           }
         );
       });
@@ -114,6 +116,11 @@ export default function ServiceDetailContent({
             <h1 className="svc-reveal text-[clamp(32px,5.4vw,56px)] max-w-[20ch] font-[var(--font-display)] font-bold leading-[1.05] text-[var(--ink)]">
               {service.title}
             </h1>
+
+            {/* SEO-Optimized Hero Descriptive Subtitle */}
+            <p className="svc-reveal mt-[16px] text-[15px] md:text-[16.5px] text-[var(--muted)] leading-[1.65] max-w-[560px]">
+              {service.desc ? stripHtml(service.desc) : service.seoDescription}
+            </p>
 
             <div className="svc-reveal mt-[22px] flex flex-wrap gap-[10px]">
               {highlights.map((h) => (
@@ -141,27 +148,62 @@ export default function ServiceDetailContent({
             </div>
           </div>
 
-          <div className="svc-reveal rounded-[24px] bg-white border border-[rgba(10,23,47,0.18)] shadow-[0_16px_50px_rgba(10,23,47,0.06)] p-[16px]">
-            <div className="relative w-full aspect-video overflow-hidden rounded-[12px]">
-              {service.imageUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element -- admin-supplied arbitrary URL, host unknown ahead of time
-                <img
-                  src={service.imageUrl}
-                  alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
-                  title={`${service.title} Architecture Blueprint`}
-                  loading="eager"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              ) : (
-                <Image
-                  src={serviceIllustration(service.slug)}
-                  alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
-                  title={`${service.title} Architecture Blueprint`}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              )}
+          {/* Animated Interactive Hero Showcase Card */}
+          <div 
+            onMouseMove={(e) => tiltOnMouseMove(e, 8)}
+            onMouseLeave={tiltOnMouseLeave}
+            className="svc-reveal relative group cursor-default transition-all duration-300"
+            style={{ perspective: '1000px' }}
+          >
+            {/* Ambient Animated Glow Aura behind image */}
+            <div 
+              className="absolute -inset-2 rounded-[32px] opacity-40 group-hover:opacity-75 blur-xl transition-all duration-500 pointer-events-none"
+              style={{
+                background: `radial-gradient(circle, var(--${accent}) 0%, rgba(14,188,212,0.3) 50%, transparent 80%)`
+              }}
+            />
+
+            {/* Main Glassmorphic Container Frame */}
+            <div className="relative rounded-[26px] bg-white/90 backdrop-blur-xl border border-[rgba(10,23,47,0.14)] shadow-[0_20px_60px_rgba(10,23,47,0.1)] p-[10px] md:p-[12px] transition-all duration-500 group-hover:border-[var(--accent)] group-hover:shadow-[0_24px_70px_rgba(23,104,214,0.18)]">
+              <div className="relative w-full aspect-video overflow-hidden rounded-[18px] bg-[#0A172F]">
+                {service.imageUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- admin-supplied arbitrary URL, host unknown ahead of time
+                  <img
+                    src={service.imageUrl}
+                    alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
+                    title={`${service.title} Architecture Blueprint`}
+                    loading="eager"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                ) : (
+                  <Image
+                    src={serviceIllustration(service.slug)}
+                    alt={`${service.title} — Quantyro Technologies Enterprise Engineering`}
+                    title={`${service.title} Architecture Blueprint`}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    priority
+                    unoptimized
+                  />
+                )}
+
+                {/* Subtle vignette overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A172F]/70 via-transparent to-black/20 pointer-events-none" />
+
+                {/* Live System Status Pill */}
+                <div className="absolute top-[12px] left-[12px] z-10 inline-flex items-center gap-[6px] px-[10px] py-[4px] rounded-full bg-[#0A172F]/80 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono font-medium shadow-lg">
+                  <span className="w-[6px] h-[6px] rounded-full bg-[#00E599] animate-pulse" />
+                  <span>Enterprise SLA · Active</span>
+                </div>
+
+                {/* Bottom capability HUD tag */}
+                <div className="absolute bottom-[12px] right-[12px] z-10 inline-flex items-center gap-[6px] px-[11px] py-[4.5px] rounded-full bg-white/95 backdrop-blur-md border border-[rgba(10,23,47,0.1)] text-[var(--ink)] text-[11.5px] font-semibold shadow-lg">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--accent)]">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                  <span>100% IP Ownership</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -176,21 +218,85 @@ export default function ServiceDetailContent({
         </div>
 
         {/* 1. Executive Overview */}
-        <div className="mb-[64px]">
-          <h2 id="overview" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['01_/_']">
-            Executive Overview
-          </h2>
-          <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[14px]">
-            Engineering Scalable Software Designed for Market Leadership
-          </h3>
-          <RichText
-            html={service.desc}
-            className="svc-reveal text-[16.5px] text-[var(--ink)]/85 leading-[1.8] mb-[20px]"
-          />
-          <p className="svc-reveal text-[15.5px] text-[var(--muted)] leading-[1.75]">
-            We bridge deep technical architecture with rapid business delivery. Every system is built by senior engineers using type-safe protocols, decoupled services, and cloud-native resilience patterns.
-          </p>
-        </div>
+        {(() => {
+          const defaultExec = SERVICE_EXECUTIVE_DATA[service.slug];
+          const headline = service.executiveHeadline || defaultExec?.headline || 'Engineering Scalable Software Designed for Market Leadership';
+          const narrative = (service.executiveNarrative && service.executiveNarrative.length > 0) ? service.executiveNarrative : defaultExec?.narrative;
+          const pillars = (service.executivePillars && service.executivePillars.length > 0) ? service.executivePillars : defaultExec?.pillars;
+
+          return (
+            <div className="mb-[64px]">
+              <h2 id="overview" className="svc-reveal text-[13px] font-mono font-semibold uppercase tracking-wide text-[var(--accent)] mb-[16px] scroll-mt-[100px] before:content-['01_/_']">
+                Executive Overview
+              </h2>
+              <h3 className="svc-reveal text-[24px] md:text-[28px] font-bold font-[var(--font-display)] text-[var(--ink)] mb-[16px] leading-[1.25]">
+                {headline}
+              </h3>
+              
+              {narrative ? (
+                <div className="svc-reveal space-y-[16px] text-[16px] text-[var(--ink)]/85 leading-[1.8] mb-[24px]">
+                  {narrative.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+              ) : (
+                <>
+                  <RichText
+                    html={service.desc}
+                    className="svc-reveal text-[16.5px] text-[var(--ink)]/85 leading-[1.8] mb-[20px]"
+                  />
+                  <p className="svc-reveal text-[15.5px] text-[var(--muted)] leading-[1.75]">
+                    We bridge deep technical architecture with rapid business delivery. Every system is built by senior engineers using type-safe protocols, decoupled services, and cloud-native resilience patterns.
+                  </p>
+                </>
+              )}
+
+              {/* 4 Executive Value Pillars Grid */}
+              {pillars && (
+                <div className="svc-reveal grid grid-cols-1 sm:grid-cols-2 gap-[14px] mt-[28px] pt-[24px] border-t border-[var(--line)]">
+                  {pillars.map((p) => (
+                    <div
+                      key={p.title}
+                      className="rounded-[16px] border border-[rgba(10,23,47,0.12)] bg-white p-[18px] shadow-[0_2px_12px_rgba(10,23,47,0.03)] hover:border-[var(--accent)] hover:shadow-md transition-all group"
+                    >
+                      <div className="flex items-center gap-[10px] mb-[8px]">
+                        <span
+                          className="w-[28px] h-[28px] rounded-lg flex items-center justify-center text-[var(--accent)] shrink-0 group-hover:scale-110 transition-transform"
+                          style={{ background: `color-mix(in srgb, var(--${accent}) 12%, transparent)` }}
+                        >
+                          {p.icon === 'shield' && (
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                          )}
+                          {p.icon === 'zap' && (
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                            </svg>
+                          )}
+                          {p.icon === 'code' && (
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="16 18 22 12 16 6" />
+                              <polyline points="8 6 2 12 8 18" />
+                            </svg>
+                          )}
+                          {p.icon === 'lock' && (
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                          )}
+                        </span>
+                        <h4 className="text-[14.5px] font-bold text-[var(--ink)]">{p.title}</h4>
+                      </div>
+                      <p className="text-[13px] text-[var(--muted)] leading-[1.55]">{p.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })()}
 
         {/* 2. Core Capabilities & Tech Stack */}
         <div className="mb-[64px]">

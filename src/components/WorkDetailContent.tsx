@@ -37,13 +37,13 @@ export default function WorkDetailContent({ project }: { project: Project }) {
       const reveals = gsap.utils.toArray<HTMLElement>('.wd-reveal');
       reveals.forEach((el) => {
         gsap.fromTo(el,
-          { opacity: 0, y: 24 },
+          { opacity: 0, y: 12 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
+            duration: 0.35,
             ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 88%' },
+            scrollTrigger: { trigger: el, start: 'top 96%', once: true },
           }
         );
       });
@@ -70,6 +70,12 @@ export default function WorkDetailContent({ project }: { project: Project }) {
               {project.title}
             </h1>
 
+            {project.summary && (
+              <p className="wd-reveal mt-[16px] text-[15px] md:text-[16.5px] text-[var(--muted)] leading-[1.65] max-w-[560px]">
+                {project.summary}
+              </p>
+            )}
+
             <div className="wd-reveal mt-[22px] flex flex-wrap gap-[10px]">
               {highlights.map((h) => (
                 <div
@@ -94,13 +100,42 @@ export default function WorkDetailContent({ project }: { project: Project }) {
                 </div>
               ))}
             </div>
+
+            {/* Visit Live Website Button */}
+            {project.url && (
+              <div className="wd-reveal mt-[24px]">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-[9px] px-[20px] py-[10px] rounded-full bg-[var(--accent)] text-white text-[13.5px] font-bold shadow-[0_4px_16px_rgba(23,104,214,0.3)] hover:bg-[#0A1324] hover:shadow-lg transition-all"
+                >
+                  <span>Visit Live Website</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
+                </a>
+              </div>
+            )}
           </div>
 
-          <div className="wd-reveal hidden md:block rounded-[24px] bg-white border border-[rgba(10,23,47,0.18)] shadow-[0_16px_50px_rgba(10,23,47,0.06)] p-[16px]">
-            <div className="relative w-full h-[240px] rounded-[12px] overflow-hidden">
+          {/* Browser Mockup Visual Card */}
+          <div className="wd-reveal hidden md:block rounded-[22px] bg-[#0A1324] border border-[rgba(10,23,47,0.2)] shadow-[0_24px_60px_rgba(10,23,47,0.18)] p-[10px] overflow-hidden">
+            <div className="flex items-center justify-between px-[12px] py-[6px] border-b border-white/10 text-white/50 text-[11px] mono">
+              <div className="flex items-center gap-[6px]">
+                <span className="w-[8px] h-[8px] rounded-full bg-red-400/80" />
+                <span className="w-[8px] h-[8px] rounded-full bg-amber-400/80" />
+                <span className="w-[8px] h-[8px] rounded-full bg-emerald-400/80" />
+              </div>
+              <span className="truncate max-w-[200px] text-slate-400">{project.url ? project.url.replace(/^https?:\/\//, '') : project.slug}</span>
+              <span className="text-emerald-400 font-semibold">Live ⚡</span>
+            </div>
+            <div className="relative w-full h-[240px] rounded-[10px] overflow-hidden bg-slate-900 mt-[6px]">
               <Image
-                src={patternImageForSlug(project.slug)}
-                alt={`${project.title} — case study cover illustration`}
+                src={project.imageUrl || patternImageForSlug(project.slug)}
+                alt={`${project.title} — live production screenshot`}
                 title={project.title}
                 fill
                 sizes="(min-width: 768px) 40vw, 100vw"

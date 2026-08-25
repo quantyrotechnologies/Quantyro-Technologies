@@ -13,7 +13,7 @@ const LAST_UPDATED = 'August 18, 2026';
 export default async function PrivacyPolicyPage() {
   const settings = await getSiteSettings();
 
-  const content = `
+  const defaultContent = `
 ## Overview
 
 ${settings.orgName} ("we," "us," or "our") respects your privacy. This policy explains what information we collect when you visit ${settings.url} or work with us, how we use it, and the choices you have.
@@ -72,6 +72,10 @@ We may update this policy from time to time. Material changes will be reflected 
 
 Questions about this policy or your data can be sent to **${settings.contactEmail}**.
 `.trim();
+
+  const content = settings.privacyPolicy && settings.privacyPolicy.trim().length > 50
+    ? settings.privacyPolicy
+    : defaultContent;
 
   return <LegalContent title="Privacy Policy" href="/privacy-policy" lastUpdated={LAST_UPDATED} content={content} />;
 }

@@ -7,6 +7,7 @@ import { SITE_URL, DEFAULT_OG_IMAGE, organizationNode } from '@/lib/site';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import InlineInquiryForm from '@/components/InlineInquiryForm';
 import CtaSection from '@/components/CtaSection';
+import TechArchitectureCard from '@/components/TechArchitectureCard';
 
 export async function generateStaticParams() {
   const params = await getAllTechStackParams();
@@ -80,7 +81,7 @@ export default async function TechStackDetailPage({
       />
 
       {/* Hero */}
-      <section className="relative px-[6vw] pt-[160px] pb-[60px] z-10">
+      <section className="relative px-[6vw] pt-[150px] pb-[60px] z-10">
         <Breadcrumbs
           items={[
             { label: 'Services', href: '/services' },
@@ -88,28 +89,48 @@ export default async function TechStackDetailPage({
             { label: page.title, href: `/services/${service.slug}/stack/${page.slug}` },
           ]}
         />
-        <div className="mono text-[12px] text-[var(--muted)] mb-[20px]">
-          {service.title} · Technology Deep Dive
-        </div>
-        <h1 className="text-[clamp(32px,5.4vw,56px)] max-w-[22ch] font-[var(--font-display)] font-bold leading-[1.05] text-[var(--ink)]">
-          {page.title}
-        </h1>
-        <p className="mt-[18px] max-w-[640px] text-[17px] text-[var(--accent)] font-semibold leading-[1.5]">
-          {page.tagline}
-        </p>
-        <p className="mt-[20px] max-w-[720px] text-[var(--muted)] text-[16px] leading-[1.75]">
-          {page.overview}
-        </p>
-        <p className="mt-[16px] max-w-[720px] text-[var(--muted)] text-[16px] leading-[1.75]">
-          {page.overviewExtra}
-        </p>
+        
+        <div className="mt-[20px] grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-[36px] lg:gap-[48px] items-center">
+          <div>
+            <div className="inline-flex items-center gap-[6px] px-[10px] py-[3px] rounded-full bg-[rgba(23,104,214,0.08)] border border-[rgba(23,104,214,0.18)] text-[var(--accent)] text-[11px] font-mono font-semibold uppercase mb-[14px]">
+              <span className="w-[5px] h-[5px] rounded-full bg-[var(--accent)]" />
+              <span>{service.title} · Technology Deep Dive</span>
+            </div>
+            
+            <h1 className="text-[clamp(30px,4.5vw,52px)] font-[var(--font-display)] font-extrabold leading-[1.08] text-[var(--ink)] tracking-tight">
+              {page.title}
+            </h1>
+            
+            <p className="mt-[16px] max-w-[620px] text-[16px] md:text-[17px] text-[var(--accent)] font-semibold leading-[1.5]">
+              {page.tagline}
+            </p>
+            
+            <p className="mt-[16px] max-w-[680px] text-[var(--muted)] text-[15px] md:text-[16px] leading-[1.75]">
+              {page.overview}
+            </p>
+            
+            <p className="mt-[12px] max-w-[680px] text-[var(--muted)] text-[14.5px] md:text-[15.5px] leading-[1.75]">
+              {page.overviewExtra}
+            </p>
 
-        <div className="mt-[24px] flex flex-wrap gap-[8px]">
-          {page.primaryTech.map((t) => (
-            <span key={t} className="mono text-[12px] px-[12px] py-[6px] rounded-full border border-[var(--line)] bg-white text-[var(--ink)] font-medium">
-              {t}
-            </span>
-          ))}
+            <div className="mt-[24px] flex flex-wrap gap-[8px]">
+              {page.primaryTech.map((t) => (
+                <span key={t} className="mono text-[11.5px] px-[12px] py-[5px] rounded-full border border-[var(--line)] bg-white text-[var(--ink)] font-semibold shadow-xs">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* High-Tech Framework Architecture Card */}
+          <div className="relative">
+            <TechArchitectureCard
+              title={page.title}
+              slug={page.slug}
+              serviceSlug={service.slug}
+              primaryTech={page.primaryTech}
+            />
+          </div>
         </div>
       </section>
 

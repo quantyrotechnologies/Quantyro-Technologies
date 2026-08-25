@@ -33,6 +33,11 @@ async function fetchSiteSettings(): Promise<SiteSettings> {
     responseTime: data.response_time,
     footerBlurb: data.footer_blurb,
     copyrightText: data.copyright_text,
+    announcementBadge: data.announcement_badge ?? null,
+    aboutStory: data.about_story ?? null,
+    aboutMission: data.about_mission ?? null,
+    privacyPolicy: data.privacy_policy ?? null,
+    termsConditions: data.terms_conditions ?? null,
   };
 }
 

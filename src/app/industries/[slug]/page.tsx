@@ -16,9 +16,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!industry) return {};
   const title = industry.seoTitle || `${industry.title} Software Development`;
   const description = industry.seoDescription || stripHtml(industry.desc);
+  const keywords = industry.targetKeywords && industry.targetKeywords.length > 0
+    ? industry.targetKeywords
+    : [`${industry.title} software development`, `${industry.title} tech solutions`, 'custom enterprise software', 'Quantyro Technologies'];
+
   return {
     title,
     description,
+    keywords,
     alternates: { canonical: `/industries/${slug}` },
     openGraph: { title, description, url: `/industries/${slug}`, type: 'website', images: [DEFAULT_OG_IMAGE] },
     twitter: { card: 'summary_large_image', title, description, images: [DEFAULT_OG_IMAGE] },
@@ -53,6 +58,14 @@ export default async function IndustryDetailPage({ params }: { params: Promise<{
         description: stripHtml(industry.desc),
         provider: { '@id': `${SITE_URL}/#organization` },
         ...(cities.length > 0 ? { areaServed: cities } : {}),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: 'Industries', item: `${SITE_URL}/industries` },
+          { '@type': 'ListItem', position: 3, name: industry.title, item: `${SITE_URL}/industries/${slug}` },
+        ],
       },
     ],
   };

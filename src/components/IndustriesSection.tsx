@@ -34,14 +34,14 @@ export default function IndustriesSection({ industries }: { industries: Industry
       const pills = gsap.utils.toArray<HTMLElement>('.industries-pill');
       pills.forEach((el, i) => {
         gsap.fromTo(el,
-          { opacity: 0, y: 20 },
+          { opacity: 0, y: 12 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.5,
-            delay: i * 0.05,
+            duration: 0.35,
+            delay: i * 0.03,
             ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 90%' },
+            scrollTrigger: { trigger: el, start: 'top 96%', once: true },
           }
         );
       });
@@ -51,7 +51,7 @@ export default function IndustriesSection({ industries }: { industries: Industry
   }, [industries]);
 
   return (
-    <section ref={container} id="industries" className="relative px-[6vw] py-[90px] z-10">
+    <section ref={container} id="industries" className="relative px-[6vw] pt-[30px] md:pt-[40px] pb-[80px] z-10">
       <div className="industries-heading flex flex-col md:flex-row md:items-end justify-between gap-[16px] mb-[36px]">
         <div>
           <div className="inline-flex items-center gap-[6px] px-[12px] py-[3.5px] rounded-full bg-[rgba(23,104,214,0.07)] border border-[rgba(23,104,214,0.2)] text-[var(--accent)] text-[11px] font-mono font-semibold uppercase mb-[8px]">

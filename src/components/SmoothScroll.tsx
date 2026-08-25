@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -15,7 +16,15 @@ export function getLenis() {
 }
 
 export default function SmoothScroll() {
+  const pathname = usePathname();
+
+  // Initialize Lenis
   useEffect(() => {
+    // Disable browser default scroll restoration so it never jumps to previous page positions
+    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
@@ -41,6 +50,37 @@ export default function SmoothScroll() {
       lenisSingleton = null;
     };
   }, []);
+
+  // Scroll to top immediately on every page navigation
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target) {
+        if (lenisSingleton) {
+          lenisSingleton.scrollTo(target as HTMLElement, { immediate: true });
+        } else {
+          target.scrollIntoView();
+        }
+        return;
+      }
+    }
+
+    // Reset window and Lenis scroll offset to top
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (lenisSingleton) {
+      lenisSingleton.scrollTo(0, { immediate: true });
+    }
+
+    // Refresh GSAP ScrollTrigger after route transition
+    const timeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 60);
+
+    return () => clearTimeout(timeout);
+  }, [pathname]);
 
   return null;
 }

@@ -26,13 +26,13 @@ export default function CertificationsContent({
       const cards = gsap.utils.toArray<HTMLElement>('.cert-card');
       cards.forEach((card) => {
         gsap.fromTo(card,
-          { opacity: 0, y: 24 },
+          { opacity: 0, y: 12 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
+            duration: 0.35,
             ease: 'power2.out',
-            scrollTrigger: { trigger: card, start: 'top 90%' },
+            scrollTrigger: { trigger: card, start: 'top 96%', once: true },
           }
         );
       });
@@ -45,8 +45,7 @@ export default function CertificationsContent({
     <div ref={container}>
       <section className="relative px-[6vw] pt-[160px] pb-[60px] z-10">
         <Breadcrumbs items={[{ label: 'Certifications', href: '/certifications' }]} />
-        <div className="mono text-[12px] text-[var(--muted)] mb-[20px]">Certifications</div>
-        <h1 className="text-[clamp(36px,6vw,72px)] max-w-[20ch] font-[var(--font-display)] font-bold leading-[1]">
+        <h1 className="text-[clamp(32px,4.8vw,64px)] font-[var(--font-display)] font-bold leading-[1.1] text-[var(--ink)] tracking-tight">
           Verifiable credentials, not just claims.
         </h1>
         <p className="mt-[24px] max-w-[560px] text-[var(--muted)] text-[16px] leading-[1.7]">

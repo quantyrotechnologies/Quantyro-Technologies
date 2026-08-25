@@ -1,5 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CtaSection from './CtaSection';
@@ -10,15 +12,6 @@ import type { TeamMember } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
-
-function initials(name: string): string {
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0]?.toUpperCase())
-    .join('');
-}
 
 export default function TeamContent({
   team,
@@ -36,13 +29,13 @@ export default function TeamContent({
       const cards = gsap.utils.toArray<HTMLElement>('.team-card');
       cards.forEach((card) => {
         gsap.fromTo(card,
-          { opacity: 0, y: 24 },
+          { opacity: 0, y: 14 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
+            duration: 0.35,
             ease: 'power2.out',
-            scrollTrigger: { trigger: card, start: 'top 90%' },
+            scrollTrigger: { trigger: card, start: 'top 96%', once: true },
           }
         );
       });
@@ -52,69 +45,123 @@ export default function TeamContent({
   }, [team]);
 
   return (
-    <div ref={container}>
-      <section className="relative px-[6vw] pt-[160px] pb-[60px] z-10">
+    <div ref={container} className="bg-white">
+      {/* Hero Header */}
+      <section className="relative px-[6vw] pt-[150px] pb-[50px] z-10 max-w-[1280px] mx-auto">
         <Breadcrumbs items={[{ label: 'Team', href: '/team' }]} />
-        <div className="mono text-[12px] text-[var(--muted)] mb-[20px]">Team</div>
-        <h1 className="text-[clamp(36px,6vw,72px)] max-w-[20ch] font-[var(--font-display)] font-bold leading-[1]">
-          The people building it.
-        </h1>
-        <p className="mt-[24px] max-w-[560px] text-[var(--muted)] text-[16px] leading-[1.7]">
-          No bench of juniors you never meet — the engineers on this page are the ones actually writing your code.
-        </p>
+        <div className="inline-flex items-center gap-[6px] px-[12px] py-[3.5px] rounded-full bg-[rgba(23,104,214,0.08)] border border-[rgba(23,104,214,0.2)] text-[var(--accent)] text-[11px] font-mono font-semibold uppercase mb-[12px]">
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--accent)]" />
+          <span>Senior Engineers &amp; Technical Architects</span>
+        </div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-[24px]">
+          <div>
+            <h1 className="text-[clamp(32px,5vw,60px)] font-[var(--font-display)] font-extrabold leading-[1.08] text-[var(--ink)] tracking-tight">
+              The engineers building your systems.
+            </h1>
+          </div>
+          <p className="max-w-[460px] text-[var(--muted)] text-[15.5px] leading-[1.65]">
+            No middle managers or outsourced junior benches. You collaborate directly with principal architects and full-stack engineers who own your product from day one.
+          </p>
+        </div>
       </section>
 
-      <section className="relative px-[6vw] pb-[100px] z-10">
+      {/* Team Grid */}
+      <section className="relative px-[6vw] pb-[100px] z-10 max-w-[1280px] mx-auto">
         {team.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[28px]">
             {team.map((m) => (
               <div
                 key={m.id}
-                className="team-card rounded-[20px] border border-[var(--line)] bg-[var(--surface)] p-[24px] flex flex-col items-center text-center hover:border-[rgba(23,104,214,0.4)] hover:shadow-md transition-all"
+                className="team-card group flex flex-col justify-between rounded-[26px] bg-[var(--surface)] border border-[rgba(10,23,47,0.12)] p-[28px] hover:border-[rgba(23,104,214,0.4)] hover:shadow-[0_24px_50px_rgba(23,104,214,0.12)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden"
               >
-                {m.photoUrl ? (
-                  <div className="relative w-[84px] h-[84px] rounded-full overflow-hidden border border-[var(--line)]">
-                    {/* eslint-disable-next-line @next/next/no-img-element -- admin-supplied arbitrary URL, host unknown ahead of time */}
-                    <img
-                      src={m.photoUrl}
-                      alt={m.name}
-                      title={m.name}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
+                <div>
+                  {/* Top Profile Header */}
+                  <div className="flex items-start gap-[18px]">
+                    <div className="relative w-[84px] h-[84px] rounded-[20px] overflow-hidden bg-slate-900 border-2 border-white shadow-md shrink-0">
+                      {m.photoUrl ? (
+                        <Image
+                          src={m.photoUrl}
+                          alt={m.name}
+                          title={m.name}
+                          fill
+                          sizes="84px"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-[#0A1324] text-white font-bold text-[22px] font-mono">
+                          {m.name.slice(0, 2).toUpperCase()}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-[6px]">
+                        <span className="w-[6px] h-[6px] rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="mono text-[10.5px] font-bold uppercase tracking-wider text-emerald-600">
+                          {m.experience || 'Production Squad'}
+                        </span>
+                      </div>
+                      <h3 className="text-[20px] font-[var(--font-display)] font-bold text-[var(--ink)] leading-[1.2] mt-[3px]">
+                        {m.name}
+                      </h3>
+                      <div className="text-[13px] font-semibold text-[var(--accent)] mt-[2px]">
+                        {m.role}
+                      </div>
+                    </div>
                   </div>
-                ) : (
-                  <div className="w-[84px] h-[84px] rounded-full bg-[var(--ink)] text-white flex items-center justify-center text-[22px] font-bold font-[var(--font-display)]">
-                    {initials(m.name)}
-                  </div>
-                )}
-                <div className="mt-[16px] text-[17px] font-bold text-[var(--ink)]">{m.name}</div>
-                <div className="mt-[3px] text-[13px] text-[var(--accent)] font-semibold">{m.role}</div>
-                {m.bio && (
-                  <RichText html={m.bio} className="mt-[10px] text-[13.5px] text-[var(--muted)] leading-[1.6]" />
-                )}
-                {m.linkedinUrl && (
-                  <a
-                    href={m.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-[14px] inline-flex items-center gap-[6px] text-[12.5px] font-semibold text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+
+                  {/* Bio Paragraph (Uniform Height) */}
+                  {m.bio && (
+                    <div className="mt-[18px] text-[13.5px] text-[var(--muted)] leading-[1.65] min-h-[75px]">
+                      <RichText html={m.bio} />
+                    </div>
+                  )}
+
+                  {/* Tech Stack / Skill Badges (Uniform Height) */}
+                  {m.skills && m.skills.length > 0 && (
+                    <div className="mt-[20px] min-h-[85px]">
+                      <div className="mono text-[10.5px] font-semibold text-[var(--muted)] uppercase tracking-wider mb-[8px]">
+                        Core Proficiencies
+                      </div>
+                      <div className="flex flex-wrap gap-[6px]">
+                        {m.skills.map((s) => (
+                          <span
+                            key={s}
+                            className="mono text-[11px] font-medium px-[10px] py-[3.5px] rounded-lg bg-white border border-[var(--line)] text-slate-700 shadow-xs"
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Bottom Footer Actions */}
+                <div className="mt-[24px] pt-[16px] border-t border-[var(--line)] flex items-center justify-between">
+                  <span className="mono text-[11px] font-semibold text-slate-500 flex items-center gap-[5px]">
+                    <span className="w-[5px] h-[5px] rounded-full bg-[var(--accent)]" />
+                    <span>Quantyro Core Squad</span>
+                  </span>
+
+                  <Link
+                    href="/contact"
+                    className="mono text-[11.5px] font-bold px-[14px] py-[5.5px] rounded-full bg-blue-50 text-[var(--accent)] border border-blue-100/90 hover:bg-[var(--accent)] hover:text-white transition-all shadow-xs"
                   >
-                    LinkedIn →
-                  </a>
-                )}
+                    Start Sprint →
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
         ) : (
           <div className="rounded-[18px] border border-[var(--line)] bg-[var(--surface)] p-[32px] text-center text-[14px] text-[var(--muted)]">
-            Team profiles are being added — check back shortly, or meet us directly on the contact page.
+            Team profiles are being synchronized with production registry.
           </div>
         )}
       </section>
 
-      <FaqSection heading="Team FAQ" items={faqs} />
-
+      <FaqSection heading="Team &amp; Delivery FAQ" items={faqs} />
       <CtaSection />
     </div>
   );

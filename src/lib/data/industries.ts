@@ -8,7 +8,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     num: '01',
     slug: 'banking-fintech',
     title: 'Banking & FinTech',
-    desc: 'Secure, compliant banking and payments platforms — from core banking modernization to AI-driven fraud detection — built to withstand a regulatory audit and a transaction spike on the same day.',
+    desc: 'Mission-critical, bank-grade financial platforms, real-time payment orchestration, and AI-driven fraud detection engines built to withstand stringent regulatory scrutiny and extreme transaction spikes on the same day. We modernize legacy core banking systems into agile, open-banking API architectures with automated PCI-DSS compliance.',
     challenges: [
       'Legacy core banking systems that block new product launches',
       'Real-time fraud detection at high transaction volume',
@@ -33,8 +33,8 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     relatedServiceSlugs: ['custom-software', 'ai-machine-learning', 'cloud-devops'],
     statValue: 'High-Reliability',
     statLabel: 'Transaction processing',
-    seoTitle: 'Banking & FinTech Software Development',
-    seoDescription: 'Secure banking platforms, real-time payment gateways, and AI-driven fraud detection engineered for regulated financial institutions and neobanks.',
+    seoTitle: 'Banking & FinTech Software Development Company | Secure Financial Engineering',
+    seoDescription: 'Architecting high-security banking platforms, real-time payment gateways, and AI-powered fraud detection systems for regulated financial institutions and neobanks.',
     targetKeywords: ['fintech software development company', 'banking software development services', 'payment gateway development company', 'fraud detection software development', 'core banking modernization services'],
   },
   {
@@ -42,7 +42,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     num: '02',
     slug: 'fitness-wellness',
     title: 'Fitness & Wellness',
-    desc: 'Activity tracking, wearable integration, and personalized coaching platforms for fitness brands, gyms, and wellness startups competing in a fast-growing digital health market.',
+    desc: 'High-retention fitness ecosystems, real-time wearable IoT synchronization, and adaptive AI coaching platforms engineered for digital health brands, modern gym chains, and wellness startups competing in a fast-evolving subscription marketplace.',
     challenges: [
       'Low user retention past the first few weeks',
       'Syncing accurately with wearables and health APIs',
@@ -67,8 +67,8 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     relatedServiceSlugs: ['mobile-apps', 'ai-machine-learning', 'custom-software'],
     statValue: 'Real-Time',
     statLabel: 'Activity sync',
-    seoTitle: 'Fitness & Wellness App Development',
-    seoDescription: 'Wearable-integrated fitness apps, AI-driven personalization, and live coaching platforms engineered for gyms, trainers, and wellness startups.',
+    seoTitle: 'Fitness & Wellness App Development Services | Wearable & Health IoT Systems',
+    seoDescription: 'Engineer high-engagement fitness apps, Apple HealthKit/Google Fit integrations, and personalized AI workout engines for modern wellness brands.',
     targetKeywords: ['fitness app development company', 'wellness app development services', 'gym management software development', 'fitness wearable app integration', 'personal training app development company'],
   },
   {
@@ -76,7 +76,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     num: '03',
     slug: 'taxi-ride-hailing',
     title: 'Taxi & Ride-Hailing',
-    desc: 'Dispatch, routing, and fare systems built to handle surge demand and real-time GPS at scale — the operational core of a ride-hailing platform, not just the rider-facing app.',
+    desc: 'High-concurrency dispatch systems, real-time sub-second GPS telemetry, and dynamic AI surge pricing engines engineered for ride-hailing networks, urban micro-mobility fleets, and on-demand logistics operators.',
     challenges: [
       'Real-time GPS tracking and ETA accuracy at scale',
       'Dynamic, demand-based fare calculation',
@@ -101,8 +101,8 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     relatedServiceSlugs: ['mobile-apps', 'ai-machine-learning', 'cloud-devops'],
     statValue: 'Real-Time',
     statLabel: 'Dispatch matching',
-    seoTitle: 'Taxi & Ride-Hailing App Development',
-    seoDescription: 'Real-time dispatch, GPS tracking, and dynamic fare engines engineered for ride-hailing startups and fleet operators at scale.',
+    seoTitle: 'On-Demand Taxi & Ride-Hailing App Development Company | Fleet Dispatch Engines',
+    seoDescription: 'Build enterprise ride-hailing platforms with sub-second dispatch algorithms, real-time route optimization, driver telematics, and automated fare engines.',
     targetKeywords: ['taxi app development company', 'ride-hailing app development services', 'on-demand taxi booking app development', 'fleet management software development', 'Uber-like app development company'],
   },
   {
@@ -110,7 +110,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     num: '04',
     slug: 'education-edtech',
     title: 'Education & EdTech',
-    desc: 'Learning platforms, AI tutoring, and school management systems built for real classroom and corporate-training workflows — not a generic course-hosting template.',
+    desc: 'Adaptive AI-powered tutoring platforms, interactive virtual classrooms, and enterprise LMS architectures engineered for deep learner retention, real-time competency analytics, and frictionless institutional scalability.',
     challenges: [
       'Keeping learners engaged past the first module',
       'Supporting live, on-demand, and offline learning in one platform',
@@ -135,8 +135,8 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     relatedServiceSlugs: ['custom-software', 'ai-machine-learning', 'mobile-apps'],
     statValue: 'Adaptive',
     statLabel: 'AI-personalized learning',
-    seoTitle: 'Education & EdTech Software Development',
-    seoDescription: 'AI-powered tutoring, live classrooms, and school management systems engineered for EdTech platforms and corporate training teams.',
+    seoTitle: 'EdTech Software Development Services | Custom E-Learning Platforms & AI Tutoring',
+    seoDescription: 'Custom learning management systems, live video classrooms, and AI-adaptive learning platforms built for educational institutions and corporate upskilling teams.',
     targetKeywords: ['edtech app development company', 'e-learning platform development services', 'online tutoring app development', 'school management software development', 'LMS development company India'],
   },
   {
@@ -144,7 +144,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     num: '05',
     slug: 'dating-social',
     title: 'Dating & Social',
-    desc: 'Matchmaking algorithms, real-time messaging, and identity verification for dating and social platforms — where trust and safety are the product, not a feature.',
+    desc: 'High-trust social discovery platforms, AI-driven compatibility matchmaking, and real-time WebRTC audio/video communications engineered with biometric identity verification and automated content moderation.',
     challenges: [
       'Building genuine trust through photo and identity verification',
       'Matchmaking that feels relevant, not random',
@@ -169,8 +169,8 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     relatedServiceSlugs: ['mobile-apps', 'ai-machine-learning', 'custom-software'],
     statValue: 'AI-Matched',
     statLabel: 'Compatibility scoring',
-    seoTitle: 'Dating & Social App Development',
-    seoDescription: 'AI-powered matchmaking, real-time messaging, and identity verification systems engineered for dating and social discovery platforms.',
+    seoTitle: 'Dating & Social Networking App Development Company | Real-Time Matchmaking',
+    seoDescription: 'Build secure, viral dating and social discovery applications with AI-powered matchmaking algorithms, verified profile onboarding, and low-latency chat infrastructure.',
     targetKeywords: ['dating app development company', 'social networking app development services', 'matchmaking app development', 'dating app development company India', 'social discovery app development'],
   },
   {
@@ -178,7 +178,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     num: '06',
     slug: 'ecommerce-retail',
     title: 'E-Commerce & Retail',
-    desc: 'Headless storefronts and inventory systems engineered for peak traffic — Black Friday-proof architecture, not a plugin patched onto a template.',
+    desc: 'Next-generation composable headless commerce, omnichannel inventory orchestration, and sub-second checkout architectures engineered for global retail brands to conquer peak flash sales and maximize customer lifetime value.',
     challenges: [
       'Checkout latency under peak holiday traffic',
       'Real-time inventory sync across channels and warehouses',
@@ -203,8 +203,8 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     relatedServiceSlugs: ['e-commerce', 'ai-machine-learning', 'cloud-devops'],
     statValue: 'Low-Latency',
     statLabel: 'Edge response',
-    seoTitle: 'Headless E-Commerce Development for Retail',
-    seoDescription: 'Headless storefronts, real-time inventory sync, and peak-traffic-proof checkout systems built for e-commerce and retail brands.',
+    seoTitle: 'Enterprise E-Commerce & Retail Software Development Services',
+    seoDescription: 'High-performance headless storefronts, multi-warehouse ERP integrations, and sub-second checkout pipelines designed for high-volume retail enterprises.',
     targetKeywords: ['e-commerce app development company', 'retail software development services', 'headless storefront development for retail', 'inventory management software development', 'e-commerce platform development company India'],
   },
   {
@@ -212,7 +212,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     num: '07',
     slug: 'real-estate-proptech',
     title: 'Real Estate & PropTech',
-    desc: 'Property search, virtual tours, and transaction management platforms that turn a slow, manual buying and renting process into a self-serve digital one.',
+    desc: 'AI-driven property recommendation engines, immersive 3D/AR virtual walkthroughs, and automated MLS transaction platforms designed to transform complex real estate discovery into an intuitive digital experience.',
     challenges: [
       'Manual, spreadsheet-driven listing and lead management',
       'Buyers expecting rich media and virtual tours before visiting',
@@ -237,8 +237,8 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     relatedServiceSlugs: ['custom-software', 'mobile-apps', 'ai-machine-learning'],
     statValue: '3D/AR',
     statLabel: 'Virtual tour ready',
-    seoTitle: 'Real Estate & PropTech Software Development',
-    seoDescription: 'AI-driven property search, virtual tour platforms, and MLS-integrated listing systems engineered for real estate and PropTech businesses.',
+    seoTitle: 'Real Estate & PropTech App Development Company | MLS Listing & 3D Tour Platforms',
+    seoDescription: 'Custom PropTech solutions, MLS/IDX integrated listing portals, and interactive virtual walkthrough engines engineered for brokers, developers, and real estate marketplaces.',
     targetKeywords: ['real estate software development company', 'proptech app development services', 'property listing platform development', 'virtual tour app development company', 'MLS integration development services'],
   },
   {
@@ -246,7 +246,7 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     num: '08',
     slug: 'healthcare-telemedicine',
     title: 'Healthcare & Telemedicine',
-    desc: 'HIPAA-aware patient platforms, telemedicine, and EHR integrations built with zero-trust security as the default, not a retrofit before a compliance review.',
+    desc: 'HIPAA-aware telemedicine platforms, real-time remote patient monitoring (RPM), and HL7/FHIR EHR interoperability engines architected with zero-trust security and end-to-end clinical data encryption.',
     challenges: [
       'HIPAA and HL7/FHIR interoperability requirements',
       'Fragmented patient data across EHR systems',
@@ -271,8 +271,8 @@ export const SAMPLE_INDUSTRIES: Industry[] = [
     relatedServiceSlugs: ['custom-software', 'cloud-devops', 'ai-machine-learning'],
     statValue: 'Zero-Trust',
     statLabel: 'Security architecture',
-    seoTitle: 'Healthcare & Telemedicine Software Development',
-    seoDescription: 'HIPAA-aware patient portals, telemedicine platforms, and EHR-integrated systems engineered for healthcare providers.',
+    seoTitle: 'Healthcare & Telemedicine Software Development Company | HIPAA-Aware Engineering',
+    seoDescription: 'Secure, HIPAA-aware telemedicine applications, EHR/EMR integrations, and remote patient monitoring software engineered for hospitals and healthcare startups.',
     targetKeywords: ['telemedicine app development company', 'healthcare software development services', 'HIPAA-aware healthcare app development', 'EHR integration development company', 'patient portal development services'],
   },
 ];

@@ -86,7 +86,7 @@ export default function TechStackHub() {
   const currentCategory = TECH_CATEGORIES.find((c) => c.id === activeTab) || TECH_CATEGORIES[0];
 
   return (
-    <section className="relative px-[6vw] py-[90px] md:py-[120px] z-10">
+    <section className="relative px-[6vw] pt-[60px] md:pt-[80px] pb-[40px] md:pb-[50px] z-10">
       <div className="max-w-[1240px] mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-[24px] mb-[40px] md:mb-[56px] border-b border-[var(--line)] pb-[28px]">

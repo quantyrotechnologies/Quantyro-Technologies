@@ -50,12 +50,12 @@ export default function HeroSection() {
     return () => ctx.revert();
   }, []);
 
-  const title = "Fuel growth with unified systems";
+  const title = "Engineering scalable software, cloud & AI systems";
   const renderTitle = () => {
     return title.split(' ').map((word, index, arr) => (
       <span key={index} className="word">
         <span className="inline-block will-change-transform">
-          {word === 'unified' ? (
+          {word.toLowerCase() === 'scalable' || word.toLowerCase() === 'software,' ? (
             <span className="text-[var(--accent)] font-bold drop-shadow-[0_0_24px_rgba(23,104,214,0.25)]">
               {word}
             </span>
@@ -72,7 +72,7 @@ export default function HeroSection() {
     <section 
       ref={container} 
       id="hero" 
-      className="relative min-h-[92vh] lg:min-h-[100vh] flex flex-col justify-center px-[5vw] lg:px-[6vw] pt-[100px] pb-[40px] overflow-hidden z-10"
+      className="relative min-h-[92vh] lg:min-h-[100vh] flex flex-col justify-center px-[5vw] lg:px-[6vw] pt-[120px] md:pt-[130px] pb-[48px] overflow-hidden z-10"
     >
       {/* Subtle soft gradient scrim */}
       <div 
@@ -81,42 +81,37 @@ export default function HeroSection() {
       />
 
       {/* 2-Column Responsive Grid matching Reference Design */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-[32px] lg:gap-[28px] items-center w-full max-w-[1360px] mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-[40px] lg:gap-[28px] items-center w-full max-w-[1360px] mx-auto">
         
         {/* LEFT COLUMN: Headline, copy, CTAs, and trust guarantees */}
-        <div className="lg:col-span-6 flex flex-col justify-center max-w-[580px]">
+        <div className="lg:col-span-6 flex flex-col justify-center max-w-[600px]">
           
-          {/* Eyebrow Badge with 4-petal Quantum Icon */}
-          <div className="eyebrow inline-flex items-center gap-[8px] text-[12.5px] text-[var(--muted)] mb-[14px] bg-white/90 px-[13px] py-[5px] rounded-full border border-[rgba(10,23,47,0.12)] w-fit shadow-xs">
-            <svg width="15" height="15" viewBox="0 0 32 32" fill="none" className="shrink-0">
-              <path d="M16 4C16 4 13 8 13 11C13 13.5 14.5 15 16 15C17.5 15 19 13.5 19 11C19 8 16 4 16 4Z" fill="#00B377" />
-              <path d="M16 28C16 28 19 24 19 21C19 18.5 17.5 17 16 17C14.5 17 13 18.5 13 21C13 24 16 28 16 28Z" fill="#00B377" />
-              <path d="M4 16C4 16 8 19 11 19C13.5 19 15 17.5 15 16C15 14.5 13.5 13 11 13C8 13 4 16 4 16Z" fill="#00B377" />
-              <path d="M28 16C28 16 24 13 21 13C18.5 13 17 14.5 17 16C17 17.5 18.5 19 21 19C24 19 28 16 28 16Z" fill="#00B377" />
-            </svg>
-            <span className="font-medium text-[var(--ink)]">Data & integrations</span>
+          {/* Eyebrow Badge with Active Pulse */}
+          <div className="eyebrow inline-flex items-center gap-[8px] text-[12px] md:text-[12.5px] text-[var(--muted)] mb-[16px] bg-white/90 px-[13px] py-[5px] rounded-full border border-[rgba(10,23,47,0.12)] w-fit shadow-xs">
+            <span className="w-[7px] h-[7px] rounded-full bg-[#00E599] animate-pulse" />
+            <span className="font-semibold text-[var(--ink)]">Enterprise Software, Cloud & AI Engineering</span>
           </div>
 
           {/* Main Display Headline */}
-          <h1 className="hero-title text-[clamp(32px,3.8vw,56px)] leading-[1.05] font-[var(--font-display)] font-bold tracking-[-0.025em] text-[var(--ink)]">
+          <h1 className="hero-title text-[clamp(32px,4vw,56px)] leading-[1.08] font-[var(--font-display)] font-bold tracking-[-0.025em] text-[var(--ink)]">
             {renderTitle()}
           </h1>
 
           {/* Subtitle */}
-          <p className="hero-sub mt-[16px] text-[15px] md:text-[16px] text-[var(--muted)] leading-[1.6] max-w-[520px]">
-            Great engineering starts with unified architecture. Quantyro helps you unify, build, and scale customer data, powering AI-driven automation and robust digital products across every channel.
+          <p className="hero-sub mt-[16px] text-[15px] md:text-[16.5px] text-[var(--muted)] leading-[1.65] max-w-[540px]">
+            Quantyro partners with ambitious founders and enterprise engineering teams to design, build, and scale mission-critical web platforms, mobile apps, and autonomous AI systems — backed by dedicated senior engineers, guaranteed SLAs, and 100% IP ownership.
           </p>
 
           {/* Dual Action Buttons */}
           <div className="hero-actions mt-[24px] flex gap-[14px] items-center flex-wrap">
-            {/* [PHASE-3] Get Started CTA with Radiant Border-Beam Laser */}
+            {/* Get Started CTA with Radiant Border-Beam */}
             <div className="border-beam-container">
               <div className="border-beam-laser" />
               <MagneticLink 
                 href="/contact" 
-                className="relative z-10 bg-[#0B2922] text-[#00FFB2] hover:bg-[#041410] hover:text-[#FFFFFF] py-[12px] px-[26px] rounded-full text-[14px] font-semibold transition-all duration-300 inline-flex items-center gap-[7px]"
+                className="relative z-10 bg-[#0B2922] text-[#00FFB2] hover:bg-[#041410] hover:text-[#FFFFFF] py-[12px] px-[26px] rounded-full text-[14px] font-semibold transition-all duration-300 inline-flex items-center gap-[7px] shadow-sm"
               >
-                <span>Get started</span>
+                <span>Start a Project</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
@@ -128,8 +123,24 @@ export default function HeroSection() {
               href="/services" 
               className="inline-block bg-transparent text-[var(--ink)] hover:text-[var(--accent)] py-[12px] px-[22px] rounded-full text-[14px] font-semibold border-2 border-[var(--ink)] hover:border-[var(--accent)] transition-all duration-300"
             >
-              Book a demo
+              Explore Capabilities
             </MagneticLink>
+          </div>
+
+          {/* Enterprise Trust Guarantees */}
+          <div className="hero-trust mt-[28px] pt-[20px] border-t border-[rgba(10,23,47,0.08)] flex flex-wrap items-center gap-x-[18px] gap-y-[8px] text-[12px] md:text-[12.5px] font-medium text-[var(--muted)]">
+            <div className="flex items-center gap-[6px]">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+              <span>100% IP Ownership</span>
+            </div>
+            <div className="flex items-center gap-[6px]">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+              <span>Dedicated Senior Engineers</span>
+            </div>
+            <div className="flex items-center gap-[6px]">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+              <span>99.99% Availability SLAs</span>
+            </div>
           </div>
 
         </div>

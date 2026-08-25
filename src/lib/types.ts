@@ -1,3 +1,9 @@
+export interface ExecutivePillar {
+  title: string;
+  desc: string;
+  icon?: 'shield' | 'zap' | 'code' | 'lock';
+}
+
 export interface Service {
   id: string;
   num: string;
@@ -10,6 +16,9 @@ export interface Service {
   seoTitle: string | null;
   seoDescription: string | null;
   targetKeywords?: string[];
+  executiveHeadline?: string | null;
+  executiveNarrative?: string[] | null;
+  executivePillars?: ExecutivePillar[] | null;
 }
 
 export interface IndustryApplication {
@@ -36,6 +45,9 @@ export interface Project {
   stack: string[] | null;
   duration: string | null;
   highlights: string[] | null;
+  url?: string | null;
+  liveUrl?: string | null;
+  imageUrl?: string | null;
 }
 
 export interface Industry {
@@ -119,6 +131,8 @@ export interface TeamMember {
   bio: string | null;
   photoUrl: string | null;
   linkedinUrl: string | null;
+  skills?: string[] | null;
+  experience?: string | null;
 }
 
 export interface Certification {
@@ -198,4 +212,9 @@ export interface SiteSettings {
   responseTime: string;
   footerBlurb: string;
   copyrightText: string;
+  announcementBadge?: string | null;
+  aboutStory?: string | null;
+  aboutMission?: string | null;
+  privacyPolicy?: string | null;
+  termsConditions?: string | null;
 }

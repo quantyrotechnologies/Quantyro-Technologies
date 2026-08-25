@@ -10,19 +10,32 @@ import type { SocialLink, SiteSettings } from '@/lib/types';
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });
 
-const EXPLORE_LINKS = [
-  { label: 'Services', href: '/services' },
-  { label: 'Industries', href: '/industries' },
-  { label: 'Work', href: '/work' },
-  { label: 'Blog', href: '/blog' },
+const PRACTICE_AREAS = [
+  { label: 'Website Development', href: '/services/website-development' },
+  { label: 'Custom Software & SaaS', href: '/services/custom-software' },
+  { label: 'Mobile Apps (iOS/Android)', href: '/services/mobile-apps' },
+  { label: 'Headless E-Commerce', href: '/services/e-commerce' },
+  { label: 'AI & Machine Learning', href: '/services/ai-machine-learning' },
+  { label: 'Cloud & DevOps Solutions', href: '/services/cloud-devops' },
+  { label: 'Technical SEO & Growth', href: '/services/seo-marketing' },
+];
+
+const INDUSTRY_LINKS = [
+  { label: 'Banking & FinTech', href: '/industries/banking-fintech' },
+  { label: 'Healthcare & Telemedicine', href: '/industries/healthcare-telemedicine' },
+  { label: 'E-Commerce & Retail', href: '/industries/ecommerce-retail' },
+  { label: 'SaaS & Cloud Platforms', href: '/industries/saas-cloud' },
+  { label: 'Supply Chain & Logistics', href: '/industries/supply-chain-logistics' },
 ];
 
 const COMPANY_LINKS = [
-  { label: 'About', href: '/about' },
-  { label: 'Team', href: '/team' },
-  { label: 'Certifications', href: '/certifications' },
-  { label: 'Brochure', href: '/brochure' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Senior Team', href: '/team' },
+  { label: 'Verified Certifications', href: '/certifications' },
+  { label: 'Case Studies', href: '/work' },
+  { label: 'Company Brochure', href: '/brochure' },
+  { label: 'Engineering Blog', href: '/blog' },
+  { label: 'Contact Us', href: '/contact' },
 ];
 
 const LEGAL_LINKS = [
@@ -82,34 +95,6 @@ function SocialIcon({ label }: { label: string }) {
   return <span className="text-[11px] font-bold">{label.slice(0, 2).toUpperCase()}</span>;
 }
 
-function LocalTimeClock() {
-  const [time, setTime] = useState<string | null>(null);
-
-  useEffect(() => {
-    const update = () => {
-      setTime(
-        new Intl.DateTimeFormat('en-US', {
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZoneName: 'short',
-        }).format(new Date())
-      );
-    };
-    update();
-    const id = setInterval(update, 30_000);
-    return () => clearInterval(id);
-  }, []);
-
-  if (!time) return null;
-
-  return (
-    <span className="inline-flex items-center gap-[6px] mono text-[11.5px] text-[var(--muted)]">
-      <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent-2)] animate-pulse" />
-      Local time {time}
-    </span>
-  );
-}
-
 export default function Footer({
   socialLinks,
   settings,
@@ -127,16 +112,17 @@ export default function Footer({
       const footerTargets = gsap.utils.toArray<HTMLElement>('.footer-reveal');
       if (footerTargets.length > 0) {
         gsap.fromTo(footerTargets,
-          { opacity: 0, y: 18 },
+          { opacity: 0, y: 14 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
-            stagger: 0.08,
+            duration: 0.35,
+            stagger: 0.04,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: container.current,
-              start: 'top 90%',
+              start: 'top 95%',
+              once: true,
             },
           }
         );
@@ -158,45 +144,50 @@ export default function Footer({
   };
 
   return (
-    <footer ref={container} className="relative z-10 bg-gradient-to-b from-[var(--bg-alt)] to-[#E4EDF7] text-[var(--ink)] overflow-hidden border-t border-[var(--line)]">
-      {/* Top accent line */}
-      <div className="h-[2px] w-full bg-gradient-to-r from-[var(--accent)] via-[var(--accent-2)] to-[var(--accent)]" />
+    <footer ref={container} className="relative z-10 bg-gradient-to-b from-[#0A1324] to-[#060D1A] text-white overflow-hidden border-t border-white/10">
+      {/* Top Gradient Laser Line */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent" />
 
-      {/* Ambient glow */}
-      <div className="absolute top-0 right-0 w-[480px] h-[320px] bg-[radial-gradient(ellipse_at_top_right,rgba(23,104,214,0.1),transparent_70%)] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[420px] h-[280px] bg-[radial-gradient(ellipse_at_bottom_left,rgba(14,188,212,0.08),transparent_70%)] pointer-events-none" />
+      {/* Ambient background glows */}
+      <div className="absolute top-0 right-0 w-[550px] h-[350px] bg-[radial-gradient(ellipse_at_top_right,rgba(23,104,214,0.18),transparent_70%)] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[450px] h-[300px] bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,229,153,0.1),transparent_70%)] pointer-events-none" />
 
-      <div className="relative px-[6vw] pt-[64px] pb-[32px]">
-        <div className="footer-reveal grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr_1.1fr] gap-[40px] pb-[48px] border-b border-[var(--line)]">
+      {/* Main 5-Column Navigation Grid */}
+      <div className="relative px-[6vw] pt-[44px] pb-[24px]">
+        <div className="footer-reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.1fr] gap-[32px] lg:gap-[36px] pb-[36px] border-b border-white/10">
 
-          {/* Brand */}
-          <div className="md:col-span-2 md:pr-[24px]">
-            <Link href="/" className="inline-flex items-center gap-[12px] group">
-              <div className="relative w-[44px] h-[44px] rounded-xl overflow-hidden shadow-sm border border-[rgba(10,23,47,0.12)] bg-white p-[1px] flex items-center justify-center transition-all duration-300 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_rgba(23,104,214,0.25)]">
+          {/* Column 1: Brand & Philosophy */}
+          <div className="lg:pr-[20px]">
+            <Link href="/" className="inline-flex items-center gap-[14px] group">
+              <div className="relative w-[42px] h-[42px] md:w-[48px] md:h-[48px] rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 group-hover:scale-105">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/quantyro-technologies.png?v=2"
                   alt={`${settings.orgName} logo`}
-                  width={44}
-                  height={44}
-                  className="object-contain w-full h-full rounded-[8px] scale-[1.08]"
+                  width={48}
+                  height={48}
+                  className="object-contain w-full h-full"
+                  unoptimized
                 />
               </div>
-              <span className="font-[var(--font-display)] font-extrabold text-[20px] text-[var(--ink)] tracking-tight leading-none">
+              <span className="font-[var(--font-display)] font-extrabold text-[20px] md:text-[22px] text-white tracking-tight leading-none">
                 {settings.orgName}
               </span>
             </Link>
-            <p className="mt-[16px] max-w-[36ch] text-[13.5px] text-[var(--muted)] leading-[1.65]">
-              {settings.footerBlurb}
+
+            <p className="mt-[16px] max-w-[34ch] text-[13.5px] text-slate-300 leading-[1.65]">
+              {settings.footerBlurb || 'Senior software engineering and digital transformation consultancy. Direct GitHub IP ownership, zero junior benches.'}
             </p>
+
+            {/* Social Icons */}
             {socialLinks.length > 0 && (
-              <div className="mt-[22px] flex items-center gap-[10px]">
+              <div className="mt-[24px] flex items-center gap-[8px]">
                 {socialLinks.map((s) => (
                   <a
                     key={s.id}
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-[36px] h-[36px] rounded-full border border-[var(--line)] bg-white flex items-center justify-center text-[var(--muted)] hover:text-white hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:-translate-y-[2px] transition-all duration-300 shadow-sm"
+                    className="w-[36px] h-[36px] rounded-xl border border-white/10 bg-white/[0.04] flex items-center justify-center text-slate-300 hover:text-white hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:-translate-y-[2px] transition-all duration-300"
                     aria-label={s.label}
                   >
                     <SocialIcon label={s.label} />
@@ -206,13 +197,15 @@ export default function Footer({
             )}
           </div>
 
-          {/* Explore */}
+          {/* Column 2: Practice Areas */}
           <div>
-            <div className="mono text-[10.5px] uppercase tracking-wide text-[var(--muted)] mb-[16px]">Explore</div>
-            <ul className="flex flex-col gap-[11px]">
-              {EXPLORE_LINKS.map((l) => (
+            <div className="mono text-[11px] uppercase font-bold tracking-wider text-[var(--accent)] mb-[16px]">
+              Practice Areas
+            </div>
+            <ul className="flex flex-col gap-[10px]">
+              {PRACTICE_AREAS.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-[13.5px] text-[var(--ink)]/75 hover:text-[var(--accent)] transition-colors">
+                  <Link href={l.href} className="text-[13px] text-slate-300 hover:text-cyan-400 transition-colors">
                     {l.label}
                   </Link>
                 </li>
@@ -220,13 +213,31 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Column 3: Industries */}
           <div>
-            <div className="mono text-[10.5px] uppercase tracking-wide text-[var(--muted)] mb-[16px]">Company</div>
-            <ul className="flex flex-col gap-[11px]">
+            <div className="mono text-[11px] uppercase font-bold tracking-wider text-[var(--accent)] mb-[16px]">
+              Industries
+            </div>
+            <ul className="flex flex-col gap-[10px]">
+              {INDUSTRY_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-[13px] text-slate-300 hover:text-cyan-400 transition-colors">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Company */}
+          <div>
+            <div className="mono text-[11px] uppercase font-bold tracking-wider text-[var(--accent)] mb-[16px]">
+              Company &amp; Firm
+            </div>
+            <ul className="flex flex-col gap-[10px]">
               {COMPANY_LINKS.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-[13.5px] text-[var(--ink)]/75 hover:text-[var(--accent)] transition-colors">
+                  <Link href={l.href} className="text-[13px] text-slate-300 hover:text-cyan-400 transition-colors">
                     {l.label}
                   </Link>
                 </li>
@@ -234,44 +245,62 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* CTA */}
-          <div>
-            <div className="mono text-[10.5px] uppercase tracking-wide text-[var(--muted)] mb-[16px]">Start a project</div>
-            <a href={`mailto:${settings.contactEmail}`} className="block text-[13.5px] text-[var(--ink)]/75 hover:text-[var(--accent)] transition-colors break-all">
-              {settings.contactEmail}
-            </a>
-            <div className="mt-[10px]">
-              <LocalTimeClock />
+          {/* Column 5: Direct Engineering Access & SLA */}
+          <div className="rounded-[20px] bg-white/[0.03] border border-white/10 p-[20px] flex flex-col justify-between">
+            <div>
+              <div className="mono text-[11px] uppercase font-bold tracking-wider text-emerald-400 mb-[8px]">
+                Direct Architect Access
+              </div>
+              <p className="text-[12.5px] text-slate-300 leading-[1.6]">
+                Guaranteed response within 4 business hours from a senior technical lead.
+              </p>
+              <a
+                href={`mailto:${settings.contactEmail}`}
+                className="mt-[12px] block text-[13px] font-mono text-cyan-300 hover:underline break-all font-semibold"
+              >
+                {settings.contactEmail}
+              </a>
             </div>
-            <MagneticLink
-              href="/contact"
-              className="mt-[18px] inline-flex items-center gap-[8px] bg-[var(--ink)] text-white py-[11px] px-[22px] rounded-full text-[13px] font-bold hover:bg-[var(--accent)] transition-colors shadow-[0_8px_24px_rgba(10,23,47,0.15)]"
-            >
-              Get started →
-            </MagneticLink>
+
+            <div className="mt-[20px]">
+              <MagneticLink
+                href="/contact"
+                className="w-full text-center inline-flex items-center justify-center gap-[6px] bg-[var(--accent)] hover:bg-blue-600 text-white py-[11px] px-[18px] rounded-full text-[13px] font-bold transition-all shadow-[0_8px_24px_rgba(23,104,214,0.3)]"
+              >
+                <span>Initiate Project</span>
+                <span>→</span>
+              </MagneticLink>
+            </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="footer-reveal pt-[24px] flex flex-col sm:flex-row items-center justify-between gap-[12px] text-[12px] text-[var(--muted)]">
-          <span>{settings.copyrightText}</span>
-          <div className="flex items-center gap-[20px]">
+        {/* Bottom Bar with IP & Compliance badges */}
+        <div className="footer-reveal pt-[18px] flex flex-col md:flex-row items-center justify-between gap-[12px] text-[12px] text-slate-400">
+          <div className="flex flex-wrap items-center gap-[12px]">
+            <span>{settings.copyrightText || `© ${new Date().getFullYear()} Quantyro Technologies. All Rights Reserved.`}</span>
+            <span className="hidden md:inline text-slate-600">·</span>
+            <span className="mono text-[11px] text-slate-400">100% Client IP Ownership Standard</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-[16px]">
             {LEGAL_LINKS.map((l) => (
-              <Link key={l.href} href={l.href} className="hover:text-[var(--accent)] transition-colors">
+              <Link key={l.href} href={l.href} className="hover:text-white transition-colors">
                 {l.label}
               </Link>
             ))}
-            <span className="mono text-[11px] hidden sm:inline">Designed &amp; engineered in-house.</span>
+            <span className="mono text-[11px] px-[8px] py-[2px] rounded-md bg-white/[0.05] border border-white/10 text-slate-300">
+              SOC 2 &amp; ISO-Ready
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Back to top */}
+      {/* Floating Back to top button */}
       <button
         type="button"
         onClick={scrollToTop}
         aria-label="Back to top"
-        className={`fixed bottom-[24px] right-[24px] z-40 w-[44px] h-[44px] rounded-full bg-[var(--ink)] border border-white/20 shadow-[0_8px_24px_rgba(10,23,47,0.3)] flex items-center justify-center text-white hover:bg-[var(--accent)] hover:border-[var(--accent)] transition-all duration-300 ${
+        className={`fixed bottom-[24px] right-[24px] z-40 w-[44px] h-[44px] rounded-full bg-[#0A172F] border border-white/20 shadow-[0_8px_24px_rgba(0,0,0,0.5)] flex items-center justify-center text-white hover:bg-[var(--accent)] hover:border-[var(--accent)] transition-all duration-300 ${
           showTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-[10px] pointer-events-none'
         }`}
       >

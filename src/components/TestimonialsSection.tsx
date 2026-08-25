@@ -36,16 +36,17 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
       if (targets.length === 0) return;
 
       gsap.fromTo(targets,
-        { opacity: 0, y: 24 },
+        { opacity: 0, y: 12 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.7,
-          stagger: 0.1,
+          duration: 0.35,
+          stagger: 0.05,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: container.current,
-            start: 'top 80%',
+            start: 'top 96%',
+            once: true,
           },
         }
       );

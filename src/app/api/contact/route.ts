@@ -3,6 +3,7 @@ import { createAdminClient } from '@/lib/supabase/admin';
 type ContactPayload = {
   name?: string;
   email?: string;
+  phone?: string;
   company?: string;
   message?: string;
   /** Which page the inquiry came from, e.g. "Service: Website Development — Delhi". */
@@ -21,7 +22,7 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Invalid request body.' }, { status: 400 });
   }
 
-  const { name, email, company, message, source } = body;
+  const { name, email, phone, company, message, source } = body;
 
   if (!name?.trim() || !email?.trim()) {
     return Response.json({ error: 'Name and email are required.' }, { status: 400 });
@@ -31,12 +32,17 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Please provide a valid email address.' }, { status: 400 });
   }
 
+  const fullMessage = [
+    phone ? `Phone / WhatsApp: ${phone.trim()}` : null,
+    message?.trim() || null,
+  ].filter(Boolean).join('\n\n');
+
   const supabase = createAdminClient();
   const { error } = await supabase.from('contact_submissions').insert({
     name: name.trim(),
     email: email.trim(),
     company: company?.trim() || null,
-    message: message?.trim() || null,
+    message: fullMessage || null,
     source: source?.trim() || null,
   });
 

@@ -37,15 +37,16 @@ export default function ServicesContent({
       const cards = gsap.utils.toArray<HTMLElement>('.service-card');
       cards.forEach((card) => {
         gsap.fromTo(card,
-          { opacity: 0, y: 28 },
+          { opacity: 0, y: 14 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
+            duration: 0.35,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: card,
-              start: 'top 85%',
+              start: 'top 96%',
+              once: true,
             },
           }
         );
@@ -59,8 +60,7 @@ export default function ServicesContent({
     <div ref={container}>
       <section className="relative px-[6vw] pt-[160px] pb-[60px] z-10">
         <Breadcrumbs items={[{ label: 'Services', href: '/services' }]} />
-        <div className="mono text-[12px] text-[var(--muted)] mb-[20px]">Services</div>
-        <h1 className="text-[clamp(36px,6vw,72px)] max-w-[18ch] font-[var(--font-display)] font-bold leading-[1]">
+        <h1 className="text-[clamp(32px,4.8vw,64px)] font-[var(--font-display)] font-bold leading-[1.1] text-[var(--ink)] tracking-tight">
           Full-stack expertise, end to end.
         </h1>
         <p className="mt-[24px] max-w-[560px] text-[var(--muted)] text-[16px] leading-[1.7]">
@@ -120,6 +120,7 @@ export default function ServicesContent({
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                    unoptimized
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -13,7 +13,7 @@ const LAST_UPDATED = 'August 18, 2026';
 export default async function TermsAndConditionsPage() {
   const settings = await getSiteSettings();
 
-  const content = `
+  const defaultContent = `
 ## Acceptance of Terms
 
 By accessing ${settings.url} or engaging ${settings.orgName} for services, you agree to these Terms & Conditions. If you do not agree, please do not use this site or engage our services.
@@ -64,6 +64,10 @@ We may update these terms from time to time. Material changes will be reflected 
 
 Questions about these terms can be sent to **${settings.contactEmail}**.
 `.trim();
+
+  const content = settings.termsConditions && settings.termsConditions.trim().length > 50
+    ? settings.termsConditions
+    : defaultContent;
 
   return <LegalContent title="Terms & Conditions" href="/terms-and-conditions" lastUpdated={LAST_UPDATED} content={content} />;
 }

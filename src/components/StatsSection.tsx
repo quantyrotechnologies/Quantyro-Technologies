@@ -32,10 +32,10 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
         );
       }
 
-      const statsElements = gsap.utils.toArray<HTMLElement>('.stat h2');
+      const statsElements = gsap.utils.toArray<HTMLElement>('.stat .count-val');
       statsElements.forEach((el) => {
-        const target = parseInt(el.dataset.count ?? '0', 10);
-        const suffix = el.dataset.suffix || '+';
+        const parent = el.closest('h2');
+        const target = parseInt(parent?.dataset.count ?? '0', 10);
         const obj = { v: 0 };
         gsap.to(obj, {
           v: target,
@@ -47,7 +47,7 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
             toggleActions: 'play none none reverse'
           },
           onUpdate: () => {
-            el.textContent = Math.round(obj.v) + suffix;
+            el.innerText = String(Math.round(obj.v));
           }
         });
       });
@@ -81,7 +81,8 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
               data-suffix={s.suffix}
               className="text-[clamp(40px,5.2vw,76px)] text-[var(--ink)] font-[var(--font-display)] font-bold leading-[0.98]"
             >
-              0
+              <span className="count-val" suppressHydrationWarning>0</span>
+              <span className="count-suffix">{s.suffix}</span>
             </h2>
             <div className="mt-[14px] text-[13.5px] text-[var(--muted)] font-medium">{s.label}</div>
             <div className="mt-[6px] mono text-[11px] text-[var(--accent)] flex items-center gap-[4px]">

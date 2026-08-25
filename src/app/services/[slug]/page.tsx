@@ -21,11 +21,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
   if (!service) return {};
-  const title = service.seoTitle || `${service.title} Services`;
+  const title = service.seoTitle || `${service.title} Services | Quantyro Technologies`;
   const description = service.seoDescription || stripHtml(service.desc);
+  const keywords = service.targetKeywords && service.targetKeywords.length > 0
+    ? service.targetKeywords
+    : [service.title, `${service.title} agency`, 'enterprise software development', 'Quantyro Technologies'];
+
   return {
     title,
     description,
+    keywords,
     alternates: { canonical: `/services/${slug}` },
     openGraph: { title, description, url: `/services/${slug}`, type: 'website', images: [DEFAULT_OG_IMAGE] },
     twitter: { card: 'summary_large_image', title, description, images: [DEFAULT_OG_IMAGE] },
@@ -60,7 +65,15 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         serviceType: service.title,
         description: stripHtml(service.desc),
         provider: { '@id': `${SITE_URL}/#organization` },
-        ...(regions.length + cities.length > 0 ? { areaServed: [...regions, ...cities] } : {}),
+        ...(regions.length > 0 ? { areaServed: regions } : {}),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+          { '@type': 'ListItem', position: 3, name: service.title, item: `${SITE_URL}/services/${slug}` },
+        ],
       },
     ],
   };
