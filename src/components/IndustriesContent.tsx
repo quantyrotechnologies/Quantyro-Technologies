@@ -96,7 +96,6 @@ export default function IndustriesContent({
                   fill
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute top-[10px] right-[10px] w-[32px] h-[32px] rounded-full bg-white flex items-center justify-center opacity-0 -translate-y-2 translate-x-2 rotate-[-35deg] group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:rotate-0 transition-all duration-300 ease-out shadow-[0_4px_14px_rgba(10,23,47,0.25)]">

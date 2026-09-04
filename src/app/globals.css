@@ -281,10 +281,20 @@ h1, h2, h3, .display {
 
 .animate-marquee-ltr {
   animation: marquee-ltr 24s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .animate-marquee-rtl {
   animation: marquee-rtl 24s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Off-screen below-the-fold content visibility optimization for mobile performance */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 650px;
 }
 
 @keyframes toast-in {

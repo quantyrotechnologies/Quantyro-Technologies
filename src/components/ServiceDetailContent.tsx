@@ -183,7 +183,6 @@ export default function ServiceDetailContent({
                     fill
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     priority
-                    unoptimized
                   />
                 )}
 

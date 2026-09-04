@@ -83,6 +83,7 @@ export default function FeaturedWorkSection({ projects }: { projects: Project[] 
                   fill
                   sizes="(min-width: 768px) 33vw, 100vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324]/75 via-transparent to-transparent pointer-events-none" />
                 

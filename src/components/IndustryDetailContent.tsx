@@ -143,7 +143,6 @@ export default function IndustryDetailContent({
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   priority
-                  unoptimized
                 />
 
                 {/* Subtle vignette overlay */}

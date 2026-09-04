@@ -87,7 +87,7 @@ export default function HeroSection() {
         <div className="lg:col-span-6 flex flex-col justify-center max-w-[600px]">
           
           {/* Eyebrow Badge with Active Pulse */}
-          <div className="eyebrow inline-flex items-center gap-[8px] text-[12px] md:text-[12.5px] text-[var(--muted)] mb-[16px] bg-white/90 px-[13px] py-[5px] rounded-full border border-[rgba(10,23,47,0.12)] w-fit shadow-xs">
+          <div className="eyebrow inline-flex items-center gap-[8px] text-[12px] md:text-[12.5px] text-slate-700 mb-[16px] bg-white/90 px-[13px] py-[5px] rounded-full border border-[rgba(10,23,47,0.12)] w-fit shadow-xs">
             <span className="w-[7px] h-[7px] rounded-full bg-[#00E599] animate-pulse" />
             <span className="font-semibold text-[var(--ink)]">Enterprise Software, Cloud & AI Engineering</span>
           </div>
@@ -98,7 +98,7 @@ export default function HeroSection() {
           </h1>
 
           {/* Subtitle */}
-          <p className="hero-sub mt-[16px] text-[15px] md:text-[16.5px] text-[var(--muted)] leading-[1.65] max-w-[540px]">
+          <p className="hero-sub mt-[16px] text-[15px] md:text-[16.5px] text-slate-700 leading-[1.65] max-w-[540px]">
             Quantyro partners with ambitious founders and enterprise engineering teams to design, build, and scale mission-critical web platforms, mobile apps, and autonomous AI systems — backed by dedicated senior engineers, guaranteed SLAs, and 100% IP ownership.
           </p>
 
@@ -128,7 +128,7 @@ export default function HeroSection() {
           </div>
 
           {/* Enterprise Trust Guarantees */}
-          <div className="hero-trust mt-[28px] pt-[20px] border-t border-[rgba(10,23,47,0.08)] flex flex-wrap items-center gap-x-[18px] gap-y-[8px] text-[12px] md:text-[12.5px] font-medium text-[var(--muted)]">
+          <div className="hero-trust mt-[28px] pt-[20px] border-t border-[rgba(10,23,47,0.08)] flex flex-wrap items-center gap-x-[18px] gap-y-[8px] text-[12px] md:text-[12.5px] font-medium text-slate-700">
             <div className="flex items-center gap-[6px]">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00B377" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
               <span>100% IP Ownership</span>
@@ -153,7 +153,7 @@ export default function HeroSection() {
       </div>
 
       {/* Centered subtle scroll cue */}
-      <div className="scroll-cue absolute bottom-[14px] left-0 right-0 flex flex-col items-center gap-[4px] text-[10.5px] text-[var(--muted)] pointer-events-none z-10">
+      <div className="scroll-cue absolute bottom-[14px] left-0 right-0 flex flex-col items-center gap-[4px] text-[10.5px] text-slate-600 pointer-events-none z-10">
         <span className="line"></span> Scroll
       </div>
     </section>

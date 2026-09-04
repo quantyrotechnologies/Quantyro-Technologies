@@ -162,12 +162,11 @@ export default function Footer({
             <Link href="/" className="inline-flex items-center gap-[14px] group">
               <div className="relative w-[42px] h-[42px] md:w-[48px] md:h-[48px] rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 group-hover:scale-105">
                 <Image
-                  src="/images/quantyro-technologies.png?v=2"
+                  src="/images/quantyro-technologies.png"
                   alt={`${settings.orgName} logo`}
                   width={48}
                   height={48}
                   className="object-contain w-full h-full"
-                  unoptimized
                 />
               </div>
               <span className="font-[var(--font-display)] font-extrabold text-[20px] md:text-[22px] text-white tracking-tight leading-none">

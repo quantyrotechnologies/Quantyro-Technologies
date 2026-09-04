@@ -126,7 +126,7 @@ export default function BrochureContent({
             <div className="flex items-center justify-between border-b border-white/15 pb-[28px] mb-[40px]">
               <div className="flex items-center gap-[14px]">
                 <div className="w-[48px] h-[48px] rounded-[12px] overflow-hidden flex items-center justify-center">
-                  <Image src="/images/quantyro-technologies.png?v=2" alt={`${settings.orgName} logo`} width={48} height={48} className="w-full h-full object-contain" unoptimized />
+                  <Image src="/images/quantyro-technologies.png" alt={`${settings.orgName} logo`} width={48} height={48} className="w-full h-full object-contain" />
                 </div>
                 <div>
                   <div className="font-[var(--font-display)] font-extrabold text-[22px] tracking-tight leading-none text-white">{settings.orgName}</div>

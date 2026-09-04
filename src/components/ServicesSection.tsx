@@ -124,9 +124,9 @@ export default function ServicesSection({ services }: { services: Service[] }) {
                     alt={`${s.title} services by Quantyro Technologies`}
                     title={s.title}
                     fill
-                    sizes="380px"
+                    sizes="(max-width: 768px) 320px, 380px"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
-                    unoptimized
+                    loading="lazy"
                   />
 
                   {/* Subtle dark gradient scrim */}

@@ -42,7 +42,7 @@ export default function SmoothScroll() {
       lenis.raf(time * 1000);
     };
     gsap.ticker.add(update);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     return () => {
       gsap.ticker.remove(update);

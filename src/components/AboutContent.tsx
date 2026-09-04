@@ -164,7 +164,6 @@ export default function AboutContent({
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   priority
-                  unoptimized
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A172F]/85 via-[#0A172F]/20 to-black/20 pointer-events-none" />

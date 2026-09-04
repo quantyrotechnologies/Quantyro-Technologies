@@ -74,13 +74,12 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-[8px] sm:gap-[10px] md:gap-[12px] group shrink-0" aria-label="Quantyro Technologies Home">
             <div className="relative w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] md:w-[44px] md:h-[44px] overflow-hidden flex items-center justify-center transition-all duration-300 group-hover:scale-105">
               <Image
-                src="/images/quantyro-technologies.png?v=2"
+                src="/images/quantyro-technologies.png"
                 alt="Quantyro Technologies Logo"
                 width={44}
                 height={44}
                 className="object-contain w-full h-full scale-[1.12]"
                 priority
-                unoptimized
               />
             </div>
             
@@ -116,8 +115,8 @@ export default function Navbar() {
 
           {/* Right Action: Availability Pulse, CTA & Mobile Hamburger */}
           <div className="flex items-center gap-[8px] sm:gap-[10px] md:gap-[12px]">
-            <div className="hidden xl:inline-flex items-center gap-[5px] mono text-[11px] text-emerald-600 bg-emerald-50 px-[10px] py-[3.5px] rounded-full border border-emerald-200">
-              <span className="w-[5px] h-[5px] rounded-full bg-emerald-500 animate-pulse" />
+            <div className="hidden xl:inline-flex items-center gap-[5px] mono text-[11px] font-bold text-emerald-950 bg-emerald-100/90 px-[10px] py-[3.5px] rounded-full border border-emerald-300">
+              <span className="w-[5px] h-[5px] rounded-full bg-emerald-600 animate-pulse" />
               Available for Q3/Q4
             </div>
 
@@ -219,8 +218,8 @@ export default function Navbar() {
                 </svg>
               </Link>
 
-              <div className="flex items-center justify-center gap-[6px] mono text-[11px] text-emerald-700 bg-emerald-50/90 py-[7px] px-[12px] rounded-lg border border-emerald-200/70">
-                <span className="w-[6px] h-[6px] rounded-full bg-emerald-500 animate-pulse" />
+              <div className="flex items-center justify-center gap-[6px] mono text-[11px] font-bold text-emerald-950 bg-emerald-100/90 py-[7px] px-[12px] rounded-lg border border-emerald-300">
+                <span className="w-[6px] h-[6px] rounded-full bg-emerald-600 animate-pulse" />
                 <span>Available for Q3/Q4 Projects</span>
               </div>
             </div>
