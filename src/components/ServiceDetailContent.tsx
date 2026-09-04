@@ -221,8 +221,18 @@ export default function ServiceDetailContent({
         {(() => {
           const defaultExec = SERVICE_EXECUTIVE_DATA[service.slug];
           const headline = service.executiveHeadline || defaultExec?.headline || 'Engineering Scalable Software Designed for Market Leadership';
-          const narrative = (service.executiveNarrative && service.executiveNarrative.length > 0) ? service.executiveNarrative : defaultExec?.narrative;
-          const pillars = (service.executivePillars && service.executivePillars.length > 0) ? service.executivePillars : defaultExec?.pillars;
+          
+          let narrativeList: string[] = [];
+          if (Array.isArray(service.executiveNarrative) && service.executiveNarrative.length > 0) {
+            narrativeList = service.executiveNarrative;
+          } else if (typeof service.executiveNarrative === 'string' && (service.executiveNarrative as string).trim().length > 0) {
+            narrativeList = (service.executiveNarrative as string).split(/\n\s*\n/).map((s) => s.trim()).filter(Boolean);
+          } else if (defaultExec?.narrative && Array.isArray(defaultExec.narrative)) {
+            narrativeList = defaultExec.narrative;
+          }
+
+          const rawPillars = service.executivePillars || defaultExec?.pillars;
+          const pillars = Array.isArray(rawPillars) ? rawPillars : null;
 
           return (
             <div className="mb-[64px]">
@@ -233,9 +243,9 @@ export default function ServiceDetailContent({
                 {headline}
               </h3>
               
-              {narrative ? (
+              {narrativeList.length > 0 ? (
                 <div className="svc-reveal space-y-[16px] text-[16px] text-[var(--ink)]/85 leading-[1.8] mb-[24px]">
-                  {narrative.map((para, i) => (
+                  {narrativeList.map((para, i) => (
                     <p key={i}>{para}</p>
                   ))}
                 </div>

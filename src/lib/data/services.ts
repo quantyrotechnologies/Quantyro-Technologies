@@ -138,6 +138,35 @@ export const SAMPLE_SERVICES: Service[] = [
   },
 ];
 
+function parseNarrative(val: unknown): string[] | null {
+  if (!val) return null;
+  if (Array.isArray(val)) return val.map(String);
+  if (typeof val === 'string') {
+    const trimmed = val.trim();
+    if (!trimmed) return null;
+    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (Array.isArray(parsed)) return parsed.map(String);
+      } catch {}
+    }
+    return trimmed.split(/\n\s*\n/).map((s) => s.trim()).filter(Boolean);
+  }
+  return null;
+}
+
+function parsePillars(val: unknown) {
+  if (!val) return null;
+  if (Array.isArray(val)) return val;
+  if (typeof val === 'string') {
+    try {
+      const parsed = JSON.parse(val);
+      if (Array.isArray(parsed)) return parsed;
+    } catch {}
+  }
+  return null;
+}
+
 async function fetchServices(): Promise<Service[]> {
   try {
     const supabase = createPublicClient();
@@ -164,8 +193,8 @@ async function fetchServices(): Promise<Service[]> {
       seoDescription: row.seo_description ?? null,
       targetKeywords: row.target_keywords ?? [],
       executiveHeadline: row.executive_headline ?? null,
-      executiveNarrative: row.executive_narrative ?? null,
-      executivePillars: row.executive_pillars ?? null,
+      executiveNarrative: parseNarrative(row.executive_narrative),
+      executivePillars: parsePillars(row.executive_pillars),
     }));
   } catch (err) {
     console.error('[getServices] falling back to sample services', err);
