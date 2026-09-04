@@ -1,72 +1,67 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { tiltOnMouseMove, tiltOnMouseLeave } from '@/hooks/tilt';
 import { serviceIllustration } from '@/lib/serviceIllustration';
 import { stripHtml } from '@/lib/stripHtml';
 import type { Service } from '@/lib/types';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 gsap.config({ nullTargetWarn: false });
 
 export default function ServicesSection({ services }: { services: Service[] }) {
   const container = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const track = trackRef.current;
     const section = container.current;
     if (!track || !section) return;
 
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
-      const headingTargets = gsap.utils.toArray<HTMLElement>('.services-heading > *');
-      if (headingTargets.length > 0) {
-        gsap.fromTo(
-          headingTargets,
-          { opacity: 0, y: 24 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            stagger: 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 85%',
-            },
-          }
-        );
-      }
-
-      // Horizontal pinned scroll only on wide and tall desktop screens
-      mm.add('(min-width: 1024px) and (min-height: 680px)', () => {
-        const getDistance = () => track.scrollWidth - window.innerWidth + window.innerWidth * 0.08;
-
-        gsap.to(track, {
-          x: () => -getDistance(),
-          ease: 'none',
+    const headingTargets = gsap.utils.toArray<HTMLElement>('.services-heading > *');
+    if (headingTargets.length > 0) {
+      gsap.fromTo(
+        headingTargets,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: section,
-            start: 'top top',
-            end: '+=2200',
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
+            start: 'top 85%',
           },
-        });
-      });
-    }, container);
+        }
+      );
+    }
 
-    return () => {
-      ctx.revert();
-    };
-  }, [services]);
+    // Horizontal pinned scroll only on wide and tall desktop screens
+    mm.add('(min-width: 1024px) and (min-height: 680px)', () => {
+      const getDistance = () => track.scrollWidth - window.innerWidth + window.innerWidth * 0.08;
+
+      gsap.to(track, {
+        x: () => -getDistance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: '+=2200',
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
+        },
+      });
+    });
+  }, { scope: container, dependencies: [services] });
 
   return (
     <section
@@ -103,7 +98,7 @@ export default function ServicesSection({ services }: { services: Service[] }) {
         <div
           ref={trackRef}
           id="services-track"
-          className="flex items-stretch pl-[6vw] pr-[6vw] lg:pr-0 flex-1 min-h-0 will-change-transform overflow-x-auto lg:overflow-visible no-scrollbar pb-[20px] lg:pb-0 pt-[10px]"
+          className="flex items-start pl-[6vw] pr-[6vw] lg:pr-0 flex-1 min-h-0 will-change-transform overflow-x-auto lg:overflow-visible no-scrollbar pb-[20px] lg:pb-0 pt-[10px]"
         >
           {services.map((s) => (
             <Link
@@ -112,7 +107,7 @@ export default function ServicesSection({ services }: { services: Service[] }) {
               title={`${s.title} — Quantyro Technologies`}
               onMouseMove={(e) => tiltOnMouseMove(e, 6)}
               onMouseLeave={tiltOnMouseLeave}
-              className="service-panel-card group relative flex-none w-[min(84vw,370px)] h-auto min-h-[460px] max-h-[580px] mr-[20px] md:mr-[28px] rounded-[24px] bg-white border border-[rgba(10,23,47,0.12)] shadow-[0_10px_35px_rgba(10,23,47,0.05)] hover:border-[var(--accent)] hover:shadow-[0_24px_60px_rgba(23,104,214,0.16)] p-[8px] flex flex-col justify-between overflow-hidden transition-all duration-400 ease-out"
+              className="service-panel-card group relative flex-none w-[min(84vw,370px)] h-auto min-h-105 mr-[20px] md:mr-[28px] rounded-[24px] bg-white border border-[rgba(10,23,47,0.12)] shadow-[0_10px_35px_rgba(10,23,47,0.05)] hover:border-[var(--accent)] hover:shadow-[0_24px_60px_rgba(23,104,214,0.16)] p-[8px] flex flex-col justify-between overflow-hidden transition-all duration-400 ease-out"
               style={{ perspective: '1000px' }}
             >
               {/* Ambient hover glow beam */}
@@ -150,7 +145,7 @@ export default function ServicesSection({ services }: { services: Service[] }) {
                     {s.title}
                   </h3>
 
-                  <p className="mt-[8px] text-[13px] md:text-[13.5px] text-[var(--muted)] leading-[1.6] line-clamp-4">
+                  <p className="mt-[8px] text-[13px] md:text-[13.5px] text-[var(--muted)] leading-[1.6]">
                     {stripHtml(s.desc)}
                   </p>
                 </div>
