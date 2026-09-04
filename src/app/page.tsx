@@ -1,17 +1,20 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import HeroSection from '@/components/HeroSection';
 import EnterpriseTicker from '@/components/EnterpriseTicker';
-import DeviceShowcaseSection from '@/components/DeviceShowcaseSection';
-import ManifestoSection from '@/components/ManifestoSection';
-import ServicesSection from '@/components/ServicesSection';
-import IndustriesSection from '@/components/IndustriesSection';
-import TechStackHub from '@/components/TechStackHub';
-import FeaturedWorkSection from '@/components/FeaturedWorkSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import StatsSection from '@/components/StatsSection';
-import CtaSection from '@/components/CtaSection';
 import ScrollProgress from '@/components/ScrollProgress';
-import FaqSection from '@/components/FaqSection';
+
+// Code-split below-the-fold components: preserves 100% SSR HTML for SEO while radically reducing initial mobile JS payload
+const DeviceShowcaseSection = dynamic(() => import('@/components/DeviceShowcaseSection'), { ssr: true });
+const ServicesSection = dynamic(() => import('@/components/ServicesSection'), { ssr: true });
+const TechStackHub = dynamic(() => import('@/components/TechStackHub'), { ssr: true });
+const IndustriesSection = dynamic(() => import('@/components/IndustriesSection'), { ssr: true });
+const ManifestoSection = dynamic(() => import('@/components/ManifestoSection'), { ssr: true });
+const FeaturedWorkSection = dynamic(() => import('@/components/FeaturedWorkSection'), { ssr: true });
+const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'), { ssr: true });
+const StatsSection = dynamic(() => import('@/components/StatsSection'), { ssr: true });
+const FaqSection = dynamic(() => import('@/components/FaqSection'), { ssr: true });
+const CtaSection = dynamic(() => import('@/components/CtaSection'), { ssr: true });
 import { getServices } from '@/lib/data/services';
 import { getIndustries } from '@/lib/data/industries';
 import { getFeaturedProjects } from '@/lib/data/projects';

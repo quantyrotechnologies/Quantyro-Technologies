@@ -312,7 +312,7 @@ export default function TechIntegrationHub() {
               width={46}
               height={46}
               className="object-contain w-full h-full filter drop-shadow-[0_0_8px_rgba(47,143,255,0.6)] transition-transform duration-300 group-hover:scale-110"
-              priority
+              loading="lazy"
             />
           </div>
         </button>

@@ -59,6 +59,20 @@ h1, h2, h3, .display {
   padding-bottom: 0.14em;
 }
 
+/* On mobile devices, eliminate overflow masks and GPU layers so text rasterizes instantly at FCP/LCP */
+@media (max-width: 767px) {
+  .word {
+    display: inline !important;
+    overflow: visible !important;
+    margin-bottom: 0 !important;
+  }
+  .word span {
+    display: inline !important;
+    will-change: auto !important;
+    padding-bottom: 0 !important;
+  }
+}
+
 .grain {
   position: fixed; inset: 0; z-index: 1; pointer-events: none;
   opacity: 0.035; mix-blend-mode: multiply;

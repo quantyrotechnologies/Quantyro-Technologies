@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Bricolage_Grotesque, IBM_Plex_Mono } from "next/font/google";
 import Script from "next/script";
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
 import SiteChrome from "@/components/SiteChrome";
@@ -76,7 +76,6 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${inter.variable} ${bricolage.variable} ${plexMono.variable} h-full antialiased`}
     >
-      <GoogleTagManager gtmId={gtmId} />
       <body suppressHydrationWarning className="min-h-full flex flex-col relative">
         {/* Google Tag Manager (noscript) */}
         <noscript>
@@ -88,6 +87,23 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+
+        {/* Optimized Google Tag Manager: loads after page is interactive to protect Core Web Vitals & LCP */}
+        {gtmId && (
+          <Script
+            id="google-tag-manager"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','${gtmId}');
+              `,
+            }}
+          />
+        )}
         {/* Preconnect & DNS-Prefetch to GA, GTM & Microsoft Clarity hosts */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
