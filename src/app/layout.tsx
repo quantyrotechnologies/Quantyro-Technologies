@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Bricolage_Grotesque, IBM_Plex_Mono } from "next/font/google";
 import Script from "next/script";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
@@ -12,18 +12,27 @@ import { getSocialLinks } from "@/lib/data/socialLinks";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const plexMono = IBM_Plex_Mono({
   weight: ['400', '500'],
   variable: "--font-plex-mono",
   subsets: ["latin"],
+  display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0A172F",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -75,19 +84,23 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
             height="0"
             width="0"
+            title="Google Tag Manager"
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        {/* Preconnect to GA, GTM & Microsoft Clarity hosts */}
+        {/* Preconnect & DNS-Prefetch to GA, GTM & Microsoft Clarity hosts */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.clarity.ms" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
 
         {/* Microsoft Clarity (User Recording & Heatmaps) */}
         {clarityId && (
           <Script
             id="microsoft-clarity"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
                 (function(c,l,a,r,i,t,y){

@@ -214,7 +214,7 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
                           </div>
                         </div>
 
-                        <div className="bg-white/10 border border-white/15 rounded-full px-[12px] py-[6px] flex items-center justify-between text-[10px] text-slate-400">
+                        <div className="bg-white/10 border border-white/15 rounded-full px-[12px] py-[6px] flex items-center justify-between text-[10px] text-slate-300">
                           <span>Ask AI anything...</span>
                           <div className="w-[20px] h-[20px] rounded-full bg-[var(--accent)] flex items-center justify-center text-white text-[9px]">
                             ↑
@@ -233,7 +233,7 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
                           </div>
 
                           <div className="mt-[12px] bg-white/5 border border-white/10 rounded-xl p-[12px]">
-                            <div className="text-[9.5px] text-slate-400 uppercase mono">Patient Biometrics</div>
+                            <div className="text-[9.5px] text-slate-300 uppercase mono">Patient Biometrics</div>
                             <div className="text-[20px] font-bold text-indigo-400 mt-[2px]">98.6 bpm</div>
                             <div className="h-[24px] w-full mt-[6px] flex items-end gap-[3px]">
                               {[40, 65, 80, 55, 90, 75, 85, 60, 95, 70].map((h, i) => (
@@ -252,12 +252,16 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
                             </div>
                             <div>
                               <div className="text-[11px] font-semibold">Dr. Sarah Jenkins</div>
-                              <div className="text-[9px] text-slate-400">Consultation in 15 mins</div>
+                              <div className="text-[9px] text-slate-300">Consultation in 15 mins</div>
                             </div>
                           </div>
                         </div>
 
-                        <button className="w-full py-[7.5px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-[11px] font-bold text-white transition-colors">
+                        <button
+                          type="button"
+                          aria-label="Join Secure Video Session"
+                          className="w-full py-[7.5px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-[11px] font-bold text-white transition-colors cursor-pointer"
+                        >
                           Join Secure Video Session
                         </button>
                       </div>
@@ -274,7 +278,7 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
                           <div className="w-[7px] h-[7px] rounded-full bg-amber-500" />
                           <div className="w-[7px] h-[7px] rounded-full bg-emerald-500" />
                         </div>
-                        <div className="mono text-[9.5px] text-slate-400 bg-white/5 px-[12px] py-[2px] rounded-full">
+                        <div className="mono text-[9.5px] text-slate-300 bg-white/5 px-[12px] py-[2px] rounded-full">
                           https://search.google.com/search-console/performance
                         </div>
                         <div className="w-[10px]" />
@@ -317,7 +321,7 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between mono text-[9.5px] text-slate-400 pt-[2px]">
+                    <div className="flex items-center justify-between mono text-[9.5px] text-slate-300 pt-[2px]">
                       <span>Schema.org: FAQPage, Product, Breadcrumbs ✓</span>
                       <span className="text-emerald-400">Core Web Vitals: Good</span>
                     </div>
@@ -333,7 +337,7 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
                           <div className="w-[7px] h-[7px] rounded-full bg-amber-500" />
                           <div className="w-[7px] h-[7px] rounded-full bg-emerald-500" />
                         </div>
-                        <div className="mono text-[9.5px] text-slate-400 bg-white/5 px-[12px] py-[2px] rounded-full">
+                        <div className="mono text-[9.5px] text-slate-300 bg-white/5 px-[12px] py-[2px] rounded-full">
                           https://app.quantyro.io/analytics
                         </div>
                         <div className="w-[10px]" />
@@ -342,14 +346,14 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
                       {/* Financial & Latency Cards */}
                       <div className="grid grid-cols-2 gap-[8px] mb-[10px]">
                         <div className="bg-white/5 border border-white/10 rounded-xl p-[10px]">
-                          <div className="text-[9.5px] text-slate-400 mono">Global Transactions</div>
+                          <div className="text-[9.5px] text-slate-300 mono">Global Transactions</div>
                           <div className="text-[17px] font-bold text-cyan-400 mt-[1px]">$1,428,950</div>
                           <div className="text-[9px] text-emerald-400">↑ +24.8% vs last week</div>
                         </div>
                         <div className="bg-white/5 border border-white/10 rounded-xl p-[10px]">
-                          <div className="text-[9.5px] text-slate-400 mono">Edge TTFB Latency</div>
+                          <div className="text-[9.5px] text-slate-300 mono">Edge TTFB Latency</div>
                           <div className="text-[17px] font-bold text-emerald-400 mt-[1px]">18.4 ms</div>
-                          <div className="text-[9px] text-slate-400">Global Edge Nodes</div>
+                          <div className="text-[9px] text-slate-300">Global Edge Nodes</div>
                         </div>
                       </div>
 
@@ -371,7 +375,7 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between mono text-[9.5px] text-slate-400 pt-[2px]">
+                    <div className="flex items-center justify-between mono text-[9.5px] text-slate-300 pt-[2px]">
                       <span>Serverless Edge Workers: 24 Regions</span>
                       <span className="text-cyan-400">TLS 1.3 Active</span>
                     </div>
@@ -387,6 +391,7 @@ export default function DeviceShowcaseSection({ items = DEFAULT_SHOWCASE_ITEMS }
               {showcaseList.map((item, idx) => (
                 <button
                   key={item.id}
+                  type="button"
                   onClick={() => handleSelect(idx)}
                   className={`h-[6px] rounded-full transition-all duration-300 cursor-pointer ${
                     activeIndex === idx

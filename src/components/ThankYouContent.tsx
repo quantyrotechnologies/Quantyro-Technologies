@@ -68,6 +68,7 @@ export default function ThankYouContent() {
         </p>
 
         {/* What Happens Next - 3 Step Grid */}
+        <h2 className="sr-only">Next Steps in Our Engagement Process</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-[16px] mb-[40px] text-left">
           
           <div className="p-[20px] rounded-[20px] bg-white border border-[rgba(10,23,47,0.1)] shadow-[0_4px_20px_rgba(10,23,47,0.04)]">

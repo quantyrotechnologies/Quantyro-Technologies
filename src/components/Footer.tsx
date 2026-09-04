@@ -200,7 +200,7 @@ export default function Footer({
 
           {/* Column 2: Practice Areas */}
           <div>
-            <div className="mono text-[11px] uppercase font-bold tracking-wider text-[var(--accent)] mb-[16px]">
+            <div className="mono text-[11px] uppercase font-bold tracking-wider text-sky-400 mb-[16px]">
               Practice Areas
             </div>
             <ul className="flex flex-col gap-[10px]">
@@ -216,7 +216,7 @@ export default function Footer({
 
           {/* Column 3: Industries */}
           <div>
-            <div className="mono text-[11px] uppercase font-bold tracking-wider text-[var(--accent)] mb-[16px]">
+            <div className="mono text-[11px] uppercase font-bold tracking-wider text-sky-400 mb-[16px]">
               Industries
             </div>
             <ul className="flex flex-col gap-[10px]">
@@ -232,7 +232,7 @@ export default function Footer({
 
           {/* Column 4: Company */}
           <div>
-            <div className="mono text-[11px] uppercase font-bold tracking-wider text-[var(--accent)] mb-[16px]">
+            <div className="mono text-[11px] uppercase font-bold tracking-wider text-sky-400 mb-[16px]">
               Company &amp; Firm
             </div>
             <ul className="flex flex-col gap-[10px]">
@@ -276,16 +276,16 @@ export default function Footer({
         </div>
 
         {/* Bottom Bar with IP & Compliance badges */}
-        <div className="footer-reveal pt-[18px] flex flex-col md:flex-row items-center justify-between gap-[12px] text-[12px] text-slate-400">
+        <div className="footer-reveal pt-[18px] flex flex-col md:flex-row items-center justify-between gap-[12px] text-[12px] text-slate-300">
           <div className="flex flex-wrap items-center gap-[12px]">
             <span>{settings.copyrightText || `© ${new Date().getFullYear()} Quantyro Technologies. All Rights Reserved.`}</span>
-            <span className="hidden md:inline text-slate-600">·</span>
-            <span className="mono text-[11px] text-slate-400">100% Client IP Ownership Standard</span>
+            <span className="hidden md:inline text-slate-500">·</span>
+            <span className="mono text-[11px] text-slate-300">100% Client IP Ownership Standard</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-[16px]">
             {LEGAL_LINKS.map((l) => (
-              <Link key={l.href} href={l.href} className="hover:text-white transition-colors">
+              <Link key={l.href} href={l.href} className="text-slate-300 hover:text-white transition-colors">
                 {l.label}
               </Link>
             ))}

@@ -120,11 +120,11 @@ export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
 
                     {/* Header */}
                     <div className="flex items-center justify-between gap-[8px]">
-                      <span className="text-[10px] font-mono font-bold text-slate-400">
+                      <span className="text-[10px] font-mono font-bold text-slate-600">
                         {item.phaseTag}
                       </span>
                       <div className="flex items-center gap-[6px]">
-                        <span className="px-[8px] py-[2.5px] rounded-md bg-[rgba(23,104,214,0.08)] border border-[rgba(23,104,214,0.18)] text-[var(--accent)] text-[10px] font-mono font-bold">
+                        <span className="px-[8px] py-[2.5px] rounded-md bg-[rgba(23,104,214,0.08)] border border-[rgba(23,104,214,0.18)] text-blue-700 text-[10px] font-mono font-bold">
                           {item.badge}
                         </span>
                         {/* Activity indicator bars */}
@@ -147,12 +147,13 @@ export default function ManifestoSection({ steps }: { steps: RoadmapStep[] }) {
 
                     {/* Mini Terminal */}
                     <div className="mt-[12px] rounded-xl bg-[#0F172A] p-[10px] border border-slate-700/50 font-mono text-[10.5px] leading-[1.5] text-blue-300">
-                      <div className="flex items-center justify-between pb-[4px] mb-[4px] border-b border-slate-700/50 text-[9.5px] text-slate-500">
+                      <div className="flex items-center justify-between pb-[4px] mb-[4px] border-b border-slate-700/50 text-[9.5px] text-slate-300">
                         <span className="truncate">$ {item.terminalCmd}</span>
                         <button
                           type="button"
                           onClick={() => handleSimulate(item.id)}
-                          className="shrink-0 px-[6px] py-[1.5px] rounded bg-[rgba(23,104,214,0.2)] text-[var(--accent)] hover:bg-[rgba(23,104,214,0.35)] font-bold transition-colors cursor-pointer text-[9px]"
+                          aria-label={`Run telemetry simulation test for ${item.title}`}
+                          className="shrink-0 px-[6px] py-[1.5px] rounded bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 hover:bg-cyan-900/80 font-bold transition-colors cursor-pointer text-[9px]"
                         >
                           {isRunning ? '⚡ RUNNING...' : '▶ RUN TEST'}
                         </button>

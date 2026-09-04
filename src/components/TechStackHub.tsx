@@ -109,11 +109,12 @@ export default function TechStackHub() {
           {TECH_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
+              type="button"
               onClick={() => setActiveTab(cat.id)}
-              className={`mono text-[12.5px] md:text-[13.5px] px-[16px] md:px-[20px] py-[9px] rounded-full border transition-all duration-300 ${
+              className={`mono text-[12.5px] md:text-[13.5px] px-[16px] md:px-[20px] py-[9px] rounded-full border transition-all duration-300 cursor-pointer ${
                 activeTab === cat.id
                   ? 'bg-[#0A1324] text-white border-[#0EBCD4] font-semibold shadow-md'
-                  : 'bg-[var(--surface)] border-[var(--line)] text-[var(--muted)] hover:text-[var(--ink)] hover:border-[var(--accent)]'
+                  : 'bg-[var(--surface)] border-[var(--line)] text-slate-700 hover:text-[var(--ink)] hover:border-[var(--accent)]'
               }`}
             >
               {cat.name}
@@ -147,7 +148,7 @@ export default function TechStackHub() {
                   <h4 className="font-bold text-[16.5px] text-white group-hover:text-cyan-300 transition-colors">
                     {tool.name}
                   </h4>
-                  <span className="mono text-[10.5px] text-slate-400">
+                  <span className="mono text-[10.5px] text-slate-300">
                     {tool.role}
                   </span>
                 </div>

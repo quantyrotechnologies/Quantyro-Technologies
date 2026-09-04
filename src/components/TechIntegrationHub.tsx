@@ -280,10 +280,12 @@ export default function TechIntegrationHub() {
         {/* ========================================================= */}
         {/* 3. CENTRAL GLOWING QUANTYRO CYBER CORE                    */}
         {/* ========================================================= */}
-        <div
+        <button
+          type="button"
           onClick={handleCoreClick}
           onMouseEnter={() => setHoveredNode('core')}
-          className="absolute z-20 w-[74px] h-[74px] rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 group shadow-xl"
+          aria-label="Pulse energy shockwave from core"
+          className="absolute z-20 w-[74px] h-[74px] rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 group shadow-xl focus:outline-none"
           style={{
             background: 'radial-gradient(circle, #0B1F35 0%, #041020 100%)',
             border: '2px solid #2F8FFF',
@@ -313,7 +315,7 @@ export default function TechIntegrationHub() {
               priority
             />
           </div>
-        </div>
+        </button>
 
         {/* ========================================================================= */}
         {/* 4. DYNAMIC SINGLE-LINE CODING BADGES (Level & Compact with Rings)         */}
@@ -359,6 +361,8 @@ export default function TechIntegrationHub() {
             {[...ROW1_APPS, ...ROW1_APPS].map((app, idx) => (
               <div
                 key={`r1-${idx}`}
+                role="img"
+                aria-label={app.label}
                 onMouseEnter={() => setHoveredNode(app.id)}
                 onMouseLeave={() => setHoveredNode(null)}
                 title={app.label}
@@ -378,6 +382,8 @@ export default function TechIntegrationHub() {
             {[...ROW2_APPS, ...ROW2_APPS].map((app, idx) => (
               <div
                 key={`r2-${idx}`}
+                role="img"
+                aria-label={app.label}
                 onMouseEnter={() => setHoveredNode(app.id)}
                 onMouseLeave={() => setHoveredNode(null)}
                 title={app.label}

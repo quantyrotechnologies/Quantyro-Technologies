@@ -81,7 +81,7 @@ export default function CtaSection() {
         <div className="absolute -top-[80px] left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.18),transparent_70%)] pointer-events-none blur-[40px]" />
 
         {/* Badge */}
-        <div className="relative z-10 mono text-[11.5px] text-white/75 font-semibold mb-[20px] bg-white/10 px-[14px] py-[5px] rounded-full inline-block border border-white/20 before:content-['06_/_']">
+        <div className="relative z-10 mono text-[11.5px] text-white font-semibold mb-[20px] bg-white/10 px-[14px] py-[5px] rounded-full inline-block border border-white/25 before:content-['06_/_']">
           Next Steps · Direct Access to Senior Engineers
         </div>
 
@@ -93,7 +93,7 @@ export default function CtaSection() {
         </h2>
 
         {/* Subtext */}
-        <p className="cta-sub relative z-10 mt-[24px] max-w-[480px] mx-auto text-white/75 text-[16px] leading-[1.6]">
+        <p className="cta-sub relative z-10 mt-[24px] max-w-[480px] mx-auto text-blue-50 text-[16px] leading-[1.6]">
           Tell us about your technical roadmap — we reply with architecture insights within one business day, every time.
         </p>
 

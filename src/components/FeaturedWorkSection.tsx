@@ -99,7 +99,7 @@ export default function FeaturedWorkSection({ projects }: { projects: Project[] 
 
               {/* Card Body */}
               <div className="p-[22px] md:p-[26px]">
-                <div className="mono text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-[6px]">
+                <div className="mono text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-[6px]">
                   {p.client}
                 </div>
                 <h3 className="text-[19px] md:text-[21px] font-[var(--font-display)] font-bold text-[var(--ink)] leading-[1.25] group-hover:text-[var(--accent)] transition-colors">

@@ -81,13 +81,14 @@ export default function CookieConsent() {
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2 mb-1">
-              <h4 className="font-[var(--font-display)] font-bold text-[14px] leading-tight text-[#0A172F]">
+              <div role="heading" aria-level={2} className="font-[var(--font-display)] font-bold text-[14px] leading-tight text-[#0A172F]">
                 Cookie Preferences
-              </h4>
+              </div>
               <button
+                type="button"
                 onClick={() => handleChoice('necessary')}
                 aria-label="Close cookie consent"
-                className="text-[#5B6478] hover:text-[#0A172F] p-1 rounded-md transition-colors hover:bg-slate-100"
+                className="text-[#5B6478] hover:text-[#0A172F] p-1 rounded-md transition-colors hover:bg-slate-100 cursor-pointer"
               >
                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="18" y1="6" x2="6" y2="18" />

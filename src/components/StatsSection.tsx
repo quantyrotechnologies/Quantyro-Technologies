@@ -34,8 +34,8 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
 
       const statsElements = gsap.utils.toArray<HTMLElement>('.stat .count-val');
       statsElements.forEach((el) => {
-        const parent = el.closest('h2');
-        const target = parseInt(parent?.dataset.count ?? '0', 10);
+        const parent = el.closest('[data-count]');
+        const target = parseInt(parent?.getAttribute('data-count') ?? '0', 10);
         const obj = { v: 0 };
         gsap.to(obj, {
           v: target,
@@ -61,7 +61,7 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
   return (
     <section ref={container} id="stats" className="relative py-[80px] md:py-[100px] px-[6vw] z-10">
       {/* Section Label */}
-      <div className="mono text-[12px] text-[var(--muted)] mb-[40px] before:content-['05_/_']">Enterprise Impact</div>
+      <h2 className="mono text-[12px] text-[var(--muted)] mb-[40px] before:content-['05_/_']">Enterprise Impact</h2>
       
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px] md:gap-[20px]">
@@ -76,15 +76,15 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
             {/* Soft background radial */}
             <div className="absolute top-0 right-0 w-[100px] h-[100px] bg-[radial-gradient(circle_at_top_right,rgba(23,104,214,0.05),transparent_70%)]" />
 
-            <h2
+            <div
               data-count={s.count}
               data-suffix={s.suffix}
               className="text-[clamp(40px,5.2vw,76px)] text-[var(--ink)] font-[var(--font-display)] font-bold leading-[0.98]"
             >
               <span className="count-val" suppressHydrationWarning>0</span>
               <span className="count-suffix">{s.suffix}</span>
-            </h2>
-            <div className="mt-[14px] text-[13.5px] text-[var(--muted)] font-medium">{s.label}</div>
+            </div>
+            <h3 className="mt-[14px] text-[13.5px] text-[var(--muted)] font-medium">{s.label}</h3>
             <div className="mt-[6px] mono text-[11px] text-[var(--accent)] flex items-center gap-[4px]">
               <span className="w-[4px] h-[4px] rounded-full bg-[var(--accent)]" />
               {s.tag}
