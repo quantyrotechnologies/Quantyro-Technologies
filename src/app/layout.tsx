@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   // create a (free) account and paste in the code Next.js then emits the
   // matching <meta> tag; leaving one unset simply omits that tag.
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    google: process.env.GOOGLE_SITE_VERIFICATION || "google450d99fe093c5b74",
     other: {
       ...(process.env.BING_SITE_VERIFICATION && { 'msvalidate.01': process.env.BING_SITE_VERIFICATION }),
       ...(process.env.AHREFS_SITE_VERIFICATION && { 'ahrefs-site-verification': process.env.AHREFS_SITE_VERIFICATION }),
