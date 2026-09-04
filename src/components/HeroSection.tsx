@@ -15,22 +15,28 @@ export default function HeroSection() {
     if (!container.current) return;
 
     const ctx = gsap.context(() => {
-      const heroWords = gsap.utils.toArray<HTMLElement>('.hero-title .word span');
-      if (heroWords.length > 0) {
-        gsap.set(heroWords, { yPercent: 110 });
-      }
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-      const subTargets = gsap.utils.toArray<HTMLElement>('.eyebrow, .hero-actions, .hero-visual');
-
-      if (heroWords.length > 0 || subTargets.length > 0) {
-        const tl = gsap.timeline({ delay: 0.15 });
+      // On mobile devices, do not hide the H1 headline words offscreen with yPercent: 110.
+      // This allows the browser to paint the LCP text immediately during initial render (<1s).
+      if (!isMobile) {
+        const heroWords = gsap.utils.toArray<HTMLElement>('.hero-title .word span');
         if (heroWords.length > 0) {
-          tl.to(heroWords, { yPercent: 0, duration: 1.0, stagger: 0.04, ease: 'power4.out' });
+          gsap.set(heroWords, { yPercent: 110 });
         }
-        if (subTargets.length > 0) {
-          tl.from(subTargets, {
-            opacity: 0, y: 20, duration: 0.7, stagger: 0.08, ease: 'power2.out'
-          }, '-=0.6');
+
+        const subTargets = gsap.utils.toArray<HTMLElement>('.eyebrow, .hero-actions, .hero-visual');
+
+        if (heroWords.length > 0 || subTargets.length > 0) {
+          const tl = gsap.timeline({ delay: 0.1 });
+          if (heroWords.length > 0) {
+            tl.to(heroWords, { yPercent: 0, duration: 0.9, stagger: 0.03, ease: 'power4.out' });
+          }
+          if (subTargets.length > 0) {
+            tl.from(subTargets, {
+              opacity: 0, y: 16, duration: 0.6, stagger: 0.06, ease: 'power2.out'
+            }, '-=0.5');
+          }
         }
       }
 

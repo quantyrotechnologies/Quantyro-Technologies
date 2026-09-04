@@ -246,17 +246,17 @@ export default function Footer({
           </div>
 
           {/* Column 5: Direct Engineering Access & SLA */}
-          <div className="rounded-[20px] bg-white/[0.03] border border-white/10 p-[20px] flex flex-col justify-between">
+          <div className="rounded-[20px] bg-[#0A162B] border border-white/15 p-[20px] flex flex-col justify-between">
             <div>
               <div className="mono text-[11px] uppercase font-bold tracking-wider text-emerald-400 mb-[8px]">
                 Direct Architect Access
               </div>
-              <p className="text-[12.5px] text-slate-300 leading-[1.6]">
+              <p className="text-[12.5px] text-slate-200 leading-[1.6]">
                 Guaranteed response within 4 business hours from a senior technical lead.
               </p>
               <a
                 href={`mailto:${settings.contactEmail}`}
-                className="mt-[12px] block text-[13px] font-mono text-cyan-300 hover:underline break-all font-semibold"
+                className="mt-[12px] block text-[13px] font-mono text-cyan-200 hover:text-cyan-100 hover:underline break-all font-bold"
               >
                 {settings.contactEmail}
               </a>
