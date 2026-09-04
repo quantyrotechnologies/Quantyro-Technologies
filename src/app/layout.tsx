@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque, IBM_Plex_Mono } from "next/font/google";
+import Script from "next/script";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
@@ -59,6 +60,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const [settings, socialLinks] = await Promise.all([getSiteSettings(), getSocialLinks()]);
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "GTM-NKWDCM2P";
+  const clarityId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || "yd247lp1ji";
 
   return (
     <html
@@ -76,9 +78,28 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        {/* Preconnect to GA & GTM cross-origin hosts */}
+        {/* Preconnect to GA, GTM & Microsoft Clarity hosts */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://www.clarity.ms" />
+
+        {/* Microsoft Clarity (User Recording & Heatmaps) */}
+        {clarityId && (
+          <Script
+            id="microsoft-clarity"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                })(window, document, "clarity", "script", "${clarityId}");
+              `,
+            }}
+          />
+        )}
+
         <StructuredData settings={settings} socialLinks={socialLinks} />
         <SiteChrome settings={settings} socialLinks={socialLinks}>
           {children}
@@ -90,3 +111,4 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     </html>
   );
 }
+
