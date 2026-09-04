@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { trackEvent } from '@/lib/gtag';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function ContactForm() {
+  const router = useRouter();
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -44,6 +46,7 @@ export default function ContactForm() {
       setStatus('success');
       trackEvent('generate_lead', { source: 'Contact Page' });
       form.reset();
+      router.push('/thank-you');
     } catch (err) {
       setStatus('error');
       setErrorMsg(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
