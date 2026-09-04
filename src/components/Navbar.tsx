@@ -28,9 +28,13 @@ export default function Navbar() {
   }, []);
 
   // Close mobile drawer when route changes
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
+  const prevPathname = React.useRef(pathname);
+  if (prevPathname.current !== pathname) {
+    prevPathname.current = pathname;
+    if (menuOpen) {
+      setMenuOpen(false);
+    }
+  }
 
   // Close mobile drawer on Escape key
   useEffect(() => {

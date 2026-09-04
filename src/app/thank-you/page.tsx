@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import ThankYouContent from '@/components/ThankYouContent';
 
@@ -13,3 +14,4 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return <ThankYouContent />;
 }
+
