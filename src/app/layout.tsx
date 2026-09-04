@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque, IBM_Plex_Mono } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
 import SiteChrome from "@/components/SiteChrome";
@@ -58,16 +58,25 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const [settings, socialLinks] = await Promise.all([getSiteSettings(), getSocialLinks()]);
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "GTM-NKWDCM2P";
 
   return (
     <html
       lang="en"
       className={`${inter.variable} ${bricolage.variable} ${plexMono.variable} h-full antialiased`}
     >
+      <GoogleTagManager gtmId={gtmId} />
       <body suppressHydrationWarning className="min-h-full flex flex-col relative">
-        {/* Preconnect to GA's cross-origin hosts — shaves the DNS/TLS
-            handshake off the analytics request, which otherwise showed up
-            as LCP-adjacent connection overhead in Lighthouse. */}
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        {/* Preconnect to GA & GTM cross-origin hosts */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <StructuredData settings={settings} socialLinks={socialLinks} />
