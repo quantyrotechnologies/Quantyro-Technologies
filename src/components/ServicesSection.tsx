@@ -50,14 +50,16 @@ export default function ServicesSection({ services }: { services: Service[] }) {
       gsap.to(track, {
         x: () => -getDistance(),
         ease: 'none',
+        force3D: true,
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=2200',
+          end: () => `+=${Math.round(getDistance())}`,
           pin: true,
-          scrub: 1,
+          scrub: 0.1,
           invalidateOnRefresh: true,
           anticipatePin: 1,
+          fastScrollEnd: true,
         },
       });
     });
@@ -107,12 +109,12 @@ export default function ServicesSection({ services }: { services: Service[] }) {
               title={`${s.title} — Quantyro Technologies`}
               onMouseMove={(e) => tiltOnMouseMove(e, 6)}
               onMouseLeave={tiltOnMouseLeave}
-              className="service-panel-card group relative flex-none w-[min(84vw,370px)] h-auto min-h-105 mr-[20px] md:mr-[28px] rounded-[24px] bg-white border border-[rgba(10,23,47,0.12)] shadow-[0_10px_35px_rgba(10,23,47,0.05)] hover:border-[var(--accent)] hover:shadow-[0_24px_60px_rgba(23,104,214,0.16)] p-[8px] flex flex-col justify-between overflow-hidden transition-all duration-400 ease-out"
+              className="service-panel-card group relative flex-none w-[min(84vw,370px)] h-auto min-h-105 mr-[20px] md:mr-[28px] rounded-[24px] bg-white border border-[rgba(10,23,47,0.12)] shadow-[0_10px_35px_rgba(10,23,47,0.05)] hover:border-[var(--accent)] hover:shadow-[0_24px_60px_rgba(23,104,214,0.16)] p-[8px] flex flex-col justify-between overflow-hidden transition-[border-color,box-shadow] duration-300 ease-out transform-gpu"
               style={{ perspective: '1000px' }}
             >
               {/* Ambient hover glow beam */}
               <div
-                className="pointer-events-none absolute -top-24 -right-24 w-52 h-52 rounded-full bg-[var(--accent)]/15 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="pointer-events-none absolute -top-24 -right-24 w-48 h-48 rounded-full bg-[var(--accent)]/15 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 aria-hidden="true"
               />
 
@@ -125,7 +127,7 @@ export default function ServicesSection({ services }: { services: Service[] }) {
                     title={s.title}
                     fill
                     sizes="(max-width: 768px) 320px, 380px"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105 will-change-transform"
                     loading="lazy"
                   />
 
@@ -133,7 +135,7 @@ export default function ServicesSection({ services }: { services: Service[] }) {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A172F]/75 via-transparent to-black/10 pointer-events-none" />
 
                   {/* Status HUD Tag */}
-                  <div className="absolute bottom-[10px] left-[10px] inline-flex items-center gap-[5px] px-[9px] py-[3px] rounded-full bg-[#0A172F]/80 backdrop-blur-md border border-white/20 text-white text-[10.5px] font-mono font-medium shadow-md">
+                  <div className="absolute bottom-[10px] left-[10px] inline-flex items-center gap-[5px] px-[9px] py-[3px] rounded-full bg-[#0A172F]/95 border border-white/20 text-white text-[10.5px] font-mono font-medium shadow-md">
                     <span className="w-[5px] h-[5px] rounded-full bg-[#00E599] animate-pulse" />
                     <span>Production SLA</span>
                   </div>
