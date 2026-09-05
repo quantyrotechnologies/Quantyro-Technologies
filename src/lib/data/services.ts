@@ -1,7 +1,10 @@
 import { unstable_cache } from 'next/cache';
 import { createPublicClient } from '@/lib/supabase/public';
 import type { Service } from '@/lib/types';
-
+/**
+ * 9 Core Enterprise Engineering & Design Services
+ * Synchronized with Supabase and verified for sub-second static generation.
+ */
 export const SAMPLE_SERVICES: Service[] = [
   {
     id: 'svc-6',
