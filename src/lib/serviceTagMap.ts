@@ -11,6 +11,8 @@ const SERVICE_SLUG_BY_TAG: Record<string, string> = {
   'AI & Machine Learning': 'ai-machine-learning',
   'SEO & Marketing': 'seo-marketing',
   'Cloud & DevOps': 'cloud-devops',
+  'UI/UX Design': 'ui-ux-design',
+  'Cybersecurity & Compliance': 'cybersecurity-compliance',
 };
 
 export function serviceSlugForTag(tag: string): string | null {

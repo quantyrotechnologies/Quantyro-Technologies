@@ -221,4 +221,64 @@ export const SERVICE_EXECUTIVE_DATA: Record<string, ServiceExecutiveContent> = {
       },
     ],
   },
+  'ui-ux-design': {
+    headline: 'Human-Centered Product Design & Enterprise Design Systems Built for High Conversion & Effortless Adoption',
+    narrative: [
+      'In modern digital products, outstanding user experience is the ultimate competitive moat. Complex software fails when users encounter cognitive overload, confusing navigation, or inconsistent interface elements. Quantyro combines qualitative user research, behavioral interaction design, and rigorous information architecture to craft digital interfaces that feel effortless, intuitive, and visually stunning from the very first interaction.',
+      'Our senior product designers build interactive Figma prototypes and scalable multi-brand design systems complete with production-ready tokens, accessible color palettes (WCAG AAA compliant), and reusable component libraries. We align design decisions directly with measurable business metrics — reducing onboarding friction, slashing user churn, and elevating conversion rates across desktop and mobile form factors.',
+      'Every design is engineered with developer handoff in mind. We provide pixel-perfect specifications, responsive layout grids, and interactive state definitions in Storybook and Tailwind CSS, ensuring that what gets designed is delivered flawlessly in production code.',
+    ],
+    pillars: [
+      {
+        title: 'Interactive Figma Prototypes',
+        desc: 'Clickable high-fidelity prototypes allowing stakeholder testing before writing a single line of code.',
+        icon: 'code',
+      },
+      {
+        title: 'Enterprise Design Systems',
+        desc: 'Comprehensive design tokens, typography scales, and modular component libraries.',
+        icon: 'shield',
+      },
+      {
+        title: 'Data-Driven Conversion Lifts',
+        desc: 'UX architecture focused on reducing funnel drop-offs and accelerating task completion speeds.',
+        icon: 'zap',
+      },
+      {
+        title: 'WCAG AAA Accessibility',
+        desc: 'Fully compliant color contrast ratios, screen-reader friendly typography, and keyboard navigation.',
+        icon: 'lock',
+      },
+    ],
+  },
+  'cybersecurity-compliance': {
+    headline: 'Bank-Grade Cybersecurity, Rigorous Penetration Testing (VAPT) & Guaranteed Regulatory Compliance',
+    narrative: [
+      'As digital threats escalate, enterprise buyers and global regulators demand incontrovertible proof that your applications, customer data, and cloud infrastructure are impregnable. Quantyro delivers proactive offensive and defensive security engineering — conducting full-spectrum Vulnerability Assessment & Penetration Testing (VAPT) across web applications, REST/GraphQL APIs, mobile apps, and cloud environments.',
+      'Our certified security architects assist technology teams in achieving and maintaining regulatory compliance, including SOC 2 Type II, ISO/IEC 27001, HIPAA, and GDPR. We establish zero-trust network architectures, automated static and dynamic application security testing (SAST/DAST) in CI/CD pipelines, and robust secret rotation policies.',
+      'Upon completion of every security audit, you receive comprehensive executive vulnerability reports, verifiable remediation code patches, and an official third-party security clearance certificate required by enterprise procurement squads and institutional investors.',
+    ],
+    pillars: [
+      {
+        title: 'VAPT Penetration Testing',
+        desc: 'Offensive ethical hacking and OWASP Top 10 vulnerability discovery before attackers find them.',
+        icon: 'lock',
+      },
+      {
+        title: 'SOC 2 & HIPAA Readiness',
+        desc: 'Complete compliance roadmap, gap analysis, and policy formulation for rapid audit certification.',
+        icon: 'shield',
+      },
+      {
+        title: 'Zero-Trust Architecture',
+        desc: 'Least-privilege IAM controls, end-to-end TLS 1.3 encryption, and automated secret management.',
+        icon: 'code',
+      },
+      {
+        title: 'Instant Patch SLA',
+        desc: 'Actionable developer remediation guidelines and re-testing validation within 48 hours.',
+        icon: 'zap',
+      },
+    ],
+  },
 };

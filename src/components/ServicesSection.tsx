@@ -81,7 +81,7 @@ export default function ServicesSection({ services }: { services: Service[] }) {
             </div>
 
             <h2 className="text-[clamp(26px,3.6vw,44px)] font-[var(--font-display)] font-bold leading-[1.12] text-[var(--ink)] tracking-tight">
-              Seven services,{' '}
+              Nine services,{' '}
               <span className="text-[var(--accent)]">one senior team</span>.
             </h2>
           </div>

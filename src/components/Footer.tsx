@@ -13,12 +13,14 @@ gsap.config({ nullTargetWarn: false });
 
 const PRACTICE_AREAS = [
   { label: 'Website Development', href: '/services/website-development' },
-  { label: 'Custom Software & SaaS', href: '/services/custom-software' },
-  { label: 'Mobile Apps (iOS/Android)', href: '/services/mobile-apps' },
-  { label: 'Headless E-Commerce', href: '/services/e-commerce' },
+  { label: 'E-Commerce Development', href: '/services/e-commerce' },
+  { label: 'SEO & Digital Marketing', href: '/services/seo-marketing' },
+  { label: 'UI/UX Design', href: '/services/ui-ux-design' },
+  { label: 'Mobile App Development', href: '/services/mobile-apps' },
   { label: 'AI & Machine Learning', href: '/services/ai-machine-learning' },
-  { label: 'Cloud & DevOps Solutions', href: '/services/cloud-devops' },
-  { label: 'Technical SEO & Growth', href: '/services/seo-marketing' },
+  { label: 'Custom Software Development', href: '/services/custom-software' },
+  { label: 'Cloud & DevOps', href: '/services/cloud-devops' },
+  { label: 'Cybersecurity & Compliance', href: '/services/cybersecurity-compliance' },
 ];
 
 const INDUSTRY_LINKS = [

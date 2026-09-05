@@ -21,6 +21,60 @@ const DEFAULT_FAQS: Record<string, FaqItem[]> = {
       a: 'Yes, end to end — from information architecture and UI design through to the technical build, deployment, and the on-page SEO foundation that makes the site actually rankable once it ships.',
     },
   ],
+  'service-e-commerce': [
+    {
+      q: 'Do you build on Shopify Plus or custom headless stacks?',
+      a: 'We build both. For brands wanting the operational familiarity of Shopify with maximum frontend speed, we engineer headless Next.js storefronts on Shopify Plus Storefront API. For specialized marketplaces, we build custom headless commerce on Medusa.js and PostgreSQL.',
+    },
+    {
+      q: 'How do you prevent shopping cart abandonment on mobile?',
+      a: 'By eliminating checkout latency. We implement 1-click Express Checkout (Apple Pay, Google Pay, Shop Pay), sub-second page transitions, and streamlined checkout accordions that boost conversion rates by 25-40%.',
+    },
+    {
+      q: 'Can you integrate with our enterprise ERP, WMS, and inventory systems?',
+      a: 'Yes. We build bidirectional real-time synchronization pipelines with SAP, NetSuite, Odoo, and custom warehouse management systems to ensure stock counts and order states are updated in milliseconds.',
+    },
+    {
+      q: 'How do you ensure the store handles high traffic during flash sales?',
+      a: 'We implement edge-computed caching, serverless checkout routing, and automated database read replicas that withstand 50,000+ concurrent shoppers with zero downtime or performance degradation.',
+    },
+  ],
+  'service-ui-ux-design': [
+    {
+      q: 'What deliverables do we receive at the end of the UI/UX design phase?',
+      a: 'You receive complete, clickable high-fidelity Figma prototypes, comprehensive design system tokens, responsive mobile/tablet/desktop layouts, and interactive developer handoff documentation with component state specifications.',
+    },
+    {
+      q: 'Do your UI/UX designs comply with WCAG accessibility standards?',
+      a: 'Yes. Every interface is designed to meet WCAG 2.1 AA and AAA standards, ensuring rigorous color contrast, keyboard navigable workflows, and screen-reader compatibility.',
+    },
+    {
+      q: 'Can you redesign our existing web app without breaking user habits?',
+      a: 'Yes. We conduct user telemetry audits, heatmapping analysis, and qualitative interviews to preserve high-frequency workflows while systematically fixing usability bottlenecks and elevating visual polish.',
+    },
+    {
+      q: 'How do you ensure designs are realistically implementable in code?',
+      a: 'Our product designers work directly alongside senior full-stack engineers. Every component is designed around real layout constraints (CSS Grid/Flexbox, Tailwind tokens) so the live product matches Figma 1:1.',
+    },
+  ],
+  'service-cybersecurity-compliance': [
+    {
+      q: 'What is included in your VAPT (Vulnerability Assessment & Penetration Testing)?',
+      a: 'Our certified ethical hackers conduct black-box and grey-box security testing across web applications, REST/GraphQL APIs, mobile apps, and cloud networks following OWASP Top 10 and SANS 25 methodologies.',
+    },
+    {
+      q: 'Can you assist our startup in achieving SOC 2 Type II and HIPAA compliance?',
+      a: 'Yes. We guide technical teams through the entire certification lifecycle: gap analysis, security policy drafting, automated CI/CD security scanning, cloud infrastructure hardening, and audit evidence collection.',
+    },
+    {
+      q: 'Do you provide remediation assistance after identifying vulnerabilities?',
+      a: 'Unlike audit-only agencies that hand you a PDF, our senior engineers write and deploy the actual remediation code patches, configuration hardening, and WAF rules to eliminate discovered vulnerabilities.',
+    },
+    {
+      q: 'Do enterprise clients receive an official certificate of security clearance?',
+      a: 'Yes. Upon successful remediation and re-testing, we issue a formal executive security assessment report and third-party clearance certificate suitable for enterprise procurement reviews and board audits.',
+    },
+  ],
   'service-seo-marketing': [
     {
       q: 'Is this technical SEO, content marketing, or both?',

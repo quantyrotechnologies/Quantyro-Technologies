@@ -6,6 +6,8 @@ const SERVICE_ILLUSTRATIONS: Record<string, string> = {
   'cloud-devops': '/images/photos/services/cloud-devops.jpg',
   'mobile-apps': '/images/photos/services/mobile-apps.jpg',
   'e-commerce': '/images/photos/services/e-commerce.jpg',
+  'ui-ux-design': '/images/photos/services/ui-ux-design.jpg',
+  'cybersecurity-compliance': '/images/photos/services/cybersecurity-compliance.jpg',
 };
 
 const FALLBACK = '/images/illustrations/pattern-1.svg';
