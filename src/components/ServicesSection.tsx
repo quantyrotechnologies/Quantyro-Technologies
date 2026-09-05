@@ -142,26 +142,29 @@ export default function ServicesSection({ services }: { services: Service[] }) {
                 </div>
 
                 {/* Title & Description */}
-                <div className="px-[14px] pt-[14px]">
-                  <h3 className="text-[19px] md:text-[21px] font-[var(--font-display)] font-bold text-[var(--ink)] leading-[1.2] group-hover:text-[var(--accent)] transition-colors line-clamp-1">
+                <div className="px-[16px] pt-[16px]">
+                  <h3 className="text-[21px] md:text-[23px] font-[var(--font-display)] font-bold text-[var(--ink)] leading-[1.2] group-hover:text-[var(--accent)] transition-colors line-clamp-1">
                     {s.title}
                   </h3>
 
-                  <p className="mt-[8px] text-[13px] md:text-[13.5px] text-[var(--muted)] leading-[1.6]">
+                  <p className="mt-[10px] text-[15px] md:text-[15.5px] text-slate-700 leading-[1.6] line-clamp-2">
                     {stripHtml(s.desc)}
                   </p>
                 </div>
               </div>
 
               {/* Bottom Capabilities Tags */}
-              <div className="px-[14px] pb-[12px] pt-[12px] border-t border-[var(--line)] flex flex-col gap-[6px] shrink-0">
+              <div className="px-[16px] pb-[14px] pt-[14px] border-t border-[var(--line)] flex flex-col gap-[8px] shrink-0">
+                <span className="text-[11.5px] font-mono font-bold uppercase tracking-wider text-slate-600">
+                  What&apos;s Included
+                </span>
                 {s.capabilities.slice(0, 3).map((c) => (
                   <div
                     key={c}
                     title={c}
-                    className="flex items-center gap-[6px] px-[9px] py-[4px] rounded-lg bg-slate-50 border border-slate-200/80 text-[11.5px] font-medium text-slate-700 group-hover:border-[rgba(23,104,214,0.3)] group-hover:bg-[rgba(23,104,214,0.04)] transition-all overflow-hidden"
+                    className="flex items-center gap-[8px] px-[10px] py-[5px] rounded-lg bg-slate-50 border border-slate-200/80 text-[13.5px] font-medium text-slate-800 group-hover:border-[rgba(23,104,214,0.3)] group-hover:bg-[rgba(23,104,214,0.04)] transition-all overflow-hidden"
                   >
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                     <span className="truncate">{c}</span>
